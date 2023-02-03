@@ -2,6 +2,9 @@ import { type AppType } from 'next/app';
 
 import { IBM_Plex_Sans } from '@next/font/google';
 
+import { appWithTranslation } from 'next-i18next';
+import nextI18NextConfig from '../../next-i18next.config.js';
+
 import { api } from '../utils/api';
 
 import 'the-new-css-reset';
@@ -16,7 +19,6 @@ const IBMPlexSans = IBM_Plex_Sans({
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>
-      <header className={IBMPlexSans.className}>Header</header>
       <div className={IBMPlexSans.className}>
         <Component {...pageProps} />
       </div>
@@ -24,4 +26,4 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   );
 };
 
-export default api.withTRPC(MyApp);
+export default api.withTRPC(appWithTranslation(MyApp, nextI18NextConfig));
