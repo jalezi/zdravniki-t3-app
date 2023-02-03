@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@next/font': ^13.1.6
   '@tanstack/react-query': ^4.20.0
   '@trpc/client': ^10.9.0
   '@trpc/next': ^10.9.0
@@ -14,13 +15,16 @@ specifiers:
   eslint: ^8.30.0
   eslint-config-next: 13.1.6
   next: 13.1.6
+  prettier: ^2.8.3
   react: 18.2.0
   react-dom: 18.2.0
   superjson: 1.9.1
+  the-new-css-reset: ^1.8.3
   typescript: ^4.9.4
   zod: ^3.20.2
 
 dependencies:
+  '@next/font': 13.1.6
   '@tanstack/react-query': 4.24.4_biqbaboplfbrettd7655fr4n2y
   '@trpc/client': 10.9.1_@trpc+server@10.9.1
   '@trpc/next': 10.9.1_xct5i5wpfctm4ykzpuv5zmefxu
@@ -30,6 +34,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   superjson: 1.9.1
+  the-new-css-reset: 1.8.3
   zod: 3.20.2
 
 devDependencies:
@@ -40,6 +45,7 @@ devDependencies:
   '@typescript-eslint/parser': 5.50.0_4vsywjlpuriuw3tl5oq6zy5a64
   eslint: 8.33.0
   eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
+  prettier: 2.8.3
   typescript: 4.9.5
 
 packages:
@@ -97,6 +103,10 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
+
+  /@next/font/13.1.6:
+    resolution: {integrity: sha512-AITjmeb1RgX1HKMCiA39ztx2mxeAyxl4ljv2UoSBUGAbFFMg8MO7YAvjHCgFhD39hL7YTbFjol04e/BPBH5RzQ==}
+    dev: false
 
   /@next/swc-android-arm-eabi/13.1.6:
     resolution: {integrity: sha512-F3/6Z8LH/pGlPzR1AcjPFxx35mPqjE5xZcf+IL+KgbW9tMkp7CYi1y7qKrEWU7W4AumxX/8OINnDQWLiwLasLQ==}
@@ -1951,6 +1961,12 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
+  /prettier/2.8.3:
+    resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: true
+
   /prop-types/15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
     dependencies:
@@ -2223,6 +2239,10 @@ packages:
   /text-table/0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
+
+  /the-new-css-reset/1.8.3:
+    resolution: {integrity: sha512-wEGQr1UJE9Bznjqf6eIYodMhF9QbC6+gLCNmGKrWXKurAclLDS+vaYs4ja/s5AR1b3zoCrsOCAtisiYgLlZF0A==}
+    dev: false
 
   /tiny-glob/0.2.9:
     resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
