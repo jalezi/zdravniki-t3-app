@@ -16,7 +16,7 @@ const AboutIntlMap = {
 } as const;
 
 const LanguagePageMDX = function LanguagePageMDX({ name }: { name: Locale }) {
-  const Page = AboutIntlMap[name];
+  const Page = AboutIntlMap[`${name}`];
   return <Page id="about-mdx" />;
 };
 
