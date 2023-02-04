@@ -1,5 +1,4 @@
 import { type AppType } from 'next/app';
-
 import { appWithTranslation } from 'next-i18next';
 
 import { api } from '@/utils/api';

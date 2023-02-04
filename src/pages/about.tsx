@@ -1,11 +1,12 @@
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MDXProvider } from '@mdx-js/react';
-import nextI18nextConfig from '../../next-i18next.config.js';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import AboutEN from '@/content/en/about.mdx';
 import AboutIT from '@/content/it/about.mdx';
 import AboutSL from '@/content/sl/about.mdx';
 import type { Locale } from '@/types/i18n';
+
+import nextI18nextConfig from '../../next-i18next.config.js';
 
 const AboutIntlMap = {
   default: AboutSL,
