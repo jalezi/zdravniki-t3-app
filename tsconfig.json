@@ -18,17 +18,32 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.js",
     "**/*.cjs",
     "**/*.mjs",
+    "**/*.mdx",
+    "**/*.md",
     "next-i18next.config.js"
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "mdx": {
+    "plugins": [
+      [
+        "remark-frontmatter",
+        [
+          "toml",
+          "yaml"
+        ]
+      ],
+      "remark-gfm"
+    ]
+  }
 }

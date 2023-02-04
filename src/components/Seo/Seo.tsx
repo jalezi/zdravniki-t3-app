@@ -1,18 +1,24 @@
 import Head from 'next/head';
 
-const title = 'Zdravniki - Sledilnik';
-const description =
-  'Zdravniki Sledilnik Slovenija - zbrani, preverjeni, ažurirani, analizirani in pregledni podatki o prostih zdravnikih v Sloveniji';
+const defaultSeoData = {
+  title: 'Zdravniki - Sledilnik',
+  description:
+    'Zdravniki Sledilnik Slovenija - zbrani, preverjeni, ažurirani, analizirani in pregledni podatki o prostih zdravnikih v Sloveniji',
+  keywords: '',
+};
 const socialImgUrl = 'https://zdravniki.sledilnik.org/social.png';
 
 const socialColor = '#09AFDA';
 const canonicalURL = 'https://zdravniki.sledilnik.org/';
 
 function Seo() {
+  const { title, description, keywords } = defaultSeoData;
+
   return (
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
       <link rel="icon" href="/favicon.ico" />
       <link
         rel="apple-touch-icon"

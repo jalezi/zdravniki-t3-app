@@ -3,7 +3,10 @@
   "endOfLine": "auto",
   "overrides": [
     {
-      "files": "*.md",
+      "files": [
+        "*.md",
+        "*.mdx"
+      ],
       "options": {
         "parser": "mdx"
       }

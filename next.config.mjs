@@ -1,6 +1,21 @@
 // @ts-check
 
-import { i18n } from './next-i18next.config.mjs';
+import nextMDX from '@next/mdx';
+
+import pkg from './next-i18next.config.js';
+const { i18n } = pkg;
+
+// https://mdxjs.com/docs/getting-started/#nextjs,   https://mdxjs.com/docs/getting-started/#types
+const withMDX = nextMDX({
+  // By default only the .mdx extension is supported.
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+    /* providerImportSource: …, otherOptions… */
+    providerImportSource: '@mdx-js/react',
+  },
+});
 
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
@@ -20,5 +35,6 @@ const config = {
    */
   i18n: { ...i18n, localeDetection: false },
   trailingSlash: true,
+  pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
 };
-export default config;
+export default withMDX(config);
