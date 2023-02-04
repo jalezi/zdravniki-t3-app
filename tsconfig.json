@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -21,9 +17,7 @@
     "noUncheckedIndexedAccess": true,
     "baseUrl": "./src",
     "paths": {
-      "@/*": [
-        "*"
-      ]
+      "@/*": ["*"]
     }
   },
   "include": [
@@ -35,21 +29,11 @@
     "**/*.mjs",
     "**/*.mdx",
     "**/*.md",
-    "next-i18next.config.js"
+    "next-i18next.config.js",
+    ".lintstagedrc.js"
   ],
-  "exclude": [
-    "node_modules"
-  ],
+  "exclude": ["node_modules"],
   "mdx": {
-    "plugins": [
-      [
-        "remark-frontmatter",
-        [
-          "toml",
-          "yaml"
-        ]
-      ],
-      "remark-gfm"
-    ]
+    "plugins": [["remark-frontmatter", ["toml", "yaml"]], "remark-gfm"]
   }
 }
