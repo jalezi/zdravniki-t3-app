@@ -1,6 +1,6 @@
 import { IBM_Plex_Sans } from '@next/font/google';
 
-import { Seo } from '../components/Seo';
+import { Seo } from '@/components/Seo';
 
 const IBMPlexSans = IBM_Plex_Sans({
   subsets: ['latin'],

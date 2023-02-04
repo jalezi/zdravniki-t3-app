@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { useTranslation } from 'next-i18next';
-import type { Locale } from '../types/i18n';
+import type { Locale } from '@/types/i18n';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
 
