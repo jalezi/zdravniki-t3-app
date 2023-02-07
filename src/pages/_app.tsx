@@ -4,6 +4,7 @@ import { appWithTranslation } from 'next-i18next';
 import { api } from '@/utils/api';
 
 import 'the-new-css-reset';
+import '@/styles/variables.css';
 import '@/styles/globals.css';
 import Layout from '../layouts/Layout';
 

@@ -1,0 +1,12 @@
+:root {
+  /* sizes */
+  --header-height-sm: 3.5rem;
+  --header-height-lg: 4rem;
+
+  /* colors */
+  --color: rgba(0, 0, 0, 0.87);
+  --color-light: rgba(33, 37, 41, 0.56);
+  --color-brand: #26c5ed;
+  --color-background: #f4f8f8;
+  --color-background-overlay: rgba(0, 0, 0, 0.5);
+}
