@@ -25,3 +25,7 @@ a {
   outline-color: #007bff;
   outline-offset: 1px;
 }
+
+button {
+  cursor: pointer;
+}

@@ -1,0 +1,31 @@
+.IconButton {
+  --size: var(--size-md, 1.5rem);
+  --padding: 0.2em;
+
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+
+  min-width: calc(var(--size) + var(--padding) * 2);
+  min-height: calc(var(--size) + var(--padding) * 2);
+  padding: 0.2em;
+
+  color: inherit;
+
+  border-radius: 50%;
+}
+
+.IconButton .iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.IconButton .iconContainer > svg {
+  width: var(--size);
+  height: var(--size);
+}
