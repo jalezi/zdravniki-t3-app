@@ -20,7 +20,9 @@
   "plugins": [
     "@typescript-eslint",
     "prettier",
-    "import"
+    "import",
+    "sonarjs",
+    "security"
   ],
   "extends": [
     "next/core-web-vitals",

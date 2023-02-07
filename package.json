@@ -7,6 +7,8 @@
     "dev": "next dev",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
+    "stylelint": "stylelint \"**/*.css\"",
+    "stylelint:fix": "stylelint \"**/*.css\" --fix",
     "start": "next start",
     "prepare": "husky install"
   },
@@ -20,6 +22,7 @@
     "@trpc/next": "^10.9.0",
     "@trpc/react-query": "^10.9.0",
     "@trpc/server": "^10.9.0",
+    "clsx": "^1.2.1",
     "gray-matter": "^4.0.3",
     "i18next": "^22.4.9",
     "next": "13.1.6",
@@ -34,6 +37,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
+    "@svgr/webpack": "^6.5.1",
     "@types/mdx": "^2.0.3",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",
@@ -47,10 +51,14 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-security": "^1.7.1",
     "eslint-plugin-sonarjs": "^0.18.0",
+    "husky": "^8.0.0",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.3",
-    "typescript": "^4.9.4",
-    "husky": "^8.0.0"
+    "stylelint": "^14.16.1",
+    "stylelint-config-clean-order": "^2.3.1",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-order": "^6.0.1",
+    "typescript": "^4.9.4"
   },
   "ct3aMetadata": {
     "initVersion": "7.4.1"
