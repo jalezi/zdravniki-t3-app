@@ -1,23 +1,21 @@
-import { IBM_Plex_Sans } from '@next/font/google';
-
+import { Header } from '@/components/Header';
 import { Seo } from '@/components/Seo';
-
-const IBMPlexSans = IBM_Plex_Sans({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700'],
-  style: ['italic', 'normal'],
-});
+import { IBMPlexSans } from '@/fonts';
 
 type Props = {
   children: React.ReactNode;
 };
 
 const Layout = (props: Props) => {
+  const tempMainStyle = { paddingTop: 'var(--header-height-sm)' };
+
   return (
     <>
       <Seo />
-      <header className={IBMPlexSans.className}>Header</header>
-      <main className={IBMPlexSans.className}>{props.children}</main>
+      <Header />
+      <main className={IBMPlexSans.className} style={tempMainStyle}>
+        {props.children}
+      </main>
     </>
   );
 };
