@@ -1,7 +1,0 @@
-<svg viewBox="0 0 24 24" height="24px" width="24px" aria-hidden="true" fill="currentColor">
-  <g class="lines">
-    <path class="top-line" d="M 2 4 H 20 V 6 H 2" />
-    <path class="middle-line" d="M 2 11 H 20 V 13 H 2" />
-    <path class="bottom-line" d="M 2 18 H 20 V 20 H 2" />
-  </g>
-</svg>
