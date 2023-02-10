@@ -1,0 +1,10 @@
+.container {
+  position: relative;
+  width: 148px;
+  height: 40px;
+}
+
+.container img {
+  padding-block: 2px;
+  object-fit: contain;
+}
