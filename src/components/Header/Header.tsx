@@ -1,38 +1,85 @@
 import { clsx } from 'clsx';
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import * as Navigation from '@/components/Header/Navigation';
-import * as Hamburger from '@/components/Shared/Hamburger';
 import { IBMPlexSans } from '@/fonts';
 
 import styles from './Header.module.css';
 import { Logo } from './Logo';
+import * as Toggler from './Toggler';
 import { Overlay } from '../Shared/Overlay';
 
+// should match breakpoints in src/styles/variables.css
+const BREAKPOINTS = {
+  xxs: 0,
+  xs: 375,
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+  xxl: 1400,
+} as const;
+
 function Header() {
-  const [showNavigation, setShowNavigation] = useState<boolean>(false);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [navigationState, setNavigationState] = useState<boolean>(false);
   const headerStyles = clsx(
     styles.Header,
     IBMPlexSans.className,
-    showNavigation && styles.menuOpen
+    navigationState && styles.menuOpen
   );
 
-  const onShowOrHideNavigation = () => setShowNavigation(prev => !prev);
+  // Close navigation on resize
+  useEffect(() => {
+    if (window) {
+      const handleResize = () => {
+        if (window.innerWidth >= BREAKPOINTS.md) {
+          setNavigationState(false);
+        }
+      };
+
+      window.addEventListener('resize', handleResize);
+
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, []);
+
+  // Close navigation on escape
+  useEffect(() => {
+    if (headerRef.current) {
+      const header = headerRef.current;
+
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === 'Escape') {
+          setNavigationState(false);
+        }
+      };
+
+      header.addEventListener('keydown', handleKeyDown);
+
+      return () => header.removeEventListener('keydown', handleKeyDown);
+    }
+  }, []);
+
+  const onShowOrHideNavigation = useCallback(
+    () => setNavigationState(prev => !prev),
+    []
+  );
 
   return (
-    <header className={headerStyles}>
+    <header ref={headerRef} className={headerStyles}>
       <Logo />
-      <Hamburger.Container>
-        <Hamburger.Button
+      <Toggler.Container>
+        <Toggler.Button
           onToggle={onShowOrHideNavigation}
-          showNavigation={showNavigation}
+          showNavigation={navigationState}
         />
-      </Hamburger.Container>
-      <Navigation.Container showNavigation={showNavigation}>
+      </Toggler.Container>
+      <Navigation.Container showNavigation={navigationState}>
         <Navigation.Navigation />
       </Navigation.Container>
 
-      <Overlay show={showNavigation} />
+      <Overlay show={navigationState} />
     </header>
   );
 }

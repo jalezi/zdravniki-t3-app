@@ -1,50 +1,40 @@
 import { clsx } from 'clsx';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import styles from './Hamburger.module.css';
-import { IconButton } from '../IconButton';
 
 type HamburgerProps = {
-  onToggle: () => void;
-  showNavigation: boolean;
+  open: boolean;
 };
 
-const Hamburger = ({ onToggle, showNavigation }: HamburgerProps) => {
-  const buttonRef = useRef<HTMLButtonElement>(null);
-
-  const hasButtonBeenClickedYet = buttonRef.current?.getAttribute(
-    'data-not-clicked-yet'
-  );
-  const canApplyMenuClosedAnimation = hasButtonBeenClickedYet === 'false';
-
-  if (!canApplyMenuClosedAnimation && showNavigation) {
-    buttonRef.current?.setAttribute('data-not-clicked-yet', 'false');
-  }
-
+const Hamburger = ({ open }: HamburgerProps) => {
+  const ref = useRef<HTMLSpanElement>(null);
   const hamburgerStyles = clsx(
     styles.Hamburger,
-    showNavigation
-      ? styles.menuOpen
-      : canApplyMenuClosedAnimation && styles.menuClosed
+    open ? styles.Bars : styles.Cross
   );
 
+  useEffect(() => {
+    const linesSpan = ref.current;
+
+    if (linesSpan && open) {
+      linesSpan.setAttribute('data-state', 'transition');
+    }
+    return () => {
+      if (linesSpan) {
+        linesSpan.removeAttribute('data-state');
+      }
+    };
+  }, [open]);
+
+  const hamburgerLineStyles = clsx(styles.HamburgerLine);
+
   return (
-    <IconButton
-      ref={buttonRef}
-      type="button"
-      className={hamburgerStyles}
-      onClick={onToggle}
-      aria-controls="navigation"
-      aria-expanded={showNavigation}
-      aria-label={showNavigation ? 'Close menu' : 'Open menu'}
-      data-not-clicked-yet="true"
-    >
-      <span className={styles.lines}>
-        <span className={styles.line} />
-        <span className={styles.line} />
-        <span className={styles.line} />
-      </span>
-    </IconButton>
+    <span ref={ref} className={hamburgerStyles}>
+      <span className={hamburgerLineStyles} />
+      <span className={hamburgerLineStyles} />
+      <span className={hamburgerLineStyles} />
+    </span>
   );
 };
 

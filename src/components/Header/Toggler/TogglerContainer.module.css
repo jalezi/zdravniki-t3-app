@@ -1,4 +1,4 @@
-.HamburgerContainer {
+.TogglerContainer {
   position: fixed;
   z-index: 9990;
   top: 0;
@@ -12,7 +12,7 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .HamburgerContainer {
+  .TogglerContainer {
     display: none;
   }
 }

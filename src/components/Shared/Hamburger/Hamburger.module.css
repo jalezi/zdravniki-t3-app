@@ -1,61 +1,56 @@
 .Hamburger {
   position: relative;
-  z-index: inherit;
-  display: inline-block;
-}
-
-.Hamburger .lines {
   display: block;
 }
 
-.Hamburger .line {
+.Hamburger > .HamburgerLine {
   display: block;
   width: 24px;
   height: 2px;
   background: var(--color);
 }
 
-.Hamburger .lines > .line:not(:first-of-type) {
+.Hamburger > .HamburgerLine:not(:first-of-type) {
   margin-top: 7px;
 }
 
-.Hamburger .lines > .line {
+.Hamburger > .HamburgerLine {
   will-change: transform;
   animation-duration: 0.6s;
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   animation-delay: 0s;
 }
 
-.Hamburger .lines > .line:nth-child(2) {
+.Hamburger > .HamburgerLine:nth-child(2) {
   will-change: opacity;
 }
 
-.Hamburger.menuOpen .lines > .line:nth-child(1) {
+.Hamburger.Bars > .HamburgerLine:nth-child(1) {
   transform: translate3d(0, 9px, 0) rotate(-45deg);
   animation-name: line-1;
 }
 
-.Hamburger.menuOpen .lines > .line:nth-child(2) {
+.Hamburger.Bars > .HamburgerLine:nth-child(2) {
   opacity: 0;
   animation-name: line-2;
 }
 
-.Hamburger.menuOpen .lines > .line:nth-child(3) {
+.Hamburger.Bars > .HamburgerLine:nth-child(3) {
   transform: translate3d(0, -9px, 0) rotate(45deg);
   animation-name: line-3;
 }
 
-.Hamburger.menuClosed .lines > .line:nth-child(1) {
+.Hamburger[data-state='transition'].Cross > .HamburgerLine:nth-child(1) {
   transform: translateZ(0) rotate(0deg);
   animation-name: line-1-close;
 }
 
-.Hamburger.menuClosed .lines > .line:nth-child(2) {
+.Hamburger[data-state='transition'].Cross > .HamburgerLine:nth-child(2) {
   opacity: 1;
   animation-name: line-2-close;
 }
 
-.Hamburger.menuClosed .lines > .line:nth-child(3) {
+.Hamburger[data-state='transition'].Cross .HamburgerLine:nth-child(3) {
   transform: translateZ(0) rotate(0deg);
   animation-name: line-3-close;
 }
