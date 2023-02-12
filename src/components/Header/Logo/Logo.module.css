@@ -1,10 +1,10 @@
 .Logo {
   position: relative;
-  width: 148px;
-  height: 40px;
+  padding-inline: 0.5em;
+  line-height: var(--header-height-sm);
 }
 
-.Logo img {
-  padding-block: 2px;
-  object-fit: contain;
+.Logo .Link {
+  display: flex;
+  align-items: center;
 }
