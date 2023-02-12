@@ -1,10 +1,10 @@
-.container {
+.Logo {
   position: relative;
   width: 148px;
   height: 40px;
 }
 
-.container img {
+.Logo img {
   padding-block: 2px;
   object-fit: contain;
 }

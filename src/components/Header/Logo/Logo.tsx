@@ -11,7 +11,7 @@ const Logo = () => {
   const router = useRouter();
   const locale = router.locale as Locale;
   return (
-    <span className={styles.container}>
+    <span className={styles.Logo}>
       <Link href={`/${locale}`}>
         {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
         <Image src={logo as string} fill alt="logo" />

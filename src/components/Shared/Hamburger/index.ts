@@ -1,1 +1,2 @@
-export { default as Hamburger } from './Hamburger';
+export { default as Button } from './Hamburger';
+export { HamburgerContainer as Container } from './HamburgerContainer';

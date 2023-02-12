@@ -1,0 +1,28 @@
+.Overlay {
+  will-change: opacity, z-index;
+
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  opacity: 0;
+  background-color: var(--color-background-overlay);
+
+  transition: all var(--nav-transition-time) ease-in-out;
+}
+
+.Overlay.menuOpen {
+  z-index: 9970;
+  opacity: 1;
+  transition: all var(--nav-transition-time) ease-in-out
+    var(--overlay-transition-delay);
+}
+
+@media only screen and (min-width: 768px) {
+  .Overlay {
+    display: none;
+  }
+}

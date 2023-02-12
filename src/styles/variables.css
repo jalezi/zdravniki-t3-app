@@ -6,8 +6,21 @@
 
   /* colors */
   --color: rgba(0, 0, 0, 0.87);
-  --color-light: rgba(33, 37, 41, 0.56);
-  --color-brand: #26c5ed;
+  --color-nav-links: rgba(0, 0, 0, 0.66);
+  --color-brand: #26c6ed;
   --color-background: #f4f8f8;
-  --color-background-overlay: rgba(0, 0, 0, 0.5);
+  --color-background-overlay: rgba(0, 0, 0, 0.75);
+
+  /* breakpoints */
+  --break-point-xxs: 0;
+  --breakpoint-xs: 375px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+
+  /* timing */
+  --nav-transition-time: 650ms;
+  --overlay-transition-delay: 367ms;
 }

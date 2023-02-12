@@ -1,19 +1,22 @@
+import { clsx } from 'clsx';
+
 import { Header } from '@/components/Header';
 import { Seo } from '@/components/Seo';
 import { IBMPlexSans } from '@/fonts';
+
+import styles from './Layout.module.css';
 
 type Props = {
   children: React.ReactNode;
 };
 
 const Layout = (props: Props) => {
-  const tempMainStyle = { paddingTop: 'var(--header-height-sm)' };
-
   return (
     <>
       <Seo />
+
       <Header />
-      <main className={IBMPlexSans.className} style={tempMainStyle}>
+      <main className={clsx(IBMPlexSans.className, styles.Layout)}>
         {props.children}
       </main>
     </>

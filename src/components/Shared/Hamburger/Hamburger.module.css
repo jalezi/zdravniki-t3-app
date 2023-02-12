@@ -1,4 +1,6 @@
 .Hamburger {
+  position: relative;
+  z-index: inherit;
   display: inline-block;
 }
 

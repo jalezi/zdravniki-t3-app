@@ -2,22 +2,50 @@ import { type NextPage } from 'next';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import type { HTMLAttributes } from 'react';
+import { useRef } from 'react';
 
+import IconButton from '@/components/Shared/IconButton/IconButton';
 import type { Locale } from '@/types/i18n';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
 
 const Home: NextPage = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { t } = useTranslation('common');
 
+  const tempDivStyle: HTMLAttributes<HTMLDivElement>['style'] = {
+    display: 'flex',
+    flexDirection: 'column',
+    paddingBlock: '1rem',
+  };
+
+  const ref = useRef<HTMLAnchorElement>(null);
+
   return (
-    <main>
+    <>
       <h1>{t`test`}</h1>
-      <button>button</button>
       <br />
-      <Link href="/about">about</Link>
-    </main>
+      <div style={tempDivStyle}>
+        <IconButton as={Link} href="/about">
+          about
+        </IconButton>
+        <IconButton as={Link} href="/" locale="sl">
+          SL
+        </IconButton>
+        <IconButton as={Link} href="/" locale="en">
+          EN
+        </IconButton>
+        <IconButton as={Link} href="/" locale="it">
+          IT
+        </IconButton>
+      </div>
+      <div style={tempDivStyle}>
+        <IconButton type="button">Button</IconButton>
+        <IconButton as="a" href="/sl" ref={ref}>
+          Normal link
+        </IconButton>
+      </div>
+    </>
   );
 };
 

@@ -1,0 +1,18 @@
+.HamburgerContainer {
+  position: fixed;
+  z-index: 9990;
+  top: 0;
+  right: 0;
+
+  display: grid;
+  place-items: center;
+
+  width: var(--header-height-sm, 3.5rem);
+  height: var(--header-height-sm, 3.5rem);
+}
+
+@media only screen and (min-width: 768px) {
+  .HamburgerContainer {
+    display: none;
+  }
+}

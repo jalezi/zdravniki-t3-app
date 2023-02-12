@@ -1,0 +1,48 @@
+.NavigationContainer {
+  will-change: left, right, z-index;
+
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  right: -100%;
+  bottom: 0;
+  left: 100%;
+
+  background-color: var(--color-brand);
+
+  transition: all var(--nav-transition-time) ease-in-out;
+}
+
+.NavigationContainer.menuOpen {
+  z-index: 9980;
+  right: 0;
+  left: 0;
+}
+
+@media only screen and (min-width: 375px) {
+  .NavigationContainer.menuOpen {
+    left: 20%;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .NavigationContainer.menuOpen {
+    left: 35%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .NavigationContainer {
+    will-change: auto;
+
+    position: relative;
+    top: unset;
+    right: unset;
+    bottom: unset;
+    left: unset;
+
+    display: block;
+
+    margin-left: auto;
+  }
+}

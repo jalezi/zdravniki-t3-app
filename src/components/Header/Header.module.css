@@ -1,13 +1,29 @@
-.container {
+.Header {
   position: fixed;
+  z-index: 0;
   top: 0;
+  right: 0;
   left: 0;
 
   display: flex;
   align-items: center;
 
   width: 100%;
-  min-height: var(--header-height-sm);
+  height: var(--header-height-sm);
+  padding-right: var(--header-height-sm);
 
   background-color: var(--color-brand);
+
+  transition: z-index var(--overlay-transition-delay) ease-in-out 0.3s;
+}
+
+.Header.menuOpen {
+  z-index: 1;
+}
+
+@media only screen and (min-width: 768px) {
+  .Header {
+    display: flex;
+    padding-right: 0;
+  }
 }

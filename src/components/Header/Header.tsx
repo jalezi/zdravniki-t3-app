@@ -1,28 +1,38 @@
 import { clsx } from 'clsx';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useState } from 'react';
 
-import logo from '@/assets/svg/zdravniki-sledilnik-logo.svg?url';
+import * as Navigation from '@/components/Header/Navigation';
+import * as Hamburger from '@/components/Shared/Hamburger';
 import { IBMPlexSans } from '@/fonts';
-import type { Locale } from '@/types/i18n';
 
 import styles from './Header.module.css';
-import { IconHamburger } from '../Shared/Icons';
+import { Logo } from './Logo';
+import { Overlay } from '../Shared/Overlay';
 
 function Header() {
-  const router = useRouter();
+  const [showNavigation, setShowNavigation] = useState<boolean>(false);
+  const headerStyles = clsx(
+    styles.Header,
+    IBMPlexSans.className,
+    showNavigation && styles.menuOpen
+  );
 
-  const locale = router.locale as Locale;
-
-  const className = clsx(styles.container, IBMPlexSans.className);
+  const onShowOrHideNavigation = () => setShowNavigation(prev => !prev);
 
   return (
-    <header className={className}>
-      <Link href={`/${locale}`}>
-        <Image src={logo} width={148} height={40} alt="logo" />
-      </Link>
-      <IconHamburger />
+    <header className={headerStyles}>
+      <Logo />
+      <Hamburger.Container>
+        <Hamburger.Button
+          onToggle={onShowOrHideNavigation}
+          showNavigation={showNavigation}
+        />
+      </Hamburger.Container>
+      <Navigation.Container showNavigation={showNavigation}>
+        <Navigation.Navigation />
+      </Navigation.Container>
+
+      <Overlay show={showNavigation} />
     </header>
   );
 }
