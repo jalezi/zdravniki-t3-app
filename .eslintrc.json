@@ -10,6 +10,17 @@
       ],
       "parserOptions": {
         "project": "tsconfig.json"
+      },
+      "rules": {
+        "no-console": [
+          "error",
+          {
+            "allow": [
+              "warn",
+              "error"
+            ]
+          }
+        ]
       }
     }
   ],
