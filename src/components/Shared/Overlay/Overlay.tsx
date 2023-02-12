@@ -1,14 +1,14 @@
 import { clsx } from 'clsx';
-import React from 'react';
+import { forwardRef } from 'react';
 
 import styles from './Overlay.module.css';
 
-type Props = { show: boolean };
+type OverlayProps = { show: boolean };
 
-const Overlay = ({ show }: Props) => {
+const Overlay = ({ show }: OverlayProps, ref: React.Ref<HTMLDivElement>) => {
   const overlayStyles = clsx(styles.Overlay, show && styles.menuOpen);
 
-  return <div className={overlayStyles} />;
+  return <div ref={ref} className={overlayStyles} />;
 };
 
-export default Overlay;
+export default forwardRef(Overlay);

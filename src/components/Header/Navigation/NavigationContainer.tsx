@@ -1,11 +1,16 @@
 import { clsx } from 'clsx';
-import React from 'react';
 
 import styles from './NavigationContainer.module.css';
 
-type Props = { showNavigation: boolean; children: React.ReactNode };
+type NavigationContainerProps = {
+  showNavigation: boolean;
+  children: React.ReactNode;
+};
 
-const NavigationContainer = ({ showNavigation, children }: Props) => {
+const NavigationContainer = ({
+  showNavigation,
+  children,
+}: NavigationContainerProps) => {
   const navigationContainerStyles = clsx(
     styles.NavigationContainer,
     showNavigation && styles.menuOpen

@@ -1,20 +1,19 @@
 import { clsx } from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
 
 import { IconButton } from '@/components/Shared/IconButton';
 import { FbSvg, TwSvg } from '@/components/Shared/Icons';
 
 import styles from './Navigation.module.css';
 
-const navStyles = clsx(styles.Navigation);
-const titleStyles = clsx(styles.title);
-const navLinksFirstStyles = clsx(styles.navLinks, styles.first);
-const navLinksLastStyles = clsx(styles.navLinks, styles.last);
-
 const Navigation = () => {
   const { locale } = useRouter();
+
+  const navStyles = clsx(styles.Navigation);
+  const titleStyles = clsx(styles.title);
+  const navLinksFirstStyles = clsx(styles.navLinks, styles.first);
+  const navLinksLastStyles = clsx(styles.navLinks, styles.last);
 
   return (
     <nav className={navStyles}>

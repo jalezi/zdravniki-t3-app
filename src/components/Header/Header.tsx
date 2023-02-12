@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEventListener, useWindowSize } from 'usehooks-ts';
 
 import * as Navigation from '@/components/Header/Navigation';
 import { IBMPlexSans } from '@/fonts';
@@ -21,66 +22,73 @@ const BREAKPOINTS = {
 } as const;
 
 function Header() {
-  const headerRef = useRef<HTMLDivElement>(null);
-  const [navigationState, setNavigationState] = useState<boolean>(false);
-  const headerStyles = clsx(
-    styles.Header,
-    IBMPlexSans.className,
-    navigationState && styles.menuOpen
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const [showNavigation, setShowNavigation] = useState<boolean>(false);
+  const { width } = useWindowSize();
+  const isMediumMediaQuery = width >= BREAKPOINTS.md;
+
+  const handleOverlayClick = useCallback(() => {
+    setShowNavigation(false);
+  }, []);
+
+  const handleEscape = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        handleOverlayClick();
+      }
+    },
+    [handleOverlayClick]
   );
+
+  useEventListener('click', handleOverlayClick, overlayRef);
+  useEventListener('keydown', handleEscape);
 
   // Close navigation on resize
   useEffect(() => {
-    if (window) {
-      const handleResize = () => {
-        if (window.innerWidth >= BREAKPOINTS.md) {
-          setNavigationState(false);
-        }
-      };
-
-      window.addEventListener('resize', handleResize);
-
-      return () => window.removeEventListener('resize', handleResize);
+    if (isMediumMediaQuery) {
+      setShowNavigation(false);
     }
-  }, []);
-
-  // Close navigation on escape
-  useEffect(() => {
-    if (headerRef.current) {
-      const header = headerRef.current;
-
-      const handleKeyDown = (event: KeyboardEvent) => {
-        if (event.key === 'Escape') {
-          setNavigationState(false);
-        }
-      };
-
-      header.addEventListener('keydown', handleKeyDown);
-
-      return () => header.removeEventListener('keydown', handleKeyDown);
-    }
-  }, []);
+  }, [isMediumMediaQuery]);
 
   const onShowOrHideNavigation = useCallback(
-    () => setNavigationState(prev => !prev),
+    () => setShowNavigation(prev => !prev),
     []
   );
 
-  return (
-    <header ref={headerRef} className={headerStyles}>
-      <Logo />
-      <Toggler.Container>
-        <Toggler.Button
-          onToggle={onShowOrHideNavigation}
-          showNavigation={navigationState}
-        />
-      </Toggler.Container>
-      <Navigation.Container showNavigation={navigationState}>
-        <Navigation.Navigation />
-      </Navigation.Container>
+  const nav = useMemo(
+    () => (
+      <>
+        <Navigation.Container showNavigation={showNavigation}>
+          <Navigation.Navigation />
+        </Navigation.Container>
+      </>
+    ),
+    [showNavigation]
+  );
 
-      <Overlay show={navigationState} />
-    </header>
+  const headerStyles = clsx(
+    styles.Header,
+    IBMPlexSans.className,
+    showNavigation && styles.menuOpen
+  );
+
+  return (
+    <>
+      <header className={headerStyles}>
+        <Logo />
+        {isMediumMediaQuery ? nav : null}
+      </header>
+      {isMediumMediaQuery ? null : (
+        <Toggler.Container>
+          <Toggler.Button
+            onToggle={onShowOrHideNavigation}
+            showNavigation={showNavigation}
+          />
+        </Toggler.Container>
+      )}
+      {isMediumMediaQuery ? null : nav}
+      <Overlay ref={overlayRef} show={showNavigation} />
+    </>
   );
 }
 

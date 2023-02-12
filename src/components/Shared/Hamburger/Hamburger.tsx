@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 
 import styles from './Hamburger.module.css';
 
@@ -20,11 +20,6 @@ const Hamburger = ({ open }: HamburgerProps) => {
     if (linesSpan && open) {
       linesSpan.setAttribute('data-state', 'transition');
     }
-    return () => {
-      if (linesSpan) {
-        linesSpan.removeAttribute('data-state');
-      }
-    };
   }, [open]);
 
   const hamburgerLineStyles = clsx(styles.HamburgerLine);
@@ -38,4 +33,4 @@ const Hamburger = ({ open }: HamburgerProps) => {
   );
 };
 
-export default Hamburger;
+export default memo(Hamburger);
