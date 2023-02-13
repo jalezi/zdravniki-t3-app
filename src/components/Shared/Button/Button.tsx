@@ -5,15 +5,15 @@ import { forwardRef } from 'react';
 import { Polymorphic } from '@/components/Shared/Polymorphic';
 
 import styles from './Button.module.css';
-import type { InternalProps } from './Button.types';
+import type { InternalButtonProps } from './Button.types';
 
 type ButtonComponent = (
-  { as = 'button', children, ...polymorphicProps }: InternalProps,
+  { as = 'button', children, ...polymorphicProps }: InternalButtonProps,
   ref?: Ref<HTMLElement>
 ) => React.ReactElement | null;
 
 const Button: ButtonComponent = (
-  { children, ...polymorphicProps }: InternalProps,
+  { children, ...polymorphicProps }: InternalButtonProps,
   ref?: Ref<HTMLElement>
 ) => {
   const as = polymorphicProps.as || 'button';
@@ -34,4 +34,4 @@ const Button: ButtonComponent = (
   );
 };
 
-export default forwardRef<HTMLElement, InternalProps>(Button);
+export default forwardRef<HTMLElement, InternalButtonProps>(Button);
