@@ -5,7 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { HTMLAttributes } from 'react';
 import { useRef } from 'react';
 
-import IconButton from '@/components/Shared/IconButton/IconButton';
+import IconButton from '@/components/Shared/Buttons/IconButton/IconButton';
 import type { Locale } from '@/types/i18n';
 
 import nextI18nextConfig from '../../next-i18next.config.js';

@@ -1,8 +1,8 @@
 import { clsx } from 'clsx';
 import { forwardRef } from 'react';
 
+import { IconButton } from '@/components/Shared/Buttons/IconButton';
 import { Hamburger } from '@/components/Shared/Hamburger';
-import { IconButton } from '@/components/Shared/IconButton';
 
 import styles from './Toggler.module.css';
 

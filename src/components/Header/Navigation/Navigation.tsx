@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { IconButton } from '@/components/Shared/IconButton';
+import { Button, IconButton } from '@/components/Shared/Buttons';
 import { FbSvg, TwSvg } from '@/components/Shared/Icons';
 
 import styles from './Navigation.module.css';
@@ -20,39 +20,46 @@ const Navigation = () => {
       <h2 className={titleStyles}>Meni</h2>
       <ul className={navLinksFirstStyles}>
         <li>
-          <Link href="/" locale={locale} data-keep-focus="true">
+          <Button as={Link} href="/" locale={locale} data-keep-focus="true">
             Home
-          </Link>
+          </Button>
         </li>
         <li>
-          <Link href="/faq" locale={locale} data-keep-focus="true">
+          <Button as={Link} href="/faq" locale={locale} data-keep-focus="true">
             FAQ
-          </Link>
+          </Button>
         </li>
         <li>
-          <Link href="/about" locale={locale} data-keep-focus="true">
+          <Button
+            as={Link}
+            href="/about"
+            locale={locale}
+            data-keep-focus="true"
+          >
             About
-          </Link>
+          </Button>
         </li>
         <li>
-          <a
+          <Button
+            as="a"
             href="/covid-19.sledilnik.org/sl/donate"
             target="_blank"
             rel="noreferrer noopener"
             data-keep-focus="true"
           >
             Support
-          </a>
+          </Button>
         </li>
         <li>
-          <a
+          <Button
+            as="a"
             href="/covid-19.sledilnik.org"
             target="_blank"
             rel="noreferrer noopener"
             data-keep-focus="true"
           >
             Sledilnik.org
-          </a>
+          </Button>
         </li>
       </ul>
       <ul className={navLinksLastStyles}>
