@@ -1,5 +1,7 @@
 import { clsx } from 'clsx';
 
+import { IBMPlexSans } from '@/fonts';
+
 import styles from './NavigationContainer.module.css';
 
 type NavigationContainerProps = {
@@ -13,6 +15,7 @@ const NavigationContainer = ({
 }: NavigationContainerProps) => {
   const navigationContainerStyles = clsx(
     styles.NavigationContainer,
+    IBMPlexSans.className,
     showNavigation && styles.MenuOpen
   );
 
