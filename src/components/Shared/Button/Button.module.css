@@ -1,0 +1,19 @@
+.Button {
+  --size: var(--size-md, 1.5rem);
+  --padding--inline: 1em;
+  --padding-block: 0.5em;
+  --font-weight: 500;
+
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+
+  min-width: calc(var(--size) + var(--padding-inline) * 2);
+  min-height: calc(var(--size) + var(--padding-block) * 2);
+  padding-block: var(--padding-block, 0.5em);
+  padding-inline: var(--padding-inline, 1em);
+
+  font-weight: var(--font-weight);
+  color: inherit;
+}
