@@ -10,6 +10,7 @@
   --color-brand: #26c6ed;
   --color-background: #f4f8f8;
   --color-background-overlay: rgba(0, 0, 0, 0.75);
+  --color-white: #fff;
 
   /* breakpoints */
   --break-point-xxs: 0;

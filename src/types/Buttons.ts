@@ -3,7 +3,8 @@ import type { LinkProps } from 'next/link';
 import type { ComponentPropsWithRef } from 'react';
 
 // not sure why I had to include "className"; it should be already included in "ComponentPropsWithRef" and "LinkProps"
-export type NextJsLinkPropsWithLinkAs = Omit<LinkProps, 'as'> & {
+type NextJsLinkPropsWithLinkAs = Omit<LinkProps, 'as' | 'href'> & {
+  href: LinkProps['href'];
   linkAs?: Pick<LinkProps, 'as'>['as'];
   className?: string;
   children?: React.ReactNode;
