@@ -13,20 +13,20 @@
   transition: all var(--nav-transition-time) ease-in-out;
 }
 
-.NavigationContainer.menuOpen {
+.NavigationContainer.MenuOpen {
   z-index: 9980;
   right: 0;
   left: 0;
 }
 
 @media only screen and (min-width: 375px) {
-  .NavigationContainer.menuOpen {
+  .NavigationContainer.MenuOpen {
     left: 20%;
   }
 }
 
 @media only screen and (min-width: 576px) {
-  .NavigationContainer.menuOpen {
+  .NavigationContainer.MenuOpen {
     left: 35%;
   }
 }
@@ -46,7 +46,7 @@
     margin-left: auto;
   }
 
-  .NavigationContainer.menuOpen {
+  .NavigationContainer.MenuOpen {
     left: unset;
   }
 }

@@ -6,7 +6,7 @@ import styles from './Overlay.module.css';
 type OverlayProps = { show: boolean };
 
 const Overlay = ({ show }: OverlayProps, ref: React.Ref<HTMLDivElement>) => {
-  const overlayStyles = clsx(styles.Overlay, show && styles.menuOpen);
+  const overlayStyles = clsx(styles.Overlay, show && styles.MenuOpen);
 
   return <div ref={ref} className={overlayStyles} tabIndex={-1} />;
 };

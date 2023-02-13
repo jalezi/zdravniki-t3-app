@@ -25,7 +25,7 @@ const IconButton: IconButtonComponent = (
 
   const componentStyles = clsx(styles.IconButton, className);
 
-  const iconContainerStyles = clsx(styles.iconContainer);
+  const iconContainerStyles = clsx(styles.IconContainer);
 
   return (
     <Polymorphic ref={ref} as={as} className={componentStyles} {...restProps}>

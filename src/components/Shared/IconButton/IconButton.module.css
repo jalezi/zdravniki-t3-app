@@ -16,7 +16,7 @@
   border-radius: 50%;
 }
 
-.IconButton .iconContainer {
+.IconButton .IconContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,7 +25,7 @@
   height: 100%;
 }
 
-.IconButton .iconContainer > svg {
+.IconButton .IconContainer > svg {
   width: var(--size);
   height: var(--size);
 }

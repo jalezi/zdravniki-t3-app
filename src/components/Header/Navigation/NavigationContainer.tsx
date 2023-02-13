@@ -13,7 +13,7 @@ const NavigationContainer = ({
 }: NavigationContainerProps) => {
   const navigationContainerStyles = clsx(
     styles.NavigationContainer,
-    showNavigation && styles.menuOpen
+    showNavigation && styles.MenuOpen
   );
 
   return <div className={navigationContainerStyles}>{children}</div>;

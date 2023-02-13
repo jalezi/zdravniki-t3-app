@@ -64,7 +64,7 @@ function Header() {
   const headerStyles = clsx(
     styles.Header,
     IBMPlexSans.className,
-    showNavigation && styles.menuOpen
+    showNavigation && styles.MenuOpen
   );
 
   return (

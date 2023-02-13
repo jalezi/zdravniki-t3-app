@@ -14,7 +14,7 @@
   transition: all var(--nav-transition-time) ease-in-out;
 }
 
-.Overlay.menuOpen {
+.Overlay.MenuOpen {
   z-index: 9970;
   opacity: 1;
   transition: all var(--nav-transition-time) ease-in-out
