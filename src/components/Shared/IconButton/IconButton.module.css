@@ -9,7 +9,7 @@
 
   min-width: calc(var(--size) + var(--padding) * 2);
   min-height: calc(var(--size) + var(--padding) * 2);
-  padding: 0.2em;
+  padding: var(--padding, 0.2em);
 
   color: inherit;
 
