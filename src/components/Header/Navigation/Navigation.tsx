@@ -20,17 +20,17 @@ const Navigation = () => {
       <h2 className={titleStyles}>Meni</h2>
       <ul className={navLinksFirstStyles}>
         <li>
-          <Link href="/" locale={locale}>
+          <Link href="/" locale={locale} data-keep-focus="true">
             Home
           </Link>
         </li>
         <li>
-          <Link href="/faq" locale={locale}>
+          <Link href="/faq" locale={locale} data-keep-focus="true">
             FAQ
           </Link>
         </li>
         <li>
-          <Link href="/about" locale={locale}>
+          <Link href="/about" locale={locale} data-keep-focus="true">
             About
           </Link>
         </li>
@@ -39,6 +39,7 @@ const Navigation = () => {
             href="/covid-19.sledilnik.org/sl/donate"
             target="_blank"
             rel="noreferrer noopener"
+            data-keep-focus="true"
           >
             Support
           </a>
@@ -48,6 +49,7 @@ const Navigation = () => {
             href="/covid-19.sledilnik.org"
             target="_blank"
             rel="noreferrer noopener"
+            data-keep-focus="true"
           >
             Sledilnik.org
           </a>
@@ -61,6 +63,7 @@ const Navigation = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
+            data-keep-focus="true"
           >
             <FbSvg />
           </IconButton>
@@ -72,6 +75,7 @@ const Navigation = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Twitter"
+            data-keep-focus="true"
           >
             <TwSvg />
           </IconButton>

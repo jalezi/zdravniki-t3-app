@@ -1,9 +1,11 @@
 import { clsx } from 'clsx';
+import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useEventListener, useWindowSize } from 'usehooks-ts';
 
 import * as Navigation from '@/components/Header/Navigation';
 import { IBMPlexSans } from '@/fonts';
+import useKeyboardNavigation from '@/hooks/useKeyboardNavigation';
 
 import styles from './Header.module.css';
 import { Logo } from './Logo';
@@ -22,26 +24,15 @@ const BREAKPOINTS = {
 } as const;
 
 function Header() {
+  const { asPath } = useRouter();
   const overlayRef = useRef<HTMLDivElement>(null);
   const [showNavigation, setShowNavigation] = useState<boolean>(false);
   const { width } = useWindowSize();
   const isMediumMediaQuery = width >= BREAKPOINTS.md;
 
-  const handleOverlayClick = useCallback(() => {
+  useEffect(() => {
     setShowNavigation(false);
-  }, []);
-
-  const handleEscape = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        handleOverlayClick();
-      }
-    },
-    [handleOverlayClick]
-  );
-
-  useEventListener('click', handleOverlayClick, overlayRef);
-  useEventListener('keydown', handleEscape);
+  }, [asPath]);
 
   // Close navigation on resize
   useEffect(() => {
@@ -50,18 +41,22 @@ function Header() {
     }
   }, [isMediumMediaQuery]);
 
-  const onShowOrHideNavigation = useCallback(
-    () => setShowNavigation(prev => !prev),
-    []
-  );
+  const handleOverlayClick = useCallback(() => {
+    setShowNavigation(false);
+  }, []);
+
+  useEventListener('click', handleOverlayClick, overlayRef);
+  useKeyboardNavigation(showNavigation, handleOverlayClick);
+
+  const onShowOrHideNavigation = useCallback(() => {
+    setShowNavigation(prev => !prev);
+  }, []);
 
   const nav = useMemo(
     () => (
-      <>
-        <Navigation.Container showNavigation={showNavigation}>
-          <Navigation.Navigation />
-        </Navigation.Container>
-      </>
+      <Navigation.Container showNavigation={showNavigation}>
+        <Navigation.Navigation />
+      </Navigation.Container>
     ),
     [showNavigation]
   );

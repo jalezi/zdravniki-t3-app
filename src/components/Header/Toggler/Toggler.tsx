@@ -26,6 +26,7 @@ const Toggler = (
       aria-controls="navigation"
       aria-expanded={showNavigation}
       aria-label={showNavigation ? 'Close menu' : 'Open menu'}
+      data-keep-focus="true"
     >
       <Hamburger open={showNavigation} />
     </IconButton>
