@@ -30,6 +30,16 @@ function Header() {
   const { width } = useWindowSize();
   const isMediumMediaQuery = width >= BREAKPOINTS.md;
 
+  // Prevent scrolling when navigation is open
+  useEffect(() => {
+    if (showNavigation && !isMediumMediaQuery) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [showNavigation, isMediumMediaQuery]);
+
+  // Close navigation on route change
   useEffect(() => {
     setShowNavigation(false);
   }, [asPath]);
