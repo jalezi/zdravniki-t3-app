@@ -97,7 +97,11 @@ const Select = (
         <span>{selectedOption.current}</span>
         <span className="sr-only">{placeholder}</span>
         <span className={styles.Caret} aria-hidden="true">
-          {isOpen ? '▲' : '▼'}
+          {isOpen ? (
+            <CaretUp title="Close dropdown" />
+          ) : (
+            <CaretDown title="Open dropdown" />
+          )}
         </span>
       </div>
       {isOpen ? (
