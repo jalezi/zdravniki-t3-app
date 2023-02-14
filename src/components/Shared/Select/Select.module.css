@@ -1,0 +1,90 @@
+.Select {
+  --offset: 0.25em;
+  --padding-inline: 0;
+  --padding-block: 0;
+
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  width: 100%;
+
+  font-size: inherit;
+
+  background-color: inherit;
+}
+
+.Select .SelectedOption {
+  cursor: pointer;
+
+  display: inline-flex;
+  gap: 0.1em;
+  align-items: center;
+
+  padding-block: var(--padding-block);
+  padding-inline: var(--padding-inline);
+
+  border: 1px solid var(--color);
+}
+
+.Select .Caret {
+  display: inline-flex;
+  align-items: center;
+}
+
+.Select .OptionsList {
+  position: absolute;
+  z-index: 1;
+  top: calc(100% + var(--offset));
+  right: 0;
+  left: auto;
+
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.125em;
+
+  width: max-content;
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--color-background);
+  border: 1px solid var(--color);
+}
+
+.Select .Option {
+  cursor: pointer;
+
+  width: 100%;
+
+  text-align: right;
+
+  background: inherit;
+
+  transition: all 0.2s ease-in-out;
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+}
+
+@media (hover: hover) {
+  .Select .Option:hover {
+    text-decoration: underline;
+  }
+}
+
+.Select .Option[aria-selected='true'] {
+  text-decoration: underline;
+}
+
+.Select .Option[aria-disabled='true'] {
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .Select .Option[aria-disabled='true']:hover {
+    text-decoration: none;
+  }
+}

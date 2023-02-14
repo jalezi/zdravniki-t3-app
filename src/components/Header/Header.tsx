@@ -25,6 +25,7 @@ const BREAKPOINTS = {
 
 function Header() {
   const { asPath } = useRouter();
+  const navRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const [showNavigation, setShowNavigation] = useState<boolean>(false);
   const { width } = useWindowSize();
@@ -44,19 +45,12 @@ function Header() {
     setShowNavigation(false);
   }, [asPath]);
 
-  // Close navigation on resize
-  useEffect(() => {
-    if (isMediumMediaQuery) {
-      setShowNavigation(false);
-    }
-  }, [isMediumMediaQuery]);
-
   const handleOverlayClick = useCallback(() => {
     setShowNavigation(false);
   }, []);
 
   useEventListener('click', handleOverlayClick, overlayRef);
-  useKeyboardNavigation(showNavigation, handleOverlayClick);
+  useKeyboardNavigation(showNavigation, handleOverlayClick, navRef);
 
   const onShowOrHideNavigation = useCallback(() => {
     setShowNavigation(prev => !prev);
@@ -65,7 +59,7 @@ function Header() {
   const nav = useMemo(
     () => (
       <Navigation.Container showNavigation={showNavigation}>
-        <Navigation.Navigation />
+        <Navigation.Navigation ref={navRef} />
       </Navigation.Container>
     ),
     [showNavigation]
@@ -77,21 +71,37 @@ function Header() {
     showNavigation && styles.MenuOpen
   );
 
+  if (isMediumMediaQuery) {
+    showNavigation && setShowNavigation(false);
+
+    return (
+      <header className={headerStyles}>
+        <Logo />
+        {nav}
+      </header>
+    );
+  }
+
+  if (showNavigation && navRef.current) {
+    navRef.current.style.visibility = 'visible';
+  }
+
+  if (!showNavigation && navRef.current) {
+    navRef.current.style.visibility = 'hidden';
+  }
+
   return (
     <>
       <header className={headerStyles}>
         <Logo />
-        {isMediumMediaQuery ? nav : null}
       </header>
-      {isMediumMediaQuery ? null : (
-        <Toggler.Container>
-          <Toggler.Button
-            onToggle={onShowOrHideNavigation}
-            showNavigation={showNavigation}
-          />
-        </Toggler.Container>
-      )}
-      {isMediumMediaQuery ? null : nav}
+      <Toggler.Container>
+        <Toggler.Button
+          onToggle={onShowOrHideNavigation}
+          showNavigation={showNavigation}
+        />
+      </Toggler.Container>
+      {nav}
       <Overlay ref={overlayRef} show={showNavigation} />
     </>
   );

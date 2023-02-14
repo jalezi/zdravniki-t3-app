@@ -21,6 +21,7 @@ const Link = ({ as = 'a', children, ...props }: Props) => {
       InternalAnchorProps,
       'as' | 'children'
     >;
+
     return (
       <Button as={as} href={href} {...anchorProps} className={regularStyles}>
         {children}
@@ -32,7 +33,6 @@ const Link = ({ as = 'a', children, ...props }: Props) => {
 
   const linkProps = props as Omit<InternalNextJsLinkProps, 'as' | 'children'>;
   const activeStyles = clsx(regularStyles, isActive && styles.Active);
-
   return (
     <Button as={as} {...linkProps} className={activeStyles}>
       {children}

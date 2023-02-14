@@ -6,6 +6,8 @@ import type { HTMLAttributes } from 'react';
 import { useRef } from 'react';
 
 import IconButton from '@/components/Shared/Buttons/IconButton/IconButton';
+import type { RefProps } from '@/components/Shared/Select/Select';
+import Select from '@/components/Shared/Select/Select';
 import type { Locale } from '@/types/i18n';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
@@ -20,6 +22,8 @@ const Home: NextPage = () => {
   };
 
   const ref = useRef<HTMLAnchorElement>(null);
+
+  const selectRef = useRef<RefProps>(null);
 
   return (
     <>
@@ -38,6 +42,14 @@ const Home: NextPage = () => {
         <IconButton as={Link} href="/" locale="it">
           IT
         </IconButton>
+      </div>
+      <div style={tempDivStyle}>
+        <div style={{ display: 'inline-block', marginInline: 'auto' }}>
+          <Select
+            ref={selectRef}
+            options={['Slovenščina', 'English', 'Italiano']}
+          />
+        </div>
       </div>
       <div style={tempDivStyle}>
         <IconButton type="button">Button</IconButton>

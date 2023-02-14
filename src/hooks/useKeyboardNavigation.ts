@@ -1,20 +1,20 @@
-import { useCallback } from 'react';
-import { useEventListener } from 'usehooks-ts';
+import type { RefObject } from 'react';
+import { useCallback, useEffect } from 'react';
 
-const useKeyboardNavigation = (showNavigation: boolean, cb: () => void) => {
+const useKeyboardNavigation = (
+  shouldContinue: boolean,
+  cb: () => void,
+  parent: RefObject<HTMLElement>
+) => {
   const handleKeyDown = useCallback(
-    (event: KeyboardEvent) => {
-      if (!showNavigation) {
-        return;
-      }
-
+    (event: KeyboardEvent, element: HTMLElement) => {
       if (['Escape', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
         cb();
         return;
       }
 
       const focusableElements = [
-        ...document.querySelectorAll("[data-keep-focus='true']"),
+        ...element.querySelectorAll("[data-keep-focus='true']"),
       ] as HTMLElement[];
 
       const length = focusableElements.length;
@@ -77,10 +77,30 @@ const useKeyboardNavigation = (showNavigation: boolean, cb: () => void) => {
           return;
       }
     },
-    [cb, showNavigation]
+    [cb]
   );
 
-  useEventListener('keydown', handleKeyDown);
+  useEffect(() => {
+    const parentElement = parent.current;
+
+    if (!parentElement || !shouldContinue) {
+      return;
+    }
+
+    if (parentElement) {
+      parent.current.addEventListener('keydown', event =>
+        handleKeyDown(event, parentElement)
+      );
+    }
+
+    return () => {
+      if (parentElement) {
+        parentElement.removeEventListener('keydown', event =>
+          handleKeyDown(event, parentElement)
+        );
+      }
+    };
+  }, [handleKeyDown, shouldContinue, parent]);
 };
 
 export default useKeyboardNavigation;

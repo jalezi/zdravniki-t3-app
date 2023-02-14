@@ -1,16 +1,18 @@
 import { clsx } from 'clsx';
+import type { Ref } from 'react';
+import { forwardRef } from 'react';
 
 import { PageLinks, SocialLinks } from './Links';
 import styles from './Navigation.module.css';
 
-const Navigation = () => {
+const Navigation = (_: unknown, ref: Ref<HTMLDivElement>) => {
   const navStyles = clsx(styles.Navigation);
   const titleStyles = clsx(styles.title);
   const navLinksFirstStyles = clsx(styles.navLinks, styles.first);
   const navLinksLastStyles = clsx(styles.navLinks, styles.last);
 
   return (
-    <nav className={navStyles}>
+    <nav ref={ref} className={navStyles}>
       <h2 className={titleStyles}>Meni</h2>
       <ul className={navLinksFirstStyles}>
         <PageLinks />
@@ -23,4 +25,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default forwardRef(Navigation);

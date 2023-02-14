@@ -6,23 +6,23 @@ import { FbSvg, TwSvg } from '@/components/Shared/Icons';
 
 import { ActiveLink } from '../Link';
 
+const a = 'a' as const;
+
 const externalAttributes = {
   target: '_blank',
   rel: 'noopener noreferrer',
-};
+} as const;
 
 const sledilnikLinks = [
   {
-    href: 'https:://Covid-19.sledilnik.org/donate',
+    href: 'https://covid-19.sledilnik.org/donate',
     label: 'Support!',
-    ...externalAttributes,
   },
   {
-    href: 'https://covid-19.sledilnik.org/',
+    href: 'https://covid-19.sledilnik.org',
     label: 'Sledilnik.org',
-    ...externalAttributes,
   },
-];
+].map(link => ({ ...link, as: a, hasLocale: false, ...externalAttributes }));
 
 const pageLinks = [
   {
@@ -37,18 +37,19 @@ const pageLinks = [
     href: '/about/',
     label: 'About',
   },
-  ...sledilnikLinks,
-].map(link => ({ ...link, hasLocale: true }));
+].map(link => ({ ...link, hasLocale: true, as: NextJsLink }));
+
+const mainLinks = [...pageLinks, ...sledilnikLinks];
 
 export const PageLinks = () => {
   const { locale } = useRouter();
 
   return (
     <>
-      {pageLinks.map(({ href, label, hasLocale, ...rest }) => (
+      {mainLinks.map(({ href, label, as, hasLocale, ...rest }) => (
         <li key={href}>
           <ActiveLink
-            as={NextJsLink}
+            as={as}
             href={href}
             locale={hasLocale ? locale : undefined}
             data-keep-focus="true"
