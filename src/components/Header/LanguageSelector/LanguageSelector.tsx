@@ -29,6 +29,7 @@ const BREAKPOINTS = {
   xl: 1200,
   xxl: 1400,
 } as const;
+
 const LanguageSelector = () => {
   const router = useRouter();
   const { width } = useWindowSize();

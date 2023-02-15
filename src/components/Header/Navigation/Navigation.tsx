@@ -5,7 +5,7 @@ import { forwardRef } from 'react';
 import { PageLinks, SocialLinks } from './Links';
 import styles from './Navigation.module.css';
 import containerStyles from './NavigationContainer.module.css';
-import { LanguageSelector } from '../Toggler/LanguageSelector';
+import { LanguageSelector } from '../LanguageSelector';
 
 const Navigation = (_: unknown, ref: Ref<HTMLDivElement>) => {
   const navStyles = clsx(styles.Navigation, containerStyles.Opacity);
