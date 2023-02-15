@@ -29,7 +29,7 @@
   color: var(--color-nav-links);
 }
 
-.Navigation .navLinks > li > *:hover {
+.Navigation .navLinks > li > :is(a, button):hover {
   color: var(--color);
 }
 

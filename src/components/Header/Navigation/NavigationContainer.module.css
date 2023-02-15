@@ -8,15 +8,27 @@
   bottom: 0;
   left: 100%;
 
+  visibility: hidden;
   background-color: var(--color-brand);
 
   transition: all var(--nav-transition-time) ease-in-out;
+}
+
+.NavigationContainer .Opacity {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .NavigationContainer.MenuOpen {
   z-index: 9980;
   right: 0;
   left: 0;
+  visibility: visible;
+}
+
+.NavigationContainer.MenuOpen .Opacity {
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out 0.1s;
 }
 
 @media only screen and (min-width: 375px) {
@@ -44,6 +56,12 @@
     display: block;
 
     margin-left: auto;
+
+    visibility: visible;
+  }
+
+  .NavigationContainer .Opacity {
+    opacity: 1;
   }
 
   .NavigationContainer.MenuOpen {
