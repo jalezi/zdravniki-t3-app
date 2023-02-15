@@ -1,7 +1,9 @@
+import { clsx } from 'clsx';
 import React, {
   forwardRef,
   useCallback,
   useImperativeHandle,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -12,12 +14,24 @@ import useKeyboardNavigation from '@/hooks/useKeyboardNavigation';
 import styles from './Select.module.css';
 import { CaretDown, CaretUp } from '../Icons';
 
+type Option = {
+  label?: string;
+  value: string;
+};
+
 type SelectProps = {
   placeholder?: string;
   value?: string;
-  options: string[];
+  options: Option[];
   onChange?: (value: string) => void;
   name: string;
+  position?:
+    | 'top-left'
+    | 'top-right'
+    | 'top-center'
+    | 'bottom-left'
+    | 'bottom-right'
+    | 'bottom-center';
 };
 
 export type RefProps = {
@@ -28,6 +42,15 @@ export type RefProps = {
 
 export type SelectRef = React.Ref<RefProps>;
 
+const OptionsPositionClassName = {
+  ['top-left']: clsx(styles.Top, styles.Left),
+  ['top-right']: clsx(styles.Top, styles.Right),
+  ['top-center']: clsx(styles.Top, styles.Center),
+  ['bottom-left']: clsx(styles.Bottom, styles.Left),
+  ['bottom-center']: clsx(styles.Bottom, styles.Center),
+  ['bottom-right']: clsx(styles.Bottom, styles.Right),
+} as const;
+
 const Select = (
   {
     options,
@@ -35,6 +58,7 @@ const Select = (
     onChange,
     placeholder = 'Select an option',
     name,
+    position = 'bottom-right',
   }: SelectProps,
   ref: SelectRef
 ) => {
@@ -46,6 +70,15 @@ const Select = (
 
   const isOptionSelected =
     selectedOption.current === placeholder ? false : true;
+
+  const internalOptions = useMemo(
+    () =>
+      options.map(option => ({
+        ...option,
+        label: option.label || option.value,
+      })),
+    [options]
+  );
 
   useImperativeHandle(ref, () => ({
     selectedOption: selectedOption.current,
@@ -70,6 +103,11 @@ const Select = (
   if (isOpen) {
     optionsRef.current?.focus();
   }
+
+  const optionsStyles = clsx(
+    styles.OptionsList,
+    OptionsPositionClassName[`${position}`]
+  );
 
   return (
     <div
@@ -107,26 +145,26 @@ const Select = (
       {isOpen ? (
         <ul
           ref={optionsRef}
-          className={styles.OptionsList}
+          className={optionsStyles}
           role="listbox"
           tabIndex={-1}
         >
-          {options.map(option => (
+          {internalOptions.map(option => (
             <li
-              key={option}
+              key={option.value}
               className={styles.Option}
               role="option"
-              aria-selected={option === selectedOption.current}
-              onClick={() => handleOptionClick(option)}
+              aria-selected={option.value === selectedOption.current}
+              onClick={() => handleOptionClick(option.value)}
               tabIndex={isOpen ? 0 : -1}
               data-keep-focus="true"
               onKeyDown={e => {
                 if (e.key === 'Enter' || e.key === ' ') {
-                  handleOptionClick(option);
+                  handleOptionClick(option.value);
                 }
               }}
             >
-              {option}
+              {option.label}
             </li>
           ))}
         </ul>

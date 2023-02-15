@@ -37,9 +37,6 @@
 .Select .OptionsList {
   position: absolute;
   z-index: 1;
-  top: calc(100% + var(--offset));
-  right: 0;
-  left: auto;
 
   display: inline-flex;
   flex-direction: column;
@@ -51,6 +48,31 @@
 
   background-color: var(--color-background);
   border: 1px solid var(--color);
+}
+
+.Select .OptionsList.Bottom {
+  top: calc(100% + var(--offset));
+  bottom: auto;
+}
+
+.Select .OptionsList.Top {
+  top: auto;
+  bottom: calc(100% + var(--offset));
+}
+
+.Select .OptionsList.Left {
+  right: auto;
+  left: 0;
+}
+
+.Select .OptionsList.Right {
+  right: 0;
+  left: auto;
+}
+
+.Select .OptionsList.Center {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .Select .Option {
