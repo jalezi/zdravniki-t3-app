@@ -1,6 +1,14 @@
 /** @type {["default", "sl", "en", "it"]} */
 const locales = ['default', 'sl', 'en', 'it'];
 
+/** @type {{"default": "default", "sl": "slovenščina", "en": "english", "it": "italiano"}} */
+module.exports.localesMap = {
+  default: 'default',
+  sl: 'slovenščina',
+  en: 'english',
+  it: 'italiano',
+};
+
 module.exports = {
   i18n: {
     defaultLocale: 'default',

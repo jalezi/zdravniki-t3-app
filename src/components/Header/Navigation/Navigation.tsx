@@ -4,6 +4,7 @@ import { forwardRef } from 'react';
 
 import { PageLinks, SocialLinks } from './Links';
 import styles from './Navigation.module.css';
+import { LanguageSelector } from '../Toggler/LanguageSelector';
 
 const Navigation = (_: unknown, ref: Ref<HTMLDivElement>) => {
   const navStyles = clsx(styles.Navigation);
@@ -19,7 +20,9 @@ const Navigation = (_: unknown, ref: Ref<HTMLDivElement>) => {
       </ul>
       <ul className={navLinksLastStyles}>
         <SocialLinks />
-        <li>Lang Selector</li>
+        <li>
+          <LanguageSelector />
+        </li>
       </ul>
     </nav>
   );

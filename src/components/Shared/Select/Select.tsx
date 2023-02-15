@@ -19,7 +19,7 @@ type Option = {
   value: string;
 };
 
-type SelectProps = {
+export type SelectProps = {
   placeholder?: string;
   value?: string;
   options: Option[];
@@ -32,15 +32,18 @@ type SelectProps = {
     | 'bottom-left'
     | 'bottom-right'
     | 'bottom-center';
+  selectedStyle?: string;
+  dropdownStyle?: string;
+  dropdownItemStyle?: string;
 };
 
-export type RefProps = {
+export type SelectRefProps = {
   selectedOption: string;
   refs: Record<string, React.RefObject<HTMLElement>>;
   value: string;
 };
 
-export type SelectRef = React.Ref<RefProps>;
+export type SelectRef = React.Ref<SelectRefProps>;
 
 const OptionsPositionClassName = {
   ['top-left']: clsx(styles.Top, styles.Left),
@@ -59,6 +62,9 @@ const Select = (
     placeholder = 'Select an option',
     name,
     position = 'bottom-right',
+    selectedStyle,
+    dropdownStyle,
+    dropdownItemStyle,
   }: SelectProps,
   ref: SelectRef
 ) => {
@@ -104,10 +110,15 @@ const Select = (
     optionsRef.current?.focus();
   }
 
+  const selectedStyles = clsx(styles.SelectedOption, selectedStyle);
+
   const optionsStyles = clsx(
     styles.OptionsList,
-    OptionsPositionClassName[`${position}`]
+    OptionsPositionClassName[`${position}`],
+    dropdownStyle
   );
+
+  const optionStyles = clsx(styles.Option, dropdownItemStyle);
 
   return (
     <div
@@ -117,7 +128,7 @@ const Select = (
     >
       <div
         ref={selectRef}
-        className={styles.SelectedOption}
+        className={selectedStyles}
         role="button"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
@@ -152,7 +163,7 @@ const Select = (
           {internalOptions.map(option => (
             <li
               key={option.value}
-              className={styles.Option}
+              className={optionStyles}
               role="option"
               aria-selected={option.value === selectedOption.current}
               onClick={() => handleOptionClick(option.value)}

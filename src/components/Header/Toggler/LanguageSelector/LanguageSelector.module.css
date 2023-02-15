@@ -1,0 +1,68 @@
+.LanguageSelector {
+  --padding-inline__lng: 0.25em;
+  --border-radius__lng: 0.4em;
+  --color__lng: var(--color-nav-links);
+  --color-dropdown__lng: var(--color-nav-links);
+  --color-item-hover__lng: var(--color);
+  --color-background-dropdown__lng: rgba(0, 0, 0, 0.12);
+}
+
+.LanguageSelector.SelectedOption {
+  min-width: 5ch;
+  padding-inline: var(--padding-inline__lng);
+
+  line-height: 2;
+  color: var(--color__lng);
+
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius__lng, 0.4em);
+}
+
+.LanguageSelector.Dropdown {
+  gap: 0.4em;
+
+  min-width: 15ch;
+  padding-block: var(--padding-inline__lng);
+  padding-inline: var(--padding-inline__lng);
+
+  color: var(--color-dropdown__lng);
+
+  background: var(--color-background-dropdown__lng);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius__lng, 0.4em);
+}
+
+.LanguageSelector.DropdownItem {
+  overflow: hidden;
+
+  line-height: 2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  background: transparent;
+}
+
+.LanguageSelector.DropdownItem[aria-selected='true'] {
+  color: var(--color);
+}
+
+@media (hover: hover) {
+  .LanguageSelector.SelectedOption:hover,
+  .LanguageSelector.DropdownItem:hover {
+    color: var(--color-item-hover__lng);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .LanguageSelector {
+    --color__lng: var(--color-nav-links, #000);
+    --color-internal-dropdown: var(--color-light, #0a0a0a);
+    --color-item-hover__lng: var(--color, #000);
+    --color-background-dropdown__lng: var(--color-white, #fff);
+  }
+
+  .LanguageSelector.DropdownItem[aria-selected='true'] {
+    color: var(--color);
+  }
+}

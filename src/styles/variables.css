@@ -7,10 +7,13 @@
   /* colors */
   --color: rgba(0, 0, 0, 0.87);
   --color-nav-links: rgba(0, 0, 0, 0.66);
+  --color-light: rgba(0, 0, 0, 0.56);
   --color-brand: #26c6ed;
   --color-background: #f4f8f8;
   --color-background-overlay: rgba(0, 0, 0, 0.75);
   --color-white: #fff;
+  --color-black: #000;
+  --color-border: rgba(0, 0, 0, 0.39);
 
   /* breakpoints */
   --break-point-xxs: 0;

@@ -6,7 +6,7 @@ import type { HTMLAttributes } from 'react';
 import { useRef } from 'react';
 
 import IconButton from '@/components/Shared/Buttons/IconButton/IconButton';
-import type { RefProps } from '@/components/Shared/Select/Select';
+import type { SelectRefProps } from '@/components/Shared/Select/Select';
 import Select from '@/components/Shared/Select/Select';
 import type { Locale } from '@/types/i18n';
 
@@ -23,7 +23,7 @@ const Home: NextPage = () => {
 
   const ref = useRef<HTMLAnchorElement>(null);
 
-  const selectRef = useRef<RefProps>(null);
+  const selectRef = useRef<SelectRefProps>(null);
 
   return (
     <>
@@ -47,7 +47,12 @@ const Home: NextPage = () => {
         <div style={{ display: 'inline-block', marginInline: 'auto' }}>
           <Select
             ref={selectRef}
-            options={['Slovenščina', 'English', 'Italiano']}
+            options={[
+              { value: 'en', label: 'English' },
+              { value: 'sl', label: 'Slovenščina' },
+              { value: 'it', label: 'Italiano' },
+            ]}
+            name="language-selector"
           />
         </div>
       </div>

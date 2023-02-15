@@ -24,7 +24,7 @@ const BREAKPOINTS = {
 } as const;
 
 function Header() {
-  const { asPath } = useRouter();
+  const { asPath, locale } = useRouter();
   const navRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const [showNavigation, setShowNavigation] = useState<boolean>(false);
@@ -40,10 +40,10 @@ function Header() {
     }
   }, [showNavigation, isMediumMediaQuery]);
 
-  // Close navigation on route change
+  // Close navigation on route || locale change
   useEffect(() => {
     setShowNavigation(false);
-  }, [asPath]);
+  }, [asPath, locale]);
 
   const handleOverlayClick = useCallback(() => {
     setShowNavigation(false);
