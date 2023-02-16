@@ -1,3 +1,10 @@
 {
-  "test": "italiano"
+  "test": "italiano",
+  "navLinks": {
+    "home": "Elenco",
+    "faq": "FAQ",
+    "about": "Il progetto",
+    "donate": "Aiutaci",
+    "sledilnik": "Sledilnik.org"
+  }
 }

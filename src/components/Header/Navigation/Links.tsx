@@ -1,5 +1,6 @@
 import NextJsLink from 'next/link';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 import { IconButton } from '@/components/Shared/Buttons';
 import { FbSvg, TwSvg } from '@/components/Shared/Icons';
@@ -16,26 +17,26 @@ const externalAttributes = {
 const sledilnikLinks = [
   {
     href: 'https://covid-19.sledilnik.org/donate',
-    label: 'Support!',
+    label: 'donate',
   },
   {
     href: 'https://covid-19.sledilnik.org',
-    label: 'Sledilnik.org',
+    label: 'sledilnik',
   },
 ].map(link => ({ ...link, as: a, hasLocale: false, ...externalAttributes }));
 
 const pageLinks = [
   {
     href: '/',
-    label: 'Home',
+    label: 'home',
   },
   {
     href: '/faq/',
-    label: 'FAQ',
+    label: 'faq',
   },
   {
     href: '/about/',
-    label: 'About',
+    label: 'about',
   },
 ].map(link => ({ ...link, hasLocale: true, as: NextJsLink }));
 
@@ -43,22 +44,25 @@ const mainLinks = [...pageLinks, ...sledilnikLinks];
 
 export const PageLinks = () => {
   const { locale } = useRouter();
+  const { t } = useTranslation('common');
 
   return (
     <>
-      {mainLinks.map(({ href, label, as, hasLocale, ...rest }) => (
-        <li key={href}>
-          <ActiveLink
-            as={as}
-            href={href}
-            locale={hasLocale ? locale : undefined}
-            data-keep-focus="true"
-            {...rest}
-          >
-            {label}
-          </ActiveLink>
-        </li>
-      ))}
+      {mainLinks.map(({ href, label, as, hasLocale, ...rest }) => {
+        return (
+          <li key={href}>
+            <ActiveLink
+              as={as}
+              href={href}
+              locale={hasLocale ? locale : undefined}
+              data-keep-focus="true"
+              {...rest}
+            >
+              {t(`navLinks.${label}`)}
+            </ActiveLink>
+          </li>
+        );
+      })}
     </>
   );
 };

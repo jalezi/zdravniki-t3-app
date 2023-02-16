@@ -1,3 +1,11 @@
 {
-  "test": "slovensko"
+  "test": "slovensko",
+  "navLinks": {
+    "home": "Imenik",
+    "faq": "Pojasnila",
+    "about": "O projektu",
+    "donate": "Podpri!",
+    "sledilnik": "Sledilnik.org"
+  },
+  "neki": "hallo"
 }
