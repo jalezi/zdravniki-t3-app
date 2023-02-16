@@ -1,6 +1,5 @@
 import { MDXProvider } from '@mdx-js/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'react-i18next';
 
 import SrOnly from '@/components/Shared/SrOnly/SrOnly';
 import FaqEN from '@/content/en/faq.mdx';
@@ -24,12 +23,9 @@ const LanguagePageMDX = function LanguagePageMDX({ name }: { name: Locale }) {
 };
 
 function FAQ({ locale }: { locale: Locale }) {
-  const { t } = useTranslation('common');
-
   return (
     <>
-      <SrOnly.H1>{t(`navLinks.faq`)}</SrOnly.H1>
-      <MDXProvider components={{}}>
+      <MDXProvider components={{ h1: SrOnly.H1 }}>
         <LanguagePageMDX name={locale} />
       </MDXProvider>
     </>
