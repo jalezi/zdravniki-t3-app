@@ -8,7 +8,7 @@
 }
 
 .LanguageSelector.SelectedOption {
-  min-width: 5ch;
+  min-width: 8ch;
   padding-inline: var(--padding-inline__lng);
 
   line-height: 2;
