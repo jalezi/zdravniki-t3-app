@@ -1,4 +1,5 @@
-import { type AppType } from 'next/app';
+import type { NextComponentType } from 'next';
+import type { AppContext, AppInitialProps, AppLayoutProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
 
 import { api } from '@/utils/api';
@@ -9,7 +10,16 @@ import '@/styles/variables.css';
 import '@/styles/globals.css';
 import Layout from '../layouts/Layout';
 
-const MyApp: AppType = ({ Component, pageProps }) => {
+const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
+  Component,
+  pageProps,
+}: AppLayoutProps) => {
+  const getLayout = Component?.getLayout;
+
+  if (getLayout) {
+    return getLayout(<Component {...pageProps} />) as JSX.Element;
+  }
+
   return (
     <Layout>
       <Component {...pageProps} />

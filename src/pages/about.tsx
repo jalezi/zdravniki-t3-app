@@ -1,9 +1,12 @@
 import { MDXProvider } from '@mdx-js/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'react-i18next';
 
+import SrOnly from '@/components/Shared/SrOnly/SrOnly';
 import AboutEN from '@/content/en/about.mdx';
 import AboutIT from '@/content/it/about.mdx';
 import AboutSL from '@/content/sl/about.mdx';
+import LayoutMDX from '@/layouts/LayoutMDX';
 import type { Locale } from '@/types/i18n';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
@@ -21,10 +24,15 @@ const LanguagePageMDX = function LanguagePageMDX({ name }: { name: Locale }) {
 };
 
 function About({ locale }: { locale: Locale }) {
+  const { t } = useTranslation('common');
+
   return (
-    <MDXProvider components={{}}>
-      <LanguagePageMDX name={locale} />
-    </MDXProvider>
+    <>
+      <SrOnly.H1>{t(`navLinks.about`)}</SrOnly.H1>
+      <MDXProvider components={{}}>
+        <LanguagePageMDX name={locale} />
+      </MDXProvider>
+    </>
   );
 }
 
@@ -41,5 +49,9 @@ export async function getStaticProps({ locale }: { locale: Locale }) {
     },
   };
 }
+
+About.getLayout = function getLayout(page: React.ReactNode) {
+  return <LayoutMDX>{page}</LayoutMDX>;
+};
 
 export default About;
