@@ -1,6 +1,7 @@
 // @ts-check
 
 import nextMDX from '@next/mdx';
+import rehypeSlug from 'rehype-slug';
 
 import pkg from './next-i18next.config.js';
 const { i18n } = pkg;
@@ -11,7 +12,7 @@ const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [],
-    rehypePlugins: [],
+    rehypePlugins: [rehypeSlug],
     /* providerImportSource: …, otherOptions… */
     providerImportSource: '@mdx-js/react',
   },

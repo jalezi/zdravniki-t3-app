@@ -17,7 +17,9 @@ const LayoutMDX = (props: Props) => {
 
       <Header />
       <main className={clsx(IBMPlexSans.className, styles.LayoutMDX)}>
-        {props.children}
+        <div className={clsx(styles.ContainerMDX)}>
+          <div className={styles.ContentMDX}>{props.children}</div>
+        </div>
       </main>
     </>
   );

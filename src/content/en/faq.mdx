@@ -1,4 +1,6 @@
+import { clsx } from 'clsx';
 import Link from 'next/link';
+import styles from '@/layouts/ComponentsMDX/ComponentsMDX.module.css';
 
 # FAQ
 
@@ -6,7 +8,7 @@ import Link from 'next/link';
 
 Needs to be translated into English
 
-Unfortunately, this page exist only in {<Link href="https://zdravniki.sledilnik.org/sl/faq">Slovenian</Link>} language.
+Unfortunately, this page exist only in {<Link className={clsx(styles.ComponentsMDX,styles.A)}  href="https://zdravniki.sledilnik.org/sl/faq">Slovenian</Link>} language.
 
 {/* Replace with proper link */}
-Help as translate it to English on {<Link href="https://github.com/sledilnik/zdravniki/blob/master/src/content/en/faq.md" target="_blank" >GitHub</Link>}.
+Help as translate it to English on {<Link className={clsx(styles.ComponentsMDX,styles.A)}  href="https://github.com/sledilnik/zdravniki/blob/master/src/content/en/faq.md" target="_blank" >GitHub</Link>}.

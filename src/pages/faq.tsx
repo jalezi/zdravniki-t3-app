@@ -1,10 +1,10 @@
 import { MDXProvider } from '@mdx-js/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import SrOnly from '@/components/Shared/SrOnly/SrOnly';
 import FaqEN from '@/content/en/faq.mdx';
 import FaqIT from '@/content/it/faq.mdx';
 import FaqSL from '@/content/sl/faq.mdx';
+import { componentsMap } from '@/layouts/componentsMap';
 import LayoutMDX from '@/layouts/LayoutMDX';
 import type { Locale } from '@/types/i18n';
 
@@ -25,7 +25,7 @@ const LanguagePageMDX = function LanguagePageMDX({ name }: { name: Locale }) {
 function FAQ({ locale }: { locale: Locale }) {
   return (
     <>
-      <MDXProvider components={{ h1: SrOnly.H1 }}>
+      <MDXProvider components={componentsMap}>
         <LanguagePageMDX name={locale} />
       </MDXProvider>
     </>

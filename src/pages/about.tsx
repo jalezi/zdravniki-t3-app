@@ -1,10 +1,12 @@
 import { MDXProvider } from '@mdx-js/react';
+// import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+// import { useEffect } from 'react';
 
-import SrOnly from '@/components/Shared/SrOnly/SrOnly';
 import AboutEN from '@/content/en/about.mdx';
 import AboutIT from '@/content/it/about.mdx';
 import AboutSL from '@/content/sl/about.mdx';
+import { componentsMap } from '@/layouts/componentsMap';
 import LayoutMDX from '@/layouts/LayoutMDX';
 import type { Locale } from '@/types/i18n';
 
@@ -25,7 +27,7 @@ const LanguagePageMDX = function LanguagePageMDX({ name }: { name: Locale }) {
 function About({ locale }: { locale: Locale }) {
   return (
     <>
-      <MDXProvider components={{ h1: SrOnly.H1 }}>
+      <MDXProvider components={componentsMap}>
         <LanguagePageMDX name={locale} />
       </MDXProvider>
     </>
@@ -39,7 +41,11 @@ export async function getStaticProps({ locale }: { locale: Locale }) {
 
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'], nextI18nextConfig)),
+      ...(await serverSideTranslations(
+        locale,
+        ['common', 'about'],
+        nextI18nextConfig
+      )),
       locale,
       // Will be passed to the page component as props
     },

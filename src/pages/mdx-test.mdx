@@ -1,6 +1,10 @@
 import Head from 'next/head';
+import { withTranslation } from 'react-i18next';
+import nextI18nextConfig from '../../next-i18next.config.js';
 
-import Layout from '../layouts/Layout';
+import Layout from '../layouts/LayoutMDX';
+
+export const X = ({ children }) => <Layout>{children}</Layout>;
 
 export const meta = {
   title: 'MDX test page',
@@ -20,4 +24,4 @@ export const meta = {
 [Home](/) | [About](/about)
 [EN](/en) | [SL](/sL) | [IT](/it)
 
-export default ({ children }) => <>{children}</>;
+export default withTranslation(['common', 'about'], nextI18nextConfig)(X);

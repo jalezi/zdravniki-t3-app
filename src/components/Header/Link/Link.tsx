@@ -29,7 +29,9 @@ const Link = ({ as = 'a', children, ...props }: Props) => {
     );
   }
 
-  const isActive = asPath === props.href;
+  const asPathWithoutHash = asPath.split('#')[0];
+
+  const isActive = asPathWithoutHash === props.href;
 
   const linkProps = props as Omit<InternalNextJsLinkProps, 'as' | 'children'>;
   const activeStyles = clsx(regularStyles, isActive && styles.Active);
