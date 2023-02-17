@@ -38,7 +38,7 @@ const pageLinks = [
     href: '/about/',
     label: 'about',
   },
-].map(link => ({ ...link, hasLocale: true, as: NextJsLink }));
+].map(link => ({ ...link, hasLocale: true, as: NextJsLink, passHref: true }));
 
 const mainLinks = [...pageLinks, ...sledilnikLinks];
 
