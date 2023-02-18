@@ -5,25 +5,14 @@ import { useEventListener, useWindowSize } from 'usehooks-ts';
 
 import { IBMPlexSans } from '@/assets/fonts';
 import * as Navigation from '@/components/Header/Navigation';
+import { BREAKPOINTS } from '@/lib/constants';
 import useKeyboardNavigation from '@/lib/hooks/useKeyboardNavigation';
+import useScroll from '@/lib/hooks/useScroll';
 
 import styles from './Header.module.css';
 import { Logo } from './Logo';
 import * as Toggler from './Toggler';
 import { Overlay } from '../Shared/Overlay';
-
-// should match breakpoints in src/styles/variables.css
-const BREAKPOINTS = {
-  xxs: 0,
-  xs: 375,
-  sm: 576,
-  md: 768,
-  lg: 992,
-  xl: 1200,
-  xxl: 1400,
-} as const;
-
-const scrollMargin = 100;
 
 function Header() {
   const { asPath, locale } = useRouter();
@@ -33,31 +22,7 @@ function Header() {
   const { width } = useWindowSize();
   const isMediumMediaQuery = width >= BREAKPOINTS.md;
 
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
-  const [isScrolled, setIsScrolled] = useState<boolean | null>(null);
-
-  const handleScroll = (
-    e: HTMLElementEventMap['scroll'] & { currentTarget: { scrollY: number } }
-  ) => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    const { currentTarget } = e;
-
-    if (currentTarget) {
-      if (currentTarget.scrollY > scrollMargin) {
-        setIsScrolled(true);
-        timeoutRef.current = setTimeout(() => setIsScrolled(false), 400);
-      }
-
-      if (currentTarget?.scrollY <= scrollMargin) {
-        setIsScrolled(false);
-      }
-    }
-  };
-
-  useEventListener('scroll', handleScroll as () => void);
+  const { isScrolled } = useScroll(100);
 
   // Prevent scrolling when navigation is open
   useEffect(() => {

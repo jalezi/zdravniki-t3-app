@@ -1,14 +1,10 @@
 import { clsx } from 'clsx';
-// import {
-//   IT as ItalianFlag,
-//   SL as SloFlag,
-//   US as USAFlag,
-// } from 'country-flag-icons/string/3x2';
 import { useRouter } from 'next/router';
 import { useWindowSize } from 'usehooks-ts';
 
 import { type localesMap } from '@/../next-i18next.config';
 import Select from '@/components/Shared/Select/Select';
+import { BREAKPOINTS } from '@/lib/constants';
 
 import styles from './LanguageSelector.module.css';
 
@@ -26,19 +22,8 @@ const langs: Langs = {
 
 const flags = {
   EN: '🇬🇧',
-  SL: '🇸🇮',
   IT: '🇮🇹',
-} as const;
-
-// should match breakpoints in src/styles/variables.css
-const BREAKPOINTS = {
-  xxs: 0,
-  xs: 375,
-  sm: 576,
-  md: 768,
-  lg: 992,
-  xl: 1200,
-  xxl: 1400,
+  SL: '🇸🇮',
 } as const;
 
 const LanguageSelector = () => {
