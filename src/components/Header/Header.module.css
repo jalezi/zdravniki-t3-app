@@ -13,6 +13,12 @@
   padding-right: var(--header-height-sm);
 
   background-color: var(--color-brand);
+
+  transition: height 0.3s ease-in-out;
+}
+
+.Header.isScrolled {
+  height: var(--header-height-xs);
 }
 
 @media only screen and (min-width: 768px) {
@@ -20,5 +26,9 @@
     display: flex;
     height: var(--header-height-lg);
     padding-right: 0;
+  }
+
+  .Header.Shrunk {
+    height: var(--header-height-sm);
   }
 }

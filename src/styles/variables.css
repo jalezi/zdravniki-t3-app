@@ -1,5 +1,6 @@
 :root {
   /* sizes */
+  --header-height-xs: 3rem;
   --header-height-sm: 3.5rem;
   --header-height-lg: 4rem;
   --size-md: 1.5rem;

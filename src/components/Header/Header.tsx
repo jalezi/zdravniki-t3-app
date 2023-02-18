@@ -23,6 +23,8 @@ const BREAKPOINTS = {
   xxl: 1400,
 } as const;
 
+const scrollMargin = 100;
+
 function Header() {
   const { asPath, locale } = useRouter();
   const navRef = useRef<HTMLDivElement>(null);
@@ -30,6 +32,32 @@ function Header() {
   const [showNavigation, setShowNavigation] = useState<boolean>(false);
   const { width } = useWindowSize();
   const isMediumMediaQuery = width >= BREAKPOINTS.md;
+
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const [isScrolled, setIsScrolled] = useState<boolean | null>(null);
+
+  const handleScroll = (
+    e: HTMLElementEventMap['scroll'] & { currentTarget: { scrollY: number } }
+  ) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    const { currentTarget } = e;
+
+    if (currentTarget) {
+      if (currentTarget.scrollY > scrollMargin) {
+        setIsScrolled(true);
+        timeoutRef.current = setTimeout(() => setIsScrolled(false), 400);
+      }
+
+      if (currentTarget?.scrollY <= scrollMargin) {
+        setIsScrolled(false);
+      }
+    }
+  };
+
+  useEventListener('scroll', handleScroll as () => void);
 
   // Prevent scrolling when navigation is open
   useEffect(() => {
@@ -68,7 +96,8 @@ function Header() {
   const headerStyles = clsx(
     styles.Header,
     IBMPlexSans.className,
-    showNavigation && styles.MenuOpen
+    showNavigation && styles.MenuOpen,
+    isScrolled && styles.Shrunk
   );
 
   if (isMediumMediaQuery) {
