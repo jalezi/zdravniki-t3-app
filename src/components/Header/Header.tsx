@@ -22,7 +22,7 @@ function Header() {
   const { width } = useWindowSize();
   const isMediumMediaQuery = width >= BREAKPOINTS.md;
 
-  const { isScrolled } = useScroll(100);
+  const { isScrolled } = useScroll(100, 500);
 
   // Prevent scrolling when navigation is open
   useEffect(() => {

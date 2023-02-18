@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useEventListener } from 'usehooks-ts';
 
-const useScroll = (scrollMargin: number) => {
+const useScroll = (scrollMargin = 100, timeout = 400) => {
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
   const [isScrolled, setIsScrolled] = useState<boolean | null>(null);
   const handleScroll = (
@@ -16,7 +16,7 @@ const useScroll = (scrollMargin: number) => {
     if (currentTarget) {
       if (currentTarget.scrollY > scrollMargin) {
         setIsScrolled(true);
-        timeoutRef.current = setTimeout(() => setIsScrolled(false), 400);
+        timeoutRef.current = setTimeout(() => setIsScrolled(false), timeout);
       }
 
       if (currentTarget?.scrollY <= scrollMargin) {
