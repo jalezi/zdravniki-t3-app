@@ -4,6 +4,8 @@
   --header-height-sm: 3.5rem;
   --header-height-lg: 4rem;
   --size-md: 1.5rem;
+  --mdx-container-width: 670px;
+  --footer-height: 78px;
 
   /* colors */
   --color: rgba(0, 0, 0, 0.87);
@@ -15,6 +17,9 @@
   --color-white: #fff;
   --color-black: #000;
   --color-border: rgba(0, 0, 0, 0.39);
+  --color-footer: rgb(62, 76, 87);
+  --color-accent: rgb(25, 122, 147);
+  --color-strong: rgb(33, 37, 41);
 
   /* breakpoints */
   --break-point-xxs: 0;
@@ -28,4 +33,9 @@
   /* timing */
   --nav-transition-time: 650ms;
   --overlay-transition-delay: 367ms;
+
+  /* z-index */
+  --z-index-header: 10;
+  --z-index-main: 2;
+  --z-index-footer: 1;
 }

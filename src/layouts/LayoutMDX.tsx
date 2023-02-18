@@ -1,6 +1,7 @@
 import { clsx } from 'clsx';
 
 import { IBMPlexSans } from '@/assets/fonts';
+import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Seo } from '@/components/Seo';
 
@@ -21,6 +22,7 @@ const LayoutMDX = (props: Props) => {
           <div className={styles.ContentMDX}>{props.children}</div>
         </div>
       </main>
+      <Footer />
     </>
   );
 };

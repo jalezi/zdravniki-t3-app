@@ -1,6 +1,6 @@
 .Header {
   position: fixed;
-  z-index: 10;
+  z-index: var(--z-index-header);
   top: 0;
   right: 0;
   left: 0;
