@@ -68,10 +68,6 @@ function Header() {
   if (isMediumMediaQuery) {
     showNavigation && setShowNavigation(false);
 
-    if (navRef.current) {
-      navRef.current.style.visibility = 'visible';
-    }
-
     return (
       <header className={headerStyles}>
         <Logo />
