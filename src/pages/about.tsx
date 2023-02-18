@@ -1,11 +1,9 @@
 import { MDXProvider } from '@mdx-js/react';
-// import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-// import { useEffect } from 'react';
 
-import AboutEN from '@/content/en/about.mdx';
-import AboutIT from '@/content/it/about.mdx';
-import AboutSL from '@/content/sl/about.mdx';
+import AboutEN from '@/assets/content/en/about.mdx';
+import AboutIT from '@/assets/content/it/about.mdx';
+import AboutSL from '@/assets/content/sl/about.mdx';
 import { componentsMap } from '@/layouts/componentsMap';
 import LayoutMDX from '@/layouts/LayoutMDX';
 import type { Locale } from '@/types/i18n';
