@@ -1,8 +1,8 @@
 import { clsx } from 'clsx';
 
+import { IBMPlexSans } from '@/assets/fonts';
 import { Header } from '@/components/Header';
 import { Seo } from '@/components/Seo';
-import { IBMPlexSans } from '@/fonts';
 
 import styles from './Layout.module.css';
 

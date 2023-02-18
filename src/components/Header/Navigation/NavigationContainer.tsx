@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 
-import { IBMPlexSans } from '@/fonts';
+import { IBMPlexSans } from '@/assets/fonts';
 
 import styles from './NavigationContainer.module.css';
 

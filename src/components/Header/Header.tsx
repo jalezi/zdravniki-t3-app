@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useEventListener, useWindowSize } from 'usehooks-ts';
 
+import { IBMPlexSans } from '@/assets/fonts';
 import * as Navigation from '@/components/Header/Navigation';
-import { IBMPlexSans } from '@/fonts';
 import useKeyboardNavigation from '@/hooks/useKeyboardNavigation';
 
 import styles from './Header.module.css';
