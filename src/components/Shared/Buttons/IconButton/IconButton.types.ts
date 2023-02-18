@@ -1,4 +1,4 @@
-import type { InternalButtonsProps } from '@/types/Buttons';
+import type { InternalButtonsProps } from '@/lib/types/Buttons';
 
 type InternalProps = InternalButtonsProps;
 

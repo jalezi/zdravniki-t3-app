@@ -6,7 +6,7 @@ import AboutIT from '@/assets/content/it/about.mdx';
 import AboutSL from '@/assets/content/sl/about.mdx';
 import { componentsMap } from '@/layouts/componentsMap';
 import LayoutMDX from '@/layouts/LayoutMDX';
-import type { Locale } from '@/types/i18n';
+import type { Locale } from '@/lib/types/i18n.js';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
 

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { LogoSvg } from '@/components/Shared/Icons';
-import type { Locale } from '@/types/i18n';
+import type { Locale } from '@/lib/types/i18n';
 
 import styles from './Logo.module.css';
 

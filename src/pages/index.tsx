@@ -8,7 +8,7 @@ import { useRef } from 'react';
 import IconButton from '@/components/Shared/Buttons/IconButton/IconButton';
 import type { SelectRefProps } from '@/components/Shared/Select/Select';
 import Select from '@/components/Shared/Select/Select';
-import type { Locale } from '@/types/i18n';
+import type { Locale } from '@/lib/types/i18n.js';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
 

@@ -6,7 +6,7 @@ import { Button } from '@/components/Shared/Buttons';
 import type {
   InternalAnchorProps,
   InternalNextJsLinkProps,
-} from '@/types/Buttons';
+} from '@/lib/types/Buttons';
 
 import styles from './Link.module.css';
 

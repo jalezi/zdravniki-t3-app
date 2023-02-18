@@ -1,12 +1,12 @@
 import { MDXProvider } from '@mdx-js/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import FaqEN from '@/content/en/faq.mdx';
-import FaqIT from '@/content/it/faq.mdx';
-import FaqSL from '@/content/sl/faq.mdx';
+import FaqEN from '@/assets/content/en/faq.mdx';
+import FaqIT from '@/assets/content/it/faq.mdx';
+import FaqSL from '@/assets/content/sl/faq.mdx';
 import { componentsMap } from '@/layouts/componentsMap';
 import LayoutMDX from '@/layouts/LayoutMDX';
-import type { Locale } from '@/types/i18n';
+import type { Locale } from '@/lib/types/i18n.js';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
 
