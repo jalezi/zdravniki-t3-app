@@ -20,14 +20,18 @@ a {
   color: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
 :focus-visible {
   outline: auto;
   outline-color: #007bff;
   outline-offset: 1px;
 }
 
-button {
-  cursor: pointer;
+::selection {
+  background-color: var(--color-brand);
 }
 
 .sr-only {
