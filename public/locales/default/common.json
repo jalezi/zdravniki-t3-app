@@ -6,5 +6,9 @@
     "about": "O projektu",
     "donate": "Podpri!",
     "sledilnik": "Sledilnik.org"
+  },
+  "footer": {
+    "dataSource": "Vir podatkov",
+    "lastChange": "Zadnja sprememba"
   }
 }

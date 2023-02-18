@@ -2,8 +2,8 @@
   position: relative;
   z-index: var(--z-index-main);
 
-  margin-top: var(--header-height-sm);
-  margin-bottom: calc(var(--footer-height) + 1em);
+  margin-top: calc(var(--header-height-sm) + 2em);
+  margin-bottom: calc(var(--footer-height) + 2em);
 
   font-size: 0.875rem;
   color: var(--color);
@@ -14,7 +14,6 @@
 .LayoutMDX > .ContainerMDX {
   position: relative;
 
-  padding-bottom: 0.8em;
   padding-block: 1.6em;
   padding-inline: 2em;
 
@@ -32,8 +31,7 @@
 
 @media only screen and (min-width: 768px) {
   .LayoutMDX {
-    margin-top: var(--header-height-lg);
-    padding-block: 2em;
+    margin-top: calc(var(--header-height-lg) + 2em);
   }
 
   .LayoutMDX > .ContainerMDX {

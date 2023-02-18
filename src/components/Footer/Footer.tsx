@@ -1,4 +1,5 @@
 import { clsx } from 'clsx';
+import { useTranslation } from 'next-i18next';
 
 import { IBMPlexSans } from '@/assets/fonts';
 
@@ -10,6 +11,7 @@ type FooterProps = {
 
 const Footer = ({ position = 'mdx' }: FooterProps) => {
   const positionStyles = position === 'mdx' && styles.Mdx;
+  const { t } = useTranslation('common');
 
   const footerStyles = clsx(
     styles.Footer,
@@ -19,10 +21,13 @@ const Footer = ({ position = 'mdx' }: FooterProps) => {
 
   const contentStyles = clsx(styles.Content, positionStyles);
 
+  const dataSource = t`footer.dataSource`;
+  const lastChange = t`footer.lastChange`;
+
   return (
     <footer className={footerStyles}>
       <div className={contentStyles}>
-        Vir podatkov:{' '}
+        {dataSource}:{' '}
         <a href="https://www.zzzs.si" target="_blank" rel="noreferrer">
           ZZZS
         </a>
@@ -35,8 +40,8 @@ const Footer = ({ position = 'mdx' }: FooterProps) => {
           GURS
         </a>
         <br />
-        Zadnja sprememba: <strong>sobota, 18. februar 2023 ob 11:28</strong>.
-        <br />© 2021-2023 <strong>Sledilnik.org</strong>
+        {lastChange}: <strong>sobota, 18. februar 2023 ob 11:28</strong>.
+        <br />© 2021-{new Date().getFullYear()} <strong>Sledilnik.org</strong>
       </div>
     </footer>
   );

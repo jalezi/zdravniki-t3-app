@@ -7,5 +7,8 @@
     "donate": "Podpri!",
     "sledilnik": "Sledilnik.org"
   },
-  "neki": "hallo"
+  "footer": {
+    "dataSource": "Vir podatkov",
+    "lastChange": "Zadnja sprememba"
+  }
 }

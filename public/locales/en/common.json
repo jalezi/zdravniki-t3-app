@@ -6,5 +6,9 @@
     "about": "About",
     "donate": "Support!",
     "sledilnik": "Sledilnik.org"
+  },
+  "footer": {
+    "dataSource": "Data source: ",
+    "lastChange": "Last data updated on"
   }
 }
