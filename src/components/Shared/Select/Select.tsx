@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
 
-import useKeyboardNavigation from '@/hooks/useKeyboardNavigation';
+import useKeyboardNavigation from '@/lib/hooks/useKeyboardNavigation';
 
 import styles from './Select.module.css';
 import { CaretDown, CaretUp } from '../Icons';

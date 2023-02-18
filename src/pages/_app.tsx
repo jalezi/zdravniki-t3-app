@@ -2,7 +2,7 @@ import type { NextComponentType } from 'next';
 import type { AppContext, AppInitialProps, AppLayoutProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
 
-import { api } from '@/utils/api';
+import { api } from '@/lib/utils/api';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
 import 'the-new-css-reset';

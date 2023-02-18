@@ -5,7 +5,7 @@ import { useEventListener, useWindowSize } from 'usehooks-ts';
 
 import { IBMPlexSans } from '@/assets/fonts';
 import * as Navigation from '@/components/Header/Navigation';
-import useKeyboardNavigation from '@/hooks/useKeyboardNavigation';
+import useKeyboardNavigation from '@/lib/hooks/useKeyboardNavigation';
 
 import styles from './Header.module.css';
 import { Logo } from './Logo';
