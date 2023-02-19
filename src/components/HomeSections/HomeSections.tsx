@@ -1,9 +1,21 @@
 import { clsx } from 'clsx';
-import { useState } from 'react';
+import dynamic from 'next/dynamic';
+import { useMemo, useState } from 'react';
 
 import styles from '@/layouts/Layout.module.css';
 
+const MapSkeleton = () => <div>loading map...</div>;
+
 const HomeSections = () => {
+  const MapWithNoSSR = useMemo(
+    () =>
+      dynamic(() => import('../Shared/Map/').then(mod => mod.Map), {
+        ssr: false,
+        loading: MapSkeleton,
+      }),
+    []
+  );
+
   const [layoutVisible, setLayoutVisible] = useState<
     'loading' | 'map' | 'list'
   >('loading');
@@ -36,10 +48,10 @@ const HomeSections = () => {
         Loading
       </div>
       <section id="map" className={mapStyles}>
-        Map
+        <MapWithNoSSR />
       </section>
       <section id="list" className={listStyles}>
-        List
+        <div style={{ height: '100%', width: '100%' }}>List</div>
       </section>
       <section id="filters" className={styles.FiltersSection}>
         <button type="button" onClick={onLayoutChange}>

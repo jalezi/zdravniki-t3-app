@@ -35,7 +35,10 @@
   --overlay-transition-delay: 367ms;
 
   /* z-index */
-  --z-index-header: 10;
-  --z-index-mdx-main: 2; /* MDXLayout */
-  --z-index-mdx-footer: 1; /* MDXLayout */
+  --z-index-header: 100;
+  --z-index-mdx-main: 20; /* MDXLayout */
+  --z-index-mdx-footer: 10; /* MDXLayout */
+  --z-index-map: 5; /* Layout */
+  --z-index-list: 5; /* Layout */
+  --z-index-filters: 10; /* Layout */
 }
