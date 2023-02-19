@@ -2,8 +2,10 @@ import { clsx } from 'clsx';
 import { useTranslation } from 'next-i18next';
 
 import { IBMPlexSans } from '@/assets/fonts';
+import { api } from '@/lib/utils/api';
 
 import styles from './Footer.module.css';
+import { LongDate } from '../Shared/LongDate';
 
 type FooterProps = {
   position?: 'mdx';
@@ -12,6 +14,10 @@ type FooterProps = {
 const Footer = ({ position = 'mdx' }: FooterProps) => {
   const positionStyles = position === 'mdx' && styles.Mdx;
   const { t } = useTranslation('common');
+
+  const ts = api.timestamp.doctors.useQuery();
+
+  const timestamp = ts.data?.success ? ts.data.data * 1000 : 'error';
 
   const footerStyles = clsx(
     styles.Footer,
@@ -40,7 +46,8 @@ const Footer = ({ position = 'mdx' }: FooterProps) => {
           GURS
         </a>
         <br />
-        {lastChange}: <strong>sobota, 18. februar 2023 ob 11:28</strong>.
+        {lastChange}: <LongDate timestamp={timestamp} />
+        .
         <br />© 2021-{new Date().getFullYear()} <strong>Sledilnik.org</strong>
       </div>
     </footer>
