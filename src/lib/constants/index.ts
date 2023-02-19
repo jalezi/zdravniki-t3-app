@@ -8,3 +8,5 @@ export const BREAKPOINTS = {
   xl: 1200,
   xxl: 1400,
 } as const;
+
+export * as DATA_URL from './data-url';
