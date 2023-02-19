@@ -1,21 +1,35 @@
+import type { Map as LeafletMap } from 'leaflet';
+import type { Dispatch, SetStateAction } from 'react';
+import type { MapContainerProps } from 'react-leaflet';
 import { AttributionControl, MapContainer, TileLayer } from 'react-leaflet';
 
 import 'leaflet/dist/leaflet.css';
 
-import { MAP } from '@/lib/constants';
+import { MAX_ZOOM, MIN_ZOOM, SL_CENTER, ZOOM } from '@/lib/constants/map';
 
-const { ZOOM, SL_CENTER } = MAP;
-
-type MapProps = {
-  children?: React.ReactNode;
+export type MapProps = MapContainerProps & {
+  setMap?: Dispatch<SetStateAction<LeafletMap | null>>;
 };
 
-const Map = ({ children }: MapProps) => {
+const Map = ({
+  center = SL_CENTER as [number, number],
+  children,
+  maxZoom = MAX_ZOOM,
+  minZoom = MIN_ZOOM,
+  zoom = ZOOM,
+  setMap = () => null,
+  ...props
+}: MapProps) => {
+  const { attributionControl } = props;
   return (
     <MapContainer
-      zoom={ZOOM}
-      center={SL_CENTER as [number, number]}
-      attributionControl={false}
+      ref={setMap}
+      attributionControl={attributionControl}
+      center={center}
+      maxZoom={maxZoom}
+      minZoom={minZoom}
+      zoom={zoom}
+      {...props}
     >
       <AttributionControl prefix="" />
       <TileLayer

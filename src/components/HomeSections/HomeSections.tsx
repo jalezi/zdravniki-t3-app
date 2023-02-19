@@ -1,24 +1,23 @@
 import { clsx } from 'clsx';
+import type { Map as LeafletMap } from 'leaflet';
 import dynamic from 'next/dynamic';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import styles from '@/layouts/Layout.module.css';
 
 const MapSkeleton = () => <div>loading map...</div>;
 
-const HomeSections = () => {
-  const MapWithNoSSR = useMemo(
-    () =>
-      dynamic(() => import('../Shared/Map/').then(mod => mod.Map), {
-        ssr: false,
-        loading: MapSkeleton,
-      }),
-    []
-  );
+const MapWithNoSSR = dynamic(() => import('./BigMap'), {
+  ssr: false,
+  loading: MapSkeleton,
+});
 
+const HomeSections = () => {
   const [layoutVisible, setLayoutVisible] = useState<
     'loading' | 'map' | 'list'
   >('loading');
+
+  const [_, setMap] = useState<null | LeafletMap>(null);
 
   const onLayoutChange = () => {
     setLayoutVisible(prev => (prev === 'map' ? 'list' : 'map'));
@@ -48,7 +47,7 @@ const HomeSections = () => {
         Loading
       </div>
       <section id="map" className={mapStyles}>
-        <MapWithNoSSR />
+        <MapWithNoSSR setMap={setMap} whenReady={onLayoutChange} />
       </section>
       <section id="list" className={listStyles}>
         <div style={{ height: '100%', width: '100%' }}>List</div>
