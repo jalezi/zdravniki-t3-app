@@ -16,7 +16,7 @@
 
 .Footer.Mdx {
   position: fixed;
-  z-index: var(--z-index-footer);
+  z-index: var(--z-index-mdx-footer);
   right: 0;
   bottom: 0;
   left: 0;

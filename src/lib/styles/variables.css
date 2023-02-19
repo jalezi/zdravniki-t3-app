@@ -36,6 +36,6 @@
 
   /* z-index */
   --z-index-header: 10;
-  --z-index-main: 2;
-  --z-index-footer: 1;
+  --z-index-mdx-main: 2; /* MDXLayout */
+  --z-index-mdx-footer: 1; /* MDXLayout */
 }
