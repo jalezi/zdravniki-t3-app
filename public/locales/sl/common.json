@@ -10,5 +10,10 @@
   "footer": {
     "dataSource": "Vir podatkov",
     "lastChange": "Zadnja sprememba"
+  },
+  "timestamps": {
+    "datetime": "{{val, datetime}}",
+    "at": "ob",
+    "noData": "Ni podatkov"
   }
 }

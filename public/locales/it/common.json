@@ -10,5 +10,10 @@
   "footer": {
     "dataSource": "Origine dei dati",
     "lastChange": "Ultimo aggiornamento dei dati"
+  },
+  "timestamps": {
+    "datetime": "{{val, datetime}}",
+    "at": "alle",
+    "noData": "Nessun dato disponibile"
   }
 }

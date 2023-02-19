@@ -10,5 +10,10 @@
   "footer": {
     "dataSource": "Data source: ",
     "lastChange": "Last data updated on"
+  },
+  "timestamps": {
+    "datetime": "{{val, datetime}}",
+    "at": "at",
+    "noData": "No data"
   }
 }
