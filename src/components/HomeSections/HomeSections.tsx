@@ -7,7 +7,7 @@ import styles from '@/layouts/Layout.module.css';
 
 const MapSkeleton = () => <div>loading map...</div>;
 
-const MapWithNoSSR = dynamic(() => import('./BigMap'), {
+const MapWithNoSSR = dynamic(() => import('./BigMap').then(mod => mod.BigMap), {
   ssr: false,
   loading: MapSkeleton,
 });
