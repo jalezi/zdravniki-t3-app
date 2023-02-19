@@ -17,7 +17,7 @@
   transition: height 0.3s ease-in-out;
 }
 
-.Header.isScrolled {
+.Header.Shrunk {
   height: var(--header-height-xs);
 }
 

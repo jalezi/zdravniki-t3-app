@@ -9,6 +9,12 @@
 
   width: var(--header-height-sm, 3.5rem);
   height: var(--header-height-sm, 3.5rem);
+
+  transition: height 0.3s ease-in-out;
+}
+
+.TogglerContainer.Shrunk {
+  height: var(--header-height-xs, 2.5rem);
 }
 
 @media only screen and (min-width: 768px) {
