@@ -8,6 +8,8 @@ import { SL_CENTER, ZOOM } from '@/lib/constants/map';
 import type { LeafletMap } from '@/lib/types/Map';
 import { parseHash, stringifyHash } from '@/lib/utils/url-hash';
 
+import { Filters } from './Filters';
+
 const MapSkeleton = () => <div>loading map...</div>;
 
 const HomeSections = () => {
@@ -90,9 +92,7 @@ const HomeSections = () => {
         <div style={{ height: '100%', width: '100%' }}>List</div>
       </section>
       <section id="filters" className={styles.FiltersSection}>
-        <button type="button" onClick={onLayoutChange}>
-          show hide
-        </button>
+        <Filters onLayoutChange={onLayoutChange} />
       </section>
     </>
   );

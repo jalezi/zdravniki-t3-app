@@ -1,0 +1,39 @@
+.Filters {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+
+  margin-bottom: 1.5em;
+  margin-inline: 2em;
+}
+
+.FiltersSecondContainer {
+  display: flex;
+}
+
+/* Here we are moving map/list toggler to the left*/
+.FiltersSecondContainer > *:last-child {
+  margin-left: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .Filters {
+    flex-direction: row;
+
+    height: 100%;
+    margin-bottom: 0;
+    margin-inline: 0;
+    padding-block: 0.5em;
+    padding-inline: 1em;
+
+    background: var(--color-white);
+  }
+
+  .Filters > *:last-child {
+    margin-left: auto;
+  }
+
+  .FiltersSecondContainer > *:last-child {
+    display: none;
+  }
+}
