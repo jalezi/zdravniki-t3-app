@@ -15,5 +15,10 @@
     "datetime": "{{val, datetime}}",
     "at": "ob",
     "noData": "Ni podatkov"
+  },
+  "notFound": {
+    "heading": "404: stran ne obstaja",
+    "link": "Imenik",
+    "text": "ups.. nekaj se je zalomilo 😞"
   }
 }

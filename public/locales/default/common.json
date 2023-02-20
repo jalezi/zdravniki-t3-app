@@ -10,5 +10,10 @@
   "footer": {
     "dataSource": "Vir podatkov",
     "lastChange": "Zadnja sprememba"
+  },
+  "notFound": {
+    "heading": "404: page not found",
+    "link": "Home",
+    "text": "oops… something went wrong 😞"
   }
 }

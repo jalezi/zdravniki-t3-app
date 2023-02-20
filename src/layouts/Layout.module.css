@@ -63,7 +63,7 @@
 
     display: grid;
     grid-auto-flow: row;
-    grid-template: 'filters filters' 64px 'map list' 1fr / auto 450px;
+    grid-template: 'filters filters' 64px 'map list' 1fr / auto 350px;
     gap: 0;
   }
 
@@ -88,5 +88,11 @@
 
   .Layout > .FiltersSection {
     grid-area: filters;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .Layout {
+    grid-template: 'filters filters' 64px 'map list' 1fr / auto 450px;
   }
 }
