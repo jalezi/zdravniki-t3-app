@@ -1,0 +1,26 @@
+.LayoutError {
+  position: absolute;
+  top: var(--header-height-sm);
+  right: 0;
+  bottom: var(--footer-height);
+  left: 0;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 0.875rem;
+  color: var(--color);
+}
+
+.LayoutError > .ContainerError {
+  padding-block: 1.6em;
+  padding-inline: 2em;
+  background: var(--color-white);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px;
+}
+
+@media only screen and (min-width: 768px) {
+  .LayoutError {
+    top: var(--header-height-lg);
+  }
+}

@@ -1,8 +1,7 @@
-import { type NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import HomeSections from '@/components/HomeSections/HomeSections';
-import type { Locale } from '@/lib/types/i18n';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
 
@@ -12,11 +11,15 @@ const Home: NextPage = () => {
 
 export default Home;
 
-export async function getServerSideProps({ locale }: { locale: Locale }) {
+export const getServerSideProps: GetServerSideProps = async ctx => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'], nextI18nextConfig)),
+      ...(await serverSideTranslations(
+        ctx?.locale ?? 'sl',
+        ['common'],
+        nextI18nextConfig
+      )),
       // Will be passed to the page component as props
     },
   };
-}
+};

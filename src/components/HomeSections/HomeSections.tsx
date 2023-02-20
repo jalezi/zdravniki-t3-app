@@ -33,14 +33,14 @@ const HomeSections = () => {
     let newPath = router.asPath;
     if (!documentLocHash) {
       newPath = `${router.asPath}${newHash}`;
-      return void router.replace('/', newPath, {
+      return void router.replace(newPath, newPath, {
         shallow: true,
         locale: router.locale,
       });
     }
     // ? notify user if hash is invalid
     newPath = router.asPath.replace(documentLocHash, newHash);
-    void router.replace('/', newPath, {
+    void router.replace(newPath, newPath, {
       shallow: true,
       locale: router.locale,
     });

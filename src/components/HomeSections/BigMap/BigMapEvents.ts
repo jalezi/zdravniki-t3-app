@@ -15,14 +15,14 @@ const BigMapEvents = () => {
       if (parsedHash.success) {
         const [accepts, _, search] = parsedHash.data;
         const newHash = stringifyHash([accepts, [zoom, lat, lng], search]);
-        const newAsPath = asPath.replace(documentLocHash, newHash);
+        const newPath = asPath.replace(documentLocHash, newHash);
 
-        return void replace('/', newAsPath, { shallow: true, locale });
+        return void replace(newPath, newPath, { shallow: true, locale });
       }
 
       const newHash = stringifyHash(['all', [zoom, lat, lng], '']);
       const newAsPath = asPath.replace(documentLocHash, newHash);
-      return void replace('/', newAsPath, {
+      return void replace(newAsPath, newAsPath, {
         shallow: true,
         locale,
       });
