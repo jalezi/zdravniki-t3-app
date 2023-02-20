@@ -35,12 +35,13 @@ const NavigationContainer = ({
   }, [showNavigation]);
 
   // Close navigation on route || locale change
+  // todo - this is a hacky solution, find a better way to do this (pass a asPath as key)
   useEffect(() => {
     setShowNavigation(false);
   }, [asPath, locale, setShowNavigation]);
 
   return (
-    <div ref={ref} className={navigationContainerStyles}>
+    <div ref={ref} key={asPath} className={navigationContainerStyles}>
       {children}
     </div>
   );
