@@ -1,17 +1,31 @@
 import { useRouter } from 'next/router';
 import { useMapEvents } from 'react-leaflet';
 
+import { getRoundedLatLng } from '@/lib/utils/map';
+import { parseHash, stringifyHash } from '@/lib/utils/url-hash';
+
 const BigMapEvents = () => {
-  const { asPath, push, locale } = useRouter();
+  const { asPath, replace, locale } = useRouter();
   const map = useMapEvents({
     moveend: () => {
-      const { lat, lng } = map.getCenter();
+      const documentLocHash = document.location.hash;
+      const { lat, lng } = getRoundedLatLng(map.getCenter());
       const zoom = map.getZoom();
-      const hash = document.location.hash;
-      const newHash = `#map=${zoom}/${lat}/${lng}`;
-      const newAsPath = asPath.replace(hash, newHash);
+      const parsedHash = parseHash(asPath.split('#')[1] ?? '');
+      if (parsedHash.success) {
+        const [accepts, _, search] = parsedHash.data;
+        const newHash = stringifyHash([accepts, [zoom, lat, lng], search]);
+        const newAsPath = asPath.replace(documentLocHash, newHash);
 
-      void push(newAsPath, newAsPath, { shallow: true, locale });
+        return void replace('/', newAsPath, { shallow: true, locale });
+      }
+
+      const newHash = stringifyHash(['all', [zoom, lat, lng], '']);
+      const newAsPath = asPath.replace(documentLocHash, newHash);
+      return void replace('/', newAsPath, {
+        shallow: true,
+        locale,
+      });
     },
   });
 

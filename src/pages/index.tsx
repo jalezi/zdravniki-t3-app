@@ -1,8 +1,10 @@
 import { type NextPage } from 'next';
+import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import HomeSections from '@/components/HomeSections/HomeSections';
-import type { Locale } from '@/lib/types/i18n.js';
+import type { Locale } from '@/lib/types/i18n';
+import { parseHash } from '@/lib/utils/url-hash';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
 
@@ -12,7 +14,7 @@ const Home: NextPage = () => {
 
 export default Home;
 
-export async function getStaticProps({ locale }: { locale: Locale }) {
+export async function getServerSideProps({ locale }: { locale: Locale }) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'], nextI18nextConfig)),
