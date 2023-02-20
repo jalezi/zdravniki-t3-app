@@ -60,5 +60,33 @@
 @media only screen and (min-width: 768px) {
   .Layout {
     top: var(--header-height-lg);
+
+    display: grid;
+    grid-auto-flow: row;
+    grid-template: 'filters filters' 64px 'map list' 1fr / auto 450px;
+    gap: 0;
+  }
+
+  .Layout > .Absolute.MapSection,
+  .Layout > .Absolute.ListSection,
+  .Layout > .FiltersSection {
+    position: unset;
+    z-index: unset;
+    top: unset;
+    right: unset;
+    bottom: unset;
+    left: unset;
+  }
+
+  .Layout > .Absolute.MapSection {
+    grid-area: map;
+  }
+
+  .Layout > .Absolute.ListSection {
+    grid-area: list;
+  }
+
+  .Layout > .FiltersSection {
+    grid-area: filters;
   }
 }
