@@ -18,10 +18,15 @@
   --color-white: #fff;
   --color-black: #000;
   --color-border: rgba(0, 0, 0, 0.39);
+  --color-border-input: rgb(196, 212, 215);
   --color-footer: rgb(62, 76, 87);
   --color-accent: rgb(25, 122, 147);
   --color-strong: rgb(33, 37, 41);
   --color-background-filters: rgb(218, 229, 231);
+  --color-placeholder: rgba(33, 37, 41, 0.5);
+
+  /* box-shadow */
+  --box-shadow: rgba(9, 175, 218, 0.76) 0px 0px 7px 0px;
 
   /* breakpoints */
   --break-point-xxs: 0;
@@ -35,6 +40,10 @@
   /* timing */
   --nav-transition-time: 650ms;
   --overlay-transition-delay: 367ms;
+
+  /* transitions */
+  --ease-in-out: 0.2s ease-in-out;
+  --cubic-bezier: 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
   /* z-index */
   --z-index-header: 100;

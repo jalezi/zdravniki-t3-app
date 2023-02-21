@@ -6,3 +6,5 @@ export { default as CaretUp } from '@/assets/svg/icon-caret-up.svg';
 export { default as LinkSvg } from '@/assets/svg/icon-link.svg';
 export { default as MapSvg } from '@/assets/svg/icon-map-view.svg';
 export { default as ListSvg } from '@/assets/svg/icon-list-view.svg';
+export { default as SearchSvg } from '@/assets/svg/icon-search.svg';
+export { default as CloseSvg } from '@/assets/svg/icon-close.svg';
