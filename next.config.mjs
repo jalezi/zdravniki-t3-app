@@ -47,7 +47,22 @@ const config = {
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
       resourceQuery: { not: [/url/] }, // exclude react component if *.svg?url
-      use: ['@svgr/webpack'],
+      loader: '@svgr/webpack',
+      options: {
+        prettier: false,
+        svgo: true,
+        svgoConfig: {
+          plugins: [
+            {
+              name: 'preset-default',
+              params: {
+                overrides: { removeViewBox: false },
+              },
+            },
+          ],
+        },
+        titleProp: true,
+      },
     });
 
     return config;
