@@ -21,11 +21,17 @@
   align-items: center;
   justify-content: center;
 
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
+
+  width: var(--size);
+  height: var(--size);
 }
 
 .IconButton .IconContainer > svg {
-  width: var(--size);
-  height: var(--size);
+  width: 100%;
+  height: 100%;
+
+  /* width: var(--size);
+  height: var(--size); */
 }

@@ -1,4 +1,12 @@
 .Filters {
+  --size-container: 3em;
+  --size-button: 2.5em;
+
+  --color-background-container: var(--color-background-filters);
+  --color-background-button: var(--color-strong);
+
+  --box-shadow: rgba(9, 175, 218, 0.76) 0px 0px 7px 0px;
+
   display: flex;
   flex-direction: column;
   gap: 2em;
@@ -14,6 +22,72 @@
 /* Here we are moving map/list toggler to the left*/
 .FiltersSecondContainer > *:last-child {
   margin-left: auto;
+}
+
+.ToggleViewContainer {
+  position: relative;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: var(--size-container);
+  height: var(--size-container);
+  padding: 0.2em;
+
+  background: var(--color-background-container);
+  border-radius: 50%;
+
+  transition: right 0.8s ease-in-out 0.5s,
+    box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.ToggleViewContainer:focus-within {
+  box-shadow: var(--box-shadow);
+}
+
+.ToggleViewContainer.Loading {
+  right: -200%;
+}
+
+.ToggleViewContainer .Btn {
+  position: relative;
+
+  overflow: hidden;
+
+  width: var(--size-button);
+  height: var(--size-button);
+
+  color: var(--color-background-container);
+
+  background: var(--color-background-button);
+  border-radius: 50%;
+}
+
+.ToggleViewContainer .Btn span {
+  position: relative;
+  width: 1em;
+  height: 1em;
+}
+
+.ToggleViewContainer .Btn span > svg {
+  position: absolute;
+  transition: left 0.2s ease-in-out, right 0.2s ease-in-out;
+}
+
+.ToggleViewContainer .Btn.List span > svg:first-child {
+  left: 0;
+}
+.ToggleViewContainer .Btn.Map span > svg:first-child {
+  left: -200%;
+}
+
+.ToggleViewContainer .Btn.Map span > svg:last-child {
+  right: 0;
+}
+.ToggleViewContainer .Btn.List span > svg:last-child {
+  right: -200%;
 }
 
 @media only screen and (min-width: 768px) {

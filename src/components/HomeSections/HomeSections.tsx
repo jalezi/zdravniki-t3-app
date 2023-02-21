@@ -9,6 +9,7 @@ import type { LeafletMap } from '@/lib/types/Map';
 import { parseHash, stringifyHash } from '@/lib/utils/url-hash';
 
 import { Filters } from './Filters';
+import type { View } from './types';
 
 const MapSkeleton = () => <div>loading map...</div>;
 
@@ -48,9 +49,7 @@ const HomeSections = () => {
     });
   }, [router]);
 
-  const [layoutVisible, setLayoutVisible] = useState<
-    'loading' | 'map' | 'list'
-  >('loading');
+  const [layoutVisible, setLayoutVisible] = useState<View>('loading');
 
   const [_, setMap] = useState<null | LeafletMap>(null);
 
@@ -92,7 +91,7 @@ const HomeSections = () => {
         <div style={{ height: '100%', width: '100%' }}>List</div>
       </section>
       <section id="filters" className={styles.FiltersSection}>
-        <Filters onLayoutChange={onLayoutChange} />
+        <Filters onLayoutChange={onLayoutChange} view={layoutVisible} />
       </section>
     </>
   );

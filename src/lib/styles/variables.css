@@ -12,6 +12,7 @@
   --color-nav-links: rgba(0, 0, 0, 0.66);
   --color-light: rgba(0, 0, 0, 0.56);
   --color-brand: #26c6ed;
+  --color-brand-light: rgba(9, 175, 218, 0.76);
   --color-background: #f4f8f8;
   --color-background-overlay: rgba(0, 0, 0, 0.75);
   --color-white: #fff;
@@ -20,6 +21,7 @@
   --color-footer: rgb(62, 76, 87);
   --color-accent: rgb(25, 122, 147);
   --color-strong: rgb(33, 37, 41);
+  --color-background-filters: rgb(218, 229, 231);
 
   /* breakpoints */
   --break-point-xxs: 0;
