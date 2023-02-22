@@ -2,7 +2,7 @@
   position: relative;
   z-index: var(--z-index-mdx-main);
 
-  margin-top: calc(var(--header-height-sm) + 2em);
+  margin-top: calc(var(--header-height-sm));
   margin-bottom: calc(var(--footer-height) + 2em);
 
   font-size: 0.875rem;
