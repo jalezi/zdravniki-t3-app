@@ -5,7 +5,7 @@ import { forwardRef, useRef, useState } from 'react';
 import { IconButton } from '@/components/Shared/Buttons';
 import { CloseSvg as CancelIcon, SearchSvg } from '@/components/Shared/Icons';
 
-import styles from '../Filters.module.css';
+import styles from './SearchInput.module.css';
 
 type Props = { value: string; onChange?: (value: string) => void };
 
@@ -48,7 +48,7 @@ const SearchInput = (
   return (
     <label
       className={searchLabelStyles}
-      aria-label="Search for doctors by name, loacation, etc."
+      aria-label="Search for doctors by name, location, etc."
       onClickCapture={onSearchFocus}
     >
       <IconButton
