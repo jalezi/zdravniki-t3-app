@@ -12,6 +12,7 @@ type Props = { onLayoutChange: () => void; view: View };
 
 const Filters = ({ onLayoutChange, view }: Props) => {
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const [searchValue, setSearchValue] = useState('');
 
@@ -31,6 +32,11 @@ const Filters = ({ onLayoutChange, view }: Props) => {
     setSearchValue(value);
   };
 
+  const onToggleViewClick = () => {
+    onLayoutChange();
+    buttonRef.current?.blur();
+  };
+
   return (
     <div id="filters-container" className={styles.Filters}>
       <div id="filters-first-container">Info</div>
@@ -47,8 +53,9 @@ const Filters = ({ onLayoutChange, view }: Props) => {
         </div>
         <div id="toggle-view-container" className={toggleViewContaineStyles}>
           <IconButton
+            ref={buttonRef}
             type="button"
-            onClick={onLayoutChange}
+            onClick={onToggleViewClick}
             className={iconButtonStyles}
           >
             <MapSvg />

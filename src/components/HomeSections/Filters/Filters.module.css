@@ -1,6 +1,9 @@
 .Filters {
-  --size-container: 3em;
-  --size-button: 2.5em;
+  --size-container: 3rem;
+  --size-button: 2.5rem;
+
+  --border-radius: 3rem;
+  --padding: calc(var(--border-radius) / 2);
 
   display: flex;
   flex-direction: column;
@@ -9,6 +12,7 @@
   margin-bottom: 1.5em;
   margin-inline: 2em;
 
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--color-black-A66);
 }
@@ -59,6 +63,7 @@
   width: var(--size-button);
   height: var(--size-button);
 
+  font-size: 1rem;
   color: var(--color-blue-100);
 
   background: var(--color-blue-900);

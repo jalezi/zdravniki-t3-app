@@ -1,13 +1,16 @@
 .SearchLabel {
   position: relative;
 
+  display: flex;
   flex-grow: 1;
+  align-items: center;
 
   height: var(--size-container);
+  padding-inline: var(--padding);
 
   background: var(--color-white);
   border: 1px solid var(--color-blue-200);
-  border-radius: 50px;
+  border-radius: var(--border-radius);
 
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
@@ -19,35 +22,34 @@
 
   width: 100%;
   height: 100%;
-  padding-inline: 1.5em;
 
   font-size: 1rem;
   line-height: 1.6;
 }
 
+/* override IconButton style */
+/* todo add variant to IconButton */
+.SearchLabel .Icon,
+.SearchLabel .Icon span {
+  width: unset;
+  min-width: unset;
+  height: unset;
+  min-height: unset;
+  padding: 0;
+}
+
 .SearchLabel .Icon {
   cursor: text;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
-.SearchLabel .Icon.SearchIcon {
-  left: 0.3em;
+.SearchLabel .Icon span > svg {
+  width: 1.2em;
+  height: 1.2em;
 }
 
-.SearchLabel .Icon.CancelIcon {
-  right: 0.3em;
-}
-
-.SearchLabel .Icon span {
+.SearchLabel .Icon.CancelIcon span > svg {
   width: 1em;
   height: 1em;
-}
-
-.SearchLabel .Icon.CancelIcon span {
-  width: 0.75em;
-  height: 0.75em;
 }
 
 .SearchLabel .Icon.Hidden {
