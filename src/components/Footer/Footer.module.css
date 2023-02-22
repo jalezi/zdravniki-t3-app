@@ -1,5 +1,5 @@
 .Footer {
-  color: var(--color-footer);
+  color: var(--color-blue-900);
 }
 
 .Footer :is(a, strong) {
@@ -7,11 +7,11 @@
 }
 
 .Footer a {
-  color: var(--color-accent);
+  color: var(--color-blue-700);
 }
 
 .Footer strong {
-  color: var(--color-strong);
+  color: var(--color-grey-900);
 }
 
 .Footer.Mdx {
@@ -29,12 +29,12 @@
 
   font-size: 0.75rem;
 
-  border-top: 1px dashed var(--color-border);
+  border-top: 1px dashed var(--color-black-A39);
 }
 
 .Footer.Mdx .Content {
   flex-grow: 1;
-  color: var(--color-footer);
+  color: var(--color-blue-900);
 }
 
 @media only screen and (min-width: 768px) {

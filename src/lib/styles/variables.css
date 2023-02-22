@@ -8,25 +8,35 @@
   --footer-height: 78px;
 
   /* colors */
-  --color: rgba(0, 0, 0, 0.87);
-  --color-nav-links: rgba(0, 0, 0, 0.66);
-  --color-light: rgba(0, 0, 0, 0.56);
-  --color-brand: #26c6ed;
-  --color-brand-light: rgba(9, 175, 218, 0.76);
-  --color-background: #f4f8f8;
-  --color-background-overlay: rgba(0, 0, 0, 0.75);
   --color-white: #fff;
+
   --color-black: #000;
-  --color-border: rgba(0, 0, 0, 0.39);
-  --color-border-input: rgb(196, 212, 215);
-  --color-footer: rgb(62, 76, 87);
-  --color-accent: rgb(25, 122, 147);
-  --color-strong: rgb(33, 37, 41);
-  --color-background-filters: rgb(218, 229, 231);
-  --color-placeholder: rgba(33, 37, 41, 0.5);
+  --color-black-A87: rgba(0, 0, 0, 0.87);
+  --color-black-A75: rgba(0, 0, 0, 0.75);
+  --color-black-A66: rgba(0, 0, 0, 0.66);
+  --color-black-A56: rgba(0, 0, 0, 0.56);
+  --color-black-A39: rgba(0, 0, 0, 0.39);
+  --color-black-A12: rgba(0, 0, 0, 0.12);
+
+  /* blue colors */
+  --color-blue-900: rgb(62, 76, 87);
+  --color-blue-800: rgb(9, 175, 218);
+  --color-blue-700: rgb(25, 122, 147);
+  --color-blue-500: rgb(38, 198, 237);
+  --color-blue-200: rgb(196, 212, 215);
+  --color-blue-100: rgb(218, 229, 331);
+  --color-blue-50: rgb(244, 248, 248);
+  --color-blue-800-A76: rgba(9, 175, 218, 0.76);
+
+  /* grey colors */
+  --color-grey-900: rgb(33, 37, 41);
+  --color-grey-900-A50: rgba(33, 37, 41, 0.5);
+
+  /* brand colors */
+  --color-brand: var(--color-blue-500);
 
   /* box-shadow */
-  --box-shadow: rgba(9, 175, 218, 0.76) 0px 0px 7px 0px;
+  --box-shadow: var(--color-blue-800-A76) 0px 0px 7px 0px;
 
   /* breakpoints */
   --break-point-xxs: 0;

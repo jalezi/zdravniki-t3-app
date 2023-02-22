@@ -6,7 +6,7 @@
   height: var(--size-container);
 
   background: var(--color-white);
-  border: 1px solid var(--color-border-input);
+  border: 1px solid var(--color-blue-200);
   border-radius: 50px;
 
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -70,10 +70,10 @@
 
 .SearchLabel .Icon,
 .SearchLabel input::placeholder {
-  color: var(--color-placeholder);
+  color: var(--color-grey-900-A50);
 }
 
 .SearchLabel .Icon.CancelIcon:hover,
 .SearchLabel .Icon.CancelIcon:focus-visible {
-  color: var(--color-strong);
+  color: var(--color-grey-900);
 }

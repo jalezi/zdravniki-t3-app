@@ -2,9 +2,6 @@
   --size-container: 3em;
   --size-button: 2.5em;
 
-  --color-background-container: var(--color-background-filters);
-  --color-background-button: var(--color-strong);
-
   display: flex;
   flex-direction: column;
   gap: 2em;
@@ -13,7 +10,7 @@
   margin-inline: 2em;
 
   font-weight: 600;
-  color: var(--color-nav-links);
+  color: var(--color-black-A66);
 }
 
 .FiltersSecondContainer {
@@ -40,7 +37,7 @@
   height: var(--size-container);
   padding: 0.2em;
 
-  background: var(--color-background-container);
+  background: var(--color-blue-100);
   border-radius: 50%;
 
   transition: right 0.8s ease-in-out 0.5s, box-shadow var(--cubic-bezier);
@@ -62,9 +59,9 @@
   width: var(--size-button);
   height: var(--size-button);
 
-  color: var(--color-background-container);
+  color: var(--color-blue-100);
 
-  background: var(--color-background-button);
+  background: var(--color-blue-900);
   border-radius: 50%;
 }
 

@@ -6,9 +6,9 @@
   margin-bottom: calc(var(--footer-height) + 2em);
 
   font-size: 0.875rem;
-  color: var(--color);
+  color: var(--color-black-A87);
 
-  background: var(--color-background);
+  background: var(--color-blue-50);
 }
 
 .LayoutMDX > .ContainerMDX {

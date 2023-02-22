@@ -26,11 +26,11 @@
   padding-block: 1em;
 
   font-weight: 500;
-  color: var(--color-nav-links);
+  color: var(--color-black-A66);
 }
 
 .Navigation .navLinks > li > :is(a, button):hover {
-  color: var(--color);
+  color: var(--color-black-A87);
 }
 
 .Navigation .navLinks.first {

@@ -9,7 +9,7 @@
   place-items: center;
 
   font-size: 0.875rem;
-  color: var(--color);
+  color: var(--color-black-A87);
 }
 
 .LayoutError .ContainerError {
@@ -68,7 +68,7 @@
   font-weight: 700;
   color: var(--color-white);
 
-  background: var(--color-nav-links);
+  background: var(--color-black-A66);
   border-radius: 100px;
 
   transition: background 0.2s ease-in-out;
@@ -81,7 +81,7 @@
 @media (hover: hover) {
   .LayoutError .ContainerError__button_inside:hover,
   .LayoutError .ContainerError__button_outside:hover {
-    background: var(--color-strong);
+    background: var(--color-grey-900);
   }
 }
 

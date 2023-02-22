@@ -7,7 +7,7 @@
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--color);
+  background: var(--color-black-A87);
 }
 
 .Hamburger > .HamburgerLine:not(:first-of-type) {

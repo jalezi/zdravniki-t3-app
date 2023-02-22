@@ -1,10 +1,10 @@
 .LanguageSelector {
   --padding-inline__lng: 0.25em;
   --border-radius__lng: 0.4em;
-  --color__lng: var(--color-nav-links);
-  --color-dropdown__lng: var(--color-nav-links);
-  --color-item-hover__lng: var(--color);
-  --color-background-dropdown__lng: rgba(0, 0, 0, 0.12);
+  --color__lng: var(--color-black-A66);
+  --color-dropdown__lng: var(--color-black-A66);
+  --color-item-hover__lng: var(--color-black-A87);
+  --color-background-dropdown__lng: var(--color-black-A12);
 }
 
 .LanguageSelector.SelectedOption {
@@ -15,7 +15,7 @@
   color: var(--color__lng);
 
   background: transparent;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-black-A39);
   border-radius: var(--border-radius__lng, 0.4em);
 }
 
@@ -29,7 +29,7 @@
   color: var(--color-dropdown__lng);
 
   background: var(--color-background-dropdown__lng);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-black-A39);
   border-radius: var(--border-radius__lng, 0.4em);
 }
 
@@ -44,7 +44,7 @@
 }
 
 .LanguageSelector.DropdownItem[aria-selected='true'] {
-  color: var(--color);
+  color: var(--color-black-A87);
 }
 
 @media (hover: hover) {
@@ -56,13 +56,13 @@
 
 @media only screen and (min-width: 768px) {
   .LanguageSelector {
-    --color__lng: var(--color-nav-links, #000);
-    --color-internal-dropdown: var(--color-light, #0a0a0a);
+    --color__lng: var(--color-black-A66, #000);
+    --color-internal-dropdown: var(--color-black-A56, #0a0a0a);
     --color-item-hover__lng: var(--color, #000);
     --color-background-dropdown__lng: var(--color-white, #fff);
   }
 
   .LanguageSelector.DropdownItem[aria-selected='true'] {
-    color: var(--color);
+    color: var(--color-black-A87);
   }
 }

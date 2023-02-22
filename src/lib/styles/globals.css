@@ -10,7 +10,7 @@
 html,
 body {
   font-family: 'IBM Plex Sans', sans-serif;
-  background-color: var(--color-background);
+  background-color: var(--color-blue-50);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
