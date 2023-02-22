@@ -73,6 +73,7 @@ const SearchInput = (
         onClick={onClear}
         aria-label="Clear search"
         aria-hidden={searchValue ? 'false' : 'true'}
+        tabIndex={searchValue ? 0 : -1}
       >
         <CancelIcon />
       </IconButton>
