@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { IconButton } from '@/components/Shared/Buttons';
 import { ListSvg, MapSvg } from '@/components/Shared/Icons';
 
+import { DoctorOptions } from './DoctorOptions';
 import styles from './Filters.module.css';
 import { SearchInput } from './SearchInput';
 import type { View } from '../types';
@@ -39,7 +40,9 @@ const Filters = ({ onLayoutChange, view }: Props) => {
 
   return (
     <div id="filters-container" className={styles.Filters}>
-      <div id="filters-first-container">Info</div>
+      <div id="filters-first-container">
+        <DoctorOptions />
+      </div>
       <div
         id="filters-second-container"
         className={styles.FiltersSecondContainer}
