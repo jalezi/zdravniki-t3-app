@@ -1,0 +1,43 @@
+.FilterButton {
+  min-width: calc(var(--size-container) - var(--padding__content__group) * 2);
+  height: 100%;
+  padding-inline: 0.5em;
+
+  border-radius: var(--border-radius);
+
+  transition: all var(--cubic-bezier);
+}
+
+.FilterButton:hover {
+  background: var(--color-white);
+}
+
+.FilterButton__active {
+  gap: 0.5em;
+  color: var(--color-white);
+  background: var(--color-blue-850);
+}
+
+.FilterButton__active:hover {
+  background: var(--color-blue-900);
+}
+
+.FilterButton__icon {
+  width: 1em;
+  height: 1em;
+}
+
+.FilterButton__icon__active {
+  color: var(--color-blue-200);
+}
+
+.FilterButton__text {
+  overflow: hidden;
+  width: 0;
+  height: 0;
+}
+
+.FilterButton__text__active {
+  width: auto;
+  height: auto;
+}

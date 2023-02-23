@@ -32,7 +32,6 @@
 
 .ToggleViewContainer {
   position: relative;
-  right: 0;
 
   display: inline-flex;
   align-items: center;
@@ -42,7 +41,7 @@
   height: var(--size-container);
   padding: 0.2em;
 
-  background: var(--color-blue-100);
+  background: var(--color-blue-300);
   border-radius: 50%;
 
   transition: right 0.8s ease-in-out 0.5s, box-shadow var(--cubic-bezier);
@@ -65,9 +64,9 @@
   height: var(--size-button);
 
   font-size: 1rem;
-  color: var(--color-blue-100);
+  color: var(--color-blue-200);
 
-  background: var(--color-blue-900);
+  background: var(--color-blue-850);
   border-radius: 50%;
 }
 
