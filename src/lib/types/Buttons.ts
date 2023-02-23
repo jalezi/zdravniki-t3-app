@@ -40,4 +40,4 @@ type InternalProps =
   | InternalButtonProps
   | InternalAnchorProps;
 
-export type InternalButtonsProps = InternalProps;
+export type ButtonInternalProps = InternalProps;
