@@ -20,12 +20,13 @@
 
   /* blue colors */
   --color-blue-900: rgb(62, 76, 87);
+  --color-blue-850: rgb(16, 72, 86);
   --color-blue-800: rgb(9, 175, 218);
   --color-blue-700: rgb(25, 122, 147);
   --color-blue-500: rgb(38, 198, 237);
   --color-blue-300: rgb(232, 239, 240);
-  --color-blue-200: rgb(193, 212, 215);
-  --color-blue-100: rgb(218, 229, 331);
+  --color-blue-200: rgb(196, 212, 215);
+  --color-blue-100: rgb(218, 229, 231);
   --color-blue-50: rgb(244, 248, 248);
   --color-blue-800-A76: rgba(9, 175, 218, 0.76);
 
