@@ -35,3 +35,13 @@ export const drPagesTransformSchema = drPagesSchema.transform(value => {
   }
   return value;
 });
+
+// gp has also "-y" suffix but we have both links in separate filter group
+export const drTypeWithAgeSchema = z.enum(['den', 'den-s', 'den-y']);
+
+export const drTypeWithAgeTransformSchema = drTypeWithAgeSchema.transform(
+  value => {
+    if (value.includes('den')) return 'den';
+    return '';
+  }
+);
