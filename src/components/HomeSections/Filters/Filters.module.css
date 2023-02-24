@@ -7,10 +7,10 @@
 
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1em;
 
   margin-bottom: 1.5em;
-  margin-inline: 2em;
+  margin-inline: 1em;
 
   font-size: 0.875rem;
   font-weight: 400;

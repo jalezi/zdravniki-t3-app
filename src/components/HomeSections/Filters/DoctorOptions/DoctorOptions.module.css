@@ -1,6 +1,8 @@
 .DoctorOptionsContainer {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+
   background: var(--color-blue-300);
   border-radius: var(--border-radius);
 }
@@ -8,6 +10,7 @@
 .DoctorOptionsContent {
   overflow: hidden;
   display: flex;
+  flex-grow: 1;
   flex-wrap: wrap;
   gap: 0.5em;
 
@@ -30,8 +33,9 @@
 
   position: relative;
 
-  display: inline-flex;
-  gap: 0.5em;
+  display: flex;
+  flex-grow: 1;
+  gap: 0.25em;
   align-items: center;
   justify-content: center;
 

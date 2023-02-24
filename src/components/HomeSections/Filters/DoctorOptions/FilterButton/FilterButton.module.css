@@ -1,4 +1,7 @@
 .FilterButton {
+  display: flex;
+  justify-content: center;
+
   min-width: calc(var(--size-container) - var(--padding__content__group) * 2);
   height: 100%;
   padding-inline: 0.5em;
@@ -9,14 +12,19 @@
 }
 
 .FilterButton.isActive {
+  flex-grow: 1;
   gap: 0.5em;
+
   min-width: 48px;
+
   color: var(--color-white);
+
   background: var(--color-blue-850);
 }
 
 .FilterButtonIcon {
   display: grid;
+  flex-shrink: 0;
   place-items: center;
 }
 
@@ -33,8 +41,10 @@
 
 .FilterButtonText.isActive {
   overflow: hidden;
+  flex-grow: 1;
 
   min-width: 48px;
+  max-width: max-content;
   height: auto;
 
   text-overflow: ellipsis;
