@@ -17,8 +17,6 @@ const Filters = ({ onLayoutChange, view }: Props) => {
 
   const [searchValue, setSearchValue] = useState('');
 
-  const searchContainerStyles = clsx(styles.SearchContainer);
-
   const toggleViewContaineStyles = clsx(
     styles.ToggleViewContainer,
     view === 'loading' && styles.Loading
@@ -40,20 +38,14 @@ const Filters = ({ onLayoutChange, view }: Props) => {
 
   return (
     <div id="filters-container" className={styles.Filters}>
-      <div id="filters-first-container">
-        <DoctorOptions />
-      </div>
-      <div
-        id="filters-second-container"
-        className={styles.FiltersSecondContainer}
-      >
-        <div id="search-container" className={searchContainerStyles}>
-          <SearchInput
-            ref={searchInputRef}
-            value={searchValue}
-            onChange={onSearchChange}
-          />
-        </div>
+      <DoctorOptions />
+      <div id="filters-search-container" className={styles.SearchContainer}>
+        <SearchInput
+          ref={searchInputRef}
+          value={searchValue}
+          onChange={onSearchChange}
+        />
+
         <div id="toggle-view-container" className={toggleViewContaineStyles}>
           <IconButton
             ref={buttonRef}

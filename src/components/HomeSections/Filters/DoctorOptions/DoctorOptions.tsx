@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useWindowSize } from 'usehooks-ts';
 
@@ -8,6 +9,7 @@ import { AllSvg, FamilyDrSvg, FilterSvg } from '@/components/Shared/Icons';
 import { BREAKPOINTS } from '@/lib/constants';
 
 import styles from './DoctorOptions.module.css';
+import { ACCEPTS_GROUP, AGE_GROUP, DR_GROUP } from './groups';
 
 type DoctorOptionsContentProps = {
   expanded: boolean;
@@ -15,39 +17,59 @@ type DoctorOptionsContentProps = {
 
 const DoctorOptionsContent = ({ expanded }: DoctorOptionsContentProps) => {
   const { width } = useWindowSize();
+  const { t } = useTranslation('doctor');
 
   const isMediumMediaQuery = width >= BREAKPOINTS.md;
   const shouldApplyExpanded = isMediumMediaQuery ? false : expanded;
 
   const drOptContentStyles = clsx(
-    styles.DoctorOptions__content,
+    styles.DoctorOptionsContent,
     shouldApplyExpanded && styles.Expanded
   );
 
-  const drOptGroupStyles = clsx(styles.DoctorOptions__content_group);
+  const drOptGroupStyles = clsx(styles.DoctorOptionsContentGroup);
   return (
     <div id="dr-opt-content" className={drOptContentStyles}>
       <div className={drOptGroupStyles}>
-        <FilterButton
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          Icon={FamilyDrSvg}
-          text="družinski zdravnik"
-          href="/"
-          passHref
-          as={Link}
-          isActive
-        />
-        <FilterButton
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          Icon={FamilyDrSvg}
-          text="ginekolog"
-          href="/"
-          passHref
-          as={Link}
-        />
+        {DR_GROUP.map(item => (
+          <FilterButton
+            key={item.value}
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            Icon={item.Icon}
+            text={t(item.translationKey)}
+            href="/"
+            passHref
+            as={Link}
+            isActive={item.value === 'gp'}
+          />
+        ))}
       </div>
-      <div className={drOptGroupStyles}>Group 2</div>
-      <div className={drOptGroupStyles}>Group 3</div>
+      <div className={drOptGroupStyles}>
+        {AGE_GROUP.map(item => (
+          <FilterButton
+            key={item.value}
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            Icon={item.Icon}
+            text={t(item.translationKey)}
+            as="button"
+            type="button"
+            isActive={item.value === 'adults'}
+          />
+        ))}
+      </div>
+      <div className={drOptGroupStyles}>
+        {ACCEPTS_GROUP.map(item => (
+          <FilterButton
+            key={item.value}
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            Icon={item.Icon}
+            text={t(item.translationKey)}
+            as="button"
+            type="button"
+            isActive={item.value === 'y'}
+          />
+        ))}
+      </div>
     </div>
   );
 };
@@ -63,8 +85,8 @@ const DoctorOptions = () => {
     }
   }, [isMediumMediaQuery]);
 
-  const drOptContainerStyles = clsx(styles.DoctorOptions__container);
-  const drOptionTogglerStyles = clsx(styles.DoctorOptions__toggler);
+  const drOptContainerStyles = clsx(styles.DoctorOptionsContainer);
+  const drOptionTogglerStyles = clsx(styles.DoctorOptionsToggler);
 
   const onToggleClick = () => setExpanded(prev => !prev);
 

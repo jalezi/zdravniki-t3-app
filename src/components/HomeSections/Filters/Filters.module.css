@@ -18,16 +18,10 @@
   color: var(--color-black-A66);
 }
 
-.FiltersSecondContainer {
-  display: flex;
-  flex-wrap: no-wrap;
-  gap: 1em;
-}
-
 .SearchContainer {
-  position: relative;
   display: flex;
-  flex-grow: 1;
+  flex-wrap: nowrap;
+  gap: 1em;
 }
 
 .ToggleViewContainer {
@@ -102,6 +96,7 @@
 @media only screen and (min-width: 768px) {
   .Filters {
     flex-direction: row;
+    justify-content: space-between;
 
     height: 100%;
     margin-bottom: 0;
@@ -112,11 +107,11 @@
     background: var(--color-white);
   }
 
-  .Filters > *:last-child {
-    margin-left: auto;
+  .SearchContainer {
+    flex-grow: 1;
   }
 
-  .FiltersSecondContainer > *:last-child {
+  .ToggleViewContainer {
     display: none;
   }
 }

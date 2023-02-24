@@ -8,36 +8,45 @@
   transition: all var(--cubic-bezier);
 }
 
-.FilterButton:hover {
-  background: var(--color-white);
-}
-
-.FilterButton__active {
+.FilterButton.isActive {
   gap: 0.5em;
+  min-width: 48px;
   color: var(--color-white);
   background: var(--color-blue-850);
 }
 
-.FilterButton__active:hover {
-  background: var(--color-blue-900);
+.FilterButtonIcon {
+  display: grid;
+  place-items: center;
 }
 
-.FilterButton__icon {
-  width: 1em;
-  height: 1em;
-}
-
-.FilterButton__icon__active {
+.FilterButtonIcon.isActive {
   color: var(--color-blue-200);
 }
 
-.FilterButton__text {
+.FilterButtonText {
   overflow: hidden;
   width: 0;
   height: 0;
+  font-size: 0.75rem;
 }
 
-.FilterButton__text__active {
-  width: auto;
+.FilterButtonText.isActive {
+  overflow: hidden;
+
+  min-width: 48px;
   height: auto;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (hover: hover) {
+  .FilterButton:hover {
+    background: var(--color-white);
+  }
+
+  .FilterButton.isActive:hover {
+    background: var(--color-blue-900);
+  }
 }

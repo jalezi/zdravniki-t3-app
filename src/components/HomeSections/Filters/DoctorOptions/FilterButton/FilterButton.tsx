@@ -30,18 +30,12 @@ const FilterButton: FilterButtonComponent = (
     className,
     styles.FilterButton,
     Boolean(Icon) && styles.FilterButton__withIcon,
-    isActive && styles.FilterButton__active
+    isActive && styles.isActive
   );
 
-  const iconStyles = clsx(
-    styles.FilterButton__icon,
-    isActive && styles.FilterButton__icon__active
-  );
+  const iconStyles = clsx(styles.FilterButtonIcon, isActive && styles.isActive);
 
-  const textStyles = clsx(
-    styles.FilterButton__text,
-    isActive && styles.FilterButton__text__active
-  );
+  const textStyles = clsx(styles.FilterButtonText, isActive && styles.isActive);
 
   return (
     <Button ref={ref} className={combinedStyles} {...rest}>
