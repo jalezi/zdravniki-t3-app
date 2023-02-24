@@ -67,5 +67,14 @@ const config = {
 
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/gp',
+        permanent: true,
+      },
+    ];
+  },
 };
 export default withMDX(config);

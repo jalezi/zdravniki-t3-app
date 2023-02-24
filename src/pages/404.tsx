@@ -6,6 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import image from '@/../public/assets/images/doctor-404@2x.png';
 import { Button } from '@/components/Shared/Buttons';
+import LayoutError from '@/layouts/LayoutError';
 import styles from '@/layouts/LayoutError.module.css';
 
 const NotFoundPage = () => {
@@ -42,6 +43,10 @@ const NotFoundPage = () => {
 };
 
 export default NotFoundPage;
+
+NotFoundPage.getLayout = function getLayout(page: React.ReactNode) {
+  return <LayoutError> hello{page}</LayoutError>;
+};
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {

@@ -4,6 +4,8 @@ import { useTranslation } from 'next-i18next';
 
 import { IconButton } from '@/components/Shared/Buttons';
 import { FbSvg, TwSvg } from '@/components/Shared/Icons';
+import type { ExternaLink, PageLink } from '@/lib/types/some-types';
+import { drPagesSchema } from '@/lib/types/some-types';
 
 import { ActiveLink } from '../Link';
 
@@ -14,7 +16,7 @@ const externalAttributes = {
   rel: 'noopener noreferrer',
 } as const;
 
-const sledilnikLinks = [
+const sledilnikLinks: ExternaLink[] = [
   {
     href: 'https://covid-19.sledilnik.org/donate',
     label: 'donate',
@@ -23,12 +25,20 @@ const sledilnikLinks = [
     href: 'https://covid-19.sledilnik.org',
     label: 'sledilnik',
   },
-].map(link => ({ ...link, as: a, hasLocale: false, ...externalAttributes }));
+].map(link => ({
+  ...link,
+  as: a,
+  hasLocale: false,
+  isActive: undefined,
+  ...externalAttributes,
+}));
 
-const pageLinks = [
+const pageLinks: PageLink[] = [
   {
-    href: '/',
+    href: '/gp/',
     label: 'home',
+    isActive: (asPath: string | undefined) =>
+      drPagesSchema.safeParse(asPath?.split('/')?.filter(Boolean)?.[0]).success,
   },
   {
     href: '/faq/',
@@ -48,7 +58,7 @@ export const PageLinks = () => {
 
   return (
     <>
-      {mainLinks.map(({ href, label, as, hasLocale, ...rest }) => {
+      {mainLinks.map(({ href, label, as, hasLocale, isActive, ...rest }) => {
         return (
           <li key={href}>
             <ActiveLink
@@ -56,6 +66,7 @@ export const PageLinks = () => {
               href={href}
               locale={hasLocale ? locale : undefined}
               data-keep-focus="true"
+              isActive={isActive}
               {...rest}
             >
               {t(`navLinks.${label}`)}

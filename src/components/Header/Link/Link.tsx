@@ -10,9 +10,11 @@ import type {
 
 import styles from './Link.module.css';
 
-type Props = InternalNextJsLinkProps | InternalAnchorProps;
+type Props = {
+  isActive: ((asPath: string | undefined) => boolean) | undefined;
+} & (InternalNextJsLinkProps | InternalAnchorProps);
 
-const Link = ({ as = 'a', children, ...props }: Props) => {
+const Link = ({ as = 'a', children, isActive, ...props }: Props) => {
   const { asPath } = useRouter();
   const regularStyles = clsx(styles.Link, props.className);
 
@@ -31,10 +33,11 @@ const Link = ({ as = 'a', children, ...props }: Props) => {
 
   const asPathWithoutHash = asPath.split('#')[0];
 
-  const isActive = asPathWithoutHash === props.href;
+  const applyActive =
+    isActive?.(asPathWithoutHash) ?? asPathWithoutHash === props.href;
 
   const linkProps = props as Omit<InternalNextJsLinkProps, 'as' | 'children'>;
-  const activeStyles = clsx(regularStyles, isActive && styles.Active);
+  const activeStyles = clsx(regularStyles, applyActive && styles.Active);
   return (
     <Button as={as} {...linkProps} className={activeStyles}>
       {children}

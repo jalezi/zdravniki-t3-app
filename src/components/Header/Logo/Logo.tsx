@@ -11,7 +11,12 @@ const Logo = () => {
   const locale = router.locale as Locale;
   return (
     <span className={styles.Logo}>
-      <Link href={`/${locale}`} className={styles.Link} aria-label="Home">
+      <Link
+        href={`/gp/`}
+        locale={locale}
+        className={styles.Link}
+        aria-label="Home"
+      >
         <LogoSvg />
       </Link>
     </span>
