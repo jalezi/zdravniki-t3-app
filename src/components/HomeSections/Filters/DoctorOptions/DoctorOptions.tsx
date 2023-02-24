@@ -96,19 +96,21 @@ const DoctorOptions = () => {
         key={isMediumMediaQuery.toString()}
         expanded={expanded}
       />
-      <button
-        id="dr-opt-toggler"
-        type="button"
-        onClick={onToggleClick}
-        className={drOptionTogglerStyles}
-      >
-        <FilterSvg />
-        <span>Filter</span>
-        <FamilyDrSvg />
-        <span>družinski zdravnik</span>
-        <hr />
-        <AllSvg />
-      </button>
+      {isMediumMediaQuery ? null : (
+        <button
+          id="dr-opt-toggler"
+          type="button"
+          onClick={onToggleClick}
+          className={drOptionTogglerStyles}
+        >
+          <FilterSvg />
+          <span>Filter</span>
+          <FamilyDrSvg />
+          <span>družinski zdravnik</span>
+          <hr />
+          <AllSvg />
+        </button>
+      )}
     </div>
   );
 };
