@@ -20,7 +20,7 @@ const Filters = ({ onLayoutChange, view }: Props) => {
   const toggleViewContaineStyles = clsx(styles.ToggleViewContainer);
   const iconButtonStyles = clsx(
     styles.Btn,
-    view !== 'list' && styles.Map,
+    view === 'map' && styles.Map,
     view === 'list' && styles.List
   );
 
@@ -49,6 +49,7 @@ const Filters = ({ onLayoutChange, view }: Props) => {
             type="button"
             onClick={onToggleViewClick}
             className={iconButtonStyles}
+            aria-label={`"Toggle view" to ${view === 'map' ? 'list' : 'map'}`}
           >
             <MapSvg />
             <ListSvg />
