@@ -29,6 +29,7 @@
 }
 
 .FilterButtonIcon.isActive {
+  margin-left: 0.5em;
   color: var(--color-blue-200);
 }
 
@@ -43,9 +44,10 @@
   overflow: hidden;
   flex-grow: 1;
 
-  min-width: 48px;
+  min-width: 5ch;
   max-width: max-content;
   height: auto;
+  margin-inline: auto;
 
   text-overflow: ellipsis;
   white-space: nowrap;
