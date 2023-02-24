@@ -5,15 +5,15 @@ import { forwardRef } from 'react';
 import { Polymorphic } from '@/components/Shared/Polymorphic';
 
 import styles from './IconButton.module.css';
-import type { InternalIconButtonProps } from './IconButton.types';
+import type { IconButtonInternalProps } from './IconButton.types';
 
 type IconButtonComponent = (
-  { as = 'button', children, ...polymorphicProps }: InternalIconButtonProps,
+  { as = 'button', children, ...polymorphicProps }: IconButtonInternalProps,
   ref?: Ref<HTMLElement>
 ) => React.ReactElement | null;
 
 const IconButton: IconButtonComponent = (
-  { children, ...polymorphicProps }: InternalIconButtonProps,
+  { children, ...polymorphicProps }: IconButtonInternalProps,
   ref?: Ref<HTMLElement>
 ) => {
   const as = polymorphicProps.as || 'button';
@@ -34,4 +34,4 @@ const IconButton: IconButtonComponent = (
   );
 };
 
-export default forwardRef<HTMLElement, InternalIconButtonProps>(IconButton);
+export default forwardRef<HTMLElement, IconButtonInternalProps>(IconButton);
