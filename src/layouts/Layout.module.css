@@ -16,15 +16,6 @@
   left: 0;
 }
 
-.Layout > .Absolute.Loading {
-  display: grid;
-  place-items: center;
-}
-
-.Layout > .Loading.Hidden {
-  display: none;
-}
-
 .Layout > .Absolute.MapSection,
 .Layout > .Absolute.ListSection {
   z-index: 8;

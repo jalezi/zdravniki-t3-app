@@ -45,10 +45,6 @@
   box-shadow: var(--box-shadow);
 }
 
-.ToggleViewContainer.Loading {
-  right: -200%;
-}
-
 .ToggleViewContainer .Btn {
   position: relative;
 

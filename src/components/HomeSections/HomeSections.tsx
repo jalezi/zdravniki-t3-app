@@ -49,23 +49,13 @@ const HomeSections = () => {
     });
   }, [router]);
 
-  const [layoutVisible, setLayoutVisible] = useState<View>('loading');
+  const [layoutVisible, setLayoutVisible] = useState<View>('map');
 
   const [_, setMap] = useState<null | LeafletMap>(null);
 
   const onLayoutChange = () => {
     setLayoutVisible(prev => (prev === 'map' ? 'list' : 'map'));
   };
-
-  const whenReady = () => {
-    layoutVisible === 'loading' && setLayoutVisible('map');
-  };
-
-  const loadingStyles = clsx(
-    styles.Loading,
-    styles.Absolute,
-    layoutVisible !== 'loading' && styles.Hidden
-  );
 
   const mapStyles = clsx(
     styles.MapSection,
@@ -81,11 +71,8 @@ const HomeSections = () => {
 
   return (
     <>
-      <div id="loading" className={loadingStyles}>
-        Loading
-      </div>
       <section id="map" className={mapStyles}>
-        <BigMapWithNoSSR setMap={setMap} whenReady={whenReady} />
+        <BigMapWithNoSSR setMap={setMap} />
       </section>
       <section id="list" className={listStyles}>
         <div style={{ height: '100%', width: '100%' }}>List</div>

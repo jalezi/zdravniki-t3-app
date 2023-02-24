@@ -1,1 +1,1 @@
-export type View = 'loading' | 'map' | 'list';
+export type View = 'map' | 'list';

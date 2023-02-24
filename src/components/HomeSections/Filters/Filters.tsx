@@ -17,10 +17,7 @@ const Filters = ({ onLayoutChange, view }: Props) => {
 
   const [searchValue, setSearchValue] = useState('');
 
-  const toggleViewContaineStyles = clsx(
-    styles.ToggleViewContainer,
-    view === 'loading' && styles.Loading
-  );
+  const toggleViewContaineStyles = clsx(styles.ToggleViewContainer);
   const iconButtonStyles = clsx(
     styles.Btn,
     view !== 'list' && styles.Map,
