@@ -1,3 +1,4 @@
+import { doctorsRouter } from './routers/doctors';
 import { exampleRouter } from './routers/example';
 import { timestampRouter } from './routers/timestamps';
 import { createTRPCRouter } from './trpc';
@@ -10,6 +11,7 @@ import { createTRPCRouter } from './trpc';
 export const appRouter = createTRPCRouter({
   example: exampleRouter,
   timestamp: timestampRouter,
+  doctors: doctorsRouter,
 });
 
 // export type definition of API
