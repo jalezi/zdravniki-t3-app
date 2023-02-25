@@ -17,7 +17,7 @@ const NavigationContainer = ({
 }: NavigationContainerProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { asPath } = useRouter();
-  const [showNavigation] = useShowNavigation;
+  const [showNavigation, setShowNavigation] = useShowNavigation;
 
   const navigationContainerStyles = clsx(
     styles.NavigationContainer,
@@ -33,6 +33,11 @@ const NavigationContainer = ({
       document.body.style.overflow = 'auto';
     }
   }, [showNavigation]);
+
+  useEffect(() => {
+    // Close navigation on route change
+    setShowNavigation(false);
+  }, [asPath, setShowNavigation]);
 
   return (
     <div ref={ref} key={asPath} className={navigationContainerStyles}>
