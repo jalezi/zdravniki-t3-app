@@ -1,3 +1,5 @@
+// TODO not sure how to organize this file
+
 import type Link from 'next/link';
 import { z } from 'zod';
 

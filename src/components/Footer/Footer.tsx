@@ -17,6 +17,7 @@ const Footer = ({ position = 'mdx' }: FooterProps) => {
 
   const ts = api.timestamp.doctors.useQuery();
 
+  // LongDate handles the error case
   const timestamp = ts.data?.success ? ts.data.data * 1000 : 'error';
 
   const footerStyles = clsx(
