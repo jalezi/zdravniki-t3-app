@@ -20,5 +20,8 @@
     "heading": "404: page not found",
     "link": "Home",
     "text": "oops… something went wrong 😞"
+  },
+  "search": {
+    "placeholder": "Search..."
   }
 }

@@ -20,5 +20,8 @@
     "heading": "404: stran ne obstaja",
     "link": "Imenik",
     "text": "ups.. nekaj se je zalomilo 😞"
+  },
+  "search": {
+    "placeholder": "Išči..."
   }
 }

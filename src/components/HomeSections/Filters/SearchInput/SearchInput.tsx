@@ -1,4 +1,5 @@
 import { clsx } from 'clsx';
+import { useTranslation } from 'next-i18next';
 import type { ForwardedRef, RefObject } from 'react';
 import { forwardRef, useRef, useState } from 'react';
 
@@ -15,6 +16,7 @@ const SearchInput = (
 ) => {
   const internalRef = useRef<HTMLInputElement>(null);
   const [searchValue, setSearchValue] = useState(value);
+  const { t } = useTranslation('common');
 
   const searchLabelStyles = clsx(styles.SearchLabel);
   const searchInputStyles = clsx(styles.SearchInput);
@@ -62,7 +64,7 @@ const SearchInput = (
       <input
         ref={ref ?? internalRef}
         type="search"
-        placeholder="search..."
+        placeholder={t`search.placeholder` ?? 'Search'}
         onChange={onSearchChange}
         value={searchValue}
         className={searchInputStyles}

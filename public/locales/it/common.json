@@ -20,5 +20,8 @@
     "heading": "404: pagina non trovata",
     "link": "Elenco",
     "text": "oops... qualcosa è andato storto 😞"
+  },
+  "search": {
+    "placeholder": "Cerca..."
   }
 }
