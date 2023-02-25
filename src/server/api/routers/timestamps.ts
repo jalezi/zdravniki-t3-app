@@ -34,9 +34,8 @@ export const timestampRouter = createTRPCRouter({
       return timestampSchema.safeParse(-1);
     }
 
-    const doctorsResult = (await doctorsResponse.value.json()) as number;
-    const institutionsResult =
-      (await institutionsResponse.value.json()) as number;
+    const doctorsResult = await doctorsResponse.value.json();
+    const institutionsResult = await institutionsResponse.value.json();
 
     return allTimestampsSchema.safeParse({
       doctors: doctorsResult,
@@ -49,7 +48,7 @@ export const timestampRouter = createTRPCRouter({
       console.error(response.statusText);
       return timestampSchema.safeParse(-1);
     }
-    const result = (await response.json()) as number;
+    const result = await response.json();
     return timestampSchema.safeParse(result);
   }),
   institutions: publicProcedure.query(async () => {
@@ -58,7 +57,7 @@ export const timestampRouter = createTRPCRouter({
       console.error(response.statusText);
       return timestampSchema.safeParse(-1);
     }
-    const result = (await response.json()) as number;
+    const result = await response.json();
     return timestampSchema.safeParse(result);
   }),
 });

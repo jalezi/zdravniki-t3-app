@@ -8,6 +8,7 @@ specifiers:
   '@next/mdx': ^13.2.1
   '@svgr/webpack': ^6.5.1
   '@tanstack/react-query': ^4.24.10
+  '@total-typescript/ts-reset': ^0.3.7
   '@trpc/client': ^10.12.0
   '@trpc/next': ^10.12.0
   '@trpc/react-query': ^10.12.0
@@ -81,6 +82,7 @@ devDependencies:
   '@commitlint/cli': 17.4.4
   '@commitlint/config-conventional': 17.4.4
   '@svgr/webpack': 6.5.1
+  '@total-typescript/ts-reset': 0.3.7
   '@types/leaflet': 1.9.1
   '@types/mdx': 2.0.3
   '@types/node': 18.14.1
@@ -2087,6 +2089,10 @@ packages:
       react-dom: 18.2.0_react@18.2.0
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
+
+  /@total-typescript/ts-reset/0.3.7:
+    resolution: {integrity: sha512-yXt2BRRVCJVvzWaxac5n0nCXzIrQEBE/MeYlNQ8/Iq7UeelNmm/AdnUAu18ilSS893mbEQ4u6whPt/HvOPc4rw==}
+    dev: true
 
   /@trpc/client/10.12.0_@trpc+server@10.12.0:
     resolution: {integrity: sha512-CUBRaE0FpYiRnPGkFB9oLD2cdFd5fSzQwPSR7/zXNKMjwdE+5P7q5mtgbh3bFey3lYidmpKDFgYRnl9Cz2Z7OQ==}
