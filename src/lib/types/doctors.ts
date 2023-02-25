@@ -1,6 +1,8 @@
 import { z } from 'zod';
 
-export const doctorProperties = [
+import { idInstSchema, trimmedStringSchema } from '../utils/zod';
+
+export const drCSVHeader = [
   'accepts',
   'accepts_override',
   'address',
@@ -8,8 +10,8 @@ export const doctorProperties = [
   'availability_override',
   'city',
   'date_override',
-  'email',
   'doctor',
+  'email',
   'id_inst',
   'lat',
   'load',
@@ -24,39 +26,60 @@ export const doctorProperties = [
   'website',
 ] as const;
 
-export const drSchema = z.object({
-  accepts: z.enum(['y', 'n']).or(z.unknown()),
-  accepts_override: z.enum(['y', 'n']).or(z.unknown()),
-  address: z.string().optional(),
-  availability: z.string().optional(),
-  availability_override: z.string().optional(),
-  city: z.string().optional(),
-  date_override: z.string().optional(),
-  doctor: z.string().optional(),
-  email: z.string().optional(),
-  id_inst: z.string().optional(),
-  lat: z.coerce.number().optional(),
-  load: z.string().optional(),
-  lon: z.coerce.number().optional(),
-  municipality: z.string().optional(),
-  municipalityPart: z.string().optional(),
-  note_override: z.string().optional(),
-  orederform: z.string().optional(),
-  phone: z.string().optional(),
-  post: z.string().optional(),
-  type: z.enum(['gp', 'ped', 'den', 'den-y', 'den-s', 'gyn']).or(z.unknown()),
-  website: z.string().optional(),
+export const drCSVSchema = z.object({
+  accepts: z.enum(['y', 'n']),
+  accepts_override: z.enum(['y', 'n', '']),
+  address: trimmedStringSchema,
+  availability: z.coerce.number(),
+  availability_override: trimmedStringSchema.or(z.coerce.number()),
+  city: trimmedStringSchema,
+  date_override: trimmedStringSchema,
+  doctor: trimmedStringSchema,
+  email: trimmedStringSchema,
+  id_inst: idInstSchema,
+  lat: z.coerce.number(),
+  load: z.coerce.number(),
+  lon: z.coerce.number(),
+  municipality: trimmedStringSchema,
+  municipalityPart: trimmedStringSchema,
+  note_override: trimmedStringSchema,
+  orderform: trimmedStringSchema,
+  phone: trimmedStringSchema,
+  post: trimmedStringSchema,
+  type: z.enum(['gp', 'gp-x', 'ped', 'ped-x', 'den', 'den-y', 'den-s', 'gyn']),
+  website: trimmedStringSchema,
 });
 
-export const drTransformedSchema = drSchema.transform(dr => {
-  const { post } = dr;
+const drCSVSchemaKeys = drCSVSchema.keyof();
+
+drCSVHeader.forEach(key => {
+  const keyInSchema = drCSVSchemaKeys.safeParse(key);
+  if (!keyInSchema.success) {
+    throw new Error(`Key ${key} is not in schema`);
+  }
+});
+
+export const drCSVTypeSchema = drCSVSchema.shape.type;
+export type DrCSVType = z.infer<typeof drCSVTypeSchema>;
+
+export const drPageType = drCSVTypeSchema.transform(type => {
+  if (type === 'gp-x') return 'gp';
+  if (type === 'ped-x') return 'ped';
+  return type;
+});
+export type DrPageType = z.infer<typeof drPageType>;
+
+export const drTransformedSchema = drCSVSchema.transform(dr => {
+  const { post, id_inst, ...rest } = dr;
   const [postalCode, ...postalName] = post?.split(' ') ?? ['', ''];
 
   return {
-    ...dr,
+    ...rest,
+    idInst: id_inst,
     post: postalName.join(' '),
     postalCode: Number(postalCode),
   };
 });
 
 export const drListSchema = z.array(drTransformedSchema);
+export type DrListSchema = z.infer<typeof drListSchema>;
