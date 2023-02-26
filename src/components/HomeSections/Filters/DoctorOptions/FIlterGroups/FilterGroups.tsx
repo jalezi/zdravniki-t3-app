@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { drTypeWithAgeSchema } from '@/lib/types/dr-type-page';
 import { parseHash, stringifyHash } from '@/lib/utils/url-hash';
@@ -21,9 +21,14 @@ const FilterGroups = () => {
   const { t } = useTranslation('doctor');
   const { query, asPath, replace, locale } = useRouter();
   const parsedHash = parseHash(asPath);
-  const [accepts, setAccepts] = useState<'all' | 'y' | 'n'>(
-    parsedHash.success ? parsedHash.data[0] : 'all'
-  );
+  const [accepts, setAccepts] = useState<'all' | 'y' | 'n' | null>(null);
+
+  // FIX ME: this is a hack to make sure that the initial state is set; when set on initial useState declaration, on page refresh if not "all" will give hydration error.
+  const initialAccepts = parsedHash.success ? parsedHash.data[0] : null;
+  useEffect(() => {
+    if (!initialAccepts) return;
+    setAccepts(initialAccepts);
+  }, [initialAccepts]);
 
   const onAcceptsChange = (value: 'all' | 'y' | 'n') => {
     setAccepts(value);

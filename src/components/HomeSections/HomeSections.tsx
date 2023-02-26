@@ -11,6 +11,7 @@ import {
   maxBounds,
 } from '@/lib/constants/map';
 import useDoctors from '@/lib/hooks/useDoctors';
+import useHash from '@/lib/hooks/useHash';
 import type { LeafletMap } from '@/lib/types/Map';
 
 import { Filters } from './Filters';
@@ -48,6 +49,8 @@ const HomeSections = () => {
     []
   );
 
+  useHash();
+
   const [layoutVisible, setLayoutVisible] = useState<View>('map');
   const [_, setMap] = useState<null | LeafletMap>(null);
 
@@ -81,7 +84,6 @@ const HomeSections = () => {
       </section>
       <section id="list" className={listStyles}>
         <List />
-        List
       </section>
       <section id="filters" className={styles.FiltersSection}>
         <Filters onLayoutChange={onLayoutChange} view={layoutVisible} />
