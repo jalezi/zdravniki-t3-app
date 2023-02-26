@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { Map } from '@/components/Shared/Map';
 import type { MapProps } from '@/components/Shared/Map/Map';
 
@@ -14,7 +16,7 @@ function withMap(Component: typeof Map) {
     );
   }
 
-  return BigMap;
+  return memo(BigMap);
 }
 
 export default withMap(Map);

@@ -67,14 +67,23 @@
     right: unset;
     bottom: unset;
     left: unset;
+
+    transition: unset;
   }
 
   .Layout > .Absolute.MapSection {
     grid-area: map;
+    height: calc(
+      100dvh - var(--header-height-lg) * 2
+    ); /* minus header and filters */
   }
 
   .Layout > .Absolute.ListSection {
+    overflow-y: auto;
     grid-area: list;
+    height: calc(
+      100dvh - var(--header-height-lg) * 2
+    ); /* minus header and filters */
   }
 
   .Layout > .FiltersSection {

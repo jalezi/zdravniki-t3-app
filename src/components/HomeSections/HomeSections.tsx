@@ -1,17 +1,42 @@
 import { clsx } from 'clsx';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import styles from '@/layouts/Layout.module.css';
-import { SL_CENTER, ZOOM } from '@/lib/constants/map';
+import {
+  MAX_ZOOM,
+  MIN_ZOOM,
+  SL_CENTER,
+  ZOOM,
+  maxBounds,
+} from '@/lib/constants/map';
+import useDoctors from '@/lib/hooks/useDoctors';
 import type { LeafletMap } from '@/lib/types/Map';
-import { parseHash, stringifyHash } from '@/lib/utils/url-hash';
 
 import { Filters } from './Filters';
 import type { View } from './types';
 
 const MapSkeleton = () => <div>loading map...</div>;
+
+const List = () => {
+  const { data, status } = useDoctors();
+
+  if (status === 'loading') {
+    return <div>loading...</div>;
+  }
+
+  if (status === 'error') {
+    return <div>error</div>;
+  }
+
+  return (
+    <ul>
+      {data?.doctors.map(doctor => (
+        <li key={doctor.fakeId}>{doctor.doctor}</li>
+      ))}
+    </ul>
+  );
+};
 
 const HomeSections = () => {
   const BigMapWithNoSSR = useMemo(
@@ -23,34 +48,7 @@ const HomeSections = () => {
     []
   );
 
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!router.isReady) return;
-    const documentLocHash = document.location.hash;
-    const parsedHash = parseHash(documentLocHash?.split('#')?.[1] ?? '');
-
-    if (parsedHash.success) return;
-
-    const newHash = stringifyHash(['all', [ZOOM, ...SL_CENTER], '']);
-    let newPath = router.asPath;
-    if (!documentLocHash) {
-      newPath = `${router.asPath}${newHash}`;
-      return void router.replace(newPath, newPath, {
-        shallow: true,
-        locale: router.locale,
-      });
-    }
-    // ? notify user if hash is invalid
-    newPath = router.asPath.replace(documentLocHash, newHash);
-    void router.replace(newPath, newPath, {
-      shallow: true,
-      locale: router.locale,
-    });
-  }, [router]);
-
   const [layoutVisible, setLayoutVisible] = useState<View>('map');
-
   const [_, setMap] = useState<null | LeafletMap>(null);
 
   const onLayoutChange = () => {
@@ -72,10 +70,18 @@ const HomeSections = () => {
   return (
     <>
       <section id="map" className={mapStyles}>
-        <BigMapWithNoSSR setMap={setMap} />
+        <BigMapWithNoSSR
+          center={SL_CENTER as [number, number]}
+          maxBounds={maxBounds}
+          setMap={setMap}
+          zoom={ZOOM}
+          maxZoom={MAX_ZOOM}
+          minZoom={MIN_ZOOM}
+        />
       </section>
       <section id="list" className={listStyles}>
-        <div style={{ height: '100%', width: '100%' }}>List</div>
+        <List />
+        List
       </section>
       <section id="filters" className={styles.FiltersSection}>
         <Filters onLayoutChange={onLayoutChange} view={layoutVisible} />

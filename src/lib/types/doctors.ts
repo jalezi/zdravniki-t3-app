@@ -1,8 +1,9 @@
+import { v4 as uuidv4 } from 'uuid';
 import { z } from 'zod';
 
 import { idInstSchema, trimmedStringSchema } from '@/lib/utils/zod';
 
-import type { LatLng } from './Map';
+import type { LatLngLiteral } from './Map';
 
 export const drCSVHeader = [
   'accepts',
@@ -122,13 +123,17 @@ export const drTransformedSchema = drCSVSchema.transform(dr => {
     municipalityPart,
   });
 
-  const geoLocation: LatLng | null =
+  const geoLocation: LatLngLiteral | null =
     lat === 0 || lon === 0 ? null : { lat, lng: lon };
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+  const fakeId = uuidv4();
 
   return {
     acceptsOverride: accepts_override,
     availabilityOverride: availability_override,
     dateOverride: date_override,
+    fakeId,
     idInst: id_inst,
     location: { address: addressObject, geoLocation },
     noteOverride: note_override,

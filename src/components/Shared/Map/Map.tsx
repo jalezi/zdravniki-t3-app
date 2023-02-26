@@ -12,7 +12,7 @@ export type MapProps = MapContainerProps & {
 };
 
 const Map = ({
-  center = SL_CENTER as [number, number],
+  center = SL_CENTER,
   children,
   maxZoom = MAX_ZOOM,
   minZoom = MIN_ZOOM,

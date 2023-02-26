@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { addressSchema } from './doctors';
-import type { LatLng } from './Map';
+import type { LatLngLiteral } from './Map';
 import { idInstSchema, trimmedStringSchema } from '../utils/zod';
 
 export const instCSVHeader = [
@@ -66,7 +66,7 @@ export const instTransformedSchema = instCSVSchema.transform(inst => {
     municipalityPart,
   });
 
-  const geoLocation: LatLng | null =
+  const geoLocation: LatLngLiteral | null =
     lat === 0 || lon === 0 ? null : { lat, lng: lon };
 
   return {

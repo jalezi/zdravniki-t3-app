@@ -1,6 +1,6 @@
-import type { LatLng } from '@/lib/types/Map';
+import type { LatLngLiteral } from '@/lib/types/Map';
 
-export const getRoundedLatLng = (latLng: LatLng): LatLng => {
+export const getRoundedLatLng = (latLng: LatLngLiteral): LatLngLiteral => {
   const { lat, lng } = latLng;
   return { lat: Number(lat.toFixed(5)), lng: Number(lng.toFixed(5)) };
 };

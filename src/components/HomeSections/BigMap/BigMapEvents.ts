@@ -9,6 +9,7 @@ const BigMapEvents = () => {
   const map = useMapEvents({
     moveend: () => {
       const documentLocHash = document.location.hash;
+
       const { lat, lng } = getRoundedLatLng(map.getCenter());
       const zoom = map.getZoom();
       const parsedHash = parseHash(asPath.split('#')[1] ?? '');
