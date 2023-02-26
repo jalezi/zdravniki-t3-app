@@ -1,5 +1,3 @@
-// TODO not sure how to organize this file
-
 import type Link from 'next/link';
 import { z } from 'zod';
 
@@ -22,7 +20,7 @@ export type PageLink = {
   label: string;
 };
 
-export const drPagesSchema = z.enum([
+export const drTypePageSchema = z.enum([
   'gp',
   'ped',
   'den',
@@ -31,12 +29,7 @@ export const drPagesSchema = z.enum([
   'gyn',
 ]);
 
-export const drPagesTransformSchema = drPagesSchema.transform(value => {
-  if (value === 'ped') {
-    return 'gp-y';
-  }
-  return value;
-});
+export type DrTypePage = z.infer<typeof drTypePageSchema>;
 
 // gp has also "-y" suffix but we have both links in separate filter group
 export const drTypeWithAgeSchema = z.enum(['den', 'den-s', 'den-y']);

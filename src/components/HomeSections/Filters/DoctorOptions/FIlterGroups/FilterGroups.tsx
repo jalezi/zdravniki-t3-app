@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import { drTypeWithAgeSchema } from '@/lib/types/some-types';
+import { drTypeWithAgeSchema } from '@/lib/types/dr-type-page';
 import { parseHash, stringifyHash } from '@/lib/utils/url-hash';
 
 import styles from './FilterGroups.module.css';

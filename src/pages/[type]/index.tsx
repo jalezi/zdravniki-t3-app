@@ -3,7 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import nextI18nextConfig from '@/../../next-i18next.config.js';
 import HomeSections from '@/components/HomeSections/HomeSections';
-import { drPagesSchema } from '@/lib/types/some-types';
+import { drTypePageSchema } from '@/lib/types/dr-type-page';
 
 const DrType: NextPage = () => {
   return <HomeSections />;
@@ -14,7 +14,7 @@ export default DrType;
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const { type } = ctx.query;
 
-  const drType = drPagesSchema.safeParse(type);
+  const drType = drTypePageSchema.safeParse(type);
 
   if (!drType.success) {
     return {

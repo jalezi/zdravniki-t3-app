@@ -10,7 +10,7 @@ import {
   PedSvg,
   StudentsSvg,
 } from '@/components/Shared/Icons';
-import { drTypeWithAgeTransformSchema } from '@/lib/types/some-types';
+import { drTypeWithAgeTransformSchema } from '@/lib/types/dr-type-page';
 
 export const DR_GROUP = [
   { value: 'gp', Icon: FamilyDrSvg, translationKey: 'gp', href: '/gp/' },
