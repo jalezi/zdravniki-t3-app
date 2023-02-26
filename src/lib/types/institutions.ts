@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { addressSchema } from './doctors';
+import type { LatLng } from './Map';
 import { idInstSchema, trimmedStringSchema } from '../utils/zod';
 
 export const instCSVHeader = [
@@ -44,17 +46,36 @@ instCSVHeader.forEach(key => {
 });
 
 export const instTransformedSchema = instCSVSchema.transform(inst => {
-  const { post } = inst;
-  const [postalCode, ...postalName] = post?.split(' ') ?? ['', ''];
+  const {
+    address,
+    city,
+    id_inst,
+    municipality,
+    municipalityPart,
+    lat,
+    lon,
+    post,
+    ...rest
+  } = inst;
 
-  const { id_inst, ...rest } = inst;
+  const addressObject = addressSchema.parse({
+    address,
+    city,
+    post,
+    municipality,
+    municipalityPart,
+  });
+
+  const geoLocation: LatLng | null =
+    lat === 0 || lon === 0 ? null : { lat, lng: lon };
 
   return {
-    ...rest,
     id: id_inst,
-    post: postalName.join(' '),
-    postalCode: Number(postalCode),
+    location: { address: addressObject, geoLocation },
+    ...rest,
   };
 });
+
+export type InstTransformed = z.infer<typeof instTransformedSchema>;
 
 export const instListSchema = z.array(instTransformedSchema);

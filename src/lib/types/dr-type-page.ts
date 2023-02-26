@@ -31,6 +31,18 @@ export const drTypePageSchema = z.enum([
 
 export type DrTypePage = z.infer<typeof drTypePageSchema>;
 
+export const drTypePageCoerceSchema = drTypePageSchema.transform(value => {
+  if (value === 'gp') {
+    return ['gp', 'gp-x'];
+  }
+
+  if (value === 'ped') {
+    return ['ped', 'ped-x'];
+  }
+
+  return [value];
+});
+
 // gp has also "-y" suffix but we have both links in separate filter group
 export const drTypeWithAgeSchema = z.enum(['den', 'den-s', 'den-y']);
 

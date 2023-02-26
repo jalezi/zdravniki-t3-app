@@ -4,4 +4,4 @@ export const trimmedStringSchema = z
   .string()
   .transform(s => s.replace(/\s+/g, ' ').trim());
 
-export const idInstSchema = z.string();
+export const idInstSchema = trimmedStringSchema;

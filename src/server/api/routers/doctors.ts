@@ -2,9 +2,14 @@ import Papa from 'papaparse';
 import { z } from 'zod';
 
 import { DATA_URL } from '@/lib/constants';
-import type { DrListSchema, DrPageType } from '@/lib/types/doctors';
-import { drListSchema, drPageType } from '@/lib/types/doctors';
+import type { DrListSchema } from '@/lib/types/doctors';
+import { drListSchema, drTypeCoerceSchema } from '@/lib/types/doctors';
+import type { DrTypePage } from '@/lib/types/dr-type-page';
+import { drTypePageSchema } from '@/lib/types/dr-type-page';
+import type { InstTransformed } from '@/lib/types/institutions';
 import { instListSchema } from '@/lib/types/institutions';
+import type { AcceptsHashValueSchema } from '@/lib/utils/url-hash';
+import { acceptsHashValueSchema } from '@/lib/utils/url-hash';
 
 import { createTRPCRouter, publicProcedure } from '../trpc';
 
@@ -12,14 +17,27 @@ const { DOCTORS_CSV_URL, INSTITUTIONS_CSV_URL } = DATA_URL;
 
 const filterDoctors = (
   doctors: DrListSchema,
-  { type }: { type: DrPageType }
+  { type, accepts }: { type: DrTypePage; accepts: AcceptsHashValueSchema }
 ) => {
-  return doctors.filter(doctor => drPageType.parse(doctor.type) === type);
+  if (accepts === 'all')
+    return doctors.filter(doctor => type === doctor.typePage);
+
+  return doctors.filter(
+    doctor =>
+      drTypeCoerceSchema.parse(doctor.type) === type &&
+      doctor.accepts === accepts
+  );
 };
 
 export const doctorsRouter = createTRPCRouter({
   get: publicProcedure
-    .input(z.object({ type: drPageType }))
+    .input(
+      z.object({
+        type: drTypePageSchema,
+        accepts: acceptsHashValueSchema,
+        search: z.string(),
+      })
+    )
     .query(async ({ input }) => {
       const dr = fetch(DOCTORS_CSV_URL);
       const inst = fetch(INSTITUTIONS_CSV_URL);
@@ -62,27 +80,32 @@ export const doctorsRouter = createTRPCRouter({
 
       const filteredDoctors = filterDoctors(doctorsValidated.data, {
         type: input.type,
+        accepts: input.accepts,
       });
 
       const instIds = new Set(filteredDoctors.map(doctor => doctor.idInst));
 
-      const institutionsFiltered = institutionsValidated.data
-        .filter(institution => instIds.has(institution.id))
-        .reduce(
-          (acc, institution) => {
+      const institutionsFiltered: Record<string, InstTransformed> =
+        institutionsValidated.data
+          .filter(institution => instIds.has(institution.id))
+          .reduce((acc, institution) => {
             const { id, ...rest } = institution;
 
             return { ...acc, [id]: rest };
-          },
-          { noId: [] }
-        );
+          }, {});
+
+      const doctors = filteredDoctors.map(doctor => {
+        const { idInst } = doctor;
+        return {
+          ...doctor,
+          institution: institutionsFiltered[`${idInst}`],
+        };
+      });
 
       return {
-        doctors: filteredDoctors,
-        institutions: institutionsFiltered,
+        doctors,
         meta: {
-          doctorsCount: filteredDoctors.length,
-          institutionsCount: Object.keys(institutionsFiltered).length,
+          length: doctors.length,
         },
       };
     }),

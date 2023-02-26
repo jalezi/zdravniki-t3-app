@@ -1,6 +1,8 @@
 import { z } from 'zod';
 
-import { idInstSchema, trimmedStringSchema } from '../utils/zod';
+import { idInstSchema, trimmedStringSchema } from '@/lib/utils/zod';
+
+import type { LatLng } from './Map';
 
 export const drCSVHeader = [
   'accepts',
@@ -62,22 +64,77 @@ drCSVHeader.forEach(key => {
 export const drCSVTypeSchema = drCSVSchema.shape.type;
 export type DrCSVType = z.infer<typeof drCSVTypeSchema>;
 
-export const drPageType = drCSVTypeSchema.transform(type => {
+export const drTypeCoerceSchema = drCSVTypeSchema.transform(type => {
   if (type === 'gp-x') return 'gp';
   if (type === 'ped-x') return 'ped';
   return type;
 });
-export type DrPageType = z.infer<typeof drPageType>;
+
+export const addressSchema = z
+  .object({
+    address: trimmedStringSchema,
+    city: trimmedStringSchema,
+    post: trimmedStringSchema,
+    municipality: trimmedStringSchema,
+    municipalityPart: trimmedStringSchema,
+  })
+  .transform(({ address, city, post, municipality, municipalityPart }) => {
+    if (!post || !address) return null;
+
+    const [postalCode, ...postalName] = post?.split(' ') ?? ['', ''];
+
+    return {
+      street: address,
+      city,
+      post,
+      postalCode: Number(postalCode),
+      postalName: postalName.join(' '),
+      municipality,
+      municipalityPart,
+      fullAddress: `${address}, ${post}`,
+      searchAddress: `${address}, ${city} ${post} ${municipality} ${municipalityPart}`,
+    };
+  });
 
 export const drTransformedSchema = drCSVSchema.transform(dr => {
-  const { post, id_inst, ...rest } = dr;
-  const [postalCode, ...postalName] = post?.split(' ') ?? ['', ''];
+  const {
+    post,
+    id_inst,
+    type,
+    address,
+    city,
+    municipality,
+    municipalityPart,
+    accepts_override,
+    availability_override,
+    date_override,
+    lat,
+    lon,
+    note_override,
+    ...rest
+  } = dr;
+
+  const addressObject = addressSchema.parse({
+    address,
+    city,
+    post,
+    municipality,
+    municipalityPart,
+  });
+
+  const geoLocation: LatLng | null =
+    lat === 0 || lon === 0 ? null : { lat, lng: lon };
 
   return {
-    ...rest,
+    acceptsOverride: accepts_override,
+    availabilityOverride: availability_override,
+    dateOverride: date_override,
     idInst: id_inst,
-    post: postalName.join(' '),
-    postalCode: Number(postalCode),
+    location: { address: addressObject, geoLocation },
+    noteOverride: note_override,
+    type,
+    typePage: drTypeCoerceSchema.parse(`${type}`),
+    ...rest,
   };
 });
 

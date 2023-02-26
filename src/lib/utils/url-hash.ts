@@ -11,8 +11,11 @@ const hashAttributeNamesSchema = z.tuple(
   }
 );
 
+export const acceptsHashValueSchema = z.enum(['all', 'y', 'n']);
+export type AcceptsHashValueSchema = z.infer<typeof acceptsHashValueSchema>;
+
 const hashSchema = z.tuple([
-  z.enum(['all', 'y', 'n']),
+  acceptsHashValueSchema,
   z.tuple([z.number(), z.number(), z.number()]),
   z.string(),
 ]);
