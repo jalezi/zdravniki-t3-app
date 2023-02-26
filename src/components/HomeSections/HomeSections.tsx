@@ -10,34 +10,14 @@ import {
   ZOOM,
   maxBounds,
 } from '@/lib/constants/map';
-import useDoctors from '@/lib/hooks/useDoctors';
 import useHash from '@/lib/hooks/useHash';
 import type { LeafletMap } from '@/lib/types/Map';
 
 import { Filters } from './Filters';
+import { List } from './List';
 import type { View } from './types';
 
 const MapSkeleton = () => <div>loading map...</div>;
-
-const List = () => {
-  const { data, status } = useDoctors();
-
-  if (status === 'loading') {
-    return <div>loading...</div>;
-  }
-
-  if (status === 'error') {
-    return <div>error</div>;
-  }
-
-  return (
-    <ul>
-      {data?.doctors.map(doctor => (
-        <li key={doctor.fakeId}>{doctor.doctor}</li>
-      ))}
-    </ul>
-  );
-};
 
 const HomeSections = () => {
   const BigMapWithNoSSR = useMemo(
