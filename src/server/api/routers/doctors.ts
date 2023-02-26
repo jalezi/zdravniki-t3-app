@@ -3,13 +3,11 @@ import { z } from 'zod';
 
 import { DATA_URL } from '@/lib/constants';
 import type { DrListSchema } from '@/lib/types/doctors';
-import { drListSchema, drTypeCoerceSchema } from '@/lib/types/doctors';
+import { drListSchema } from '@/lib/types/doctors';
 import type { DrTypePage } from '@/lib/types/dr-type-page';
 import { drTypePageSchema } from '@/lib/types/dr-type-page';
 import type { InstTransformed } from '@/lib/types/institutions';
 import { instListSchema } from '@/lib/types/institutions';
-import type { AcceptsHashValueSchema } from '@/lib/utils/url-hash';
-import { acceptsHashValueSchema } from '@/lib/utils/url-hash';
 
 import { createTRPCRouter, publicProcedure } from '../trpc';
 
@@ -17,16 +15,9 @@ const { DOCTORS_CSV_URL, INSTITUTIONS_CSV_URL } = DATA_URL;
 
 const filterDoctors = (
   doctors: DrListSchema,
-  { type, accepts }: { type: DrTypePage; accepts: AcceptsHashValueSchema }
+  { type }: { type: DrTypePage }
 ) => {
-  if (accepts === 'all')
-    return doctors.filter(doctor => type === doctor.typePage);
-
-  return doctors.filter(
-    doctor =>
-      drTypeCoerceSchema.parse(doctor.type) === type &&
-      doctor.accepts === accepts
-  );
+  return doctors.filter(doctor => type === doctor.typePage);
 };
 
 export const doctorsRouter = createTRPCRouter({
@@ -34,8 +25,6 @@ export const doctorsRouter = createTRPCRouter({
     .input(
       z.object({
         type: drTypePageSchema,
-        accepts: acceptsHashValueSchema,
-        search: z.string(),
       })
     )
     .query(async ({ input }) => {
@@ -80,7 +69,6 @@ export const doctorsRouter = createTRPCRouter({
 
       const filteredDoctors = filterDoctors(doctorsValidated.data, {
         type: input.type,
-        accepts: input.accepts,
       });
 
       const instIds = new Set(filteredDoctors.map(doctor => doctor.idInst));
