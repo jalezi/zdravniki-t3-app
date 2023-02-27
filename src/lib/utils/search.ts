@@ -1,3 +1,8 @@
+import type { LatLngBounds } from '@/lib/types/Map';
+import { boundsIntersect, getDoctorLatLng } from '@/lib/utils/map';
+import type { AcceptsHashValueSchema } from '@/lib/utils/url-hash';
+import type { Doctor } from '@/server/api/routers/doctors';
+
 /**
  * Replace all non ASCII chars and replace them with closest equivalent (č => c)
  * @description Normalizes string to lowercase, removes diacritics and trims it
@@ -47,3 +52,33 @@ export const partialMatch = (values: string[], query: string) => {
   const normalizedQuery = normalize(query);
   return values.some(value => normalize(value).includes(normalizedQuery));
 };
+
+/**
+ * Creates filter function for doctors
+ * @param options
+ * @returns filter function for doctors based on options
+ */
+export const createDoctorFilter = (options: {
+  accepts: AcceptsHashValueSchema;
+  bounds: LatLngBounds;
+  search: string;
+}) =>
+  function (doctor: Doctor) {
+    const { accepts, bounds, search } = options;
+    const acceptsCondition =
+      accepts === 'all' ? true : doctor.accepts === accepts;
+    const searchCondition =
+      fullMatch(doctor.name, search) || partialMatch([doctor.provider], search);
+
+    const doctorLatLng = getDoctorLatLng(doctor);
+
+    if (bounds) {
+      return (
+        boundsIntersect(bounds, doctorLatLng) &&
+        acceptsCondition &&
+        searchCondition
+      );
+    }
+
+    return acceptsCondition && searchCondition;
+  };

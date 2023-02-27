@@ -2,8 +2,7 @@ import { useRouter } from 'next/router';
 
 import useDoctors from '@/lib/hooks/useDoctors';
 import type { LeafletMap } from '@/lib/types/Map';
-import { boundsIntersect, getDoctorLatLng } from '@/lib/utils/map';
-import { fullMatch, partialMatch } from '@/lib/utils/search';
+import { createDoctorFilter } from '@/lib/utils/search';
 import { parseHash } from '@/lib/utils/url-hash';
 
 type ListProps = {
@@ -29,25 +28,12 @@ const List = ({ map }: ListProps) => {
 
   const [accepts, _, search] = parsedHash.data;
 
-  const filteredDoctors = data?.doctors.filter(doctor => {
-    const acceptsCondition =
-      accepts === 'all' ? true : doctor.accepts === accepts;
-    const searchCondition =
-      fullMatch(doctor.name, search) || partialMatch([doctor.provider], search);
-
-    const bounds = map?.getBounds();
-    const doctorLatLng = getDoctorLatLng(doctor);
-
-    if (bounds) {
-      return (
-        boundsIntersect(bounds, doctorLatLng) &&
-        acceptsCondition &&
-        searchCondition
-      );
-    }
-
-    return acceptsCondition && searchCondition;
-  });
+  const bounds = map?.getBounds();
+  const doctorFilter =
+    bounds && createDoctorFilter({ accepts, bounds, search });
+  const filteredDoctors = doctorFilter
+    ? data?.doctors.filter(doctorFilter)
+    : [];
 
   return (
     <ul>
