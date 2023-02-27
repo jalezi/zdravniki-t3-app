@@ -1,8 +1,9 @@
 import { clsx } from 'clsx';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import { IconButton } from '@/components/Shared/Buttons';
 import { ListSvg, MapSvg } from '@/components/Shared/Icons';
+import useBoundStore from '@/lib/store/useBoundStore';
 
 import { DoctorOptions } from './DoctorOptions';
 import styles from './Filters.module.css';
@@ -15,10 +16,11 @@ const Filters = ({ onLayoutChange, view }: Props) => {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const [searchValue, setSearchValue] = useState('');
+  const search = useBoundStore(state => state.search);
+  const setSearch = useBoundStore(state => state.setSearch);
 
   const onSearchChange = (value: string) => {
-    setSearchValue(value);
+    setSearch(value);
   };
 
   const onToggleViewClick = () => {
@@ -39,7 +41,7 @@ const Filters = ({ onLayoutChange, view }: Props) => {
       <div id="filters-search-container" className={styles.SearchContainer}>
         <SearchInput
           ref={searchInputRef}
-          value={searchValue}
+          value={search}
           onChange={onSearchChange}
         />
 

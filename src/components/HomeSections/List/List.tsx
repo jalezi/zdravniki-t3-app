@@ -1,13 +1,15 @@
+import { useDebounce } from 'usehooks-ts';
+
 import useDoctors from '@/lib/hooks/useDoctors';
-import type { LeafletMap } from '@/lib/types/Map';
+import useBoundStore from '@/lib/store/useBoundStore';
 import { createDoctorFilter } from '@/lib/utils/search';
 
-type ListProps = {
-  map: LeafletMap | null;
-};
-
-const List = ({ map }: ListProps) => {
+const List = () => {
   const { data, status } = useDoctors();
+  const accepts = useBoundStore(state => state.accepts);
+  const bounds = useBoundStore(state => state.bounds);
+  const search = useBoundStore(state => state.search);
+  const debouncedSearch = useDebounce(search, 500);
 
   if (status === 'loading') {
     return <div>loading...</div>;
@@ -17,9 +19,8 @@ const List = ({ map }: ListProps) => {
     return <div>error</div>;
   }
 
-  const bounds = map?.getBounds();
   const doctorFilter =
-    bounds && createDoctorFilter({ accepts: 'all', bounds, search: '' });
+    bounds && createDoctorFilter({ accepts, bounds, search: debouncedSearch });
   const filteredDoctors = doctorFilter
     ? data?.doctors.filter(doctorFilter)
     : [];

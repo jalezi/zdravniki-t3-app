@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
 
+import useBoundStore from '@/lib/store/useBoundStore';
 import { drTypeWithAgeSchema } from '@/lib/types/dr-type-page';
 
 import styles from './FilterGroups.module.css';
@@ -19,7 +19,8 @@ const AGE_HREF_SUFFIX = {
 const FilterGroups = () => {
   const { t } = useTranslation('doctor');
   const { query } = useRouter();
-  const [accepts, setAccepts] = useState<'all' | 'y' | 'n'>('all');
+  const accepts = useBoundStore(state => state.accepts);
+  const setAccepts = useBoundStore(state => state.setAccepts);
 
   const onAcceptsChange = (value: 'all' | 'y' | 'n') => {
     setAccepts(value);
