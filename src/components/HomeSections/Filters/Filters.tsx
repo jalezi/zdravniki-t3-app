@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDebounce } from 'usehooks-ts';
 
 import { IconButton } from '@/components/Shared/Buttons';
@@ -21,8 +21,8 @@ const getNewPath = (asPath: string, searchValue: string) => {
     const [accepts, mapData] = parsedHash.data;
     const newHash = stringifyHash([accepts, mapData, searchValue]);
 
-    if (newHash !== document.location.hash) {
-      newPath = asPath.replace(document.location.hash, newHash);
+    if (decodeURI(newHash) !== decodeURI(document.location.hash)) {
+      newPath = asPath.replace(document.location.hash, decodeURI(newHash));
     }
   }
 
@@ -37,7 +37,13 @@ const Filters = ({ onLayoutChange, view }: Props) => {
   const [searchValue, setSearchValue] = useState('');
   const debouncedSearchValue = useDebounce(searchValue, 500);
 
-  const newPath = getNewPath(asPath, debouncedSearchValue);
+  const newPath = useMemo(
+    () =>
+      debouncedSearchValue === searchValue
+        ? getNewPath(asPath, debouncedSearchValue)
+        : null,
+    [asPath, debouncedSearchValue, searchValue]
+  );
 
   useEffect(() => {
     if (!newPath) return;

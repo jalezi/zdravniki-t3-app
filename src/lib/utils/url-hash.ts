@@ -23,7 +23,8 @@ const hashSchema = z.tuple([
 export type HashSchema = z.infer<typeof hashSchema>;
 
 export const parseHash = (hash: string) => {
-  const rest = hash.split('|').slice(1);
+  const rest = hash.split('|').slice(1, -1);
+
   if (rest.length !== 3) return hashSchema.safeParse(null);
   const attributeNames = rest.map(item => item.split('=')[0]);
 
@@ -37,5 +38,5 @@ export const parseHash = (hash: string) => {
 
 export const stringifyHash = (hash: HashSchema) => {
   const [accepts, map, search] = hash;
-  return `#|accepts=${accepts}|map=${map?.join('/')}|search=${search}`;
+  return `#|accepts=${accepts}|map=${map?.join('/')}|search=${search}|`;
 };

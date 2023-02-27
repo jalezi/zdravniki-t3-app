@@ -9,6 +9,7 @@ const useHash = () => {
   useEffect(() => {
     if (!router.isReady) return;
     const documentLocHash = document.location.hash;
+
     const parsedHash = parseHash(documentLocHash?.split('#')?.[1] ?? '');
 
     if (parsedHash.success) return;
@@ -24,7 +25,7 @@ const useHash = () => {
     }
     // ? notify user if hash is invalid
     newPath = router.asPath.replace(documentLocHash, newHash);
-    void router.replace(newPath, newPath, {
+    return void router.replace(newPath, newPath, {
       shallow: true,
       locale: router.locale,
     });
