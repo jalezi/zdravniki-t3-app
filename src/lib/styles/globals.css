@@ -63,6 +63,10 @@ input[type='search']::-webkit-search-results-decoration {
   height: 100%;
 }
 
+.leaflet-tile-pane {
+  filter: hue-rotate(40deg) saturate(0.4) contrast(0.6) brightness(1.2);
+}
+
 @media only screen and (min-width: 768px) {
   body {
     overflow: unset;
