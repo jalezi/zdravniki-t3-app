@@ -99,19 +99,20 @@ export const addressSchema = z
 
 export const drTransformedSchema = drCSVSchema.transform(dr => {
   const {
-    post,
-    id_inst,
-    type,
-    address,
-    city,
-    municipality,
-    municipalityPart,
     accepts_override,
+    address,
     availability_override,
+    city,
+    doctor,
     date_override,
+    id_inst,
     lat,
     lon,
+    municipality,
+    municipalityPart,
     note_override,
+    post,
+    type,
     ...rest
   } = dr;
 
@@ -136,6 +137,7 @@ export const drTransformedSchema = drCSVSchema.transform(dr => {
     fakeId,
     idInst: id_inst,
     location: { address: addressObject, geoLocation },
+    name: doctor,
     noteOverride: note_override,
     type,
     typePage: drTypeCoerceSchema.parse(`${type}`),

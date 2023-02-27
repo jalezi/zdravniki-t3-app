@@ -8,6 +8,7 @@ import type { DrTypePage } from '@/lib/types/dr-type-page';
 import { drTypePageSchema } from '@/lib/types/dr-type-page';
 import type { InstTransformed } from '@/lib/types/institutions';
 import { instListSchema } from '@/lib/types/institutions';
+import type { RouterOutputs } from '@/lib/utils/api';
 
 import { createTRPCRouter, publicProcedure } from '../trpc';
 
@@ -98,3 +99,5 @@ export const doctorsRouter = createTRPCRouter({
       };
     }),
 });
+
+export type Doctor = RouterOutputs['doctors']['get']['doctors'][number];

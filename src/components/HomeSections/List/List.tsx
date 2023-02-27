@@ -34,7 +34,7 @@ const List = ({ map }: ListProps) => {
     const searchCondition =
       search === ''
         ? true
-        : doctor.doctor.toLowerCase().includes(search.toLowerCase()); // this is a bad search, but it's just an example; todo include institution name, address, etc.
+        : doctor.name.toLowerCase().includes(search.toLowerCase()); // this is a bad search, but it's just an example; todo include institution name, address, etc.
 
     const bounds = map?.getBounds();
     const doctorLatLng =
@@ -56,7 +56,7 @@ const List = ({ map }: ListProps) => {
       {filteredDoctors.map(doctor => (
         <li key={doctor.fakeId}>
           <div>
-            <div>{doctor.doctor}</div>
+            <div>{doctor.name}</div>
             <div>{doctor.institution?.location.address?.city}</div>
           </div>
         </li>
