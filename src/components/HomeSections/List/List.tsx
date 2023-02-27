@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import useDoctors from '@/lib/hooks/useDoctors';
 import type { LeafletMap } from '@/lib/types/Map';
 import { boundsIntersect, getDoctorLatLng } from '@/lib/utils/map';
+import { fullMatch, partialMatch } from '@/lib/utils/search';
 import { parseHash } from '@/lib/utils/url-hash';
 
 type ListProps = {
@@ -32,9 +33,7 @@ const List = ({ map }: ListProps) => {
     const acceptsCondition =
       accepts === 'all' ? true : doctor.accepts === accepts;
     const searchCondition =
-      search === ''
-        ? true
-        : doctor.name.toLowerCase().includes(search.toLowerCase()); // this is a bad search, but it's just an example; todo include institution name, address, etc.
+      fullMatch(doctor.name, search) || partialMatch([doctor.provider], search);
 
     const bounds = map?.getBounds();
     const doctorLatLng = getDoctorLatLng(doctor);

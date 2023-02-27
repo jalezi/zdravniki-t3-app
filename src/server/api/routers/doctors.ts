@@ -87,6 +87,7 @@ export const doctorsRouter = createTRPCRouter({
         const { idInst } = doctor;
         return {
           ...doctor,
+          provider: institutionsFiltered[`${idInst}`]?.name ?? '',
           institution: institutionsFiltered[`${idInst}`],
         };
       });
