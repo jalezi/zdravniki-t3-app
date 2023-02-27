@@ -10,7 +10,6 @@ import {
   ZOOM,
   maxBounds,
 } from '@/lib/constants/map';
-import useHash from '@/lib/hooks/useHash';
 import type { LeafletMap } from '@/lib/types/Map';
 
 import { Filters } from './Filters';
@@ -28,8 +27,6 @@ const HomeSections = () => {
       }),
     []
   );
-
-  useHash();
 
   const [layoutVisible, setLayoutVisible] = useState<View>('map');
   const [map, setMap] = useState<null | LeafletMap>(null);
