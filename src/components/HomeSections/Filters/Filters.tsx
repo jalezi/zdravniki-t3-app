@@ -1,8 +1,11 @@
 import { clsx } from 'clsx';
-import { useRef, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useRef, useState } from 'react';
+import { useDebounce } from 'usehooks-ts';
 
 import { IconButton } from '@/components/Shared/Buttons';
 import { ListSvg, MapSvg } from '@/components/Shared/Icons';
+import { parseHash, stringifyHash } from '@/lib/utils/url-hash';
 
 import { DoctorOptions } from './DoctorOptions';
 import styles from './Filters.module.css';
@@ -11,18 +14,35 @@ import type { View } from '../types';
 
 type Props = { onLayoutChange: () => void; view: View };
 
+const getNewPath = (asPath: string, searchValue: string) => {
+  let newPath: string | null = null;
+  const parsedHash = parseHash(asPath);
+  if (parsedHash.success) {
+    const [accepts, mapData] = parsedHash.data;
+    const newHash = stringifyHash([accepts, mapData, searchValue]);
+
+    if (newHash !== document.location.hash) {
+      newPath = asPath.replace(document.location.hash, newHash);
+    }
+  }
+
+  return newPath;
+};
+
 const Filters = ({ onLayoutChange, view }: Props) => {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const { asPath, locale, replace } = useRouter();
 
   const [searchValue, setSearchValue] = useState('');
+  const debouncedSearchValue = useDebounce(searchValue, 500);
 
-  const toggleViewContaineStyles = clsx(styles.ToggleViewContainer);
-  const iconButtonStyles = clsx(
-    styles.Btn,
-    view === 'map' && styles.Map,
-    view === 'list' && styles.List
-  );
+  const newPath = getNewPath(asPath, debouncedSearchValue);
+
+  useEffect(() => {
+    if (!newPath) return;
+    void replace(newPath, newPath, { locale, shallow: true });
+  }, [locale, newPath, replace]);
 
   const onSearchChange = (value: string) => {
     setSearchValue(value);
@@ -32,6 +52,13 @@ const Filters = ({ onLayoutChange, view }: Props) => {
     onLayoutChange();
     buttonRef.current?.blur();
   };
+
+  const toggleViewContaineStyles = clsx(styles.ToggleViewContainer);
+  const iconButtonStyles = clsx(
+    styles.Btn,
+    view === 'map' && styles.Map,
+    view === 'list' && styles.List
+  );
 
   return (
     <div id="filters-container" className={styles.Filters}>
