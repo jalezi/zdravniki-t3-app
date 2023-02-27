@@ -1,8 +1,9 @@
 export type {
   Map as LeafletMap,
-  LatLngExpression,
-  LatLngTuple,
-  LatLngBoundsLiteral,
-  LatLngLiteral,
+  LatLngBounds,
   LatLngBoundsExpression,
+  LatLngBoundsLiteral,
+  LatLngExpression,
+  LatLngLiteral,
+  LatLngTuple,
 } from 'leaflet';

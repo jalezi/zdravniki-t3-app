@@ -32,7 +32,7 @@ const HomeSections = () => {
   useHash();
 
   const [layoutVisible, setLayoutVisible] = useState<View>('map');
-  const [_, setMap] = useState<null | LeafletMap>(null);
+  const [map, setMap] = useState<null | LeafletMap>(null);
 
   const onLayoutChange = () => {
     setLayoutVisible(prev => (prev === 'map' ? 'list' : 'map'));
@@ -63,7 +63,7 @@ const HomeSections = () => {
         />
       </section>
       <section id="list" className={listStyles}>
-        <List />
+        <List map={map} />
       </section>
       <section id="filters" className={styles.FiltersSection}>
         <Filters onLayoutChange={onLayoutChange} view={layoutVisible} />
