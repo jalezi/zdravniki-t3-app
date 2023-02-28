@@ -1,0 +1,12 @@
+.BigMap {
+  --color-accepts-y_marker: var(--color-green-300);
+  --color-accepts-n_marker: var(--color-red-300);
+}
+
+.BigMap .DrCircle.Accepts {
+  fill: var(--color-accepts-y_marker);
+}
+
+.BigMap .DrCircle.Rejects {
+  fill: var(--color-accepts-n_marker);
+}

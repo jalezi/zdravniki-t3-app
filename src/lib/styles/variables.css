@@ -30,12 +30,26 @@
   --color-blue-50: rgb(244, 248, 248);
   --color-blue-800-A76: rgba(9, 175, 218, 0.76);
 
+  /* red colors */
+  --color-red-500: rgb(220, 50, 50);
+  --color-red-300: rgb(211, 47, 47);
+
+  /* green colors */
+  --color-green-700: rgb(129, 177, 48);
+  --color-green-500: rgb(149, 200, 63);
+  --color-green-300: rgb(46, 125, 50);
+
   /* grey colors */
   --color-grey-900: rgb(33, 37, 41);
   --color-grey-900-A50: rgba(33, 37, 41, 0.5);
 
   /* brand colors */
   --color-brand: var(--color-blue-500);
+
+  /* accepts colors */
+  --color-accepts-y: var(--color-green-500);
+  --color-accepts-n: var(--color-red-500);
+  --color-accepts-y_dark: var(--color-green-700);
 
   /* box-shadow */
   --box-shadow: var(--color-blue-800-A76) 0px 0px 7px 0px;
