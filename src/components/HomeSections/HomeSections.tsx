@@ -71,6 +71,9 @@ const HomeSections = () => {
 
   return (
     <>
+      <section id="filters" className={styles.FiltersSection}>
+        <Filters onLayoutChange={onLayoutChange} view={layoutVisible} />
+      </section>
       <section id="map" className={mapStyles}>
         <BigMapWithNoSSR
           center={center ?? (SL_CENTER as [number, number])}
@@ -83,9 +86,6 @@ const HomeSections = () => {
       </section>
       <section id="list" className={listStyles}>
         <List />
-      </section>
-      <section id="filters" className={styles.FiltersSection}>
-        <Filters onLayoutChange={onLayoutChange} view={layoutVisible} />
       </section>
     </>
   );
