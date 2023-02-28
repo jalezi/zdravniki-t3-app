@@ -6,13 +6,14 @@ import { CircleMarker } from 'react-leaflet';
 import type { LatLngLiteral } from '@/lib/types/Map';
 
 type DrMarkerProps = {
+  accepts: 'y' | 'n';
   center: LatLngLiteral;
   children?: React.ReactNode;
   className?: string;
 };
 
 const DrMarker = (
-  { center, children, className }: DrMarkerProps,
+  { center, children, className, accepts }: DrMarkerProps,
   ref: Ref<CMarker>
 ) => {
   return (
@@ -24,6 +25,7 @@ const DrMarker = (
       stroke={false}
       radius={12}
       className={className}
+      data-accepts={accepts}
     >
       {children}
     </CircleMarker>

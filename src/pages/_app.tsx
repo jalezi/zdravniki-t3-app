@@ -8,6 +8,7 @@ import nextI18nextConfig from '../../next-i18next.config.js';
 import 'the-new-css-reset';
 import '@/lib/styles/variables.css';
 import '@/lib/styles/globals.css';
+import '@/lib/styles/leaflet.css';
 import Layout from '../layouts/Layout';
 
 const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({

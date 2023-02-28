@@ -5,6 +5,9 @@ import { useDebounce } from 'usehooks-ts';
 import { Map } from '@/components/Shared/Map';
 import DrMarker from '@/components/Shared/Map/DrMarker';
 import type { MapProps } from '@/components/Shared/Map/Map';
+import MarkerClusterGroup, {
+  createClusterCustomIcon,
+} from '@/components/Shared/Map/MarkerClusterGroup';
 import useDoctors from '@/lib/hooks/useDoctors';
 import useBoundStore from '@/lib/store/useBoundStore';
 import { createDoctorFilter } from '@/lib/utils/search';
@@ -46,6 +49,7 @@ function withMap(Component: typeof Map) {
             key={doctor.fakeId}
             center={center}
             className={markerStyles}
+            accepts={doctor.accepts}
           />
         );
       }) ?? null;
@@ -53,7 +57,12 @@ function withMap(Component: typeof Map) {
     return (
       <Component setMap={setMap} {...rest} className={styles.BigMap}>
         <BigMapEvents />
-        {markers}
+        <MarkerClusterGroup
+          iconCreateFunction={createClusterCustomIcon}
+          maxClusterRadius={40}
+        >
+          {markers}
+        </MarkerClusterGroup>
       </Component>
     );
   }

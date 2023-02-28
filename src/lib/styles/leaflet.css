@@ -1,0 +1,71 @@
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+.leaflet-tile-pane {
+  filter: hue-rotate(40deg) saturate(0.4) contrast(0.6) brightness(1.2);
+}
+
+.marker-cluster:is(
+    .marker-cluster-small,
+    .marker-cluster-medium,
+    .marker-cluster-large
+  )
+  div {
+  background-color: inherit;
+}
+
+.marker-cluster:is(
+    .marker-cluster-small,
+    .marker-cluster-medium,
+    .marker-cluster-large
+  )
+  div
+  span {
+  display: block;
+  text-shadow: 0 0 3px #ffffff90;
+  background-color: inherit;
+  border-radius: 100%;
+  font-weight: 700;
+}
+
+.marker-cluster.marker-cluster-accepts-0 {
+  background-color: #d32f2f54;
+}
+
+.marker-cluster.marker-cluster-accepts-0 span {
+  color: #541212;
+}
+
+.marker-cluster.marker-cluster-accepts-25 {
+  background-color: #ef741f54;
+}
+
+.marker-cluster.marker-cluster-accepts-25 span {
+  color: #5f2e0c;
+}
+
+.marker-cluster.marker-cluster.marker-cluster-accepts-50 {
+  background-color: #ffa80054;
+}
+
+.marker-cluster.marker-cluster-accepts-50 span {
+  color: #664300;
+}
+
+.marker-cluster.marker-cluster-accepts-75 {
+  background-color: #aeb11854;
+}
+
+.marker-cluster.marker-cluster-accepts-75 span {
+  color: #454609;
+}
+
+.marker-cluster.marker-cluster-accepts-100 {
+  background-color: #2e7d3257;
+}
+
+.marker-cluster.marker-cluster-accepts-100 span {
+  color: #123214;
+}
