@@ -2,10 +2,10 @@ import { clsx } from 'clsx';
 import { memo } from 'react';
 import { useDebounce } from 'usehooks-ts';
 
-import { Map } from '@/components/Shared/Map';
+import { Map, TotalHits } from '@/components/Shared/Map';
 import DrMarker from '@/components/Shared/Map/DrMarker';
 import type { MapProps } from '@/components/Shared/Map/Map';
-import MarkerClusterGroup, {
+import CustomMarkerClusterGroup, {
   createClusterCustomIcon,
 } from '@/components/Shared/Map/MarkerClusterGroup';
 import useDoctors from '@/lib/hooks/useDoctors';
@@ -57,12 +57,13 @@ function withMap(Component: typeof Map) {
     return (
       <Component setMap={setMap} {...rest} className={styles.BigMap}>
         <BigMapEvents />
-        <MarkerClusterGroup
+        <CustomMarkerClusterGroup
           iconCreateFunction={createClusterCustomIcon}
           maxClusterRadius={40}
         >
           {markers}
-        </MarkerClusterGroup>
+        </CustomMarkerClusterGroup>
+        <TotalHits count={markers?.length ?? 0} />
       </Component>
     );
   }

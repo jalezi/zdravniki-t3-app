@@ -1,0 +1,4 @@
+{
+  "totalHits_one": "{{count}} hit",
+  "totalHits_other": "{{count}} hits"
+}

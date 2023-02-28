@@ -1,0 +1,6 @@
+{
+  "totalHits_few": "{{count}} zadetki",
+  "totalHits_one": "{{count}} zadetek",
+  "totalHits_other": "{{count}} zadetkov",
+  "totalHits_two": "{{count}} zadetka"
+}

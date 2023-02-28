@@ -52,7 +52,7 @@ export const createClusterCustomIcon = (cluster: {
   but not sure if it will be released yet.
   https://www.npmjs.com/package/@changey/react-leaflet-markercluster
 */
-const MarkerClusterGroup = createPathComponent<
+const CustomMarkerClusterGroup = createPathComponent<
   LeafletMarkerClusterGroup,
   MarkerClusterGroupOptions & PropsWithChildren
 >(({ children: _c, ...props }, ctx) => {
@@ -82,4 +82,4 @@ const MarkerClusterGroup = createPathComponent<
   };
 });
 
-export default MarkerClusterGroup;
+export default CustomMarkerClusterGroup;
