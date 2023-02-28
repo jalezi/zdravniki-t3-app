@@ -24,48 +24,32 @@
   div
   span {
   display: block;
+
+  font-weight: 500;
+  color: #050201;
   text-shadow: 0 0 3px #ffffff90;
+
   background-color: inherit;
   border-radius: 100%;
-  font-weight: 700;
 }
 
+/* low contrast ration - subject to change*/
 .marker-cluster.marker-cluster-accepts-0 {
   background-color: #d32f2f54;
-}
-
-.marker-cluster.marker-cluster-accepts-0 span {
-  color: #541212;
 }
 
 .marker-cluster.marker-cluster-accepts-25 {
   background-color: #ef741f54;
 }
 
-.marker-cluster.marker-cluster-accepts-25 span {
-  color: #5f2e0c;
-}
-
 .marker-cluster.marker-cluster.marker-cluster-accepts-50 {
   background-color: #ffa80054;
-}
-
-.marker-cluster.marker-cluster-accepts-50 span {
-  color: #664300;
 }
 
 .marker-cluster.marker-cluster-accepts-75 {
   background-color: #aeb11854;
 }
 
-.marker-cluster.marker-cluster-accepts-75 span {
-  color: #454609;
-}
-
 .marker-cluster.marker-cluster-accepts-100 {
   background-color: #2e7d3257;
-}
-
-.marker-cluster.marker-cluster-accepts-100 span {
-  color: #123214;
 }
