@@ -2,9 +2,11 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import { useEffect } from 'react';
 
 import useBoundStore from '@/lib/store/useBoundStore';
 import { drTypeWithAgeSchema } from '@/lib/types/dr-type-page';
+import { parseHash } from '@/lib/utils/url-hash';
 
 import styles from './FilterGroups.module.css';
 import { FilterButton } from '../FilterButton';
@@ -21,6 +23,15 @@ const FilterGroups = () => {
   const { query } = useRouter();
   const accepts = useBoundStore(state => state.accepts);
   const setAccepts = useBoundStore(state => state.setAccepts);
+
+  useEffect(() => {
+    const documentLocHash = document.location.hash;
+    const parsedHash = parseHash(documentLocHash);
+    if (parsedHash.success) {
+      const [accepts, _mapData, _search] = parsedHash.data;
+      setAccepts(accepts);
+    }
+  }, [setAccepts]);
 
   const onAcceptsChange = (value: 'all' | 'y' | 'n') => {
     setAccepts(value);

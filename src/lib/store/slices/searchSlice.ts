@@ -15,5 +15,5 @@ export const createSearchSlice: StateCreator<
   SearchSliceState
 > = (set, _get) => ({
   search: '',
-  setSearch: (value: string) => set(() => ({ search: value })),
+  setSearch: (value: string) => set(() => ({ search: decodeURI(value) })),
 });

@@ -1,9 +1,10 @@
 import { clsx } from 'clsx';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { IconButton } from '@/components/Shared/Buttons';
 import { ListSvg, MapSvg } from '@/components/Shared/Icons';
 import useBoundStore from '@/lib/store/useBoundStore';
+import { parseHash } from '@/lib/utils/url-hash';
 
 import { DoctorOptions } from './DoctorOptions';
 import styles from './Filters.module.css';
@@ -18,6 +19,16 @@ const Filters = ({ onLayoutChange, view }: Props) => {
 
   const search = useBoundStore(state => state.search);
   const setSearch = useBoundStore(state => state.setSearch);
+
+  useEffect(() => {
+    const documentLocHash = document.location.hash;
+    const parsedHash = parseHash(documentLocHash);
+
+    if (parsedHash.success) {
+      const [_accepts, _mapData, search] = parsedHash.data;
+      setSearch(search);
+    }
+  }, [setSearch]);
 
   const onSearchChange = (value: string) => {
     setSearch(value);

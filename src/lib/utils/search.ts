@@ -72,13 +72,9 @@ export const createDoctorFilter = (options: {
 
     const doctorLatLng = getDoctorLatLng(doctor);
 
-    if (bounds) {
-      return (
-        boundsIntersect(bounds, doctorLatLng) &&
-        acceptsCondition &&
-        searchCondition
-      );
-    }
-
-    return acceptsCondition && searchCondition;
+    return (
+      boundsIntersect(bounds, doctorLatLng) &&
+      acceptsCondition &&
+      searchCondition
+    );
   };

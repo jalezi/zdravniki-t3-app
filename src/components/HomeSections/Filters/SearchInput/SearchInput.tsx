@@ -8,7 +8,7 @@ import { CloseSvg as CancelIcon, SearchSvg } from '@/components/Shared/Icons';
 
 import styles from './SearchInput.module.css';
 
-type Props = { value: string; onChange?: (value: string) => void };
+type Props = { value?: string; onChange?: (value: string) => void };
 
 const SearchInput = (
   { value, onChange }: Props,
@@ -66,7 +66,7 @@ const SearchInput = (
         type="search"
         placeholder={t`search.placeholder` ?? 'Search'}
         onChange={onSearchChange}
-        value={searchValue}
+        value={value ?? searchValue}
         className={searchInputStyles}
       />
       <IconButton

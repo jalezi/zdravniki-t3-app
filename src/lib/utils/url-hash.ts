@@ -23,16 +23,24 @@ const hashSchema = z.tuple([
 export type HashSchema = z.infer<typeof hashSchema>;
 
 export const parseHash = (hash: string) => {
-  const rest = hash.split('|').slice(1, -1);
+  const intermediateHash = hash.split('|');
 
-  if (rest.length !== 3) return hashSchema.safeParse(null);
-  const attributeNames = rest.map(item => item.split('=')[0]);
+  if (intermediateHash.length < 4 || intermediateHash.length > 5)
+    return hashSchema.safeParse(new Error('Invalid hash').message);
+
+  const newHashList =
+    intermediateHash.length === 4
+      ? intermediateHash.slice(1)
+      : intermediateHash.slice(1, -1);
+
+  const attributeNames = newHashList.map(item => item.split('=')[0]);
 
   if (!hashAttributeNamesSchema.safeParse(attributeNames).success) {
     return hashSchema.safeParse(null);
   }
 
-  const [accepts, map, search] = rest.map(item => item.split('=')[1]);
+  const [accepts, map, search] = newHashList.map(item => item.split('=')[1]);
+
   return hashSchema.safeParse([accepts, map?.split('/').map(Number), search]);
 };
 

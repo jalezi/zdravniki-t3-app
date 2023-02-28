@@ -26,7 +26,7 @@ const List = () => {
     : [];
 
   return (
-    <ul>
+    <ul key={search}>
       {filteredDoctors.map(doctor => (
         <li key={doctor.fakeId}>
           <div>

@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import dynamic from 'next/dynamic';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import styles from '@/layouts/Layout.module.css';
 import {
@@ -10,6 +10,8 @@ import {
   ZOOM,
   maxBounds,
 } from '@/lib/constants/map';
+import useHash from '@/lib/hooks/useHash';
+import useBoundStore from '@/lib/store/useBoundStore';
 import type { LeafletMap } from '@/lib/types/Map';
 
 import { Filters } from './Filters';
@@ -29,7 +31,17 @@ const HomeSections = () => {
   );
 
   const [layoutVisible, setLayoutVisible] = useState<View>('map');
-  const [_, setMap] = useState<null | LeafletMap>(null);
+  const [map, setMap] = useState<null | LeafletMap>(null);
+  const bounds = useBoundStore(state => state.bounds);
+  const setBounds = useBoundStore(state => state.setBounds);
+
+  useEffect(() => {
+    if (map && !bounds) {
+      setBounds(map.getBounds());
+    }
+  }, [map, bounds, setBounds]);
+
+  useHash();
 
   const onLayoutChange = () => {
     setLayoutVisible(prev => (prev === 'map' ? 'list' : 'map'));
