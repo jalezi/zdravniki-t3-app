@@ -24,7 +24,7 @@ const SearchInput = (
   const cancelIconStyles = clsx(
     styles.Icon,
     styles.CancelIcon,
-    searchValue ? styles.Visible : styles.Hidden
+    value ?? searchValue ? styles.Visible : styles.Hidden
   );
 
   const onSearchFocus = () => {

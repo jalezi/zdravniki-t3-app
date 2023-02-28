@@ -32,16 +32,26 @@ const HomeSections = () => {
 
   const [layoutVisible, setLayoutVisible] = useState<View>('map');
   const [map, setMap] = useState<null | LeafletMap>(null);
+  const zoom = useBoundStore(state => state.zoom);
+  const center = useBoundStore(state => state.center);
   const bounds = useBoundStore(state => state.bounds);
   const setBounds = useBoundStore(state => state.setBounds);
 
+  useHash();
   useEffect(() => {
     if (map && !bounds) {
       setBounds(map.getBounds());
     }
   }, [map, bounds, setBounds]);
 
-  useHash();
+  const lat = center[0];
+  const lng = center[1];
+
+  useEffect(() => {
+    if (map) {
+      map.flyTo({ lat, lng }, zoom, { noMoveStart: true });
+    }
+  }, [lat, lng, map, zoom]);
 
   const onLayoutChange = () => {
     setLayoutVisible(prev => (prev === 'map' ? 'list' : 'map'));
@@ -63,10 +73,10 @@ const HomeSections = () => {
     <>
       <section id="map" className={mapStyles}>
         <BigMapWithNoSSR
-          center={SL_CENTER as [number, number]}
+          center={center ?? (SL_CENTER as [number, number])}
           maxBounds={maxBounds}
           setMap={setMap}
-          zoom={ZOOM}
+          zoom={zoom || ZOOM}
           maxZoom={MAX_ZOOM}
           minZoom={MIN_ZOOM}
         />

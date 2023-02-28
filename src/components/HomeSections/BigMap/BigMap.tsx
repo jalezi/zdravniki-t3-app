@@ -8,9 +8,11 @@ import BigMapEvents from './BigMapEvents';
 export type BigMapProps = MapProps;
 
 function withMap(Component: typeof Map) {
-  function BigMap(props: MapProps) {
+  function BigMap(props: BigMapProps) {
+    const { setMap, ...rest } = props;
+
     return (
-      <Component setMap={props.setMap} {...props}>
+      <Component setMap={setMap} {...rest}>
         <BigMapEvents />
       </Component>
     );

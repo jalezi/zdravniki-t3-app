@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { BOUNDS, MAX_ZOOM, MIN_ZOOM } from '../constants/map';
+
 const acceptsAttributeName = z.literal('accepts');
 const mapAttributeName = z.literal('map');
 const searchAttributeName = z.literal('search');
@@ -14,9 +16,15 @@ const hashAttributeNamesSchema = z.tuple(
 export const acceptsHashValueSchema = z.enum(['all', 'y', 'n']);
 export type AcceptsHashValueSchema = z.infer<typeof acceptsHashValueSchema>;
 
+const { southWest, northEast } = BOUNDS;
+
 const hashSchema = z.tuple([
   acceptsHashValueSchema,
-  z.tuple([z.number(), z.number(), z.number()]),
+  z.tuple([
+    z.number().min(MIN_ZOOM).max(MAX_ZOOM),
+    z.number().min(southWest.lat).max(northEast.lat),
+    z.number().min(southWest.lng).max(northEast.lng),
+  ]),
   z.string(),
 ]);
 
