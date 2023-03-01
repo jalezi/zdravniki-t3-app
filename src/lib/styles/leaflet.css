@@ -15,10 +15,10 @@
 }
 
 .leaflet-control-container.total-hits .leaflet-bar {
-  background-color: #ffffff;
   padding-block: 0.5em;
   padding-inline: 1em;
   line-height: 28px;
+  background-color: #ffffff;
 }
 
 .marker-cluster:is(
