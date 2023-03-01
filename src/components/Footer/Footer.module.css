@@ -1,5 +1,8 @@
 .Footer {
+  padding-inline: 2em;
+  font-size: 0.75rem;
   color: var(--color-blue-900);
+  border-top: 1px dashed var(--color-black-A39);
 }
 
 .Footer :is(a, strong) {
@@ -25,11 +28,20 @@
   align-items: center;
 
   height: var(--footer-height);
-  padding-inline: 2em;
+}
+
+.Footer.List {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  height: var(--footer-height);
+  margin-bottom: 132px;
 
   font-size: 0.75rem;
 
-  border-top: 1px dashed var(--color-black-A39);
+  background-color: var(--color-blue-50);
 }
 
 .Footer.Mdx .Content {
@@ -42,5 +54,9 @@
     max-width: var(--mdx-container-width);
     margin-inline: auto;
     padding-inline: 0;
+  }
+
+  .Footer.List {
+    margin-bottom: 0;
   }
 }

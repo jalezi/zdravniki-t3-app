@@ -1,9 +1,13 @@
 .Layout {
   position: fixed;
   top: var(--header-height-sm);
-  right: 0;
-  bottom: 0;
   left: 0;
+
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  width: 100%;
+  height: calc(100dvh - var(--header-height-sm));
 
   background-color: var(--color-blue-50);
 }
@@ -79,7 +83,7 @@
   }
 
   .Layout > .Absolute.ListSection {
-    overflow-y: auto;
+    position: relative;
     grid-area: list;
     height: calc(
       100dvh - var(--header-height-lg) * 2

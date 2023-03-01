@@ -8,11 +8,14 @@ import styles from './Footer.module.css';
 import { LongDate } from '../Shared/LongDate';
 
 type FooterProps = {
-  position?: 'mdx';
+  position?: 'mdx' | 'list';
 };
 
 const Footer = ({ position = 'mdx' }: FooterProps) => {
-  const positionStyles = position === 'mdx' && styles.Mdx;
+  const positionStyles = clsx(
+    position === 'mdx' && styles.Mdx,
+    position === 'list' && styles.List
+  );
   const { t } = useTranslation('common');
 
   const ts = api.timestamp.doctors.useQuery();

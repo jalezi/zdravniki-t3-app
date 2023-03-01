@@ -1,0 +1,37 @@
+/* footer styles are in its module*/
+
+.ListHeader {
+  z-index: 10;
+
+  display: grid;
+  place-items: center;
+
+  height: 2.5rem;
+
+  font-size: 0.75rem;
+
+  background-color: var(--color-blue-50);
+}
+
+.ListInnerContainer {
+  position: absolute;
+  top: 2.5rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  overflow: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .ListInnerContainer {
+    position: relative;
+    /* background-color: var(--color-blue-50); */
+    top: unset;
+    bottom: unset;
+
+    justify-content: space-between;
+
+    max-height: calc(100% - 2.5rem);
+  }
+}
