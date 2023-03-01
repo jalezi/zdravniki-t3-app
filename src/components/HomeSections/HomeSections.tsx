@@ -1,8 +1,10 @@
 import { clsx } from 'clsx';
 import dynamic from 'next/dynamic';
 import { useEffect, useMemo, useState } from 'react';
+import { useWindowSize } from 'usehooks-ts';
 
 import styles from '@/layouts/Layout.module.css';
+import { BREAKPOINTS } from '@/lib/constants';
 import {
   MAX_ZOOM,
   MIN_ZOOM,
@@ -37,6 +39,9 @@ const HomeSections = () => {
   const bounds = useBoundStore(state => state.bounds);
   const setBounds = useBoundStore(state => state.setBounds);
 
+  const { width } = useWindowSize();
+  const isMediumMediaQuery = width >= BREAKPOINTS.md;
+
   useHash();
   useEffect(() => {
     if (map && !bounds) {
@@ -53,6 +58,12 @@ const HomeSections = () => {
     }
   }, [lat, lng, map, zoom]);
 
+  useEffect(() => {
+    if (isMediumMediaQuery) {
+      setLayoutVisible('map');
+    }
+  }, [isMediumMediaQuery]);
+
   const onLayoutChange = () => {
     setLayoutVisible(prev => (prev === 'map' ? 'list' : 'map'));
   };
@@ -66,7 +77,7 @@ const HomeSections = () => {
   const listStyles = clsx(
     styles.ListSection,
     styles.Absolute,
-    layoutVisible === 'list' && styles.Visible
+    !isMediumMediaQuery && layoutVisible === 'list' && styles.Visible
   );
 
   return (
