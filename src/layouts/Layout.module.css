@@ -42,6 +42,13 @@
   left: 0;
 }
 
+.Layout > .ListSection {
+  overflow-y: auto;
+  height: calc(
+    100dvh - var(--header-height-lg) - 132px
+  ); /* minus header and filters */
+}
+
 .Layout > .FiltersSection {
   position: absolute;
   z-index: 9;

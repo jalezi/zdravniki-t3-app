@@ -1,7 +1,9 @@
 /* footer styles are in its module*/
 
 .ListHeader {
-  z-index: 10;
+  position: sticky;
+  z-index: 30;
+  top: 0;
 
   display: grid;
   place-items: center;
@@ -14,24 +16,18 @@
 }
 
 .ListInnerContainer {
-  position: absolute;
-  top: 2.5rem;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  position: relative;
+  z-index: 20;
 
   overflow: auto;
+
+  min-height: 100%;
+
+  background-color: var(--color-blue-50);
 }
 
 @media only screen and (min-width: 768px) {
   .ListInnerContainer {
-    position: relative;
-    /* background-color: var(--color-blue-50); */
-    top: unset;
-    bottom: unset;
-
-    justify-content: space-between;
-
-    max-height: calc(100% - 2.5rem);
+    min-height: calc(100% - var(--header-height-lg) * 2);
   }
 }

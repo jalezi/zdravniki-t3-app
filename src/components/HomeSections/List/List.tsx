@@ -72,17 +72,17 @@ const List = () => {
 
   const headerStyles = clsx(styles.ListHeader);
   const innerContainerStyles = clsx(styles.ListInnerContainer);
-  const listStyles = clsx(styles.ListList);
 
   const totalHits = t('totalHits', { count: filteredDoctors?.length ?? 0 });
 
   return (
     <>
       <header className={headerStyles}>{totalHits}</header>
-      <div className={innerContainerStyles}>
-        <ul className={listStyles}>{list}</ul>
-        <Footer position="list" />
-      </div>
+      <ul className={innerContainerStyles}>
+        {list}
+        {list.length === 0 && <li>Refine your search</li>}
+      </ul>
+      <Footer position="list" />
     </>
   );
 };
