@@ -45,7 +45,7 @@
 .Layout > .ListSection {
   overflow-y: auto;
   height: calc(
-    100dvh - var(--header-height-lg) - 132px
+    100dvh - var(--header-height-lg) - var(--filters-height-sm)
   ); /* minus header and filters */
 }
 
