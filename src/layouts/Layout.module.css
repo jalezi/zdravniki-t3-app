@@ -36,26 +36,24 @@
   left: 100%;
 }
 
-.Layout > .MapSection.Visible,
-.Layout > .ListSection.Visible {
+.Layout > .Absolute.MapSection.Visible,
+.Layout > .Absolute.ListSection.Visible {
   right: 0;
   left: 0;
 }
 
-.Layout > .ListSection {
+.Layout > .Absolute.ListSection {
+  --list-header-height: 2.5rem;
+
   overflow-y: auto;
   height: calc(
-    100dvh - var(--header-height-lg) - var(--filters-height-sm)
+    100dvh - var(--header-height-lg) - var(--filters-height)
   ); /* minus header and filters */
 }
 
-.Layout > .FiltersSection {
-  position: absolute;
+.Layout > .Absolute.FiltersSection {
   z-index: 9;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
+  top: unset;
   background: transparent;
 }
 

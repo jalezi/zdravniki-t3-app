@@ -80,9 +80,11 @@ const HomeSections = () => {
     !isMediumMediaQuery && layoutVisible === 'list' && styles.Visible
   );
 
+  const filtersStyles = clsx(styles.FiltersSection, styles.Absolute);
+
   return (
     <>
-      <section id="filters" className={styles.FiltersSection}>
+      <section id="filters" className={filtersStyles}>
         <Filters onLayoutChange={onLayoutChange} view={layoutVisible} />
       </section>
       <section id="map" className={mapStyles}>

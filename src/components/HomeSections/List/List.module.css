@@ -8,7 +8,7 @@
   display: grid;
   place-items: center;
 
-  height: 2.5rem;
+  height: var(--list-header-height);
 
   font-size: 0.75rem;
 
@@ -21,7 +21,9 @@
 
   overflow: auto;
 
-  min-height: calc(100% - var(--footer-height-sm));
+  min-height: calc(
+    100% - var(--footer-height-sm__list) - var(--list-header-height)
+  );
 
   background-color: var(--color-blue-50);
 }

@@ -7,6 +7,7 @@
   --mdx-container-width: 670px;
   --filters-height-sm: 8.25rem; /* browser calculated - 132px */
   --footer-height: 78px;
+  --footer-height-sm__list: 210px;
 
   /* colors */
   --color-white: #fff;
