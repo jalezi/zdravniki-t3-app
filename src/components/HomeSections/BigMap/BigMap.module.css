@@ -10,3 +10,9 @@
 .BigMap .DrCircle.Rejects {
   fill: var(--color-accepts-n_marker);
 }
+
+.MapSkeletonContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}

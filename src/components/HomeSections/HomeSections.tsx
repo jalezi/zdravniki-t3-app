@@ -16,11 +16,10 @@ import useHash from '@/lib/hooks/useHash';
 import useBoundStore from '@/lib/store/useBoundStore';
 import type { LeafletMap } from '@/lib/types/Map';
 
+import MapSkeleton from './BigMap/MapSkeleton';
 import { Filters } from './Filters';
 import { List } from './List';
 import type { View } from './types';
-
-const MapSkeleton = () => <div>loading map...</div>;
 
 const HomeSections = () => {
   const BigMapWithNoSSR = useMemo(
