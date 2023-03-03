@@ -68,39 +68,44 @@ const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
       return a[0].localeCompare(b[0]);
     })
     .map(([letter, doctors]) => (
-      <li key={letter}>
-        <header className={styles.InfoLetter}>{letter}</header>
-        <ul>
-          {doctors.map((doctor, index, arr) => (
-            <li
-              key={doctor.fakeId}
-              ref={index === arr.length - 1 ? lastBookElementRef : undefined}
-              className={styles.InfoCard}
-            >
-              <div>
-                {doctor.href ? (
-                  <Link
-                    href={doctor.href}
-                    passHref
-                    locale={router.locale}
-                    hrefLang={router.locale}
-                  >
-                    {doctor.name}
-                  </Link>
-                ) : (
-                  <span>{doctor.name}</span>
-                )}
-                <div>{doctor.institution?.location.address?.fullAddress}</div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </li>
+      <div role="presentation" key={letter}>
+        <h2 className={styles.InfoLetter}>{letter}</h2>
+        {doctors.map((doctor, index, arr) => (
+          <div
+            role="listitem"
+            key={doctor.fakeId}
+            ref={index === arr.length - 1 ? lastBookElementRef : undefined}
+            className={styles.InfoCard}
+          >
+            <h2 translate="no">
+              {doctor.href ? (
+                <Link
+                  href={doctor.href}
+                  passHref
+                  locale={router.locale}
+                  hrefLang={router.locale}
+                >
+                  {doctor.name}
+                </Link>
+              ) : (
+                <span>{doctor.name}</span>
+              )}
+            </h2>
+            <address>
+              {doctor.institution?.location.address?.fullAddress}
+            </address>
+          </div>
+        ))}
+      </div>
     ));
 
   const innerContainerStyles = clsx(styles.ListInnerContainer);
 
-  return <ul className={innerContainerStyles}>{infiniteList}</ul>;
+  return (
+    <div role="list" className={innerContainerStyles}>
+      {infiniteList}
+    </div>
+  );
 };
 
 const List = () => {

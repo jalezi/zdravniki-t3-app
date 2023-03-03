@@ -22,7 +22,7 @@
   overflow-y: auto;
 
   height: calc(100dvh - var(--header-height-sm) - var(--list-header-height));
-  padding-bottom: 210px;
+  padding-bottom: var(--footer-height-sm__list);
 
   background: transparent;
 }
