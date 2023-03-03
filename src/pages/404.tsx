@@ -1,6 +1,7 @@
 import type { GetStaticProps } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -11,6 +12,7 @@ import styles from '@/layouts/LayoutError.module.css';
 
 const NotFoundPage = () => {
   const { t } = useTranslation('common');
+  const { locale } = useRouter();
 
   return (
     <div id="error" className={styles.ContainerError}>
@@ -33,7 +35,8 @@ const NotFoundPage = () => {
       <Button
         as={Link}
         passHref
-        href="/"
+        href="/gp/"
+        locale={locale}
         className={styles.ContainerError__button_outside}
       >
         {t('navLinks.home')}
