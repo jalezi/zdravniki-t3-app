@@ -49,6 +49,7 @@ specifiers:
   react-leaflet: ^4.2.0
   rehype: ^12.0.1
   rehype-slug: ^5.1.0
+  slugify: ^1.6.5
   stylelint: ^15.2.0
   stylelint-config-clean-order: ^5.0.0
   stylelint-config-prettier: ^9.0.5
@@ -85,6 +86,7 @@ dependencies:
   react-leaflet: 4.2.0_yydtlhsdonbqao6vgvkwhv2zki
   rehype: 12.0.1
   rehype-slug: 5.1.0
+  slugify: 1.6.5
   superjson: 1.12.2
   the-new-css-reset: 1.8.4
   usehooks-ts: 2.9.1_biqbaboplfbrettd7655fr4n2y
@@ -6326,6 +6328,11 @@ packages:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 4.0.0
     dev: true
+
+  /slugify/1.6.5:
+    resolution: {integrity: sha512-8mo9bslnBO3tr5PEVFzMPIWwWnipGS0xVbYf65zxDqfNwmzYn1LpiKNrR6DlClusuvo+hDHd1zKpmfAe83NQSQ==}
+    engines: {node: '>=8.0.0'}
+    dev: false
 
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
