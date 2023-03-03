@@ -14,7 +14,6 @@ const Layout = (props: Props) => {
   return (
     <>
       <Seo />
-
       <Header />
       <main className={clsx(IBMPlexSans.className, styles.Layout)}>
         {props.children}

@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { z } from 'zod';
 
-import { idInstSchema, trimmedStringSchema } from '@/lib/utils/zod';
+import { idInstSchema, slugSchema, trimmedStringSchema } from '@/lib/utils/zod';
 
 import type { LatLngLiteral } from './Map';
 
@@ -52,6 +52,8 @@ export const drCSVSchema = z.object({
   type: z.enum(['gp', 'gp-x', 'ped', 'ped-x', 'den', 'den-y', 'den-s', 'gyn']),
   website: trimmedStringSchema,
 });
+
+export type DrCSV = z.infer<typeof drCSVSchema>;
 
 const drCSVSchemaKeys = drCSVSchema.keyof();
 
@@ -130,17 +132,25 @@ export const drTransformedSchema = drCSVSchema.transform(dr => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const fakeId = uuidv4();
 
+  const slugNameParsed = slugSchema.safeParse(doctor);
+  const slugName = slugNameParsed.success ? slugNameParsed.data : '';
+  const typePage = drTypeCoerceSchema.parse(`${type}`);
+  const idInst = idInstSchema.parse(id_inst);
+  const href = `/${typePage}/${slugName}/${idInst}`;
+
   return {
     acceptsOverride: accepts_override,
     availabilityOverride: availability_override,
     dateOverride: date_override,
     fakeId,
-    idInst: id_inst,
+    href,
+    idInst,
     location: { address: addressObject, geoLocation },
     name: doctor,
     noteOverride: note_override,
+    slugName,
     type,
-    typePage: drTypeCoerceSchema.parse(`${type}`),
+    typePage,
     ...rest,
   };
 });

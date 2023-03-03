@@ -1,4 +1,6 @@
 import { clsx } from 'clsx';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useDebounce } from 'usehooks-ts';
 
@@ -16,6 +18,7 @@ const List = () => {
   const bounds = useBoundStore(state => state.bounds);
   const search = useBoundStore(state => state.search);
   const debouncedSearch = useDebounce(search, 500);
+  const router = useRouter();
 
   const { t } = useTranslation('map');
 
@@ -61,8 +64,19 @@ const List = () => {
           {doctors.map(doctor => (
             <li key={doctor.fakeId}>
               <div>
-                <div>{doctor.name}</div>
-                <div>{doctor.institution?.location.address?.city}</div>
+                {doctor.href ? (
+                  <Link
+                    href={doctor.href}
+                    passHref
+                    locale={router.locale}
+                    hrefLang={router.locale}
+                  >
+                    {doctor.name}
+                  </Link>
+                ) : (
+                  <span>{doctor.name}</span>
+                )}
+                <div>{doctor.institution?.location.address?.fullAddress}</div>
               </div>
             </li>
           ))}

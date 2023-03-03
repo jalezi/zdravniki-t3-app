@@ -36,6 +36,8 @@ export const instCSVSchema = z.object({
   zzzsSt: z.string(),
 });
 
+export type InstCSV = z.infer<typeof instCSVSchema>;
+
 const instCSVSchemaKeys = instCSVSchema.keyof();
 
 instCSVHeader.forEach(key => {

@@ -1,7 +1,5 @@
-import Papa from 'papaparse';
 import { z } from 'zod';
 
-import { DATA_URL } from '@/lib/constants';
 import type { DrListSchema } from '@/lib/types/doctors';
 import { drListSchema } from '@/lib/types/doctors';
 import type { DrTypePage } from '@/lib/types/dr-type-page';
@@ -9,10 +7,9 @@ import { drTypePageSchema } from '@/lib/types/dr-type-page';
 import type { InstTransformed } from '@/lib/types/institutions';
 import { instListSchema } from '@/lib/types/institutions';
 import type { RouterOutputs } from '@/lib/utils/api';
+import { fetchDrAndInstDataAndParse } from '@/lib/utils/fetch-and-parse';
 
 import { createTRPCRouter, publicProcedure } from '../trpc';
-
-const { DOCTORS_CSV_URL, INSTITUTIONS_CSV_URL } = DATA_URL;
 
 const filterDoctors = (
   doctors: DrListSchema,
@@ -29,29 +26,8 @@ export const doctorsRouter = createTRPCRouter({
       })
     )
     .query(async ({ input }) => {
-      const dr = fetch(DOCTORS_CSV_URL);
-      const inst = fetch(INSTITUTIONS_CSV_URL);
-
-      const [doctorsResponse, institutionsResponse] = await Promise.all([
-        dr,
-        inst,
-      ]);
-
-      if (!doctorsResponse.ok || !institutionsResponse.ok) {
-        throw new Error('Failed to fetch data');
-      }
-
-      const doctorsResult = await doctorsResponse.text();
-      const institutionsResult = await institutionsResponse.text();
-
-      const doctorsParsedFromCsv = Papa.parse(doctorsResult, {
-        header: true,
-        skipEmptyLines: true,
-      });
-      const institutionsParsedFromCsv = Papa.parse(institutionsResult, {
-        header: true,
-        skipEmptyLines: true,
-      });
+      const { doctorsParsedFromCsv, institutionsParsedFromCsv } =
+        await fetchDrAndInstDataAndParse();
 
       const doctorsValidated = drListSchema.safeParse(
         doctorsParsedFromCsv.data
@@ -68,11 +44,11 @@ export const doctorsRouter = createTRPCRouter({
         throw new Error('Institutions data is not valid');
       }
 
-      const filteredDoctors = filterDoctors(doctorsValidated.data, {
+      const doctorsFiltered = filterDoctors(doctorsValidated.data, {
         type: input.type,
       });
 
-      const instIds = new Set(filteredDoctors.map(doctor => doctor.idInst));
+      const instIds = new Set(doctorsFiltered.map(doctor => doctor.idInst));
 
       const institutionsFiltered: Record<string, InstTransformed> =
         institutionsValidated.data
@@ -83,7 +59,7 @@ export const doctorsRouter = createTRPCRouter({
             return { ...acc, [id]: rest };
           }, {});
 
-      const doctors = filteredDoctors.map(doctor => {
+      const doctors = doctorsFiltered.map(doctor => {
         const { idInst } = doctor;
         return {
           ...doctor,
