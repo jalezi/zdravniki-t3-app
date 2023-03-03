@@ -44,11 +44,6 @@
 
 .Layout > .Absolute.ListSection {
   --list-header-height: 2.5rem;
-
-  overflow-y: auto;
-  height: calc(
-    100dvh - var(--header-height-lg) - var(--filters-height)
-  ); /* minus header and filters */
 }
 
 .Layout > .Absolute.FiltersSection {

@@ -69,11 +69,13 @@ const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
     })
     .map(([letter, doctors]) => (
       <li key={letter}>
+        <header className={styles.InfoLetter}>{letter}</header>
         <ul>
           {doctors.map((doctor, index, arr) => (
             <li
               key={doctor.fakeId}
               ref={index === arr.length - 1 ? lastBookElementRef : undefined}
+              className={styles.InfoCard}
             >
               <div>
                 {doctor.href ? (
@@ -98,12 +100,7 @@ const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
 
   const innerContainerStyles = clsx(styles.ListInnerContainer);
 
-  return (
-    <ul className={innerContainerStyles}>
-      {infiniteList}
-      {infiniteList.length === 0 && <li>Refine your search</li>}
-    </ul>
-  );
+  return <ul className={innerContainerStyles}>{infiniteList}</ul>;
 };
 
 const List = () => {
@@ -139,6 +136,7 @@ const List = () => {
     <>
       <header className={headerStyles}>{totalHits}</header>
       <InfiniteScroll data={filteredDoctors ?? []} />
+      {filteredDoctors?.length === 0 ? <div>Refine your search</div> : null}
       <Footer position="list" />
     </>
   );

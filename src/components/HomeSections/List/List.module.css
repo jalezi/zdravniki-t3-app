@@ -18,14 +18,33 @@
 .ListInnerContainer {
   position: relative;
   z-index: 20;
-  min-height: calc(
-    100% - var(--footer-height-sm__list) - var(--list-header-height)
-  );
+
+  overflow-y: auto;
+
+  height: calc(100dvh - var(--header-height-sm) - var(--list-header-height));
+  padding-bottom: 210px;
+
+  background: transparent;
+}
+
+.InfoCard {
+  background-color: var(--color-blue-50);
+}
+
+.InfoLetter {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+
+  font-size: 1rem;
+  text-align: center;
+
   background-color: var(--color-blue-50);
 }
 
 @media only screen and (min-width: 768px) {
   .ListInnerContainer {
-    min-height: calc(100% - var(--header-height-lg) * 2);
+    height: calc(100% - var(--list-header-height));
+    padding-bottom: 78px;
   }
 }
