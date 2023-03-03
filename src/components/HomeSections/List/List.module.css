@@ -18,13 +18,9 @@
 .ListInnerContainer {
   position: relative;
   z-index: 20;
-
-  overflow: auto;
-
   min-height: calc(
     100% - var(--footer-height-sm__list) - var(--list-header-height)
   );
-
   background-color: var(--color-blue-50);
 }
 
