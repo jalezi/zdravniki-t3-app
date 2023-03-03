@@ -27,7 +27,7 @@
     }
   },
   "include": [
-    "next-env.d.ts",
+    "custom-next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
@@ -39,7 +39,8 @@
     ".lintstagedrc.js"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "next-env.d.ts"
   ],
   "mdx": {
     "plugins": [
