@@ -35,14 +35,13 @@
   bottom: 0;
 
   width: 100%;
-  /* height: var(--footer-height-sm__list); */
+  height: var(--footer-height-sm__list);
   padding-top: 1em;
   padding-bottom: calc(var(--filters-height-sm) + 1em);
   padding-inline: 0.75em;
 
   font-size: 0.75rem;
 
-  background-color: transparent;
   background-color: transparent;
 }
 
@@ -60,7 +59,7 @@
 
   .Footer.List {
     position: sticky;
-    bottom: 0;
+    bottom: 10px;
 
     display: flex;
     align-items: center;

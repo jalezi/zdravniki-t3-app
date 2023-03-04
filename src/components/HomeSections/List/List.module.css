@@ -44,7 +44,9 @@
 
 @media only screen and (min-width: 768px) {
   .ListInnerContainer {
-    height: calc(100% - var(--list-header-height));
-    padding-bottom: 78px;
+    height: calc(
+      100dvh - var(--header-height-lg) * 2 - var(--list-header-height)
+    );
+    padding-bottom: 88px;
   }
 }

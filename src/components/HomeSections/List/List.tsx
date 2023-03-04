@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useDebounce } from 'usehooks-ts';
 
 import { Footer } from '@/components/Footer';
@@ -31,21 +31,13 @@ const getGroupsByAlphabet = (doctors: Doctor[]) => {
   return drByAlphabet;
 };
 
-const useInfiniteScroll = (doctors: Doctor[], pageNum: number, limit = 20) => {
-  const [list, setList] = useState<Doctor[]>([]);
-  const hasMore = doctors.length > list.length;
-
-  useEffect(() => {
-    setList(doctors.slice(0, pageNum * limit));
-  }, [doctors, pageNum, limit]);
-
-  return { list, hasMore };
-};
+const ITEMS_PER_PAGE = 20;
 
 const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
   const [pageNum, setPageNum] = useState(1);
   const observer = useRef<IntersectionObserver | null>(null);
-  const { list, hasMore } = useInfiniteScroll(data ?? [], pageNum);
+  const list = data.slice(0, pageNum * ITEMS_PER_PAGE);
+  const hasMore = data.length > list.length;
   const router = useRouter();
 
   const lastBookElementRef = useCallback(
