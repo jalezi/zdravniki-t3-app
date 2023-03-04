@@ -4,7 +4,7 @@ export const BREAKPOINTS = {
   xs: 375,
   sm: 576,
   md: 768,
-  lg: 992,
+  lg: 1024,
   xl: 1200,
   xxl: 1400,
 } as const;
