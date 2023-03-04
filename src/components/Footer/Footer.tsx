@@ -37,22 +37,24 @@ const Footer = ({ position = 'mdx' }: FooterProps) => {
   return (
     <footer className={footerStyles}>
       <div className={contentStyles}>
-        {dataSource}:{' '}
-        <a href="https://www.zzzs.si" target="_blank" rel="noreferrer">
-          ZZZS
-        </a>
-        ,{' '}
-        <a
-          href="https://www.gov.si/drzavni-organi/organi-v-sestavi/geodetska-uprava/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          GURS
-        </a>
-        <br />
-        {lastChange}: <LongDate timestamp={timestamp} />
-        .
-        <br />© 2021-{new Date().getFullYear()} <strong>Sledilnik.org</strong>
+        <div>
+          {dataSource}:{' '}
+          <a href="https://www.zzzs.si" target="_blank" rel="noreferrer">
+            ZZZS
+          </a>
+          ,{' '}
+          <a
+            href="https://www.gov.si/drzavni-organi/organi-v-sestavi/geodetska-uprava/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GURS
+          </a>
+          <br />
+          {lastChange}: <LongDate timestamp={timestamp} />
+          .
+          <br />© 2021-{new Date().getFullYear()} <strong>Sledilnik.org</strong>
+        </div>
       </div>
     </footer>
   );
