@@ -14,5 +14,11 @@
 .MapSkeletonContainer {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: calc(100dvh - var(--header-height-sm));
+}
+
+@media only screen and (min-width: 768px) {
+  .MapSkeletonContainer {
+    height: calc(100dvh - var(--header-height-lg));
+  }
 }

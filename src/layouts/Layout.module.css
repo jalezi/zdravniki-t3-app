@@ -60,6 +60,8 @@
     grid-auto-flow: row;
     grid-template: 'filters filters' 64px 'map list' 1fr / auto 350px;
     gap: 0;
+
+    height: calc(100dvh - var(--header-height-lg));
   }
 
   .Layout > .Absolute.MapSection,

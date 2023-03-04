@@ -58,8 +58,7 @@
   }
 
   .Footer.List {
-    position: sticky;
-    bottom: 10px;
+    bottom: 0;
 
     display: flex;
     align-items: center;

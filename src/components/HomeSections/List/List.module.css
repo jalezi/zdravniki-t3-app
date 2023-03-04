@@ -47,6 +47,6 @@
     height: calc(
       100dvh - var(--header-height-lg) * 2 - var(--list-header-height)
     );
-    padding-bottom: 88px;
+    padding-bottom: var(--footer-height);
   }
 }
