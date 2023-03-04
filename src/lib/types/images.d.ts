@@ -13,7 +13,7 @@ declare module '*.png' {
 }
 
 declare module '*.svg' {
-  const content: React.FC<React.SVGProps<SVGSVGElement> & { title?: string }>;
+  const content: React.FC<React.SVGProps<SVGSVGElement>>;
   export default content;
 }
 

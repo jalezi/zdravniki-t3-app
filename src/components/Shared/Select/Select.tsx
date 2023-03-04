@@ -125,6 +125,7 @@ const Select = (
       ref={selectWrapperRef}
       className={styles.Select}
       data-select-value={selectedOption.current}
+      translate="no"
     >
       <div
         ref={selectRef}
@@ -146,11 +147,7 @@ const Select = (
         <span>{selectedOption.current}</span>
         <span className="sr-only">{placeholder}</span>
         <span className={styles.Caret} aria-hidden="true">
-          {isOpen ? (
-            <CaretUp title="Close dropdown" />
-          ) : (
-            <CaretDown title="Open dropdown" />
-          )}
+          {isOpen ? <CaretUp /> : <CaretDown />}
         </span>
       </div>
       {isOpen ? (
