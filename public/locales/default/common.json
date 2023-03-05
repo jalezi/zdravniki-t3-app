@@ -1,19 +1,19 @@
 {
-  "test": "default",
-  "navLinks": {
-    "home": "Imenik",
-    "faq": "Pojasnila",
-    "about": "O projektu",
-    "donate": "Podpri!",
-    "sledilnik": "Sledilnik.org"
-  },
-  "footer": {
-    "dataSource": "Vir podatkov",
-    "lastChange": "Zadnja sprememba"
-  },
-  "notFound": {
-    "heading": "404: page not found",
-    "link": "Home",
-    "text": "oops… something went wrong 😞"
-  }
+    "test": "default",
+    "navLinks": {
+        "home": "Imenik",
+        "faq": "Pojasnila",
+        "about": "O projektu",
+        "donate": "Podpri!",
+        "sledilnik": "Sledilnik.org"
+    },
+    "footer": {
+        "dataSource": "Vir podatkov",
+        "lastChange": "Zadnja sprememba"
+    },
+    "notFound": {
+        "heading": "404: page not found",
+        "link": "Home",
+        "text": "oops… something went wrong 😞"
+    }
 }

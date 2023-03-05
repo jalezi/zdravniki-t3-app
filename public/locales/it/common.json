@@ -1,27 +1,27 @@
 {
-  "test": "italiano",
-  "navLinks": {
-    "home": "Elenco",
-    "faq": "FAQ",
-    "about": "Il progetto",
-    "donate": "Aiutaci",
-    "sledilnik": "Sledilnik.org"
-  },
-  "footer": {
-    "dataSource": "Origine dei dati",
-    "lastChange": "Ultimo aggiornamento dei dati"
-  },
-  "timestamps": {
-    "datetime": "{{val, datetime}}",
-    "at": "alle",
-    "noData": "Nessun dato disponibile"
-  },
-  "notFound": {
-    "heading": "404: pagina non trovata",
-    "link": "Elenco",
-    "text": "oops... qualcosa è andato storto 😞"
-  },
-  "search": {
-    "placeholder": "Cerca..."
-  }
+    "test": "italiano",
+    "navLinks": {
+        "home": "Elenco",
+        "faq": "FAQ",
+        "about": "Il progetto",
+        "donate": "Aiutaci",
+        "sledilnik": "Sledilnik.org"
+    },
+    "footer": {
+        "dataSource": "Origine dei dati",
+        "lastChange": "Ultimo aggiornamento dei dati"
+    },
+    "timestamps": {
+        "datetime": "{{val, datetime}}",
+        "at": "alle",
+        "noData": "Nessun dato disponibile"
+    },
+    "notFound": {
+        "heading": "404: pagina non trovata",
+        "link": "Elenco",
+        "text": "oops... qualcosa è andato storto 😞"
+    },
+    "search": {
+        "placeholder": "Cerca..."
+    }
 }

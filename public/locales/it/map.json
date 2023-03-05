@@ -1,4 +1,4 @@
 {
-  "totalHits_one": "{{count}} risultato",
-  "totalHits_other": "{{count}} risultati"
+    "totalHits_one": "{{count}} risultato",
+    "totalHits_other": "{{count}} risultati"
 }

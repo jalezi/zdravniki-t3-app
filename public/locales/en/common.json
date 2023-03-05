@@ -1,27 +1,27 @@
 {
-  "test": "english",
-  "navLinks": {
-    "home": "Home",
-    "faq": "FAQ",
-    "about": "About",
-    "donate": "Support!",
-    "sledilnik": "Sledilnik.org"
-  },
-  "footer": {
-    "dataSource": "Data source: ",
-    "lastChange": "Last data updated on"
-  },
-  "timestamps": {
-    "datetime": "{{val, datetime}}",
-    "at": "at",
-    "noData": "No data"
-  },
-  "notFound": {
-    "heading": "404: page not found",
-    "link": "Home",
-    "text": "oops… something went wrong 😞"
-  },
-  "search": {
-    "placeholder": "Search..."
-  }
+    "test": "english",
+    "navLinks": {
+        "home": "Home",
+        "faq": "FAQ",
+        "about": "About",
+        "donate": "Support!",
+        "sledilnik": "Sledilnik.org"
+    },
+    "footer": {
+        "dataSource": "Data source: ",
+        "lastChange": "Last data updated on"
+    },
+    "timestamps": {
+        "datetime": "{{val, datetime}}",
+        "at": "at",
+        "noData": "No data"
+    },
+    "notFound": {
+        "heading": "404: page not found",
+        "link": "Home",
+        "text": "oops… something went wrong 😞"
+    },
+    "search": {
+        "placeholder": "Search..."
+    }
 }

@@ -1,12 +1,27 @@
 {
-  "accepts": "accetta",
-  "adults": "adulti",
-  "all": "tutti",
-  "den": "odontoiatra",
-  "gp": "medico di medicina generale",
-  "gyn": "ginecologo",
-  "ped": "pediatra",
-  "rejects": "non accetta",
-  "students": "studenti",
-  "youth": "giovani"
+    "accepts": "accetta",
+    "adults": "adulti",
+    "all": "tutti",
+    "den": "odontoiatra",
+    "extra": {
+        "clinic": {
+            "betterAccessibility": {
+                "description": "Negli ambulatori per una migliore accessibilità, gli assicurati che non hanno un medico personale (medico di base o pediatra) possono scegliere il proprio medico personale (in caso non ci sia un medico disponibile o se il medico personale prescelto è permanentemente assente).",
+                "title": "Clinica per una migliore accessibilità"
+            }
+        }
+    },
+    "gp": "medico di medicina generale",
+    "gyn": "ginecologo",
+    "ped": "pediatra",
+    "rejects": "non accetta",
+    "students": "studenti",
+    "youth": "giovani",
+    "zzzs": {
+        "accepts": "sprejema",
+        "doctorAvailability": "Disponibilità",
+        "doctorAvailabilityDescription": "La disponibilità può essere inferiore al 100% per i medici che lavorano a tempo parziale su programmi di prevenzione o in altre attività (ad esempio, dentista che lavora con adulti e giovani).",
+        "headQuotient": "Quota capitaria ponderata",
+        "rejects": "ne sprejema"
+    }
 }

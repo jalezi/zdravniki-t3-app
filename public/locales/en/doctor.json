@@ -1,12 +1,27 @@
 {
-  "accepts": "accepting",
-  "adults": "adults",
-  "all": "all",
-  "den": "dentist",
-  "gp": "general practitioner",
-  "gyn": "gynecologist",
-  "ped": "pediatrician",
-  "rejects": "not accepting",
-  "students": "students",
-  "youth": "youth"
+    "accepts": "accepting",
+    "adults": "adults",
+    "all": "all",
+    "den": "dentist",
+    "extra": {
+        "clinic": {
+            "betterAccessibility": {
+                "description": "In clinics for better accessibility, insured persons who do not have a personal doctor (GP or Pediatrician) can choose their personal doctor (in case there is no available doctor or if the chosen personal doctor is permanently absent).",
+                "title": "Clinic for better accessibility"
+            }
+        }
+    },
+    "gp": "general practitioner",
+    "gyn": "gynecologist",
+    "ped": "pediatrician",
+    "rejects": "not accepting",
+    "students": "students",
+    "youth": "youth",
+    "zzzs": {
+        "accepts": "sprejema",
+        "doctorAvailability": "Availability",
+        "doctorAvailabilityDescription": "OAvailability can be lower than 100% for doctors that work part time on preventive programs or in other units (e.g. dentist working with adults and youth).",
+        "headQuotient": "Weighted person quotient",
+        "rejects": "ne sprejema"
+    }
 }
