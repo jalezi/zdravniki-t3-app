@@ -12,6 +12,7 @@ export { default as FamilyDrSvg } from '@/assets/svg/icon-family-dr.svg';
 export { default as FbSvg } from '@/assets/svg/icon-fb.svg';
 export { default as FilterSvg } from '@/assets/svg/icon-filter.svg';
 export { default as GynSvg } from '@/assets/svg/icon-gynecologist.svg';
+export { default as ClinicSvg } from '@/assets/svg/icon-clinic.svg';
 export { default as PedSvg } from '@/assets/svg/icon-kids.svg';
 export { default as LinkSvg } from '@/assets/svg/icon-link.svg';
 export { default as ListSvg } from '@/assets/svg/icon-list-view.svg';
