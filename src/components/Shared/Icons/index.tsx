@@ -21,3 +21,8 @@ export { default as SearchSvg } from '@/assets/svg/icon-search.svg';
 export { default as StudentsSvg } from '@/assets/svg/icon-students.svg';
 export { default as TwSvg } from '@/assets/svg/icon-tw.svg';
 export { default as LogoSvg } from '@/assets/svg/zdravniki-sledilnik-logo.svg';
+
+export { icons } from './icons';
+
+export { default as Icon } from './Icon';
+export type { IconName, IconProps } from './Icon';
