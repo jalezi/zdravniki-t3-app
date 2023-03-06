@@ -1,0 +1,19 @@
+.DrAcceptsOrRejectsChip {
+  --py-chip: 0.7em;
+
+  cursor: help;
+
+  gap: 0.5em;
+
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.DrAcceptsOrRejectsChip.Accepts {
+  --color-chip-background: var(--color-accepts-y, green);
+}
+
+.DrAcceptsOrRejectsChip.Rejects {
+  --color-chip-background: var(--color-accepts-n, red);
+}
