@@ -35,6 +35,7 @@
   --color-blue-800-A76: rgba(9, 175, 218, 0.76);
 
   /* red colors */
+  --color-red-700: rgb(220, 52, 53);
   --color-red-500: rgb(220, 50, 50);
   --color-red-300: rgb(211, 47, 47);
 
@@ -51,8 +52,8 @@
   --color-brand: var(--color-blue-500);
 
   /* accepts colors */
-  --color-accepts-y: var(--color-green-500);
-  --color-accepts-n: var(--color-red-500);
+  --color-accepts-y: var(--color-green-700);
+  --color-accepts-n: var(--color-red-700);
   --color-accepts-y_dark: var(--color-green-700);
 
   /* box-shadow */
