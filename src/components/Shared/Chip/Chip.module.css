@@ -1,0 +1,33 @@
+.Chip {
+  display: inline-flex;
+  gap: 0.25em;
+  align-items: center;
+
+  padding-block: var(--py-chip, 0.25em);
+  padding-inline: var(--px-chip, 0.5em);
+
+  font-size: var(--font-size-chip, 1rem);
+  line-height: 1;
+  color: var(--color-chip-text, #fff);
+  letter-spacing: 0.3px;
+
+  background-color: var(--color-chip-background, #000);
+  border: 1px solid var(--color-chip-border, transparent);
+  border-radius: 4px;
+}
+
+.Chip.Chip__xs {
+  --font-size-chip: 0.625rem;
+}
+
+.Chip.Chip__sm {
+  --font-size-chip: 0.75rem;
+}
+
+.Chip.Chip__md {
+  --font-size-chip: 0.875rem;
+}
+
+.Chip.Chip__lg {
+  --font-size-chip: 1rem;
+}
