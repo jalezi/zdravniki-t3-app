@@ -67,8 +67,10 @@ export const createDoctorFilter = (options: {
     const { accepts, bounds, search } = options;
     const acceptsCondition =
       accepts === 'all' ? true : doctor.accepts === accepts;
+
     const searchCondition =
-      fullMatch(doctor.name, search) || partialMatch([doctor.provider], search);
+      fullMatch(doctor.name, search) ||
+      partialMatch([doctor.provider ?? ''], search);
 
     const doctorLatLng = getDoctorLatLng(doctor);
 

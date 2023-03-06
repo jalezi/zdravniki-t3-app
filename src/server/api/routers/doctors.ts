@@ -1,11 +1,17 @@
 import { z } from 'zod';
 
-import type { DrListSchema } from '@/lib/types/doctors';
+import { SL_CENTER } from '@/lib/constants/map';
+import type { DrAddress, DrListSchema, DrLocation } from '@/lib/types/doctors';
 import { drListSchema } from '@/lib/types/doctors';
 import type { DrTypePage } from '@/lib/types/dr-type-page';
 import { drTypePageSchema } from '@/lib/types/dr-type-page';
-import type { InstTransformed } from '@/lib/types/institutions';
+import type {
+  InstAddress,
+  InstLocation,
+  InstTransformed,
+} from '@/lib/types/institutions';
 import { instListSchema } from '@/lib/types/institutions';
+import type { LatLngLiteral } from '@/lib/types/Map';
 import type { RouterOutputs } from '@/lib/utils/api';
 import { fetchDrAndInstDataAndParse } from '@/lib/utils/fetch-and-parse';
 
@@ -16,6 +22,75 @@ const filterDoctors = (
   { type }: { type: DrTypePage }
 ) => {
   return doctors.filter(doctor => type === doctor.typePage);
+};
+
+type Source = 'dr' | 'inst' | 'dummy';
+type Address = NonNullable<DrAddress & InstAddress>;
+
+const DummyAddress = {
+  street: '',
+  city: '',
+  fullAddress: '',
+  municipality: '',
+  municipalityPart: '',
+  postalCode: 0,
+  postalName: '',
+  searchAddress: '',
+  post: '',
+} satisfies Address;
+
+const getDoctorsAddress = (
+  drAddress: DrAddress,
+  instAddress: InstAddress | undefined
+): { address: Address; source: Source } => {
+  if (drAddress) {
+    return { address: drAddress, source: 'dr' };
+  }
+  if (instAddress) {
+    return { address: instAddress, source: 'inst' };
+  }
+  return { address: DummyAddress, source: 'dummy' };
+};
+
+const DummyGeoLocation = {
+  lat: SL_CENTER[0],
+  lng: SL_CENTER[1],
+} satisfies LatLngLiteral;
+
+const getDoctorsGeoLocation = (
+  drGeoLocation: LatLngLiteral | null,
+  instGeoLocation: LatLngLiteral | null | undefined
+): {
+  geoLocation: LatLngLiteral;
+  source: Source;
+} => {
+  if (drGeoLocation) {
+    return { geoLocation: drGeoLocation, source: 'dr' };
+  }
+  if (instGeoLocation) {
+    return { geoLocation: instGeoLocation, source: 'inst' };
+  }
+  return {
+    geoLocation: DummyGeoLocation,
+    source: 'dummy',
+  };
+};
+
+const getDrLocation = (
+  drLocation: DrLocation,
+  instLocation: InstLocation | undefined
+) => {
+  const address = getDoctorsAddress(drLocation.address, instLocation?.address);
+  const geoLocation = getDoctorsGeoLocation(
+    drLocation.geoLocation,
+    instLocation?.geoLocation
+  );
+
+  return {
+    address: address.address,
+    geoLocation: geoLocation.geoLocation,
+    meta: { address: address.source, geoLocation: geoLocation.source },
+  };
 };
 
 export const doctorsRouter = createTRPCRouter({
@@ -60,11 +135,39 @@ export const doctorsRouter = createTRPCRouter({
           }, {});
 
       const doctors = doctorsFiltered.map(doctor => {
+        const {
+          location,
+          phone: drPhone,
+          website: drWebsite,
+          ...rest
+        } = doctor;
         const { idInst } = doctor;
+
+        const institution = institutionsFiltered[`${idInst}`];
+        const institutionLocation = institution?.location;
+
+        const {
+          address,
+          geoLocation,
+          meta: drLocationMeta,
+        } = getDrLocation(location, institutionLocation);
+
+        const phone = (drPhone || institution?.phone) ?? null;
+        const website = (drWebsite || institution?.website) ?? null;
+
+        const drMeta = { ...drLocationMeta, hasInst: !!institution } as const;
+
         return {
-          ...doctor,
-          provider: institutionsFiltered[`${idInst}`]?.name ?? '',
-          institution: institutionsFiltered[`${idInst}`],
+          ...rest,
+          phone,
+          website,
+          provider: institution?.name ?? null,
+          institution: institution ?? null,
+          location: {
+            address,
+            geoLocation,
+          },
+          meta: drMeta,
         };
       });
 

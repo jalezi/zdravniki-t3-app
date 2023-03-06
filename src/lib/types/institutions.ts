@@ -78,6 +78,9 @@ export const instTransformedSchema = instCSVSchema.transform(inst => {
   };
 });
 
+export const instListSchema = z.array(instTransformedSchema);
+
 export type InstTransformed = z.infer<typeof instTransformedSchema>;
 
-export const instListSchema = z.array(instTransformedSchema);
+export type InstLocation = InstTransformed['location'];
+export type InstAddress = InstTransformed['location']['address'];

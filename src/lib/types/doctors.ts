@@ -1,9 +1,16 @@
-import { v4 as uuidv4 } from 'uuid';
 import { z } from 'zod';
 
 import { idInstSchema, slugSchema, trimmedStringSchema } from '@/lib/utils/zod';
 
 import type { LatLngLiteral } from './Map';
+
+const drAcceptsSchema = z.enum(['y', 'n']);
+
+export type DrAccepts = z.infer<typeof drAcceptsSchema>;
+
+const drAvailabilityOverrideTransformSchema = trimmedStringSchema.transform(
+  availability => (availability ? Number(availability) : '')
+);
 
 export const drCSVHeader = [
   'accepts',
@@ -34,7 +41,7 @@ export const drCSVSchema = z.object({
   accepts_override: z.enum(['y', 'n', '']),
   address: trimmedStringSchema,
   availability: z.coerce.number(),
-  availability_override: trimmedStringSchema.or(z.coerce.number()),
+  availability_override: drAvailabilityOverrideTransformSchema,
   city: trimmedStringSchema,
   date_override: trimmedStringSchema,
   doctor: trimmedStringSchema,
@@ -99,8 +106,34 @@ export const addressSchema = z
     };
   });
 
+const isExtraSchema = z
+  .function()
+  .args(z.string())
+  .returns(z.boolean())
+  .implement(type => type.endsWith('-x'));
+
+const isAcceptsOverrideSchema = z
+  .function()
+  .args(z.string().or(z.number()))
+  .returns(z.boolean())
+  .implement(accepts_override => accepts_override !== '');
+
+const isAvailabilityOverrideSchema = z
+  .function()
+  .args(z.string().or(z.number()))
+  .returns(z.boolean())
+  .implement(availability_override => availability_override !== '');
+
+const isDateOverrideSchema = z
+  .function()
+  .args(z.string().or(z.number()))
+  .returns(z.boolean())
+  .implement(date_override => date_override !== '');
+
 export const drTransformedSchema = drCSVSchema.transform(dr => {
   const {
+    accepts,
+    availability,
     accepts_override,
     address,
     availability_override,
@@ -129,9 +162,6 @@ export const drTransformedSchema = drCSVSchema.transform(dr => {
   const geoLocation: LatLngLiteral | null =
     lat === 0 || lon === 0 ? null : { lat, lng: lon };
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-  const fakeId = uuidv4();
-
   const slugNameParsed = slugSchema.safeParse(doctor);
   const slugName = slugNameParsed.success ? slugNameParsed.data : '';
   const typePage = drTypeCoerceSchema.parse(`${type}`);
@@ -139,21 +169,40 @@ export const drTransformedSchema = drCSVSchema.transform(dr => {
   const href = `/${typePage}/${slugName}/${idInst}`;
 
   return {
-    acceptsOverride: accepts_override,
-    availabilityOverride: availability_override,
-    dateOverride: date_override,
-    fakeId,
+    accepts: drAcceptsSchema.parse(accepts_override || accepts),
+    availability: z.coerce
+      .number()
+      .parse(availability_override || availability),
+    fakeId: `${type}-${slugName}-${id_inst}`,
+    isExtra: isExtraSchema(type),
     href,
     idInst,
     location: { address: addressObject, geoLocation },
     name: doctor,
-    noteOverride: note_override,
     slugName,
     type,
     typePage,
+    override: {
+      accepts: accepts_override,
+      availability: availability_override,
+      date: date_override ? z.coerce.date().parse(date_override) : '',
+      isAcceptsOverride: isAcceptsOverrideSchema(accepts_override),
+      isAvailabilityOverride: isAvailabilityOverrideSchema(
+        availability_override.toString()
+      ),
+      isDateOverride: isDateOverrideSchema(date_override),
+      note: note_override,
+    },
+    zzzs: {
+      accepts,
+      availability,
+    },
     ...rest,
   };
 });
 
 export const drListSchema = z.array(drTransformedSchema);
 export type DrListSchema = z.infer<typeof drListSchema>;
+
+export type DrLocation = DrListSchema[0]['location'];
+export type DrAddress = DrListSchema[0]['location']['address'];
