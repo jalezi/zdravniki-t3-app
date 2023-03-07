@@ -13,6 +13,7 @@
 
   /* colors */
   --color-white: #fff;
+  --color-white-A87: rgba(255, 255, 255, 0.87);
 
   --color-black: #000;
   --color-black-A87: rgba(0, 0, 0, 0.87);
@@ -32,6 +33,7 @@
   --color-blue-200: rgb(196, 212, 215);
   --color-blue-100: rgb(218, 229, 231);
   --color-blue-50: rgb(244, 248, 248);
+  --color-blue-900-A87: rgba(62, 76, 87, 0.87);
   --color-blue-800-A76: rgba(9, 175, 218, 0.76);
 
   /* red colors */
@@ -48,6 +50,9 @@
   --color-grey-900: rgb(33, 37, 41);
   --color-grey-900-A50: rgba(33, 37, 41, 0.5);
 
+  /* violet colors */
+  --color-violet-500: rgb(92, 17, 210);
+
   /* brand colors */
   --color-brand: var(--color-blue-500);
 
@@ -55,6 +60,10 @@
   --color-accepts-y: var(--color-green-700);
   --color-accepts-n: var(--color-red-700);
   --color-accepts-y_dark: var(--color-green-700);
+
+  /* tooltip colors */
+  --color-tooltip-bg: var(--color-blue-900-A87);
+  --color-tooltip-text: var(--color-blue-50);
 
   /* box-shadow */
   --box-shadow: var(--color-blue-800-A76) 0px 0px 7px 0px;
