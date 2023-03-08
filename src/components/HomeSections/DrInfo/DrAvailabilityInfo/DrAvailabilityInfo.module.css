@@ -1,0 +1,5 @@
+.DrAvailabilityInfo {
+  display: flex;
+  gap: 0.625em;
+  align-items: center;
+}
