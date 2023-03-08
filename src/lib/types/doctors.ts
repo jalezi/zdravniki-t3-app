@@ -185,7 +185,7 @@ export const drTransformedSchema = drCSVSchema.transform(dr => {
     override: {
       accepts: accepts_override,
       availability: availability_override,
-      date: date_override ? z.coerce.date().parse(date_override) : '',
+      date: date_override,
       isAcceptsOverride: isAcceptsOverrideSchema(accepts_override),
       isAvailabilityOverride: isAvailabilityOverrideSchema(
         availability_override.toString()

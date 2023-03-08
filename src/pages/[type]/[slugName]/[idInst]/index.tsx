@@ -8,16 +8,16 @@ import Papa from 'papaparse';
 import nextI18nextConfig from '@/../../next-i18next.config.js';
 import { DOCTORS_CSV_URL } from '@/lib/constants/data-url';
 import { drListSchema } from '@/lib/types/doctors';
+import type { DrListSchema } from '@/lib/types/doctors';
 import { instTransformedSchema } from '@/lib/types/institutions';
 import {
   PARSE_OPTIONS,
   fetchDrAndInstDataAndParse,
 } from '@/lib/utils/fetch-and-parse';
 import { drPersonalPageSchema, slugSchema } from '@/lib/utils/zod';
-import type { Doctor } from '@/server/api/routers/doctors';
 
 interface DrTypeNameInstPageProps {
-  doctors: Doctor[];
+  doctors: DrListSchema;
 }
 
 interface DrTypeNameInstPageParams extends ParsedUrlQuery {
@@ -61,7 +61,7 @@ export const getStaticProps: GetStaticProps<
 
   const doctorsFiltered = doctorsParsedFromCsv.data.filter(
     doctor =>
-      (doctor.id_inst satisfies string) === drTypePage.data.idInst &&
+      doctor.id_inst === drTypePage.data.idInst &&
       drTypePage.data.type.includes(doctor.type) &&
       drTypePage.data.slugName === slugSchema.parse(doctor.doctor)
   );
