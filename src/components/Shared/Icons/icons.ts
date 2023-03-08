@@ -9,6 +9,7 @@ import CheckSvg from '@/assets/svg/icon-check.svg';
 import ClinicSvg from '@/assets/svg/icon-clinic.svg';
 import CloseSvg from '@/assets/svg/icon-close.svg';
 import DentistSvg from '@/assets/svg/icon-dentist.svg';
+import DotsVert from '@/assets/svg/icon-dots-vertical.svg';
 import FamilyDrSvg from '@/assets/svg/icon-family-dr.svg';
 import FbSvg from '@/assets/svg/icon-fb.svg';
 import FilterSvg from '@/assets/svg/icon-filter.svg';
@@ -17,6 +18,8 @@ import PedSvg from '@/assets/svg/icon-kids.svg';
 import LinkSvg from '@/assets/svg/icon-link.svg';
 import ListSvg from '@/assets/svg/icon-list-view.svg';
 import MapSvg from '@/assets/svg/icon-map-view.svg';
+import PhoneNone from '@/assets/svg/icon-phone-none.svg';
+import Phone from '@/assets/svg/icon-phone.svg';
 import SearchSvg from '@/assets/svg/icon-search.svg';
 import StudentsSvg from '@/assets/svg/icon-students.svg';
 import TwSvg from '@/assets/svg/icon-tw.svg';
@@ -33,6 +36,7 @@ export const icons = {
   CheckCircleSvg,
   CloseSvg,
   DentistSvg,
+  DotsVert,
   FamilyDrSvg,
   FbSvg,
   FilterSvg,
@@ -42,6 +46,8 @@ export const icons = {
   LinkSvg,
   ListSvg,
   MapSvg,
+  Phone,
+  PhoneNone,
   SearchSvg,
   StudentsSvg,
   TwSvg,
