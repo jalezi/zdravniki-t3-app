@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { Icon } from '@/components/Shared/Icons';
-import Tooltips from '@/components/Shared/Tooltips';
+import { Tooltip } from '@/components/Shared/Tooltips';
 import { Typography } from '@/components/Shared/Typography';
 
 import styles from './DrName.module.css';
@@ -20,9 +20,9 @@ const ExtraIcon = ({ id, tooltipContent }: ExtraProps) => {
   return (
     <>
       <Icon name="ClinicSvg" id={id} className={styles.Extra} />
-      <Tooltips.Tooltip anchorSelect={`#${id}`} place="bottom">
+      <Tooltip anchorSelect={`#${id}`} place="bottom">
         {tooltipContent}
-      </Tooltips.Tooltip>
+      </Tooltip>
     </>
   );
 };

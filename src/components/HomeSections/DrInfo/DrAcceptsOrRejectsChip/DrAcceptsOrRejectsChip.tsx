@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 
 import { Chip } from '@/components/Shared/Chip';
 import type { ChipProps } from '@/components/Shared/Chip';
-import Tooltips from '@/components/Shared/Tooltips';
+import { Tooltip } from '@/components/Shared/Tooltips';
 import type { DrAccepts } from '@/lib/types/doctors';
 
 import styles from './DrAcceptsOrRejectsChip.module.css';
@@ -42,9 +42,9 @@ const DrAcceptsOrRejectsChip = ({
         {...props}
       />
       {tooltipContent ? (
-        <Tooltips.Tooltip anchorSelect={`#${id}`} place="bottom">
+        <Tooltip anchorSelect={`#${id}`} place="bottom">
           {tooltipContent}
-        </Tooltips.Tooltip>
+        </Tooltip>
       ) : null}
     </>
   );

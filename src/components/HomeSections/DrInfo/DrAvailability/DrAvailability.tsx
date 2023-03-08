@@ -1,6 +1,6 @@
 import { CircleChart } from '@/components/Shared/CircleChart';
 import type { PolymorphicComponentProps } from '@/components/Shared/Polymorphic';
-import Tooltips from '@/components/Shared/Tooltips';
+import { Tooltip } from '@/components/Shared/Tooltips';
 
 import styles from './DrAvailability.module.css';
 
@@ -23,9 +23,9 @@ const DrAvailability = ({ id, value, tooltipContent }: DrAvailabilityProps) => {
         )}
       </span>
       {tooltipContent ? (
-        <Tooltips.Tooltip anchorSelect={`#${id}`} place="bottom">
+        <Tooltip anchorSelect={`#${id}`} place="bottom">
           {tooltipContent}
-        </Tooltips.Tooltip>
+        </Tooltip>
       ) : null}
     </>
   );

@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 
 import { IconButton } from '@/components/Shared/Buttons';
 import { DotsVertSvg, PhoneNoneSvg, PhoneSvg } from '@/components/Shared/Icons';
-import Tooltips from '@/components/Shared/Tooltips';
+import { Tooltip } from '@/components/Shared/Tooltips';
 import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './DrActions.module.css';
@@ -32,9 +32,9 @@ const DrActions = ({ drId, phone, noPhoneText, className }: DrActionsProps) => {
       <IconButton id={drId + '_phone'} {...aOrButtonAttrs}>
         {phone ? <PhoneSvg /> : <PhoneNoneSvg />}
       </IconButton>
-      <Tooltips.Tooltip anchorSelect={`#${drId}_phone`} place="bottom">
+      <Tooltip anchorSelect={`#${drId}_phone`} place="bottom">
         {tooltipText}
-      </Tooltips.Tooltip>
+      </Tooltip>
     </div>
   );
 };

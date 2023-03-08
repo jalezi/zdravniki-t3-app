@@ -1,6 +1,10 @@
-import * as Tooltips from './Tooltips';
+import dynamic from 'next/dynamic';
 
-export const Tooltip = Tooltips.Tooltip;
+const ToolTipNoSsr = dynamic(
+  () => import('./Tooltips').then(mod => mod.Tooltip),
+  { ssr: false }
+);
+
+export const Tooltip = ToolTipNoSsr;
 
 export type { TooltipProps } from './Tooltips';
-export default Tooltips;
