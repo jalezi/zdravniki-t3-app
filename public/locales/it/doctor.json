@@ -13,6 +13,9 @@
     },
     "gp": "medico di medicina generale",
     "gyn": "ginecologo",
+    "info": {
+        "noPhone": "Numero telefonico non disponibile"
+    },
     "ped": "pediatra",
     "rejects": "non accetta",
     "students": "studenti",

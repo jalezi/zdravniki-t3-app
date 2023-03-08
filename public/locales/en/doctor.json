@@ -13,6 +13,9 @@
     },
     "gp": "general practitioner",
     "gyn": "gynecologist",
+    "info": {
+        "noPhone": "Phone number not available"
+    },
     "ped": "pediatrician",
     "rejects": "not accepting",
     "students": "students",

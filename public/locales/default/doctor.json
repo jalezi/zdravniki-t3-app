@@ -13,6 +13,9 @@
     },
     "gp": "družinski zdravnik",
     "gyn": "ginekolog",
+    "info": {
+        "noPhone": "Ni telefonske številke"
+    },
     "ped": "pediater",
     "rejects": "ne sprejema",
     "students": "študenti",
