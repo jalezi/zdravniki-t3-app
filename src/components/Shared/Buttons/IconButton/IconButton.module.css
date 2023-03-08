@@ -16,6 +16,12 @@
   border-radius: 50%;
 }
 
+.IconButton:disabled,
+.IconButton[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .IconButton .IconContainer {
   display: flex;
   align-items: center;
