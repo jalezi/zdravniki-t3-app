@@ -1,6 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { clsx } from 'clsx';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useCallback, useRef, useState } from 'react';
 import { useDebounce } from 'usehooks-ts';
@@ -12,6 +11,9 @@ import { createDoctorFilter, normalize } from '@/lib/utils/search';
 import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './List.module.css';
+import { DrActions } from '../DrInfo/DrActions';
+import { DrAvailabilityInfo } from '../DrInfo/DrAvailabilityInfo';
+import { DrBasicInfo } from '../DrInfo/DrBasicInfo';
 
 const getGroupsByAlphabet = (doctors: Doctor[]) => {
   const drByAlphabet = new Map<string, Doctor[]>();
@@ -31,14 +33,15 @@ const getGroupsByAlphabet = (doctors: Doctor[]) => {
   return drByAlphabet;
 };
 
-const ITEMS_PER_PAGE = 20;
+const ITEMS_PER_PAGE = 10;
 
 const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
   const [pageNum, setPageNum] = useState(1);
   const observer = useRef<IntersectionObserver | null>(null);
   const list = data.slice(0, pageNum * ITEMS_PER_PAGE);
   const hasMore = data.length > list.length;
-  const router = useRouter();
+
+  const { t } = useTranslation('doctor');
 
   const lastBookElementRef = useCallback(
     (node: Element | null) => {
@@ -61,42 +64,63 @@ const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
     })
     .map(([letter, doctors]) => (
       <div role="presentation" key={letter}>
-        <h2 className={styles.InfoLetter}>{letter}</h2>
-        {doctors.map((doctor, index, arr) => (
-          <div
-            role="listitem"
-            key={doctor.fakeId}
-            ref={index === arr.length - 1 ? lastBookElementRef : undefined}
-            className={styles.InfoCard}
-          >
-            <h2 translate="no">
-              {doctor.href ? (
-                <Link
-                  href={doctor.href}
-                  passHref
-                  locale={router.locale}
-                  hrefLang={router.locale}
-                >
-                  {doctor.name}
-                </Link>
-              ) : (
-                <span>{doctor.name}</span>
-              )}
-            </h2>
-            <address>
-              {doctor.institution?.location.address?.fullAddress}
-            </address>
-          </div>
-        ))}
+        <h2 className={styles.InfoLetter} translate="no">
+          {letter}
+        </h2>
+        {doctors.map((doctor, index, arr) => {
+          const acceptsTranslation =
+            doctor.accepts === 'y' ? t('zzzs.accepts') : t('zzzs.rejects');
+          const noPhoneTranslation = t('info.noPhone');
+
+          const infoCardStyles = clsx(
+            styles.InfoCard,
+            doctor.accepts === 'y' && styles.Accepts,
+            doctor.accepts === 'n' && styles.Rejects
+          );
+
+          return (
+            <div
+              role="listitem"
+              key={doctor.fakeId}
+              ref={index === arr.length - 1 ? lastBookElementRef : undefined}
+              className={infoCardStyles}
+            >
+              <DrBasicInfo
+                address={doctor.location.address.fullAddress}
+                drId={doctor.fakeId}
+                href={doctor.href}
+                isExtra={doctor.isExtra}
+                name={doctor.name}
+                provider={doctor.provider}
+                className={styles.BasicInfo}
+              />
+              <DrAvailabilityInfo
+                availability={doctor.availability}
+                accepts={doctor.accepts}
+                drId={doctor.fakeId}
+                acceptsText={acceptsTranslation}
+                className={styles.Availability}
+              />
+              <DrActions
+                drId={doctor.fakeId}
+                phone={doctor.phone}
+                noPhoneText={noPhoneTranslation}
+                className={styles.Actions}
+              />
+            </div>
+          );
+        })}
       </div>
     ));
 
   const innerContainerStyles = clsx(styles.ListInnerContainer);
 
   return (
-    <div role="list" className={innerContainerStyles}>
-      {infiniteList}
-    </div>
+    <>
+      <div role="list" className={innerContainerStyles}>
+        {infiniteList}
+      </div>
+    </>
   );
 };
 
@@ -134,6 +158,7 @@ const List = () => {
       <header className={headerStyles}>{totalHits}</header>
       <InfiniteScroll data={filteredDoctors ?? []} />
       {filteredDoctors?.length === 0 ? <div>Refine your search</div> : null}
+
       <Footer position="list" />
     </>
   );

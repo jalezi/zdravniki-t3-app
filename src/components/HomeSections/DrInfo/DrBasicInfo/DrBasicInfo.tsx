@@ -1,3 +1,4 @@
+import { clsx } from 'clsx';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
@@ -13,6 +14,7 @@ export type DrBasicInfoProps = {
   drId: string;
   provider: string | null;
   address: string;
+  className?: string;
 };
 
 const DrBasicInfo = (props: DrBasicInfoProps) => {
@@ -22,9 +24,11 @@ const DrBasicInfo = (props: DrBasicInfoProps) => {
     returnObjects: true,
   }) satisfies { description: string; title: string };
 
+  const basicStyles = clsx(styles.BasicInfo, props.className);
+
   const extraTooltipText = extraTooltip.title;
   return (
-    <div className={styles.BasicInfo}>
+    <div className={basicStyles}>
       <DrName name={props.name} locale={router.locale} href={props.href}>
         {props.isExtra ? (
           <DrName.ExtraIcon id={props.drId} tooltipContent={extraTooltipText} />

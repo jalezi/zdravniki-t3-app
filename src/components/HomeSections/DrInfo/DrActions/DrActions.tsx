@@ -1,3 +1,5 @@
+import { clsx } from 'clsx';
+
 import { IconButton } from '@/components/Shared/Buttons';
 import { DotsVertSvg, PhoneNoneSvg, PhoneSvg } from '@/components/Shared/Icons';
 import Tooltips from '@/components/Shared/Tooltips';
@@ -11,16 +13,19 @@ export type DrActionsProps = {
   drId: string;
   phone: Phone;
   noPhoneText: string;
+  className?: string;
 };
 
-const DrActions = ({ drId, phone, noPhoneText }: DrActionsProps) => {
+const DrActions = ({ drId, phone, noPhoneText, className }: DrActionsProps) => {
   const aOrButtonAttrs = phone
     ? ({ as: 'a', href: `tel: ${phone}` } as const)
     : ({ type: 'button', disabled: true } as const);
   const tooltipText = phone || noPhoneText;
 
+  const actionsStyles = clsx(styles.DrActions, className);
+
   return (
-    <div className={styles.DrActions}>
+    <div className={actionsStyles}>
       <IconButton type="button">
         <DotsVertSvg />
       </IconButton>

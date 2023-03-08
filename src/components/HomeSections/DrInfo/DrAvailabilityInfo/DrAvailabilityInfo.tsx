@@ -1,3 +1,5 @@
+import { clsx } from 'clsx';
+
 import styles from './DrAvailabilityInfo.module.css';
 import { DrAcceptsOrRejectsChip } from '../DrAcceptsOrRejectsChip';
 import DrAvailability from '../DrAvailability/DrAvailability';
@@ -7,6 +9,7 @@ export type DrAvailabilityInfoProps = {
   availability: number;
   drId: string;
   acceptsText: string;
+  className?: string;
 };
 
 const DrAvailabilityInfo = ({
@@ -16,8 +19,13 @@ const DrAvailabilityInfo = ({
   acceptsText: text,
   ...props
 }: DrAvailabilityInfoProps) => {
+  const availabilityInfoStyles = clsx(
+    styles.DrAvailabilityInfo,
+    props.className
+  );
+
   return (
-    <div className={styles.DrAvailabilityInfo} {...props}>
+    <div className={availabilityInfoStyles} {...props}>
       <DrAcceptsOrRejectsChip
         tooltipContent={drId}
         id={drId + '_accepts'}
