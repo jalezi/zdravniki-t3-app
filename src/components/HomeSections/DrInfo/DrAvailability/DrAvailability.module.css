@@ -1,0 +1,31 @@
+.DrAvailability {
+  --circle-chart-font-size-lg: 1.625rem;
+  --circle-chart-font-size-sm: 1rem;
+
+  cursor: help;
+
+  position: relative;
+
+  display: inline-block;
+
+  width: var(--circle-chart-font-size-lg);
+  height: var(--circle-chart-font-size-lg);
+}
+
+.DrAvailability .Large {
+  --stroke-color: var(--color-availability-circle-lg);
+  --circle-chart-font-size: var(--circle-chart-font-size-lg);
+
+  position: absolute;
+}
+
+.DrAvailability .Small {
+  --stroke-color: var(--color-availability-circle-sm);
+  --circle-chart-font-size: var(--circle-chart-font-size-sm);
+  --animation-delay: var(--animations-time);
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
