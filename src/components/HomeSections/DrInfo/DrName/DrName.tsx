@@ -1,30 +1,18 @@
 import Link from 'next/link';
 
 import { Icon } from '@/components/Shared/Icons';
-import { Tooltip } from '@/components/Shared/Tooltips';
 import { Typography } from '@/components/Shared/Typography';
 
 import styles from './DrName.module.css';
 
-type TooltipProps = {
-  tooltipContent?: React.ReactNode;
-};
-
-type ExtraProps = { id: string } & TooltipProps;
+type ExtraProps = { id: string };
 
 export type DrNameProps = { href: string; locale?: string; name: string } & {
   children?: React.ReactNode;
 };
 
-const ExtraIcon = ({ id, tooltipContent }: ExtraProps) => {
-  return (
-    <>
-      <Icon name="ClinicSvg" id={id} className={styles.Extra} />
-      <Tooltip anchorSelect={`#${id}`} place="bottom">
-        {tooltipContent}
-      </Tooltip>
-    </>
-  );
+const ExtraIcon = ({ id }: ExtraProps) => {
+  return <Icon name="ClinicSvg" id={id} className={styles.Extra} />;
 };
 
 const DrName = ({ href, name, locale, children }: DrNameProps) => {

@@ -27,7 +27,6 @@ const DrAvailabilityInfo = ({
   return (
     <div className={availabilityInfoStyles} {...props}>
       <DrAcceptsOrRejectsChip
-        tooltipContent={drId}
         id={drId + '_accepts'}
         text={text}
         accepts={accepts}
@@ -35,7 +34,6 @@ const DrAvailabilityInfo = ({
       <DrAvailability
         id={drId + '_availability'}
         value={Number(availability)}
-        tooltipContent={drId}
       />
     </div>
   );

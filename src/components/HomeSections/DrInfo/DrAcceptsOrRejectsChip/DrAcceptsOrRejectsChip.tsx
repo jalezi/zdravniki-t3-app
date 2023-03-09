@@ -2,7 +2,6 @@ import { clsx } from 'clsx';
 
 import { Chip } from '@/components/Shared/Chip';
 import type { ChipProps } from '@/components/Shared/Chip';
-import { Tooltip } from '@/components/Shared/Tooltips';
 import type { DrAccepts } from '@/lib/types/doctors';
 
 import styles from './DrAcceptsOrRejectsChip.module.css';
@@ -12,18 +11,15 @@ const VariantStyles = {
   n: styles.Rejects,
 } as const;
 
-type TooltipProps = {
-  tooltipContent?: React.ReactNode;
-};
-
-type DrAcceptsProps = { accepts: DrAccepts; id: string } & TooltipProps &
-  Omit<ChipProps, 'iconName' | 'id'>;
+type DrAcceptsProps = { accepts: DrAccepts; id: string } & Omit<
+  ChipProps,
+  'iconName' | 'id'
+>;
 
 const DrAcceptsOrRejectsChip = ({
   accepts,
   id,
   text,
-  tooltipContent,
   ...props
 }: DrAcceptsProps) => {
   const chipStyles = clsx(
@@ -32,21 +28,14 @@ const DrAcceptsOrRejectsChip = ({
   );
 
   return (
-    <>
-      <Chip
-        className={chipStyles}
-        iconName={accepts === 'y' ? 'CheckCircleSvg' : 'Ban2Svg'}
-        size="xs"
-        text={text}
-        id={id}
-        {...props}
-      />
-      {tooltipContent ? (
-        <Tooltip anchorSelect={`#${id}`} place="bottom">
-          {tooltipContent}
-        </Tooltip>
-      ) : null}
-    </>
+    <Chip
+      className={chipStyles}
+      iconName={accepts === 'y' ? 'CheckCircleSvg' : 'Ban2Svg'}
+      size="xs"
+      text={text}
+      id={id}
+      {...props}
+    />
   );
 };
 

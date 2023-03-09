@@ -64,7 +64,6 @@ const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
         {doctors.map((doctor, index, arr) => {
           const acceptsTranslation =
             doctor.accepts === 'y' ? t('zzzs.accepts') : t('zzzs.rejects');
-          const noPhoneTranslation = t('info.noPhone');
 
           const infoCardStyles = clsx(
             styles.InfoCard,
@@ -98,7 +97,6 @@ const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
               <DrActions
                 drId={doctor.fakeId}
                 phone={doctor.phone}
-                noPhoneText={noPhoneTranslation}
                 className={styles.Actions}
               />
             </div>
