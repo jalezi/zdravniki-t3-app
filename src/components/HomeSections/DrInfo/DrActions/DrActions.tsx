@@ -1,24 +1,19 @@
 import { clsx } from 'clsx';
 
 import { IconButton } from '@/components/Shared/Buttons';
-import { DotsVertSvg, PhoneNoneSvg, PhoneSvg } from '@/components/Shared/Icons';
-import type { Doctor } from '@/server/api/routers/doctors';
+import { DotsVertSvg } from '@/components/Shared/Icons';
 
 import styles from './DrActions.module.css';
-
-type Phone = Doctor['phone'];
+import type { PhoneButtonProps } from './Phone';
+import Phone from './Phone';
 
 export type DrActionsProps = {
   drId: string;
-  phone: Phone;
+  phone: PhoneButtonProps['tooltipContent'];
   className?: string;
 };
 
 const DrActions = ({ drId, phone, className }: DrActionsProps) => {
-  const aOrButtonAttrs = phone
-    ? ({ as: 'a', href: `tel: ${phone}` } as const)
-    : ({ type: 'button', disabled: true } as const);
-
   const actionsStyles = clsx(styles.DrActions, className);
 
   return (
@@ -26,9 +21,11 @@ const DrActions = ({ drId, phone, className }: DrActionsProps) => {
       <IconButton type="button">
         <DotsVertSvg />
       </IconButton>
-      <IconButton id={drId + '_phone'} {...aOrButtonAttrs}>
-        {phone ? <PhoneSvg /> : <PhoneNoneSvg />}
-      </IconButton>
+      <Phone
+        id={drId + '_phone'}
+        href={phone ? `tel: ${phone}` : undefined}
+        tooltipContent={phone}
+      />
     </div>
   );
 };
