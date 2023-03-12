@@ -1,0 +1,24 @@
+.Tooltip {
+  position: absolute;
+  z-index: 99999;
+
+  width: max-content;
+  padding-block: 0.5em;
+  padding-inline: 1em;
+
+  font-weight: 700;
+  color: var(--color-tooltip-text);
+
+  background-color: var(--color-tooltip-bg);
+  border-radius: 4px;
+}
+
+.Tooltip.XXSmall {
+  font-size: 0.625rem;
+}
+.Tooltip.XSmall {
+  font-size: 0.6875rem;
+}
+.Tooltip.Small {
+  font-size: 0.75rem;
+}
