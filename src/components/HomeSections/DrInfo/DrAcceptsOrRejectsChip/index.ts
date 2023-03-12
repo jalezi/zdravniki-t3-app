@@ -1,1 +1,4 @@
-export { default as DrAcceptsOrRejectsChip } from './DrAcceptsOrRejectsChip';
+export {
+  default as AcceptsOrRejects,
+  DrAcceptsOrRejectsChip,
+} from './DrAcceptsOrRejectsChip';

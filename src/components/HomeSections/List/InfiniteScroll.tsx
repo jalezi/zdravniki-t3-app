@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import { useTranslation } from 'next-i18next';
 import { useCallback, useRef, useState } from 'react';
 
 import type { Doctor } from '@/server/api/routers/doctors';
@@ -35,8 +34,6 @@ const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
   const list = data.slice(0, pageNum * ITEMS_PER_PAGE);
   const hasMore = data.length > list.length;
 
-  const { t } = useTranslation('doctor');
-
   const lastBookElementRef = useCallback(
     (node: Element | null) => {
       if (observer.current) observer.current.disconnect();
@@ -62,9 +59,6 @@ const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
           {letter}
         </h2>
         {doctors.map((doctor, index, arr) => {
-          const acceptsTranslation =
-            doctor.accepts === 'y' ? t('zzzs.accepts') : t('zzzs.rejects');
-
           const infoCardStyles = clsx(
             styles.InfoCard,
             doctor.accepts === 'y' && styles.Accepts,
@@ -91,7 +85,8 @@ const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
                 availability={doctor.availability}
                 accepts={doctor.accepts}
                 drId={doctor.fakeId}
-                acceptsText={acceptsTranslation}
+                load={doctor.load}
+                override={doctor.override}
                 className={styles.Availability}
               />
               <DrActions

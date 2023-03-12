@@ -1,14 +1,19 @@
 import { clsx } from 'clsx';
 
+import type { Doctor } from '@/server/api/routers/doctors';
+
 import styles from './DrAvailabilityInfo.module.css';
-import { DrAcceptsOrRejectsChip } from '../DrAcceptsOrRejectsChip';
+import { AcceptsOrRejects } from '../DrAcceptsOrRejectsChip';
 import { Availability } from '../DrAvailability';
+
+type Load = Doctor['load'];
 
 export type DrAvailabilityInfoProps = {
   accepts: 'y' | 'n';
   availability: number;
   drId: string;
-  acceptsText: string;
+  load: Load;
+  override: Doctor['override'];
   className?: string;
 };
 
@@ -16,7 +21,8 @@ const DrAvailabilityInfo = ({
   accepts,
   availability,
   drId,
-  acceptsText: text,
+  override,
+  load,
   ...props
 }: DrAvailabilityInfoProps) => {
   const availabilityInfoStyles = clsx(
@@ -26,10 +32,11 @@ const DrAvailabilityInfo = ({
 
   return (
     <div className={availabilityInfoStyles} {...props}>
-      <DrAcceptsOrRejectsChip
+      <AcceptsOrRejects
         id={drId + '_accepts'}
-        text={text}
         accepts={accepts}
+        load={load}
+        override={override}
       />
       <Availability id={drId + '_availability'} value={Number(availability)} />
     </div>
