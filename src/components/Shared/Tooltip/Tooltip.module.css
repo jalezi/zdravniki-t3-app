@@ -1,24 +1,84 @@
 .Tooltip {
+  /* react-tooltip adds some opacity to background color; needs some research */
+  --color-tooltip-bg: var(--color-blue-900, black);
+  --color-tooltip-text: var(--color-white);
+  --color-tooltip-divider: var(--color-tooltip-text, white);
+
   position: absolute;
   z-index: 99999;
 
   width: max-content;
+  max-width: 45ch;
   padding-block: 0.5em;
   padding-inline: 1em;
 
-  font-weight: 700;
+  font-weight: 400;
+  line-height: 1.5;
   color: var(--color-tooltip-text);
+  letter-spacing: 0.3px;
 
   background-color: var(--color-tooltip-bg);
   border-radius: 4px;
 }
 
-.Tooltip.XXSmall {
+.Tooltip.XXSmall,
+.Tooltip .XXSmall {
   font-size: 0.625rem;
 }
-.Tooltip.XSmall {
+.Tooltip.XSmall,
+.Tooltip .XSmall {
   font-size: 0.6875rem;
 }
-.Tooltip.Small {
+.Tooltip.Small,
+.Tooltip .Small {
   font-size: 0.75rem;
+}
+.Tooltip.Medium,
+.Tooltip .Medium {
+  font-size: 0.875rem;
+}
+.Tooltip.Large,
+.Tooltip .Large {
+  font-size: 1rem;
+}
+.Tooltip.XLarge,
+.Tooltip .XLarge {
+  font-size: 1.125rem;
+}
+.Tooltip.XXLarge,
+.Tooltip .XXLarge {
+  font-size: 1.25rem;
+}
+
+.Tooltip.Left,
+.Tooltip .Left {
+  text-align: left;
+}
+
+.Tooltip.Center,
+.Tooltip .Center {
+  text-align: center;
+}
+
+.Tooltip.Right,
+.Tooltip .Right {
+  text-align: right;
+}
+
+.Tooltip.Regular,
+.Tooltip .Regular {
+  font: 1em;
+  font-weight: 400;
+}
+
+.Tooltip.Bold,
+.Tooltip .Bold {
+  font: 1em;
+  font-weight: 700;
+}
+
+.Tooltip .Divider {
+  height: 1px;
+  margin-block: 0.5em;
+  background: var(--color-tooltip-divider, white);
 }

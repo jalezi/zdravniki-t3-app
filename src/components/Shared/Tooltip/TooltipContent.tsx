@@ -1,12 +1,13 @@
 import { clsx } from 'clsx';
-import { Tooltip as ReactTooltip } from 'react-tooltip';
-import type { ITooltip as ReactTooltipProps } from 'react-tooltip';
 import { z } from 'zod';
 
-export { TooltipDivider } from './TooltipContent';
-export { TooltipContent } from './TooltipContent';
-
 import styles from './Tooltip.module.css';
+import type { PolymorphicComponentProps } from '../Polymorphic';
+import { Polymorphic } from '../Polymorphic';
+
+const allowedTags = z.enum(['p', 'span', 'div']);
+
+type AllowedTags = z.infer<typeof allowedTags>;
 
 const sizeSchema = z.enum(['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl']);
 type Size = z.infer<typeof sizeSchema>;
@@ -18,6 +19,7 @@ const alignSchema = z.enum(['left', 'center', 'right']);
 type Align = z.infer<typeof alignSchema>;
 
 const customProps = z.object({
+  as: allowedTags.optional().default('p').optional(),
   align: alignSchema.optional().default('left').optional(),
   size: sizeSchema.optional().default('sm').optional(),
   weight: weightSchema.optional().default('500').optional(),
@@ -46,32 +48,41 @@ const ALIGN_STYLES = {
   right: styles.Right,
 } satisfies Record<Align, string | undefined>;
 
-export type TooltipProps = ReactTooltipProps & CustomProps;
+type TooltipContentProps = CustomProps &
+  Omit<PolymorphicComponentProps<AllowedTags>, keyof CustomProps>;
 
-export const Tooltip = ({
-  className,
+export const TooltipContent = ({
+  as = 'p',
   align = 'left',
+  className,
+  children,
   size = 'sm',
   weight = '500',
   ...props
-}: TooltipProps) => {
-  const reactTooltipProps = { ...props };
-
+}: TooltipContentProps) => {
   const validAlign = alignSchema.safeParse(align);
   const validSize = sizeSchema.safeParse(size);
   const validWeight = weightSchema.safeParse(weight);
+  const validTag = allowedTags.safeParse(as);
 
   const alignStyles = ALIGN_STYLES[`${validAlign.success ? align : 'left'}`];
   const sizeStyles = SIZE_STYLES[`${validSize.success ? size : 'sm'}`];
   const weightStyles = WEIGHT_STYLES[`${validWeight.success ? weight : '500'}`];
+  const tag = validTag.success ? as : 'p';
 
-  const tooltipStyles = clsx(
-    styles.Tooltip,
+  const tooltipContentStyles = clsx(
+    styles.TooltipContent,
     alignStyles,
-    weightStyles,
     sizeStyles,
+    weightStyles,
     className
   );
 
-  return <ReactTooltip className={tooltipStyles} {...reactTooltipProps} />;
+  return (
+    <Polymorphic as={tag} className={tooltipContentStyles} {...props}>
+      {children}
+    </Polymorphic>
+  );
 };
+
+export const TooltipDivider = () => <hr className={styles.Divider} />;
