@@ -9,7 +9,9 @@
     },
     "footer": {
         "dataSource": "Origine dei dati",
-        "lastChange": "Ultimo aggiornamento dei dati"
+        "lastChange": "Ultimo aggiornamento dei dati",
+        "zzzs": "Istituto per l'assicurazione sanitaria della Slovenia",
+        "gurs": "Amministrazione geodetica della Repubblica di Slovenia"
     },
     "timestamps": {
         "datetime": "{{val, datetime}}",

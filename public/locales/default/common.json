@@ -1,5 +1,5 @@
 {
-    "test": "default",
+    "test": "slovensko",
     "navLinks": {
         "home": "Imenik",
         "faq": "Pojasnila",
@@ -9,11 +9,21 @@
     },
     "footer": {
         "dataSource": "Vir podatkov",
-        "lastChange": "Zadnja sprememba"
+        "lastChange": "Zadnja sprememba",
+        "zzzs": "Istituto per l'assicurazione sanitaria della Slovenia",
+        "gurs": "Amministrazione geodetica della Repubblica di Slovenia"
+    },
+    "timestamps": {
+        "datetime": "{{val, datetime}}",
+        "at": "ob",
+        "noData": "Ni podatkov"
     },
     "notFound": {
-        "heading": "404: page not found",
-        "link": "Home",
-        "text": "oops… something went wrong 😞"
+        "heading": "404: stran ne obstaja",
+        "link": "Imenik",
+        "text": "ups.. nekaj se je zalomilo 😞"
+    },
+    "search": {
+        "placeholder": "Išči..."
     }
 }

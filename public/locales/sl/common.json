@@ -9,7 +9,9 @@
     },
     "footer": {
         "dataSource": "Vir podatkov",
-        "lastChange": "Zadnja sprememba"
+        "lastChange": "Zadnja sprememba",
+        "zzzs": "Zavod za zdravstveno zavarovanje Slovenije",
+        "gurs": "Geodetska uprava Republike Slovenije."
     },
     "timestamps": {
         "datetime": "{{val, datetime}}",

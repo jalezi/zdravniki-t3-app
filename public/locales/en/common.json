@@ -9,7 +9,9 @@
     },
     "footer": {
         "dataSource": "Data source: ",
-        "lastChange": "Last data updated on"
+        "lastChange": "Last data updated on",
+        "zzzs": "Health Insurance Institute of Slovenia",
+        "gurs": "Geodetic Administration of the Republic of Slovenia"
     },
     "timestamps": {
         "datetime": "{{val, datetime}}",
