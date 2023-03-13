@@ -33,6 +33,8 @@ const Footer = ({ position = 'mdx' }: FooterProps) => {
 
   const dataSource = t`footer.dataSource`;
   const lastChange = t`footer.lastChange`;
+  const zzzs = t`footer.zzzs`;
+  const gurs = t`footer.gurs`;
 
   return (
     <footer className={footerStyles}>
@@ -40,7 +42,7 @@ const Footer = ({ position = 'mdx' }: FooterProps) => {
         <div>
           {dataSource}:{' '}
           <a href="https://www.zzzs.si" target="_blank" rel="noreferrer">
-            ZZZS
+            <abbr title={zzzs}>ZZZS</abbr>
           </a>
           ,{' '}
           <a
@@ -48,7 +50,7 @@ const Footer = ({ position = 'mdx' }: FooterProps) => {
             target="_blank"
             rel="noreferrer"
           >
-            GURS
+            <abbr title={gurs}>GURS</abbr>
           </a>
           <br />
           {lastChange}: <LongDate timestamp={timestamp} />
