@@ -22,15 +22,17 @@ export const DrAvailability = ({
   const secondValue = value > 1 ? value - 1 : 0;
 
   return (
-    <span id={id} className={styles.DrAvailability}>
-      <CircleChart value={firstValue} className={styles.Large} />
-      {secondValue > 0 && (
-        <CircleChart value={secondValue} className={styles.Small} />
-      )}
+    <>
+      <span id={id} className={styles.DrAvailability} tabIndex={0}>
+        <CircleChart value={firstValue} className={styles.Large} />
+        {secondValue > 0 && (
+          <CircleChart value={secondValue} className={styles.Small} />
+        )}
+      </span>
       <Tooltip.Tooltip anchorSelect={'#' + id} place="bottom">
         {tooltipContent}
       </Tooltip.Tooltip>
-    </span>
+    </>
   );
 };
 

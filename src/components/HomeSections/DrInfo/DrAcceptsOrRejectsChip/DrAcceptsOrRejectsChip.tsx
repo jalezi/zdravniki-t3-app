@@ -41,6 +41,7 @@ export const DrAcceptsOrRejectsChip = ({
         size="xs"
         text={text}
         id={id}
+        tabIndex={0}
         {...props}
       />
       <Tooltip.Tooltip anchorSelect={'#' + id} place="bottom">

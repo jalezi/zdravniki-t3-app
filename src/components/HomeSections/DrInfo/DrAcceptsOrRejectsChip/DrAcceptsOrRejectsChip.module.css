@@ -10,6 +10,10 @@
   letter-spacing: 0.3px;
 }
 
+.DrAcceptsOrRejectsChip:focus {
+  outline: 1px solid blue;
+}
+
 .DrAcceptsOrRejectsChip.Accepts {
   --color-chip-background: var(--color-accepts-y, green);
 }
