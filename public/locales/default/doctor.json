@@ -22,11 +22,11 @@
     "students": "študenti",
     "youth": "mladina",
     "zzzs": {
-        "accepts": "sprejema",
+        "accepts": "$t(accepts)",
         "doctorAvailability": "Obseg zaposlitve",
         "doctorAvailabilityWithPercent": "Obseg zaposlitve: {{number}}",
         "doctorAvailabilityDescription": "Obseg zaposlitve: delež je lahko nižji od 100 %, ker zdravnik določen del časa dela na preventivnih programih ali na drugih dejavnostih (recimo zobozdravnik za odrasle in mladino).",
         "headQuotient": "Glavarinski količnik",
-        "rejects": "ne sprejema"
+        "rejects": "$t(rejects)"
     }
 }

@@ -22,11 +22,11 @@
     "students": "studenti",
     "youth": "giovani",
     "zzzs": {
-        "accepts": "sprejema",
+        "accepts": " $t(accepts)",
         "doctorAvailability": "Disponibilità",
         "doctorAvailabilityWithPercent": "Disponibilità: {{number}}",
         "doctorAvailabilityDescription": "La disponibilità può essere inferiore al 100% per i medici che lavorano a tempo parziale su programmi di prevenzione o in altre attività (ad esempio, dentista che lavora con adulti e giovani).",
         "headQuotient": "Quota capitaria ponderata",
-        "rejects": "ne sprejema"
+        "rejects": " $t(rejects)"
     }
 }
