@@ -20,7 +20,7 @@ export type PageLink = {
   label: string;
 };
 
-export const drTypePageSchema = z.enum([
+export const pageDrTypeSchema = z.enum([
   'gp',
   'ped',
   'den',
@@ -29,9 +29,18 @@ export const drTypePageSchema = z.enum([
   'gyn',
 ]);
 
-export type DrTypePage = z.infer<typeof drTypePageSchema>;
+export type PageDrType = z.infer<typeof pageDrTypeSchema>;
 
-export const drTypePageCoerceSchema = drTypePageSchema.transform(value => {
+export const baseDrTypeSchema = pageDrTypeSchema.transform(type => {
+  if (type === 'den-s' || type === 'den-y') {
+    return 'den';
+  }
+  return type;
+});
+
+export type BaseDrType = z.infer<typeof baseDrTypeSchema>;
+
+export const drTypePageCoerceSchema = pageDrTypeSchema.transform(value => {
   if (value === 'gp') {
     return ['gp', 'gp-x'];
   }

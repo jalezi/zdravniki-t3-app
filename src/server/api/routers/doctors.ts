@@ -3,8 +3,8 @@ import { z } from 'zod';
 import { SL_CENTER } from '@/lib/constants/map';
 import type { DrAddress, DrListSchema, DrLocation } from '@/lib/types/doctors';
 import { drListSchema } from '@/lib/types/doctors';
-import type { DrTypePage } from '@/lib/types/dr-type-page';
-import { drTypePageSchema } from '@/lib/types/dr-type-page';
+import type { PageDrType } from '@/lib/types/dr-type-page';
+import { pageDrTypeSchema } from '@/lib/types/dr-type-page';
 import type {
   InstAddress,
   InstLocation,
@@ -19,7 +19,7 @@ import { createTRPCRouter, publicProcedure } from '../trpc';
 
 const filterDoctors = (
   doctors: DrListSchema,
-  { type }: { type: DrTypePage }
+  { type }: { type: PageDrType }
 ) => {
   return doctors.filter(doctor => type === doctor.typePage);
 };
@@ -97,7 +97,7 @@ export const doctorsRouter = createTRPCRouter({
   get: publicProcedure
     .input(
       z.object({
-        type: drTypePageSchema,
+        type: pageDrTypeSchema,
       })
     )
     .query(async ({ input }) => {

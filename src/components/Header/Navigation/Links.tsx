@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { IconButton } from '@/components/Shared/Buttons';
 import { FbSvg, TwSvg } from '@/components/Shared/Icons';
 import type { ExternaLink, PageLink } from '@/lib/types/dr-type-page';
-import { drTypePageSchema } from '@/lib/types/dr-type-page';
+import { pageDrTypeSchema } from '@/lib/types/dr-type-page';
 
 import { ActiveLink } from '../Link';
 
@@ -38,7 +38,7 @@ const pageLinks: PageLink[] = [
     href: '/gp/',
     label: 'home',
     isActive: (asPath: string | undefined) =>
-      drTypePageSchema.safeParse(asPath?.split('/')?.filter(Boolean)?.[0])
+      pageDrTypeSchema.safeParse(asPath?.split('/')?.filter(Boolean)?.[0])
         .success,
   },
   {

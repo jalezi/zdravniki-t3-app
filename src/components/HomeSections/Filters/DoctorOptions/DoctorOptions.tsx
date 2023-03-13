@@ -1,17 +1,37 @@
 import { clsx } from 'clsx';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useWindowSize } from 'usehooks-ts';
 
-import { AllSvg, FamilyDrSvg, FilterSvg } from '@/components/Shared/Icons';
+import {
+  AllSvg,
+  DentistSvg,
+  FamilyDrSvg,
+  FilterSvg,
+  GynSvg,
+  PedSvg,
+} from '@/components/Shared/Icons';
 import { BREAKPOINTS } from '@/lib/constants';
+import type { BaseDrType } from '@/lib/types/dr-type-page';
+import { baseDrTypeSchema } from '@/lib/types/dr-type-page';
 
 import styles from './DoctorOptions.module.css';
 import { FilterGroups } from './FIlterGroups';
+
+const DR_TYPE_SVG = {
+  gp: FamilyDrSvg,
+  ped: PedSvg,
+  gyn: GynSvg,
+  den: DentistSvg,
+} satisfies Record<BaseDrType, React.FC>;
 
 const DoctorOptions = () => {
   const [expanded, setExpanded] = useState(false);
   const { width } = useWindowSize();
   const isMediumMediaQuery = width >= BREAKPOINTS.md;
+  const { query } = useRouter();
+  const { t } = useTranslation('doctor');
 
   useEffect(() => {
     if (isMediumMediaQuery) {
@@ -30,6 +50,10 @@ const DoctorOptions = () => {
 
   const onToggleClick = () => setExpanded(prev => !prev);
 
+  const drTypeParsed = baseDrTypeSchema.parse(query.type);
+  const DrTypeSvg = DR_TYPE_SVG[`${drTypeParsed}`];
+  const drTypeTranslated = t(drTypeParsed);
+
   return (
     <div id="dr-opt-container" className={drOptContainerStyles}>
       <div id="dr-opt-content" className={drOptContentStyles}>
@@ -44,8 +68,8 @@ const DoctorOptions = () => {
         >
           <FilterSvg />
           <span>Filter</span>
-          <FamilyDrSvg />
-          <span>družinski zdravnik</span>
+          <DrTypeSvg />
+          <span>{drTypeTranslated}</span>
           <hr />
           <AllSvg />
         </button>
