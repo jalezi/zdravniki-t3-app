@@ -16,7 +16,7 @@
 }
 
 .ListInnerContainer {
-  position: relative;
+  position: absolute;
   z-index: 20;
 
   overflow-y: auto;
