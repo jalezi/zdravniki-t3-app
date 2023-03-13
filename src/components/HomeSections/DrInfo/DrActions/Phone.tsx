@@ -20,7 +20,11 @@ export const PhoneButton = ({ id, href, tooltipContent }: PhoneButtonProps) => {
 
   return (
     <>
-      <IconButton id={id} {...aOrButtonAttrs}>
+      <IconButton
+        id={id}
+        {...aOrButtonAttrs}
+        aria-label={href ? 'Call doctor' : 'No phone number'}
+      >
         {href ? <PhoneSvg /> : <PhoneNoneSvg />}
       </IconButton>
       <Tooltip.Tooltip anchorSelect={'#' + id} place="bottom">

@@ -18,7 +18,7 @@ const DrActions = ({ drId, phone, className }: DrActionsProps) => {
 
   return (
     <div className={actionsStyles}>
-      <IconButton type="button">
+      <IconButton type="button" aria-label="More">
         <DotsVertSvg />
       </IconButton>
       <Phone
