@@ -44,9 +44,16 @@
   --color-red-300: rgb(211, 47, 47);
 
   /* green colors */
+  --color-green-800: rgb(99, 125, 54); /* contrast ratio with white text ok! */
   --color-green-700: rgb(129, 177, 48);
   --color-green-500: rgb(149, 200, 63);
-  --color-green-300: rgb(46, 125, 50);
+  --color-green-300: hsl(123, 46%, 34%);
+  --color-green-300-A95: hsla(
+    123,
+    46%,
+    34%,
+    0.95
+  ); /* contrast ratio with white text ok! */
 
   /* grey colors */
   --color-grey-900: rgb(33, 37, 41);
@@ -63,9 +70,8 @@
   --color-brand: var(--color-blue-500);
 
   /* accepts colors */
-  --color-accepts-y: var(--color-green-700);
+  --color-accepts-y: var(--color-green-300-A95);
   --color-accepts-n: var(--color-red-700);
-  --color-accepts-y_dark: var(--color-green-700);
 
   /* tooltip colors */
   --color-tooltip-bg: var(--color-blue-900-A87);
