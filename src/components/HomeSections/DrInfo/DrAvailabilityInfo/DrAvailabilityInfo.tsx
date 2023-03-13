@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 
 import styles from './DrAvailabilityInfo.module.css';
 import { DrAcceptsOrRejectsChip } from '../DrAcceptsOrRejectsChip';
-import DrAvailability from '../DrAvailability/DrAvailability';
+import { Availability } from '../DrAvailability';
 
 export type DrAvailabilityInfoProps = {
   accepts: 'y' | 'n';
@@ -31,10 +31,7 @@ const DrAvailabilityInfo = ({
         text={text}
         accepts={accepts}
       />
-      <DrAvailability
-        id={drId + '_availability'}
-        value={Number(availability)}
-      />
+      <Availability id={drId + '_availability'} value={Number(availability)} />
     </div>
   );
 };
