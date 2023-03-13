@@ -14,7 +14,8 @@
     "gp": "medico di medicina generale",
     "gyn": "ginecologo",
     "info": {
-        "noPhone": "Numero telefonico non disponibile"
+        "noPhone": "Numero telefonico non disponibile",
+        "changedOn": "Modificato il: "
     },
     "ped": "pediatra",
     "rejects": "non accetta",
@@ -23,6 +24,7 @@
     "zzzs": {
         "accepts": "sprejema",
         "doctorAvailability": "Disponibilità",
+        "doctorAvailabilityWithPercent": "Disponibilità: {{number}}",
         "doctorAvailabilityDescription": "La disponibilità può essere inferiore al 100% per i medici che lavorano a tempo parziale su programmi di prevenzione o in altre attività (ad esempio, dentista che lavora con adulti e giovani).",
         "headQuotient": "Quota capitaria ponderata",
         "rejects": "ne sprejema"

@@ -14,7 +14,8 @@
     "gp": "general practitioner",
     "gyn": "gynecologist",
     "info": {
-        "noPhone": "Phone number not available"
+        "noPhone": "Phone number not available",
+        "changedOn": "Changed on: "
     },
     "ped": "pediatrician",
     "rejects": "not accepting",
@@ -23,7 +24,8 @@
     "zzzs": {
         "accepts": "sprejema",
         "doctorAvailability": "Availability",
-        "doctorAvailabilityDescription": "OAvailability can be lower than 100% for doctors that work part time on preventive programs or in other units (e.g. dentist working with adults and youth).",
+        "doctorAvailabilityWithPercent": "Availability: {{number}}",
+        "doctorAvailabilityDescription": "Availability can be lower than 100% for doctors that work part time on preventive programs or in other units (e.g. dentist working with adults and youth).",
         "headQuotient": "Weighted person quotient",
         "rejects": "ne sprejema"
     }
