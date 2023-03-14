@@ -1,4 +1,5 @@
 import AdultsSvg from '@/assets/svg/icon-adults.svg';
+import AlertSvg from '@/assets/svg/icon-alert.svg';
 import AllSvg from '@/assets/svg/icon-all.svg';
 import Ban2Svg from '@/assets/svg/icon-ban-2.svg';
 import BanSvg from '@/assets/svg/icon-ban.svg';
@@ -14,6 +15,7 @@ import FamilyDrSvg from '@/assets/svg/icon-family-dr.svg';
 import FbSvg from '@/assets/svg/icon-fb.svg';
 import FilterSvg from '@/assets/svg/icon-filter.svg';
 import GynSvg from '@/assets/svg/icon-gynecologist.svg';
+import InfoSvg from '@/assets/svg/icon-info.svg';
 import PedSvg from '@/assets/svg/icon-kids.svg';
 import LinkSvg from '@/assets/svg/icon-link.svg';
 import ListSvg from '@/assets/svg/icon-list-view.svg';
@@ -27,9 +29,11 @@ import LogoSvg from '@/assets/svg/zdravniki-sledilnik-logo.svg';
 
 export const icons = {
   AdultsSvg,
+  AlertSvg,
   AllSvg,
   BanSvg,
   Ban2Svg,
+  ClinicSvg,
   CaretDown,
   CaretUp,
   CheckSvg,
@@ -41,7 +45,7 @@ export const icons = {
   FbSvg,
   FilterSvg,
   GynSvg,
-  ClinicSvg,
+  InfoSvg,
   PedSvg,
   LinkSvg,
   ListSvg,
