@@ -15,7 +15,8 @@
     "gyn": "ginekolog",
     "info": {
         "noPhone": "Ni telefonske številke",
-        "changedOn": "Popravek od: "
+        "changedOn": "Popravek od: ",
+        "noResults": "Noben zdravnik ne ustreza iskalnim pogojem. Preverite, če imate označeno pravilno vrsto zdravnika ali razširite pogled na zemljevidu."
     },
     "ped": "pediater",
     "rejects": "ne sprejema",

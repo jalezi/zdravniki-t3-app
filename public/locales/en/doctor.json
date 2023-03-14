@@ -15,7 +15,8 @@
     "gyn": "gynecologist",
     "info": {
         "noPhone": "Phone number not available",
-        "changedOn": "Changed on: "
+        "changedOn": "Changed on: ",
+        "noResults": "No doctor found based on your search criteria. Check if you have the right doctor type selected or zoom out the map."
     },
     "ped": "pediatrician",
     "rejects": "not accepting",
