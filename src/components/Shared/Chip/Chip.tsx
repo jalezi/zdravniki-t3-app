@@ -20,7 +20,7 @@ const SizeStyles = {
 export type ChipSize = keyof typeof SizeStyles;
 type CustomChipProps = {
   iconName?: IconName;
-  text: string;
+  text?: string;
   size?: ChipSize;
   iconSize?: IconSize;
 };
@@ -40,7 +40,7 @@ const Chip = ({
   return (
     <Polymorphic as="span" className={chipStyles} {...props}>
       {iconName ? <Icon name={iconName} size={iconSize ?? size} /> : null}
-      <span>{text}</span>
+      {text ? <span>{text}</span> : null}
     </Polymorphic>
   );
 };
