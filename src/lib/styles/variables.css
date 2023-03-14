@@ -93,6 +93,9 @@
   --breakpoint-xl: 1200px;
   --breakpoint-xxl: 1400px;
 
+  /* opacity */
+  --opacity-80: 0.8;
+
   /* timing */
   --nav-transition-time: 650ms;
   --overlay-transition-delay: 367ms;

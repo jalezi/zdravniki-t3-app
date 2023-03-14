@@ -1,19 +1,33 @@
 .IconButton {
-  --size: var(--size-md, 1.5rem);
-  --padding: 0.2em;
+  --icon-button-size: var(--size-md, 1.5rem);
+  --icon-button-padding: 0.2em;
+  --icon-button-opacity: var(--opacity-80);
 
   display: inline-flex;
   align-items: center;
   align-self: center;
   justify-content: center;
 
-  min-width: calc(var(--size) + var(--padding) * 2);
-  min-height: calc(var(--size) + var(--padding) * 2);
-  padding: var(--padding, 0.2em);
+  min-width: calc(var(--icon-button-size) + var(--icon-button-padding) * 2);
+  min-height: calc(var(--icon-button-size) + var(--icon-button-padding) * 2);
+  padding: var(--icon-button-padding, 0.2em);
 
   color: inherit;
 
+  opacity: var(--opacity-80, 0.8);
   border-radius: 50%;
+
+  transition: all var(--cubic-bezier);
+}
+
+@media (hover: hover) {
+  .IconButton:hover {
+    opacity: 1;
+  }
+}
+
+.IconButton:focus-visible {
+  opacity: 1;
 }
 
 .IconButton:disabled,
@@ -27,17 +41,11 @@
   align-items: center;
   justify-content: center;
 
-  /* width: 100%;
-  height: 100%; */
-
-  width: var(--size);
-  height: var(--size);
+  width: var(--icon-button-size);
+  height: var(--icon-button-size);
 }
 
 .IconButton .IconContainer > svg {
   width: 100%;
   height: 100%;
-
-  /* width: var(--size);
-  height: var(--size); */
 }

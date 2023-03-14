@@ -41,10 +41,6 @@
   transition: right 0.8s ease-in-out 0.5s, box-shadow var(--cubic-bezier);
 }
 
-.ToggleViewContainer:focus-within {
-  box-shadow: var(--box-shadow);
-}
-
 .ToggleViewContainer .Btn {
   position: relative;
 
@@ -56,11 +52,20 @@
   font-size: 1rem;
   color: var(--color-blue-200);
 
+  opacity: 1;
   background: var(--color-blue-850);
   border-radius: 50%;
 }
 
+@media (hover: hover) {
+  .ToggleViewContainer .Btn:hover {
+    opacity: 1;
+    background-color: var(--color-blue-900);
+  }
+}
+
 .ToggleViewContainer .Btn:focus-visible {
+  background-color: var(--color-blue-900);
   outline: none;
 }
 
