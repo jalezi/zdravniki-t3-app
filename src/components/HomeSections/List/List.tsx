@@ -9,6 +9,7 @@ import { createDoctorFilter, normalize } from '@/lib/utils/search';
 
 import InfiniteScroll from './InfiniteScroll';
 import styles from './List.module.css';
+import { NoResult } from './NoResults';
 
 const List = () => {
   const { data, status } = useDoctors();
@@ -43,7 +44,7 @@ const List = () => {
     <>
       <header className={headerStyles}>{totalHits}</header>
       <InfiniteScroll data={filteredDoctors ?? []} />
-      {filteredDoctors?.length === 0 ? <div>Refine your search</div> : null}
+      {filteredDoctors?.length === 0 ? <NoResult /> : null}
 
       <Footer position="list" />
     </>
