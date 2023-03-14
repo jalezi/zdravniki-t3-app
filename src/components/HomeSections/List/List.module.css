@@ -21,6 +21,7 @@
 
   overflow-y: auto;
 
+  width: 100%;
   height: calc(100dvh - var(--header-height-sm) - var(--list-header-height));
   padding-bottom: var(--footer-height-sm__list);
 
