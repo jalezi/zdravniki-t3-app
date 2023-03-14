@@ -4,15 +4,10 @@ import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useWindowSize } from 'usehooks-ts';
 
-import {
-  AllSvg,
-  DentistSvg,
-  FamilyDrSvg,
-  FilterSvg,
-  GynSvg,
-  PedSvg,
-} from '@/components/Shared/Icons';
+import { Chip } from '@/components/Shared/Chip';
+import type { IconName } from '@/components/Shared/Icons';
 import { BREAKPOINTS } from '@/lib/constants';
+import useBoundStore from '@/lib/store/useBoundStore';
 import type { BaseDrType } from '@/lib/types/dr-type-page';
 import { baseDrTypeSchema } from '@/lib/types/dr-type-page';
 
@@ -20,17 +15,25 @@ import styles from './DoctorOptions.module.css';
 import { FilterGroups } from './FIlterGroups';
 
 const DR_TYPE_SVG = {
-  gp: FamilyDrSvg,
-  ped: PedSvg,
-  gyn: GynSvg,
-  den: DentistSvg,
-} satisfies Record<BaseDrType, React.FC>;
+  gp: 'FamilyDrSvg',
+  ped: 'PedSvg',
+  gyn: 'GynSvg',
+  den: 'DentistSvg',
+} satisfies Record<BaseDrType, IconName>;
+
+const ACCEPTS_SVG = {
+  y: 'CheckSvg',
+  n: 'BanSvg',
+  all: 'AllSvg',
+} as const;
 
 const DoctorOptions = () => {
   const [expanded, setExpanded] = useState(false);
   const { width } = useWindowSize();
   const isMediumMediaQuery = width >= BREAKPOINTS.md;
   const { query } = useRouter();
+  const accepts = useBoundStore(state => state.accepts);
+
   const { t } = useTranslation('doctor');
 
   useEffect(() => {
@@ -51,8 +54,10 @@ const DoctorOptions = () => {
   const onToggleClick = () => setExpanded(prev => !prev);
 
   const drTypeParsed = baseDrTypeSchema.parse(query.type);
-  const DrTypeSvg = DR_TYPE_SVG[`${drTypeParsed}`];
   const drTypeTranslated = t(drTypeParsed);
+
+  const DrTypeSvg = DR_TYPE_SVG[`${drTypeParsed}`];
+  const AcceptsSvg = ACCEPTS_SVG[`${accepts}`];
 
   return (
     <div id="dr-opt-container" className={drOptContainerStyles}>
@@ -66,12 +71,16 @@ const DoctorOptions = () => {
           onClick={onToggleClick}
           className={drOptionTogglerStyles}
         >
-          <FilterSvg />
+          <Chip iconName="FilterSvg" size="md" iconSize="lg" text="" />
           <span>Filter</span>
-          <DrTypeSvg />
-          <span>{drTypeTranslated}</span>
+          <Chip
+            iconName={DrTypeSvg}
+            text={drTypeTranslated}
+            size="md"
+            iconSize="lg"
+          />
           <hr />
-          <AllSvg />
+          <Chip iconName={AcceptsSvg} size="md" iconSize="lg" text="" />
         </button>
       )}
     </div>
