@@ -1,4 +1,36 @@
 .Icon {
+  --font-size-icon: inherit;
+
   width: 1em;
   height: 1em;
+  font-size: var(--font-size-icon);
+  color: inherit;
+}
+
+.Icon.Icon__xxs {
+  --font-size-icon: 0.625rem;
+}
+
+.Icon.Icon__xs {
+  --font-size-icon: 0.6875rem;
+}
+
+.Icon.Icon__sm {
+  --font-size-icon: 0.75rem;
+}
+
+.Icon.Icon__md {
+  --font-size-icon: 0.875rem;
+}
+
+.Icon.Icon__lg {
+  --font-size-icon: 1rem;
+}
+
+.Icon.Icon__xl {
+  --font-size-icon: 1.125rem;
+}
+
+.Icon.Icon__xxl {
+  --font-size-icon: 1.25rem;
 }
