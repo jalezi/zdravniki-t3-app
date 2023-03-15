@@ -2,11 +2,6 @@
   --font-size: 1.25rem;
 }
 
-.DrName .Extra {
-  cursor: help;
-  color: var(--color-violet-500);
-}
-
 @media (hover: hover) {
   .DrName a:hover {
     color: var(--color-blue-800);

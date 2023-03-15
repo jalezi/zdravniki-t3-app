@@ -15,6 +15,7 @@ export type DrAvailabilityInfoProps = {
   load: Load;
   override: Doctor['override'];
   className?: string;
+  variant?: 'default' | 'popup' | 'page';
 };
 
 const DrAvailabilityInfo = ({
@@ -23,6 +24,7 @@ const DrAvailabilityInfo = ({
   drId,
   override,
   load,
+  variant = 'default',
   ...props
 }: DrAvailabilityInfoProps) => {
   const availabilityInfoStyles = clsx(
@@ -30,15 +32,18 @@ const DrAvailabilityInfo = ({
     props.className
   );
 
+  const acceptsId = `${drId}_accepts_${variant}`;
+  const availabilityId = `${drId}_availability_${variant}`;
+
   return (
     <div className={availabilityInfoStyles} {...props}>
       <AcceptsOrRejects
-        id={drId + '_accepts'}
+        id={acceptsId}
         accepts={accepts}
         load={load}
         override={override}
       />
-      <Availability id={drId + '_availability'} value={Number(availability)} />
+      <Availability id={availabilityId} value={Number(availability)} />
     </div>
   );
 };

@@ -11,10 +11,22 @@ export type DrActionsProps = {
   drId: string;
   phone: PhoneButtonProps['tooltipContent'];
   className?: string;
+  variant?: 'default' | 'popup' | 'page';
 };
 
-const DrActions = ({ drId, phone, className }: DrActionsProps) => {
-  const actionsStyles = clsx(styles.DrActions, className);
+const DrActions = ({
+  drId,
+  phone,
+  className,
+  variant = 'default',
+}: DrActionsProps) => {
+  const actionsStyles = clsx(
+    styles.DrActions,
+    variant === 'popup' && styles.Row,
+    className
+  );
+
+  const phoneId = `${drId}_phone_${variant}`;
 
   return (
     <div className={actionsStyles}>
@@ -22,7 +34,7 @@ const DrActions = ({ drId, phone, className }: DrActionsProps) => {
         <DotsVertSvg />
       </IconButton>
       <Phone
-        id={drId + '_phone'}
+        id={phoneId}
         href={phone ? `tel: ${phone}` : undefined}
         tooltipContent={phone}
       />

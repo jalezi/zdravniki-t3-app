@@ -2,3 +2,7 @@
   display: inline-flex;
   flex-direction: column;
 }
+
+.DrActions.Row {
+  flex-direction: row;
+}
