@@ -49,6 +49,10 @@
 .Layout > .Absolute.FiltersSection {
   z-index: 9;
   top: unset;
+  right: 1em;
+  bottom: 1.5em;
+  left: 1em;
+
   background: transparent;
 }
 
