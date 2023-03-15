@@ -2,7 +2,6 @@ import { clsx } from 'clsx';
 import { useTranslation } from 'next-i18next';
 import { useDebounce } from 'usehooks-ts';
 
-import { Footer } from '@/components/Footer';
 import useDoctors from '@/lib/hooks/useDoctors';
 import useBoundStore from '@/lib/store/useBoundStore';
 import { createDoctorFilter, normalize } from '@/lib/utils/search';
@@ -43,10 +42,8 @@ const List = () => {
   return (
     <>
       <header className={headerStyles}>{totalHits}</header>
-      <InfiniteScroll data={filteredDoctors ?? []} />
       {filteredDoctors?.length === 0 ? <NoResult /> : null}
-
-      <Footer position="list" />
+      <InfiniteScroll data={filteredDoctors ?? []} />
     </>
   );
 };

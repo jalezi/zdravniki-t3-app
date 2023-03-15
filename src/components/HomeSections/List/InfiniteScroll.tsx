@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { useCallback, useRef, useState } from 'react';
 
+import { Footer } from '@/components/Footer';
 import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './List.module.css';
@@ -106,6 +107,7 @@ const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
     <>
       <div role="list" className={innerContainerStyles}>
         {infiniteList}
+        <Footer position="list" />
       </div>
     </>
   );
