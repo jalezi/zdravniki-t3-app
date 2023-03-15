@@ -1,0 +1,23 @@
+.DrTypeChip {
+  --color-dr-type: inherit;
+  --color-bg-dr-type: transparent;
+
+  color: var(--color-dr-type);
+  background: var(--color-bg-dr-type);
+}
+
+.DrTypeChip.WithBg {
+  --color-bg-dr-type: var(--color-blue-50);
+  --color-dr-type: var(--color-blue-900-A87);
+}
+
+.DrTypeChip.Extra {
+  --color-bg-dr-type: transparent;
+  --color-dr-type: var(--color-violet-500);
+
+  cursor: help;
+}
+
+.DrTypeChip.Extra.WithBg {
+  --color-bg-dr-type: var(--color-violet-200);
+}
