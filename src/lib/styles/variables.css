@@ -61,6 +61,7 @@
 
   /* violet colors */
   --color-violet-500: rgb(92, 17, 210);
+  --color-violet-200: rgb(230, 214, 255);
 
   /* body colors */
   --color-body: var(--color-black-A75);
