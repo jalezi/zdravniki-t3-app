@@ -5,21 +5,13 @@ import { useEffect, useState } from 'react';
 import { useWindowSize } from 'usehooks-ts';
 
 import { Chip } from '@/components/Shared/Chip';
-import type { IconName } from '@/components/Shared/Icons';
 import { BREAKPOINTS } from '@/lib/constants';
 import useBoundStore from '@/lib/store/useBoundStore';
-import type { BaseDrType } from '@/lib/types/dr-type-page';
 import { baseDrTypeSchema } from '@/lib/types/dr-type-page';
 
 import styles from './DoctorOptions.module.css';
 import { FilterGroups } from './FIlterGroups';
-
-const DR_TYPE_SVG = {
-  gp: 'FamilyDrSvg',
-  ped: 'PedSvg',
-  gyn: 'GynSvg',
-  den: 'DentistSvg',
-} satisfies Record<BaseDrType, IconName>;
+import { DrTypeChip } from '../../DrInfo/DrTypeChip';
 
 const ACCEPTS_SVG = {
   y: 'CheckSvg',
@@ -56,7 +48,6 @@ const DoctorOptions = () => {
   const drTypeParsed = baseDrTypeSchema.parse(query.type);
   const drTypeTranslated = t(drTypeParsed);
 
-  const DrTypeSvg = DR_TYPE_SVG[`${drTypeParsed}`];
   const AcceptsSvg = ACCEPTS_SVG[`${accepts}`];
 
   return (
@@ -73,8 +64,8 @@ const DoctorOptions = () => {
         >
           <Chip iconName="FilterSvg" size="md" iconSize="lg" text="" />
           <span>Filter</span>
-          <Chip
-            iconName={DrTypeSvg}
+          <DrTypeChip.DrTypeChip
+            drType={drTypeParsed}
             text={drTypeTranslated}
             size="md"
             iconSize="lg"
