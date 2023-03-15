@@ -22,7 +22,9 @@
   overflow-y: auto;
 
   width: 100%;
-  height: calc(100dvh - var(--header-height-sm) - var(--list-header-height));
+  max-height: calc(
+    100dvh - var(--header-height-sm) - var(--list-header-height)
+  );
   padding-bottom: var(--footer-height-sm__list);
 
   background: transparent;
@@ -110,7 +112,7 @@
 
 @media only screen and (min-width: 768px) {
   .ListInnerContainer {
-    height: calc(
+    max-height: calc(
       100dvh - var(--header-height-lg) * 2 - var(--list-header-height)
     );
     padding-bottom: var(--footer-height);
