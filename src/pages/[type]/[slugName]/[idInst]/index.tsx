@@ -1,23 +1,25 @@
 import type { ParsedUrlQuery } from 'querystring';
 
-import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import type { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Papa from 'papaparse';
 
 import nextI18nextConfig from '@/../../next-i18next.config.js';
+import LayoutMDX from '@/layouts/LayoutMDX';
 import { DOCTORS_CSV_URL } from '@/lib/constants/data-url';
 import { drListSchema } from '@/lib/types/doctors';
-import type { DrListSchema } from '@/lib/types/doctors';
-import { instTransformedSchema } from '@/lib/types/institutions';
+import { instListSchema } from '@/lib/types/institutions';
 import {
   PARSE_OPTIONS,
   fetchDrAndInstDataAndParse,
 } from '@/lib/utils/fetch-and-parse';
 import { drPersonalPageSchema, slugSchema } from '@/lib/utils/zod';
+import type { Doctor } from '@/server/api/routers/doctors';
+import { getDrLocation } from '@/server/api/routers/doctors';
 
 interface DrTypeNameInstPageProps {
-  doctors: DrListSchema;
+  doctors: Doctor[];
 }
 
 interface DrTypeNameInstPageParams extends ParsedUrlQuery {
@@ -26,7 +28,7 @@ interface DrTypeNameInstPageParams extends ParsedUrlQuery {
   idInst: string;
 }
 
-const DrTypeNameInstPage: NextPage<DrTypeNameInstPageProps> = ({ doctors }) => {
+const DrTypeNameInstPage = ({ doctors }: DrTypeNameInstPageProps) => {
   const router = useRouter();
   const goBack = () => {
     router.back();
@@ -44,6 +46,10 @@ const DrTypeNameInstPage: NextPage<DrTypeNameInstPageProps> = ({ doctors }) => {
 };
 
 export default DrTypeNameInstPage;
+
+DrTypeNameInstPage.getLayout = function getLayout(page: React.ReactNode) {
+  return <LayoutMDX>{page}</LayoutMDX>;
+};
 
 export const getStaticProps: GetStaticProps<
   DrTypeNameInstPageProps,
@@ -73,14 +79,37 @@ export const getStaticProps: GetStaticProps<
   const doctorsValidated = drListSchema.parse(doctorsFiltered);
 
   const doctors = doctorsValidated.map(doctor => {
-    const institution = institutionsParsedFromCsv.data.find(
+    const { location, phone: drPhone, website: drWebsite, ...rest } = doctor;
+
+    const _institution = institutionsParsedFromCsv.data.find(
       institution => institution.id_inst === doctor.idInst
     );
 
+    const institution = instListSchema.parse([_institution])[0];
+    const institutionLocation = institution?.location;
+
+    const {
+      address,
+      geoLocation,
+      meta: drLocationMeta,
+    } = getDrLocation(location, institutionLocation);
+
+    const phone = (drPhone || institution?.phone) ?? null;
+    const website = (drWebsite || institution?.website) ?? null;
+
+    const drMeta = { ...drLocationMeta, hasInst: !!institution } as const;
+
     return {
-      ...doctor,
-      provider: institution?.name ?? '',
-      institution: instTransformedSchema.parse(institution),
+      ...rest,
+      phone,
+      website,
+      provider: institution?.name ?? null,
+      institution: institution ?? null,
+      location: {
+        address,
+        geoLocation,
+      },
+      meta: drMeta,
     };
   });
 

@@ -5,11 +5,7 @@ import type { DrAddress, DrListSchema, DrLocation } from '@/lib/types/doctors';
 import { drListSchema } from '@/lib/types/doctors';
 import type { PageDrType } from '@/lib/types/dr-type-page';
 import { pageDrTypeSchema } from '@/lib/types/dr-type-page';
-import type {
-  InstAddress,
-  InstLocation,
-  InstTransformed,
-} from '@/lib/types/institutions';
+import type { InstAddress, InstLocation } from '@/lib/types/institutions';
 import { instListSchema } from '@/lib/types/institutions';
 import type { LatLngLiteral } from '@/lib/types/Map';
 import type { RouterOutputs } from '@/lib/utils/api';
@@ -39,7 +35,7 @@ const DummyAddress = {
   post: '',
 } satisfies Address;
 
-const getDoctorsAddress = (
+export const getDoctorsAddress = (
   drAddress: DrAddress,
   instAddress: InstAddress | undefined
 ): { address: Address; source: Source } => {
@@ -57,7 +53,7 @@ const DummyGeoLocation = {
   lng: SL_CENTER[1],
 } satisfies LatLngLiteral;
 
-const getDoctorsGeoLocation = (
+export const getDoctorsGeoLocation = (
   drGeoLocation: LatLngLiteral | null,
   instGeoLocation: LatLngLiteral | null | undefined
 ): {
@@ -76,7 +72,7 @@ const getDoctorsGeoLocation = (
   };
 };
 
-const getDrLocation = (
+export const getDrLocation = (
   drLocation: DrLocation,
   instLocation: InstLocation | undefined
 ) => {
@@ -123,17 +119,6 @@ export const doctorsRouter = createTRPCRouter({
         type: input.type,
       });
 
-      const instIds = new Set(doctorsFiltered.map(doctor => doctor.idInst));
-
-      const institutionsFiltered: Record<string, InstTransformed> =
-        institutionsValidated.data
-          .filter(institution => instIds.has(institution.id))
-          .reduce((acc, institution) => {
-            const { id, ...rest } = institution;
-
-            return { ...acc, [id]: rest };
-          }, {});
-
       const doctors = doctorsFiltered.map(doctor => {
         const {
           location,
@@ -141,9 +126,12 @@ export const doctorsRouter = createTRPCRouter({
           website: drWebsite,
           ...rest
         } = doctor;
-        const { idInst } = doctor;
 
-        const institution = institutionsFiltered[`${idInst}`];
+        const _institution = institutionsParsedFromCsv.data.find(
+          institution => institution.id_inst === doctor.idInst
+        );
+
+        const institution = instListSchema.parse([_institution])[0];
         const institutionLocation = institution?.location;
 
         const {
