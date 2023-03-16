@@ -16,7 +16,8 @@
     "info": {
         "noPhone": "Numero telefonico non disponibile",
         "changedOn": "Modificato il: ",
-        "noResults": "Nessun medico trovato in base ai tuoi criteri di ricerca. Controlla di aver selezionato il tipo di medico corretto o ingrandisci la mappa."
+        "noResults": "Nessun medico trovato in base ai tuoi criteri di ricerca. Controlla di aver selezionato il tipo di medico corretto o ingrandisci la mappa.",
+        "noData": "Nessun dato disponibile!"
     },
     "ped": "pediatra",
     "rejects": "non accetta",

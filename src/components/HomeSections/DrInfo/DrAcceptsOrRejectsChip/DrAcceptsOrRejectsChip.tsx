@@ -82,13 +82,15 @@ const AcceptsOrRejects = ({
 
   const date = isDateOverride && formatDate(override.date, 'en');
 
+  const formatedLoad = isNaN(load) ? t('info.noData') : formatNumberRound(load);
+
   const tooltip = (
     <>
       <Tooltip.TooltipContent as="p" align="center" weight="700">
         {title}
       </Tooltip.TooltipContent>
       <Tooltip.TooltipContent as="p" align="center" weight="700" size="lg">
-        {formatNumberRound(load)}
+        {formatedLoad}
       </Tooltip.TooltipContent>
       {hasOverride && (
         <>
