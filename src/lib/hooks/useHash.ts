@@ -49,15 +49,10 @@ const useHash = () => {
     }
   }, [accepts, search, lat, lng, zoom, setNewPath, asPath]);
 
-  useEffect(() => {
-    if (newPath) {
-      void router.replace(newPath, newPath, {
-        shallow: true,
-        locale: router.locale,
-      });
-      setNewPath(null);
-    }
-  }, [newPath, router]);
+  if (newPath) {
+    const newHash = stringifyHash([accepts, [zoom, lat, lng], search]);
+    document.location.hash = newHash;
+  }
 };
 
 export default useHash;
