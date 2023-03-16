@@ -5,9 +5,7 @@ import { Footer } from '@/components/Footer';
 import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './List.module.css';
-import { DrActions } from '../DrInfo/DrActions';
-import { DrAvailabilityInfo } from '../DrInfo/DrAvailabilityInfo';
-import { DrBasicInfo } from '../DrInfo/DrBasicInfo';
+import { DrCard } from '../DrInfo/DrCard';
 
 const getGroupsByAlphabet = (doctors: Doctor[]) => {
   const drByAlphabet = new Map<string, Doctor[]>();
@@ -60,42 +58,23 @@ const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
           {letter}
         </h2>
         {doctors.map((doctor, index, arr) => {
-          const infoCardStyles = clsx(
-            styles.InfoCard,
-            doctor.accepts === 'y' && styles.Accepts,
-            doctor.accepts === 'n' && styles.Rejects
-          );
-
           return (
-            <div
-              role="listitem"
+            <DrCard
               key={doctor.fakeId}
               ref={index === arr.length - 1 ? lastBookElementRef : undefined}
-              className={infoCardStyles}
-            >
-              <DrBasicInfo
-                address={doctor.location.address.fullAddress}
-                drId={doctor.fakeId}
-                href={doctor.href}
-                isExtra={doctor.isExtra}
-                name={doctor.name}
-                provider={doctor.provider}
-                className={styles.BasicInfo}
-              />
-              <DrAvailabilityInfo
-                availability={doctor.availability}
-                accepts={doctor.accepts}
-                drId={doctor.fakeId}
-                load={doctor.load}
-                override={doctor.override}
-                className={styles.Availability}
-              />
-              <DrActions
-                drId={doctor.fakeId}
-                phone={doctor.phone}
-                className={styles.Actions}
-              />
-            </div>
+              accepts={doctor.accepts}
+              availability={doctor.availability}
+              drId={doctor.fakeId}
+              fullAddress={doctor.location.address.fullAddress}
+              href={doctor.href}
+              isExtra={doctor.isExtra}
+              load={doctor.load}
+              name={doctor.name}
+              override={doctor.override}
+              phone={doctor.phone}
+              provider={doctor.provider}
+              role="listitem"
+            />
           );
         })}
       </div>
