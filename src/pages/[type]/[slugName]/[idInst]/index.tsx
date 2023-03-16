@@ -13,10 +13,10 @@ import { instListSchema } from '@/lib/types/institutions';
 import {
   PARSE_OPTIONS,
   fetchDrAndInstDataAndParse,
+  getDrLocation,
 } from '@/lib/utils/fetch-and-parse';
 import { drPersonalPageSchema, slugSchema } from '@/lib/utils/zod';
 import type { Doctor } from '@/server/api/routers/doctors';
-import { getDrLocation } from '@/server/api/routers/doctors';
 
 interface DrTypeNameInstPageProps {
   doctors: Doctor[];

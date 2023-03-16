@@ -1,15 +1,15 @@
 import { z } from 'zod';
 
-import { SL_CENTER } from '@/lib/constants/map';
-import type { DrAddress, DrListSchema, DrLocation } from '@/lib/types/doctors';
+import type { DrListSchema } from '@/lib/types/doctors';
 import { drListSchema } from '@/lib/types/doctors';
 import type { PageDrType } from '@/lib/types/dr-type-page';
 import { pageDrTypeSchema } from '@/lib/types/dr-type-page';
-import type { InstAddress, InstLocation } from '@/lib/types/institutions';
 import { instListSchema } from '@/lib/types/institutions';
-import type { LatLngLiteral } from '@/lib/types/Map';
 import type { RouterOutputs } from '@/lib/utils/api';
-import { fetchDrAndInstDataAndParse } from '@/lib/utils/fetch-and-parse';
+import {
+  fetchDrAndInstDataAndParse,
+  getDrLocation,
+} from '@/lib/utils/fetch-and-parse';
 
 import { createTRPCRouter, publicProcedure } from '../trpc';
 
@@ -18,75 +18,6 @@ const filterDoctors = (
   { type }: { type: PageDrType }
 ) => {
   return doctors.filter(doctor => type === doctor.typePage);
-};
-
-type Source = 'dr' | 'inst' | 'dummy';
-type Address = NonNullable<DrAddress & InstAddress>;
-
-const DummyAddress = {
-  street: '',
-  city: '',
-  fullAddress: '',
-  municipality: '',
-  municipalityPart: '',
-  postalCode: 0,
-  postalName: '',
-  searchAddress: '',
-  post: '',
-} satisfies Address;
-
-export const getDoctorsAddress = (
-  drAddress: DrAddress,
-  instAddress: InstAddress | undefined
-): { address: Address; source: Source } => {
-  if (drAddress) {
-    return { address: drAddress, source: 'dr' };
-  }
-  if (instAddress) {
-    return { address: instAddress, source: 'inst' };
-  }
-  return { address: DummyAddress, source: 'dummy' };
-};
-
-const DummyGeoLocation = {
-  lat: SL_CENTER[0],
-  lng: SL_CENTER[1],
-} satisfies LatLngLiteral;
-
-export const getDoctorsGeoLocation = (
-  drGeoLocation: LatLngLiteral | null,
-  instGeoLocation: LatLngLiteral | null | undefined
-): {
-  geoLocation: LatLngLiteral;
-  source: Source;
-} => {
-  if (drGeoLocation) {
-    return { geoLocation: drGeoLocation, source: 'dr' };
-  }
-  if (instGeoLocation) {
-    return { geoLocation: instGeoLocation, source: 'inst' };
-  }
-  return {
-    geoLocation: DummyGeoLocation,
-    source: 'dummy',
-  };
-};
-
-export const getDrLocation = (
-  drLocation: DrLocation,
-  instLocation: InstLocation | undefined
-) => {
-  const address = getDoctorsAddress(drLocation.address, instLocation?.address);
-  const geoLocation = getDoctorsGeoLocation(
-    drLocation.geoLocation,
-    instLocation?.geoLocation
-  );
-
-  return {
-    address: address.address,
-    geoLocation: geoLocation.geoLocation,
-    meta: { address: address.source, geoLocation: geoLocation.source },
-  };
 };
 
 export const doctorsRouter = createTRPCRouter({

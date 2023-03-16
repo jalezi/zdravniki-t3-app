@@ -1,9 +1,12 @@
 import type { ParseResult } from 'papaparse';
 import Papa from 'papaparse';
 
+import type { LatLngLiteral } from '@/lib/types/Map';
+
 import { DATA_URL } from '../constants';
-import type { DrCSV } from '../types/doctors';
-import type { InstCSV } from '../types/institutions';
+import { SL_CENTER } from '../constants/map';
+import type { DrAddress, DrCSV, DrLocation } from '../types/doctors';
+import type { InstAddress, InstCSV, InstLocation } from '../types/institutions';
 
 const { DOCTORS_CSV_URL, INSTITUTIONS_CSV_URL } = DATA_URL;
 
@@ -45,4 +48,91 @@ export const fetchDrAndInstDataAndParse = async () => {
     doctorsParsedFromCsv,
     institutionsParsedFromCsv,
   } as unknown as FetchDrAndInstDataAndParse;
+};
+
+type Source = 'dr' | 'inst' | 'dummy';
+type Address = NonNullable<DrAddress & InstAddress>;
+
+const DummyAddress = {
+  street: '',
+  city: '',
+  fullAddress: '',
+  municipality: '',
+  municipalityPart: '',
+  postalCode: 0,
+  postalName: '',
+  searchAddress: '',
+  post: '',
+} satisfies Address;
+
+/**
+ * @description Get address from doctor or institution
+ * @param drAddress
+ * @param instAddress
+ * @returns
+ */
+export const getDoctorsAddress = (
+  drAddress: DrAddress,
+  instAddress: InstAddress | undefined
+): { address: Address; source: Source } => {
+  if (drAddress) {
+    return { address: drAddress, source: 'dr' };
+  }
+  if (instAddress) {
+    return { address: instAddress, source: 'inst' };
+  }
+  return { address: DummyAddress, source: 'dummy' };
+};
+
+const DummyGeoLocation = {
+  lat: SL_CENTER[0],
+  lng: SL_CENTER[1],
+} satisfies LatLngLiteral;
+
+/**
+ * @description Get geo location from doctor or institution
+ * @param drGeoLocation
+ * @param instGeoLocation
+ * @returns
+ */
+export const getDoctorsGeoLocation = (
+  drGeoLocation: LatLngLiteral | null,
+  instGeoLocation: LatLngLiteral | null | undefined
+): {
+  geoLocation: LatLngLiteral;
+  source: Source;
+} => {
+  if (drGeoLocation) {
+    return { geoLocation: drGeoLocation, source: 'dr' };
+  }
+  if (instGeoLocation) {
+    return { geoLocation: instGeoLocation, source: 'inst' };
+  }
+  return {
+    geoLocation: DummyGeoLocation,
+    source: 'dummy',
+  };
+};
+
+/**
+ * @description Get location from doctor or institution
+ * @param drLocation
+ * @param instLocation
+ * @returns
+ */
+export const getDrLocation = (
+  drLocation: DrLocation,
+  instLocation: InstLocation | undefined
+) => {
+  const address = getDoctorsAddress(drLocation.address, instLocation?.address);
+  const geoLocation = getDoctorsGeoLocation(
+    drLocation.geoLocation,
+    instLocation?.geoLocation
+  );
+
+  return {
+    address: address.address,
+    geoLocation: geoLocation.geoLocation,
+    meta: { address: address.source, geoLocation: geoLocation.source },
+  };
 };
