@@ -1,0 +1,82 @@
+.DrCard {
+  --color-before-info-card: var(--color-brand);
+
+  position: relative;
+
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: row;
+  grid-template-areas:
+    'basic actions'
+    'availability actions';
+  grid-template-columns: auto 3em;
+  grid-template-rows: auto 3em;
+  gap: 0px 0px;
+
+  padding-right: 1em;
+  padding-left: 2.5em;
+  padding-block: 1em;
+
+  background-color: var(--color-blue-50);
+  border-bottom: 1px solid var(--color-blue-100);
+}
+
+.DrCard::before {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 0;
+
+  background-color: var(--color-before-info-card);
+
+  transition: all 0.1s ease 0s;
+}
+
+.DrCard.Accepts {
+  --color-before-info-card: var(--color-accepts-y);
+}
+
+.DrCard.Rejects {
+  --color-before-info-card: var(--color-accepts-n);
+}
+
+@media (hover: hover) {
+  .DrCard:hover::before {
+    width: 0.25em;
+  }
+}
+
+.DrCard .BasicInfo {
+  grid-area: basic;
+}
+
+.DrCard .Actions {
+  grid-area: actions;
+  justify-content: space-around;
+}
+
+.DrCard .Availability {
+  display: flex;
+  grid-area: availability;
+  gap: 0.5em;
+  align-items: center;
+  align-self: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .InfoCard {
+    padding-right: 0.5em;
+    padding-left: 1.25em;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .InfoCard {
+    padding-right: 1em;
+    padding-left: 2.5em;
+  }
+}
