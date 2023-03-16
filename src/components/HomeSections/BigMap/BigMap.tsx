@@ -4,6 +4,7 @@ import { Popup as ReactLeafletPopup } from 'react-leaflet';
 import { useDebounce } from 'usehooks-ts';
 
 import { Map, TotalHits } from '@/components/Shared/Map';
+import DataSource from '@/components/Shared/Map/DataSource';
 import DrMarker from '@/components/Shared/Map/DrMarker';
 import type { MapProps } from '@/components/Shared/Map/Map';
 import CustomMarkerClusterGroup, {
@@ -111,6 +112,7 @@ function withMap(Component: typeof Map) {
           {markers}
         </CustomMarkerClusterGroup>
         <TotalHits count={markers?.length ?? 0} />
+        <DataSource />
       </Component>
     );
   }

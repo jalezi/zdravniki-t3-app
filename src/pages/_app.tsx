@@ -6,6 +6,7 @@ import { api } from '@/lib/utils/api';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
 import 'react-tooltip/dist/react-tooltip.css';
+import 'leaflet/dist/leaflet.css';
 import 'the-new-css-reset';
 import '@/lib/styles/variables.css';
 import '@/lib/styles/globals.css';

@@ -1,0 +1,16 @@
+.TotalHits {
+  pointer-events: none;
+}
+
+.TotalHits .TotalHitsBar {
+  padding-block: 0.5em;
+  padding-inline: 1em;
+  line-height: 28px;
+  background-color: #ffffff;
+}
+
+@media screen and (min-width: 768px) {
+  .TotalHits {
+    display: none;
+  }
+}

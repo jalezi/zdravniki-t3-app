@@ -36,6 +36,7 @@
   --color-blue-50: rgb(244, 248, 248);
   --color-blue-900-A87: rgba(62, 76, 87, 0.87);
   --color-blue-800-A76: rgba(9, 175, 218, 0.76);
+  --color-blue-800-A40: rgba(9, 175, 218, 0.4);
 
   /* red colors */
   --color-red-800: rgb(255, 76, 76);
