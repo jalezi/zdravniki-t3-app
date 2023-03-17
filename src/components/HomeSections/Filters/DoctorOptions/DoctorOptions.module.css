@@ -1,12 +1,3 @@
-.DoctorOptionsContainer {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-
-  background: var(--color-blue-300);
-  border-radius: var(--border-radius);
-}
-
 .DoctorOptionsContent {
   overflow: hidden;
   display: flex;
@@ -77,12 +68,6 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .DoctorOptionsContainer {
-    flex-direction: row;
-    align-items: center;
-    background: transparent;
-  }
-
   .DoctorOptionsContent {
     flex-wrap: nowrap;
 

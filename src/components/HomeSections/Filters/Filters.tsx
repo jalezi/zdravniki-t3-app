@@ -39,6 +39,7 @@ const Filters = ({ onLayoutChange, view }: Props) => {
     buttonRef.current?.blur();
   };
 
+  const drOptContainerStyles = clsx(styles.DoctorOptionsContainer);
   const toggleViewContaineStyles = clsx(styles.ToggleViewContainer);
   const iconButtonStyles = clsx(
     styles.Btn,
@@ -48,7 +49,9 @@ const Filters = ({ onLayoutChange, view }: Props) => {
 
   return (
     <div id="filters-container" className={styles.Filters}>
-      <DoctorOptions />
+      <div id="dr-opt-container" className={drOptContainerStyles}>
+        <DoctorOptions />
+      </div>
       <div id="filters-search-container" className={styles.SearchContainer}>
         <SearchInput
           ref={searchInputRef}

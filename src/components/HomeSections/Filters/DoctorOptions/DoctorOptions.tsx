@@ -36,7 +36,6 @@ const DoctorOptions = () => {
 
   const shouldApplyExpanded = isMediumMediaQuery ? false : expanded;
 
-  const drOptContainerStyles = clsx(styles.DoctorOptionsContainer);
   const drOptionTogglerStyles = clsx(styles.DoctorOptionsToggler);
   const drOptContentStyles = clsx(
     styles.DoctorOptionsContent,
@@ -51,7 +50,7 @@ const DoctorOptions = () => {
   const AcceptsSvg = ACCEPTS_SVG[`${accepts}`];
 
   return (
-    <div id="dr-opt-container" className={drOptContainerStyles}>
+    <>
       <div id="dr-opt-content" className={drOptContentStyles}>
         <FilterGroups key={isMediumMediaQuery.toString()} />
       </div>
@@ -74,7 +73,7 @@ const DoctorOptions = () => {
           <Chip iconName={AcceptsSvg} size="md" iconSize="lg" text="" />
         </button>
       )}
-    </div>
+    </>
   );
 };
 

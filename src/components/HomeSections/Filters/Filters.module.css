@@ -15,6 +15,13 @@
   color: var(--color-black-A66);
 }
 
+.DoctorOptionsContainer {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-blue-300);
+  border-radius: var(--border-radius);
+}
+
 .SearchContainer {
   display: flex;
   flex-wrap: nowrap;
@@ -105,11 +112,32 @@
     background: var(--color-white);
   }
 
+  .DoctorOptionsContainer {
+    flex: 1 1 80%;
+    flex-direction: row;
+    align-items: center;
+    background: transparent;
+  }
+
   .SearchContainer {
-    flex-grow: 1;
+    flex: 1 1 10%;
+  }
+
+  .SearchContainer:focus-within {
+    flex: 1 1 50%;
   }
 
   .ToggleViewContainer {
     display: none;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .DoctorOptionsContainer {
+    flex: 1 1 70%;
+  }
+
+  .SearchContainer {
+    flex: 1 1 20%;
   }
 }
