@@ -6,9 +6,9 @@ import { Polymorphic } from '@/components/Shared/Polymorphic';
 
 import styles from './Typography.module.css';
 
-const allowedAsSchema = z.enum(['body2', 'h2', 'strong']);
+const allowedAsSchema = z.enum(['body2', 'h1', 'h2', 'strong']);
 
-const allowedElementSchema = z.enum(['address', 'h3', 'h4']);
+const allowedElementSchema = z.enum(['address', 'h1', 'h2', 'h3', 'h4']);
 
 const customProps = z.object({
   as: allowedAsSchema.optional().default('h2').optional(),
@@ -26,6 +26,7 @@ export type TypographyProps = CustomProps &
 
 const CLASS_NAME = {
   body2: styles.Body2,
+  h1: styles.H1,
   h2: styles.H2,
   strong: styles.Strong,
 } satisfies Record<AllowedAs, string | undefined>;
