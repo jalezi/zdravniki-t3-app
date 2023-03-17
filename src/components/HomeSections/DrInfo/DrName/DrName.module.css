@@ -1,5 +1,5 @@
 .DrName {
-  --font-size: 1.25rem;
+  --font-size-typography: 1.25rem;
 }
 
 @media (hover: hover) {

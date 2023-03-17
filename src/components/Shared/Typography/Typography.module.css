@@ -10,22 +10,22 @@
 }
 
 .Typography.H1 {
-  font-size: var(--font-size, 1.5rem);
+  font-size: var(--font-size-typography, 1.5rem);
   font-weight: 700;
 }
 
 .Typography.H2 {
-  font-size: var(--font-size, 1.25rem);
+  font-size: var(--font-size-typography, 1.25rem);
   font-weight: 700;
 }
 
 .Typography.Strong {
-  font-size: var(--font-size, 1rem);
+  font-size: var(--font-size-typography, 1rem);
   font-weight: 700;
 }
 
 .Typography.Body2 {
-  font-size: var(--font-size, 0.75rem);
+  font-size: var(--font-size-typography, 0.75rem);
   font-weight: 400;
   color: var(--color, var(--color-body2));
 }
