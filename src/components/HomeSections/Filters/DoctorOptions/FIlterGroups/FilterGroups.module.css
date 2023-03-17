@@ -24,8 +24,13 @@
 .FilterGroups.AgeGroup {
   flex: 1 1 40%;
 }
-.FilterGroups.AcceptsGroup {
+
+.FilterGroups.ExtraGroup {
   flex: 1 1 40%;
+}
+
+.FilterGroups.AcceptsGroup {
+  flex: 1 1 30%;
 }
 
 @media only screen and (min-width: 768px) {
@@ -35,6 +40,11 @@
   .FilterGroups.FilterGroups.AgeGroup {
     flex: 1 1 10%;
   }
+
+  .FilterGroups.ExtraGroup {
+    flex: 1 1 10%;
+  }
+
   .FilterGroups.FilterGroups.AcceptsGroup {
     flex: 1 1 15%;
   }

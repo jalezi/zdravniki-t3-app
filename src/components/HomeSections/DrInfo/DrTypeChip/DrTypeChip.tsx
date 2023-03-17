@@ -41,6 +41,7 @@ export const ExtraChip = ({
 
 const DR_TYPE_SVG = {
   gp: 'FamilyDrSvg',
+  'gp-x': 'FamilyDrSvg',
   ped: 'PedSvg',
   gyn: 'GynSvg',
   den: 'DentistSvg',

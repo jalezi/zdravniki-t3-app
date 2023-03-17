@@ -75,8 +75,6 @@ export const drCSVTypeSchema = drCSVSchema.shape.type;
 export type DrCSVType = z.infer<typeof drCSVTypeSchema>;
 
 export const drTypeCoerceSchema = drCSVTypeSchema.transform(type => {
-  if (type === 'gp-x') return 'gp';
-  if (type === 'ped-x') return 'ped';
   return type;
 });
 

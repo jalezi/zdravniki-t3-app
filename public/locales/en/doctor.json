@@ -9,9 +9,14 @@
                 "description": "In clinics for better accessibility, insured persons who do not have a personal doctor (GP or Pediatrician) can choose their personal doctor (in case there is no available doctor or if the chosen personal doctor is permanently absent).",
                 "title": "Clinic for better accessibility"
             }
+        },
+        "btn": {
+            "normal": "normal",
+            "x": "accessible"
         }
     },
     "gp": "general practitioner",
+    "gp-x": "$t(gp)",
     "gyn": "gynecologist",
     "info": {
         "noPhone": "Phone number not available",

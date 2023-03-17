@@ -9,9 +9,14 @@
                 "description": "V ambulantah za boljšo dostopnost si izbranega osebnega zdravnika lahko izberejo zavarovane osebe, ki v dejavnosti splošne ambulante in dispanzerju za otroke in šolarje nimajo izbranega osebnega zdravnika (sploh nimajo veljavne izbire, ali je izbrani osebni zdravnik trajno odsoten).",
                 "title": "Ambulanta za boljšo dostopnost"
             }
+        },
+        "btn": {
+            "normal": "normalno",
+            "x": "dostopnost"
         }
     },
     "gp": "družinski zdravnik",
+    "gp-x": "$t(gp)",
     "gyn": "ginekolog",
     "info": {
         "noPhone": "Ni telefonske številke",

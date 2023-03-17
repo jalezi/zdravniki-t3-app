@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps<
   const doctorsFiltered = doctorsParsedFromCsv.data.filter(
     doctor =>
       doctor.id_inst === drTypePage.data.idInst &&
-      drTypePage.data.type.includes(doctor.type) &&
+      drTypePage.data.type === doctor.type &&
       drTypePage.data.slugName === slugSchema.parse(doctor.doctor)
   );
 
