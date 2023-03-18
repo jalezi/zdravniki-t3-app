@@ -2,6 +2,9 @@ import type { Dispatch, SetStateAction } from 'react';
 import type { MapContainerProps } from 'react-leaflet';
 import { AttributionControl, MapContainer, TileLayer } from 'react-leaflet';
 
+import 'leaflet-defaulticon-compatibility';
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
+
 import { MAX_ZOOM, MIN_ZOOM, SL_CENTER, ZOOM } from '@/lib/constants/map';
 import type { LeafletMap } from '@/lib/types/Map';
 

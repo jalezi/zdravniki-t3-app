@@ -37,6 +37,7 @@ specifiers:
   husky: ^8.0.3
   i18next: ^22.4.10
   leaflet: ^1.9.3
+  leaflet-defaulticon-compatibility: ^0.1.1
   leaflet.markercluster: ^1.5.3
   lint-staged: ^13.1.2
   next: 13.2.3
@@ -77,6 +78,7 @@ dependencies:
   gray-matter: 4.0.3
   i18next: 22.4.11
   leaflet: 1.9.3
+  leaflet-defaulticon-compatibility: 0.1.1
   leaflet.markercluster: 1.5.3_leaflet@1.9.3
   next: 13.2.3_biqbaboplfbrettd7655fr4n2y
   next-i18next: 13.2.2_tfixcuqpcfvvkxbuhkokcenyam
@@ -4804,6 +4806,10 @@ packages:
     dependencies:
       language-subtag-registry: 0.3.22
     dev: true
+
+  /leaflet-defaulticon-compatibility/0.1.1:
+    resolution: {integrity: sha512-vDBFdlUAwjSEGep9ih8kfJilf6yN8V9zTbF5NC/1ZwLeGko3RUQepspPnGCRMFV51dY3Lb3hziboicrFz+rxQA==}
+    dev: false
 
   /leaflet.markercluster/1.5.3_leaflet@1.9.3:
     resolution: {integrity: sha512-vPTw/Bndq7eQHjLBVlWpnGeLa3t+3zGiuM7fJwCkiMFq+nmRuG3RI3f7f4N4TDX7T4NpbAXpR2+NTRSEGfCSeA==}

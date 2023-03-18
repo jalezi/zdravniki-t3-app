@@ -13,12 +13,22 @@
 
 .MapSkeletonContainer {
   position: relative;
-  width: 100%;
+  width: 100dvw;
   height: calc(100dvh - var(--header-height-sm));
+}
+
+.MapSkeletonContainer.Sm {
+  height: var(--doctor-card-map-height, 350px);
 }
 
 @media only screen and (min-width: 768px) {
   .MapSkeletonContainer {
+    width: calc(100dvw - 350px);
     height: calc(100dvh - var(--header-height-lg));
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .MapSkeletonContainer {
+    width: calc(100dvw - 450px);
   }
 }
