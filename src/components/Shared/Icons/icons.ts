@@ -1,8 +1,10 @@
 import AdultsSvg from '@/assets/svg/icon-adults.svg';
 import AlertSvg from '@/assets/svg/icon-alert.svg';
 import AllSvg from '@/assets/svg/icon-all.svg';
+import BackSvg from '@/assets/svg/icon-back.svg';
 import Ban2Svg from '@/assets/svg/icon-ban-2.svg';
 import BanSvg from '@/assets/svg/icon-ban.svg';
+import BookingSvg from '@/assets/svg/icon-booking.svg';
 import CaretDown from '@/assets/svg/icon-caret-down.svg';
 import CaretUp from '@/assets/svg/icon-caret-up.svg';
 import CheckCircleSvg from '@/assets/svg/icon-check-circle.svg';
@@ -11,6 +13,8 @@ import ClinicSvg from '@/assets/svg/icon-clinic.svg';
 import CloseSvg from '@/assets/svg/icon-close.svg';
 import DentistSvg from '@/assets/svg/icon-dentist.svg';
 import DotsVert from '@/assets/svg/icon-dots-vertical.svg';
+import EditSvg from '@/assets/svg/icon-edit.svg';
+import EmailSvg from '@/assets/svg/icon-email.svg';
 import FamilyDrSvg from '@/assets/svg/icon-family-dr.svg';
 import FbSvg from '@/assets/svg/icon-fb.svg';
 import FilterSvg from '@/assets/svg/icon-filter.svg';
@@ -31,8 +35,10 @@ export const icons = {
   AdultsSvg,
   AlertSvg,
   AllSvg,
+  BackSvg,
   BanSvg,
   Ban2Svg,
+  BookingSvg,
   ClinicSvg,
   CaretDown,
   CaretUp,
@@ -41,6 +47,8 @@ export const icons = {
   CloseSvg,
   DentistSvg,
   DotsVert,
+  EditSvg,
+  EmailSvg,
   FamilyDrSvg,
   FbSvg,
   FilterSvg,

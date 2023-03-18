@@ -1,7 +1,9 @@
 export { default as AdultsSvg } from '@/assets/svg/icon-adults.svg';
 export { default as AllSvg } from '@/assets/svg/icon-all.svg';
+export { default as BackSvg } from '@/assets/svg/icon-back.svg';
 export { default as BanSvg } from '@/assets/svg/icon-ban.svg';
 export { default as Ban2Svg } from '@/assets/svg/icon-ban-2.svg';
+export { default as BookingSvg } from '@/assets/svg/icon-booking.svg';
 export { default as CaretDown } from '@/assets/svg/icon-caret-down.svg';
 export { default as CaretUp } from '@/assets/svg/icon-caret-up.svg';
 export { default as CheckSvg } from '@/assets/svg/icon-check.svg';
@@ -9,6 +11,8 @@ export { default as CheckCircleSvg } from '@/assets/svg/icon-check-circle.svg';
 export { default as CloseSvg } from '@/assets/svg/icon-close.svg';
 export { default as DentistSvg } from '@/assets/svg/icon-dentist.svg';
 export { default as DotsVertSvg } from '@/assets/svg/icon-dots-vertical.svg';
+export { default as EditSvg } from '@/assets/svg/icon-edit.svg';
+export { default as EmailSvg } from '@/assets/svg/icon-email.svg';
 export { default as FamilyDrSvg } from '@/assets/svg/icon-family-dr.svg';
 export { default as FbSvg } from '@/assets/svg/icon-fb.svg';
 export { default as FilterSvg } from '@/assets/svg/icon-filter.svg';
