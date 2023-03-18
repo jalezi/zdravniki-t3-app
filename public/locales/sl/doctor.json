@@ -4,25 +4,25 @@
     "all": "vsi",
     "den": "zobozdravnik",
     "extra": {
+        "btn": {
+            "normal": "normalno",
+            "x": "dostopnost"
+        },
         "clinic": {
             "betterAccessibility": {
                 "description": "V ambulantah za boljšo dostopnost si izbranega osebnega zdravnika lahko izberejo zavarovane osebe, ki v dejavnosti splošne ambulante in dispanzerju za otroke in šolarje nimajo izbranega osebnega zdravnika (sploh nimajo veljavne izbire, ali je izbrani osebni zdravnik trajno odsoten).",
                 "title": "Ambulanta za boljšo dostopnost"
             }
-        },
-        "btn": {
-            "normal": "normalno",
-            "x": "dostopnost"
         }
     },
     "gp": "družinski zdravnik",
     "gp-x": "$t(gp)",
     "gyn": "ginekolog",
     "info": {
-        "noPhone": "Ni telefonske številke",
         "changedOn": "Popravek od: ",
-        "noResults": "Noben zdravnik ne ustreza iskalnim pogojem. Preverite, če imate označeno pravilno vrsto zdravnika ali razširite pogled na zemljevidu.",
-        "noData": "Ni podatka!"
+        "noData": "Ni podatka!",
+        "noPhone": "Ni telefonske številke",
+        "noResults": "Noben zdravnik ne ustreza iskalnim pogojem. Preverite, če imate označeno pravilno vrsto zdravnika ali razširite pogled na zemljevidu."
     },
     "ped": "pediater",
     "rejects": "ne sprejema",
@@ -31,8 +31,8 @@
     "zzzs": {
         "accepts": " $t(accepts)",
         "doctorAvailability": "Obseg zaposlitve",
-        "doctorAvailabilityWithPercent": "Obseg zaposlitve: {{number}}",
         "doctorAvailabilityDescription": "Obseg zaposlitve: delež je lahko nižji od 100 %, ker zdravnik določen del časa dela na preventivnih programih ali na drugih dejavnostih (recimo zobozdravnik za odrasle in mladino).",
+        "doctorAvailabilityWithPercent": "Obseg zaposlitve: {{number}}",
         "headQuotient": "Glavarinski količnik",
         "rejects": " $t(rejects)"
     }

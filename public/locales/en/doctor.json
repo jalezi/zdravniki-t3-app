@@ -4,25 +4,25 @@
     "all": "all",
     "den": "dentist",
     "extra": {
+        "btn": {
+            "normal": "normal",
+            "x": "accessible"
+        },
         "clinic": {
             "betterAccessibility": {
                 "description": "In clinics for better accessibility, insured persons who do not have a personal doctor (GP or Pediatrician) can choose their personal doctor (in case there is no available doctor or if the chosen personal doctor is permanently absent).",
                 "title": "Clinic for better accessibility"
             }
-        },
-        "btn": {
-            "normal": "normal",
-            "x": "accessible"
         }
     },
     "gp": "general practitioner",
     "gp-x": "$t(gp)",
     "gyn": "gynecologist",
     "info": {
-        "noPhone": "Phone number not available",
         "changedOn": "Changed on: ",
-        "noResults": "No doctor found based on your search criteria. Check if you have the right doctor type selected or zoom out the map.",
-        "noData": "No data available!"
+        "noData": "No data available!",
+        "noPhone": "Phone number not available",
+        "noResults": "No doctor found based on your search criteria. Check if you have the right doctor type selected or zoom out the map."
     },
     "ped": "pediatrician",
     "rejects": "not accepting",
@@ -31,8 +31,8 @@
     "zzzs": {
         "accepts": " $t(accepts)",
         "doctorAvailability": "Availability",
-        "doctorAvailabilityWithPercent": "Availability: {{number}}",
         "doctorAvailabilityDescription": "Availability can be lower than 100% for doctors that work part time on preventive programs or in other units (e.g. dentist working with adults and youth).",
+        "doctorAvailabilityWithPercent": "Availability: {{number}}",
         "headQuotient": "Weighted person quotient",
         "rejects": " $t(rejects)"
     }
