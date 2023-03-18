@@ -1,0 +1,22 @@
+.LayoutDoctor {
+  position: relative;
+  z-index: var(--z-index-mdx-main);
+
+  margin-top: calc(var(--header-height-sm) + 2em);
+  margin-bottom: calc(var(--footer-height) + 2em);
+
+  font-size: 0.875rem;
+  color: var(--color-black-A87);
+
+  background: var(--color-blue-50);
+}
+
+.LayoutDoctor > .ContainerDoctor {
+  position: relative;
+}
+
+@media only screen and (min-width: 768px) {
+  .LayoutDoctor {
+    margin-top: calc(var(--header-height-lg) + 2em);
+  }
+}
