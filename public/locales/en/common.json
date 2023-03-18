@@ -1,22 +1,17 @@
 {
-    "test": "english",
-    "navLinks": {
-        "home": "Home",
-        "faq": "FAQ",
-        "about": "About",
-        "donate": "Support!",
-        "sledilnik": "Sledilnik.org"
-    },
+    "backToHome": "Back home",
     "footer": {
         "dataSource": "Data source: ",
+        "gurs": "Geodetic Administration of the Republic of Slovenia",
         "lastChange": "Last data updated on",
-        "zzzs": "Health Insurance Institute of Slovenia",
-        "gurs": "Geodetic Administration of the Republic of Slovenia"
+        "zzzs": "Health Insurance Institute of Slovenia"
     },
-    "timestamps": {
-        "datetime": "{{val, datetime}}",
-        "at": "at",
-        "noData": "No data"
+    "navLinks": {
+        "about": "About",
+        "donate": "Support!",
+        "faq": "FAQ",
+        "home": "Home",
+        "sledilnik": "Sledilnik.org"
     },
     "notFound": {
         "heading": "404: page not found",
@@ -25,5 +20,11 @@
     },
     "search": {
         "placeholder": "Search..."
+    },
+    "test": "english",
+    "timestamps": {
+        "at": "at",
+        "datetime": "{{val, datetime}}",
+        "noData": "No data"
     }
 }

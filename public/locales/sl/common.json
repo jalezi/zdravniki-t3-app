@@ -1,22 +1,17 @@
 {
-    "test": "slovensko",
-    "navLinks": {
-        "home": "Imenik",
-        "faq": "Pojasnila",
-        "about": "O projektu",
-        "donate": "Podpri!",
-        "sledilnik": "Sledilnik.org"
-    },
+    "backToHome": "Nazaj na imenik",
     "footer": {
         "dataSource": "Vir podatkov",
+        "gurs": "Geodetska uprava Republike Slovenije.",
         "lastChange": "Zadnja sprememba",
-        "zzzs": "Zavod za zdravstveno zavarovanje Slovenije",
-        "gurs": "Geodetska uprava Republike Slovenije."
+        "zzzs": "Zavod za zdravstveno zavarovanje Slovenije"
     },
-    "timestamps": {
-        "datetime": "{{val, datetime}}",
-        "at": "ob",
-        "noData": "Ni podatkov"
+    "navLinks": {
+        "about": "O projektu",
+        "donate": "Podpri!",
+        "faq": "Pojasnila",
+        "home": "Imenik",
+        "sledilnik": "Sledilnik.org"
     },
     "notFound": {
         "heading": "404: stran ne obstaja",
@@ -25,5 +20,11 @@
     },
     "search": {
         "placeholder": "Išči..."
+    },
+    "test": "slovensko",
+    "timestamps": {
+        "at": "ob",
+        "datetime": "{{val, datetime}}",
+        "noData": "Ni podatkov"
     }
 }

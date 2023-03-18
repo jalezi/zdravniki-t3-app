@@ -1,22 +1,17 @@
 {
-    "test": "italiano",
-    "navLinks": {
-        "home": "Elenco",
-        "faq": "FAQ",
-        "about": "Il progetto",
-        "donate": "Aiutaci",
-        "sledilnik": "Sledilnik.org"
-    },
+    "backToHome": "Torna all'elenco",
     "footer": {
         "dataSource": "Origine dei dati",
+        "gurs": "Amministrazione geodetica della Repubblica di Slovenia",
         "lastChange": "Ultimo aggiornamento dei dati",
-        "zzzs": "Istituto per l'assicurazione sanitaria della Slovenia",
-        "gurs": "Amministrazione geodetica della Repubblica di Slovenia"
+        "zzzs": "Istituto per l'assicurazione sanitaria della Slovenia"
     },
-    "timestamps": {
-        "datetime": "{{val, datetime}}",
-        "at": "alle",
-        "noData": "Nessun dato disponibile"
+    "navLinks": {
+        "about": "Il progetto",
+        "donate": "Aiutaci",
+        "faq": "FAQ",
+        "home": "Elenco",
+        "sledilnik": "Sledilnik.org"
     },
     "notFound": {
         "heading": "404: pagina non trovata",
@@ -25,5 +20,11 @@
     },
     "search": {
         "placeholder": "Cerca..."
+    },
+    "test": "italiano",
+    "timestamps": {
+        "at": "alle",
+        "datetime": "{{val, datetime}}",
+        "noData": "Nessun dato disponibile"
     }
 }
