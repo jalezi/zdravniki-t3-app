@@ -23,12 +23,7 @@
 
 @media only screen and (min-width: 768px) {
   .MapSkeletonContainer {
-    width: calc(100dvw - 350px);
+    width: calc(100dvw - var(--list-width));
     height: calc(100dvh - var(--header-height-lg));
-  }
-}
-@media only screen and (min-width: 1024px) {
-  .MapSkeletonContainer {
-    width: calc(100dvw - 450px);
   }
 }

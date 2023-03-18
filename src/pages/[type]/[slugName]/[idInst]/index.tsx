@@ -1,12 +1,12 @@
 import type { ParsedUrlQuery } from 'querystring';
 
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Papa from 'papaparse';
 
 import nextI18nextConfig from '@/../../next-i18next.config.js';
-import LayoutMDX from '@/layouts/LayoutMDX';
+import { DoctorCard } from '@/components/DoctorCard';
+import LayoutDoctor from '@/layouts/LayoutDoctor';
 import { DOCTORS_CSV_URL } from '@/lib/constants/data-url';
 import { drListSchema } from '@/lib/types/doctors';
 import { instListSchema } from '@/lib/types/institutions';
@@ -29,26 +29,19 @@ interface DrTypeNameInstPageParams extends ParsedUrlQuery {
 }
 
 const DrTypeNameInstPage = ({ doctors }: DrTypeNameInstPageProps) => {
-  const router = useRouter();
-  const goBack = () => {
-    router.back();
-  };
-  return (
-    <div>
-      {doctors?.map(doctor => (
-        <div key={doctor.fakeId}>{doctor.name}</div>
-      ))}
-      <button type="button" onClick={goBack} style={{ cursor: 'pointer' }}>
-        Nazaj
-      </button>
-    </div>
-  );
+  if (doctors[0] && doctors.length > 1) {
+    console.warn(`More than one doctor found for ${doctors[0].slugName}`);
+  }
+
+  const doctor = doctors[0] as Doctor;
+
+  return <DoctorCard doctor={doctor} />;
 };
 
 export default DrTypeNameInstPage;
 
 DrTypeNameInstPage.getLayout = function getLayout(page: React.ReactNode) {
-  return <LayoutMDX>{page}</LayoutMDX>;
+  return <LayoutDoctor>{page}</LayoutDoctor>;
 };
 
 export const getStaticProps: GetStaticProps<

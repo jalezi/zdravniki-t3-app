@@ -1,0 +1,114 @@
+.DoctorCard {
+  --doctor-card-map-height: 350px;
+  --dr-card-border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+
+  margin-inline: 1em;
+
+  background: var(--color-white);
+  border-top: 4px solid var(--color-doctor-card-border);
+  border-radius: var(--dr-card-border-radius);
+  box-shadow: rgba(0, 0, 0, 0.08) 1px 1px 4px 0px;
+}
+
+.DoctorCard.Accepts {
+  --color-doctor-card-border: var(--color-accepts-y);
+}
+
+.DoctorCard.Rejects {
+  --color-doctor-card-border: var(--color-accepts-n);
+}
+
+.DoctorCard .DoctorCard__info {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  align-items: flex-start;
+
+  padding: 1em;
+
+  border-top-left-radius: var(--dr-card-border-radius);
+  border-top-right-radius: var(--dr-card-border-radius);
+}
+
+.DoctorCard .DoctorCard__info a,
+.DoctorCard .DoctorCard__info button {
+  --padding-inline: 0;
+  --padding-block: 0;
+}
+
+.DoctorCard .DoctorCard__info > *:last-child {
+  margin-top: auto;
+}
+
+.DoctorCard .DoctorCard__info > .DoctorCard__back {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.DoctorCard .DoctorCard__map {
+  position: relative;
+  height: var(--doctor-card-map-height);
+}
+
+.DoctorCard .DoctorCard__map > *:first-child {
+  border-bottom-right-radius: var(--dr-card-border-radius);
+  border-bottom-left-radius: var(--dr-card-border-radius);
+}
+
+.DoctorCard .DoctorCard__back {
+  align-self: stretch;
+  margin-top: auto;
+}
+
+.DoctorCard .Divider {
+  align-self: stretch;
+  height: 1px;
+  background-color: var(--color-blue-300);
+}
+
+.DoctorCard .Override {
+  cursor: help;
+  color: var(--color-blue-900-A87);
+  background: var(--color-blue-50);
+}
+
+@media (hover: hover) {
+  .DoctorCard > .DoctorCard__info *:is(a, button):hover {
+    color: var(--color-blue-800);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .DoctorCard {
+    flex-direction: row;
+    justify-content: space-between;
+
+    min-height: var(--doctor-card-map-height);
+
+    border-top: none;
+    border-left: 4px solid var(--color-doctor-card-border);
+  }
+
+  .DoctorCard .DoctorCard__info {
+    flex: 1 1 60%;
+  }
+
+  .DoctorCard .DoctorCard__map {
+    flex: 1 1 40%;
+    width: var(--doctor-card-map-height);
+    height: auto;
+  }
+
+  .DoctorCard .DoctorCard__map > *:first-child {
+    border-top-right-radius: var(--dr-card-border-radius);
+    border-bottom-right-radius: var(--dr-card-border-radius);
+    border-bottom-left-radius: 0;
+  }
+}
