@@ -42,7 +42,7 @@
   left: 0;
 }
 
-.Layout > .Absolute.ListSection {
+.Layout > .ListSection {
   --list-header-height: 2.5rem;
 }
 
@@ -58,42 +58,28 @@
 
 @media only screen and (min-width: 768px) {
   .Layout {
+    --list-width: 350px;
+
     top: var(--header-height-lg);
 
     display: grid;
     grid-auto-flow: row;
-    grid-template: 'filters filters' 64px 'map list' 1fr / auto 350px;
+    grid-template: 'filters filters' 64px 'map list' 1fr / auto var(
+        --list-width
+      );
     gap: 0;
 
     height: calc(100dvh - var(--header-height-lg));
   }
 
-  .Layout > .Absolute.MapSection,
-  .Layout > .Absolute.ListSection,
-  .Layout > .FiltersSection {
-    position: unset;
-    z-index: unset;
-    top: unset;
-    right: unset;
-    bottom: unset;
-    left: unset;
-
-    transition: unset;
-  }
-
-  .Layout > .Absolute.MapSection {
+  .Layout > .MapSection {
+    position: relative;
     grid-area: map;
-    height: calc(
-      100dvh - var(--header-height-lg) * 2
-    ); /* minus header and filters */
   }
 
-  .Layout > .Absolute.ListSection {
+  .Layout > .ListSection {
     position: relative;
     grid-area: list;
-    height: calc(
-      100dvh - var(--header-height-lg) * 2
-    ); /* minus header and filters */
   }
 
   .Layout > .FiltersSection {
@@ -103,6 +89,6 @@
 
 @media only screen and (min-width: 1024px) {
   .Layout {
-    grid-template: 'filters filters' 64px 'map list' 1fr / auto 450px;
+    --list-width: 450px;
   }
 }

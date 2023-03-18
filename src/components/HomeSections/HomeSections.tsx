@@ -26,7 +26,7 @@ const HomeSections = () => {
     () =>
       dynamic(() => import('./BigMap').then(mod => mod.BigMap), {
         ssr: false,
-        loading: MapSkeleton,
+        loading: MapSkeleton.bind(null, { size: 'lg' }),
       }),
     []
   );
@@ -69,17 +69,20 @@ const HomeSections = () => {
 
   const mapStyles = clsx(
     styles.MapSection,
-    styles.Absolute,
+    !isMediumMediaQuery && styles.Absolute,
     layoutVisible === 'map' && styles.Visible
   );
 
   const listStyles = clsx(
     styles.ListSection,
-    styles.Absolute,
+    !isMediumMediaQuery && styles.Absolute,
     !isMediumMediaQuery && layoutVisible === 'list' && styles.Visible
   );
 
-  const filtersStyles = clsx(styles.FiltersSection, styles.Absolute);
+  const filtersStyles = clsx(
+    styles.FiltersSection,
+    !isMediumMediaQuery && styles.Absolute
+  );
 
   return (
     <>
