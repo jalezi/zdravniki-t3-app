@@ -35,18 +35,11 @@ const HomeSections = () => {
   const [map, setMap] = useState<null | LeafletMap>(null);
   const zoom = useBoundStore(state => state.zoom);
   const center = useBoundStore(state => state.center);
-  const bounds = useBoundStore(state => state.bounds);
-  const setBounds = useBoundStore(state => state.setBounds);
 
   const { width } = useWindowSize();
   const isMediumMediaQuery = width >= BREAKPOINTS.md;
 
   useHash();
-  useEffect(() => {
-    if (map && !bounds) {
-      setBounds(map.getBounds());
-    }
-  }, [map, bounds, setBounds]);
 
   const lat = center[0];
   const lng = center[1];
