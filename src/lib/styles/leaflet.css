@@ -4,13 +4,14 @@
 }
 
 .leaflet-container a {
-  --webkit-tap-highlight-color: inherit;
+  --webkit-tap-highlight-color: var(--color-blue-700-A40);
 
   cursor: pointer;
-  color: inherit;
+  color: var(--color-blue-700);
 }
 
-.leaflet-container a:hover {
+.leaflet-popup a,
+.leaflet-control-zoom a {
   color: inherit;
 }
 
