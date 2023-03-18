@@ -20,10 +20,10 @@ export type DrBasicInfoProps = {
   address: string;
 
   className?: string;
-  variant?: 'default' | 'popup' | 'page';
+  variant?: 'list' | 'popup' | 'page';
 };
 
-const DrBasicInfo = ({ variant = 'default', ...props }: DrBasicInfoProps) => {
+const DrBasicInfo = ({ variant = 'list', ...props }: DrBasicInfoProps) => {
   const router = useRouter();
   const { t } = useTranslation('doctor');
 
@@ -40,8 +40,13 @@ const DrBasicInfo = ({ variant = 'default', ...props }: DrBasicInfoProps) => {
 
   return (
     <div className={basicStyles}>
-      <DrName name={props.name} locale={router.locale} href={props.href}>
-        {variant === 'default' && props.isExtra ? (
+      <DrName
+        name={props.name}
+        locale={router.locale}
+        href={props.href}
+        variant={variant}
+      >
+        {variant === 'list' && props.isExtra ? (
           <DrTypeChip.ExtraChip id={extraId} />
         ) : null}
       </DrName>
@@ -59,12 +64,36 @@ const DrBasicInfo = ({ variant = 'default', ...props }: DrBasicInfoProps) => {
         </div>
       ) : null}
 
+      {variant === 'page' ? (
+        <div className={styles.TypeContainer}>
+          <DrTypeChip.DrTypeChip
+            drType={drTypeParsed}
+            text={drTypeTranslated}
+            variant="contained"
+            iconSize="lg"
+          />
+          {props.isExtra ? (
+            <DrTypeChip.ExtraChip
+              id={extraId}
+              text={extra?.title}
+              variant="contained"
+            />
+          ) : null}
+        </div>
+      ) : null}
+
       <Tooltip.Tooltip anchorSelect={`#${extraId}`} place="bottom">
-        {extra?.title}
+        {variant === 'page' ? extra.description : extra?.title}
       </Tooltip.Tooltip>
       <div>
-        <DrProvider provider={props.provider ? props.provider : 'Ni podatka'} />
-        <DrAddress address={props.address ? props.address : 'Ni podatka'} />
+        <DrProvider
+          provider={props.provider ? props.provider : 'Ni podatka'}
+          variant={variant}
+        />
+        <DrAddress
+          address={props.address ? props.address : 'Ni podatka'}
+          variant={variant}
+        />
       </div>
     </div>
   );
