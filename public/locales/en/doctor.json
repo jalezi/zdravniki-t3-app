@@ -24,8 +24,29 @@
         "noPhone": "Phone number not available",
         "noResults": "No doctor found based on your search criteria. Check if you have the right doctor type selected or zoom out the map."
     },
+    "orderform": {
+        "linkReplaceText": "get appointment"
+    },
     "ped": "pediatrician",
     "rejects": "not accepting",
+    "reportError": {
+        "cancel": "Cancel",
+        "placeholder": {
+            "address": "address",
+            "availability": "availability",
+            "email": "email",
+            "note": "note",
+            "orderform": "link to order page",
+            "phone": "phone",
+            "website": "web page"
+        },
+        "reportReceived": "Thank you! We will look into it.",
+        "send": "Send",
+        "text": "Report error in doctor data and add the correct data or notes:",
+        "title": "Report error",
+        "linkText": "Report error in doctor data",
+        "tooltip": "$t(linkText)"
+    },
     "students": "students",
     "youth": "youth",
     "zzzs": {

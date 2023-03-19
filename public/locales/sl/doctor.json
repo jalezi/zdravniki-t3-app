@@ -24,8 +24,29 @@
         "noPhone": "Ni telefonske številke",
         "noResults": "Noben zdravnik ne ustreza iskalnim pogojem. Preverite, če imate označeno pravilno vrsto zdravnika ali razširite pogled na zemljevidu."
     },
+    "orderform": {
+        "linkReplaceText": "naročanje"
+    },
     "ped": "pediater",
     "rejects": "ne sprejema",
+    "reportError": {
+        "cancel": "Prekliči",
+        "placeholder": {
+            "address": "naslov",
+            "availability": "obseg zaposlitve",
+            "email": "e-pošta",
+            "note": "opomba",
+            "orderform": "povezava za naročanje",
+            "phone": "telefon",
+            "website": "spletna stran"
+        },
+        "reportReceived": "Hvala za poslano! Podatke bomo pregledali.",
+        "send": "Pošlji",
+        "text": "Prijavi napako na posameznih podatkih o zdravniku in vnesi pravilne podatke ali opombo:",
+        "title": "Prijavi napako",
+        "linkText": "Prijavi napako v objavljenih podatkih",
+        "tooltip": "$t(linkText)"
+    },
     "students": "študenti",
     "youth": "mladina",
     "zzzs": {

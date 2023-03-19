@@ -24,8 +24,29 @@
         "noPhone": "Numero telefonico non disponibile",
         "noResults": "Nessun medico trovato in base ai tuoi criteri di ricerca. Controlla di aver selezionato il tipo di medico corretto o ingrandisci la mappa."
     },
+    "orderform": {
+        "linkReplaceText": "prenota un appuntamento"
+    },
     "ped": "pediatra",
     "rejects": "non accetta",
+    "reportError": {
+        "cancel": "Annulla",
+        "placeholder": {
+            "address": "indirizzo",
+            "availability": "disponibilità",
+            "email": "e-mail",
+            "note": "nota",
+            "orderform": "link alla pagina di prenotazione",
+            "phone": "telefono",
+            "website": "pagina web"
+        },
+        "reportReceived": "Grazie! Esamineremo i dati.",
+        "send": "Invia",
+        "text": "Segnala un errore nei dati del medico e aggiungi i dati corretti o delle note:",
+        "title": "Segnala un errore",
+        "linkText": "Segnala un errore nei dati pubblicati",
+        "tooltip": "$t(linkText)"
+    },
     "students": "studenti",
     "youth": "giovani",
     "zzzs": {
