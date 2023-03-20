@@ -77,6 +77,8 @@ const HomeSections = () => {
     !isMediumMediaQuery && styles.Absolute
   );
 
+  const isListFocusable = layoutVisible === 'list' && !isMediumMediaQuery;
+
   return (
     <>
       <section id="filters" className={filtersStyles}>
@@ -92,7 +94,11 @@ const HomeSections = () => {
           minZoom={MIN_ZOOM}
         />
       </section>
-      <section id="list" className={listStyles}>
+      <section
+        id="list"
+        className={listStyles}
+        tabIndex={isListFocusable ? undefined : -1}
+      >
         <List />
       </section>
     </>
