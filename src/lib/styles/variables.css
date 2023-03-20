@@ -5,6 +5,7 @@
   --header-height-lg: 4rem;
   --size-md: 1.5rem;
   --mdx-container-width: 670px;
+  --doctor-container-width: calc(60ch + 350px);
   --filters-height-sm: 8.25rem; /* browser calculated - 132px */
   --footer-height: 4.875rem; /* browser calculated - 78px */
   --footer-height-sm__list: calc(

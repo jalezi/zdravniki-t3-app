@@ -20,7 +20,7 @@ const LayoutDoctor = (props: Props) => {
       <main className={clsx(IBMPlexSans.className, styles.LayoutDoctor)}>
         <div className={clsx(styles.ContainerDoctor)}>{props.children}</div>
       </main>
-      <Footer />
+      <Footer position="doctor" />
     </>
   );
 };

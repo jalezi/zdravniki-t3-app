@@ -8,13 +8,14 @@ import styles from './Footer.module.css';
 import { LongDate } from '../Shared/LongDate';
 
 type FooterProps = {
-  position?: 'mdx' | 'list';
+  position?: 'mdx' | 'list' | 'doctor';
 };
 
 const Footer = ({ position = 'mdx' }: FooterProps) => {
   const positionStyles = clsx(
     position === 'mdx' && styles.Mdx,
-    position === 'list' && styles.List
+    position === 'list' && styles.List,
+    position === 'doctor' && styles.Doctor
   );
   const { t } = useTranslation('common');
 

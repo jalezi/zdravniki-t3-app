@@ -17,6 +17,7 @@
   color: var(--color-grey-900);
 }
 
+.Footer.Doctor,
 .Footer.Mdx {
   position: fixed;
   z-index: var(--z-index-mdx-footer);
@@ -28,6 +29,10 @@
   align-items: center;
 
   height: var(--footer-height);
+}
+
+.Footer.Doctor {
+  padding-inline: 1em;
 }
 
 .Footer.List {
@@ -42,6 +47,7 @@
   border-top: 1px dashed transparent;
 }
 
+.Footer.Doctor .Content,
 .Footer.Mdx .Content {
   flex-grow: 1;
   color: var(--color-blue-900);
@@ -78,6 +84,21 @@
 
   .Footer.List .Content {
     flex-grow: 1;
+  }
+
+  .Footer.Doctor {
+    padding-inline: 1em;
+  }
+
+  .Footer.Doctor .Content {
+    max-width: var(--doctor-container-width);
+    margin-inline: auto;
+    font-size: 0.875rem;
+  }
+
+  .Footer.Doctor .Content > * {
+    margin-inline: 1em;
+    font-size: 0.75rem;
   }
 }
 

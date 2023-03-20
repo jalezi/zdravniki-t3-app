@@ -13,6 +13,8 @@
 
 .LayoutDoctor > .ContainerDoctor {
   position: relative;
+  max-width: var(--doctor-container-width);
+  margin-inline: auto;
 }
 
 @media only screen and (min-width: 768px) {
