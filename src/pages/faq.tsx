@@ -1,9 +1,11 @@
 import { MDXProvider } from '@mdx-js/react';
+import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import FaqEN from '@/assets/content/en/faq.mdx';
 import FaqIT from '@/assets/content/it/faq.mdx';
 import FaqSL from '@/assets/content/sl/faq.mdx';
+import { Seo } from '@/components/Seo';
 import { componentsMap } from '@/layouts/componentsMap';
 import LayoutMDX from '@/layouts/LayoutMDX';
 import type { Locale } from '@/lib/types/i18n.js';
@@ -23,8 +25,11 @@ const LanguagePageMDX = function LanguagePageMDX({ name }: { name: Locale }) {
 };
 
 function FAQ({ locale }: { locale: Locale }) {
+  const { t } = useTranslation('seo');
+  const title = t('title.faq');
   return (
     <>
+      <Seo title={title} />
       <MDXProvider components={componentsMap}>
         <LanguagePageMDX name={locale} />
       </MDXProvider>
@@ -39,7 +44,11 @@ export async function getStaticProps({ locale }: { locale: Locale }) {
 
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'], nextI18nextConfig)),
+      ...(await serverSideTranslations(
+        locale,
+        ['common', 'seo'],
+        nextI18nextConfig
+      )),
       locale,
       // Will be passed to the page component as props
     },

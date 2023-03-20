@@ -6,6 +6,7 @@ import Papa from 'papaparse';
 
 import nextI18nextConfig from '@/../../next-i18next.config.js';
 import { DoctorCard } from '@/components/DoctorCard';
+import { Seo } from '@/components/Seo';
 import LayoutDoctor from '@/layouts/LayoutDoctor';
 import { DOCTORS_CSV_URL } from '@/lib/constants/data-url';
 import { drListSchema } from '@/lib/types/doctors';
@@ -35,7 +36,12 @@ const DrTypeNameInstPage = ({ doctors }: DrTypeNameInstPageProps) => {
 
   const doctor = doctors[0] as Doctor;
 
-  return <DoctorCard doctor={doctor} />;
+  return (
+    <>
+      <Seo title={doctor.name} />
+      <DoctorCard doctor={doctor} />
+    </>
+  );
 };
 
 export default DrTypeNameInstPage;
@@ -110,7 +116,7 @@ export const getStaticProps: GetStaticProps<
     props: {
       ...(await serverSideTranslations(
         ctx.locale ?? 'sl',
-        ['common', 'doctor', 'map'],
+        ['common', 'doctor', 'map', 'seo'],
 
         nextI18nextConfig
       )),
