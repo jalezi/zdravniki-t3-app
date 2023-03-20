@@ -1,0 +1,18 @@
+{
+    "description": "Monitoraggio dei medici: dati raccolti, verificati, aggiornati, analizzati e rivisti sui medici in Slovenia.",
+    "keywords": "",
+    "subtitle": "Tracciatore di medici",
+    "title": {
+        "about": "Il progetto",
+        "default": "Medici",
+        "den": "Elenco dei dentisti",
+        "den-s": "Elenco dei dentisti per gli studenti",
+        "den-y": "Elenco dei dentisti gratuiti per i giovani",
+        "faq": "Domande frequenti",
+        "gp": "Elenco dei medici generici",
+        "gp-x": "Elenco dei medici generici per una migliore accessibilità",
+        "gyn": "Elenco dei ginecologi",
+        "pageNotFound": "404: pagina non trovata",
+        "ped": "Elenco dei pediatri"
+    }
+}

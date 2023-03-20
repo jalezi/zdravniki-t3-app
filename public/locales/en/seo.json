@@ -1,0 +1,18 @@
+{
+    "description": "Doctors tracking - collected, verified, updated, analyzed and reviewed data about doctors in Slovenia.",
+    "keywords": "",
+    "subtitle": "Doctors Tracker",
+    "title": {
+        "about": "About",
+        "default": "Doctors",
+        "den": "List of dentists",
+        "den-s": "List of dentists for students",
+        "den-y": "List of dentists for youth",
+        "faq": "FAQ",
+        "gp": "List of general practitioners",
+        "gp-x": "List of general practitioners for better availability",
+        "gyn": "List of gynecologists",
+        "pageNotFound": "404: page not found",
+        "ped": "List of pediatricians"
+    }
+}
