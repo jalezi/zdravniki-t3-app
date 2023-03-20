@@ -75,6 +75,7 @@
   .Layout > .MapSection {
     position: relative;
     grid-area: map;
+    height: calc(100dvh - var(--header-height-lg) * 2);
   }
 
   .Layout > .ListSection {
