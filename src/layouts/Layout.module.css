@@ -78,6 +78,18 @@
     height: calc(100dvh - var(--header-height-lg) * 2);
   }
 
+  .Layout > .MapSection::before {
+    content: '';
+
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    right: -1px;
+    bottom: 0;
+
+    border-right: 1px solid var(--color-blue-100);
+  }
+
   .Layout > .ListSection {
     position: relative;
     grid-area: list;
