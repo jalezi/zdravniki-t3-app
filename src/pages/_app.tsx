@@ -5,6 +5,7 @@ import { appWithTranslation } from 'next-i18next';
 import { api } from '@/lib/utils/api';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
+import 'react-loading-skeleton/dist/skeleton.css';
 import 'react-tooltip/dist/react-tooltip.css';
 import 'leaflet/dist/leaflet.css';
 import 'the-new-css-reset';

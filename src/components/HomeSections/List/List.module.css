@@ -41,6 +41,22 @@
   background-color: var(--color-blue-100);
 }
 
+.Skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  margin-block: 1em;
+  margin-inline: 2em;
+}
+
+.Skeleton.Child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-inline: 0;
+}
+
 @media only screen and (min-width: 768px) {
   .ListInnerContainer {
     max-height: calc(

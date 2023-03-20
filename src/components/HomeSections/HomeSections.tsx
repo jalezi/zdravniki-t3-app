@@ -1,6 +1,7 @@
 import { clsx } from 'clsx';
 import dynamic from 'next/dynamic';
 import { useEffect, useMemo, useState } from 'react';
+import { SkeletonTheme } from 'react-loading-skeleton';
 import { useWindowSize } from 'usehooks-ts';
 
 import styles from '@/layouts/Layout.module.css';
@@ -79,6 +80,8 @@ const HomeSections = () => {
 
   const isListFocusable = layoutVisible === 'list' && !isMediumMediaQuery;
 
+  // skeleton theme colors are --color-blue-100 and --color-blue-200
+
   return (
     <>
       <section id="filters" className={filtersStyles}>
@@ -99,7 +102,9 @@ const HomeSections = () => {
         className={listStyles}
         tabIndex={isListFocusable ? undefined : -1}
       >
-        <List />
+        <SkeletonTheme baseColor="#dae5e7" highlightColor="#c4d4d7">
+          <List />
+        </SkeletonTheme>
       </section>
     </>
   );

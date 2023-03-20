@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 import { useTranslation } from 'next-i18next';
+import Skeleton from 'react-loading-skeleton';
 import { useDebounce } from 'usehooks-ts';
 
 import useDoctors from '@/lib/hooks/useDoctors';
@@ -28,7 +29,14 @@ const List = () => {
     : [];
 
   if (status === 'loading') {
-    return <div>loading...</div>;
+    const skeletonStyles = clsx(styles.Skeleton, styles.Child);
+    const skeletons = Array.from({ length: 7 }, (_, i) => (
+      <div key={i} className={skeletonStyles}>
+        <Skeleton count={1} />
+        <Skeleton count={3} />
+      </div>
+    ));
+    return <div className={styles.Skeleton}>{skeletons}</div>;
   }
 
   if (status === 'error') {
