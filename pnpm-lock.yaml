@@ -48,6 +48,7 @@ specifiers:
   react-dom: 18.2.0
   react-i18next: ^12.2.0
   react-leaflet: ^4.2.1
+  react-loading-skeleton: ^3.2.0
   react-tooltip: 5.8.3
   rehype: ^12.0.1
   rehype-slug: ^5.1.0
@@ -87,6 +88,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-i18next: 12.2.0_nuvg7z3l7c7q3mgp6kac62miay
   react-leaflet: 4.2.1_yydtlhsdonbqao6vgvkwhv2zki
+  react-loading-skeleton: 3.2.0_react@18.2.0
   react-tooltip: 5.8.3_biqbaboplfbrettd7655fr4n2y
   rehype: 12.0.1
   rehype-slug: 5.1.0
@@ -6002,6 +6004,14 @@ packages:
       leaflet: 1.9.3
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /react-loading-skeleton/3.2.0_react@18.2.0:
+    resolution: {integrity: sha512-kN12x4Ud69jbksr2EdhYywAFeW4bPdvFQ9p3ID1OM/QeFjgwFSmSUY2a6P6uOb5ACzWp3ozY8C+7+04KR6+PHA==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-ssr-prepass/1.5.0_react@18.2.0:
