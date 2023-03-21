@@ -3,6 +3,7 @@
     "keywords": "",
     "subtitle": "Tracciatore di medici",
     "title": {
+        "500": "500: errore interno del server",
         "about": "Il progetto",
         "default": "Medici",
         "den": "Elenco dei dentisti",

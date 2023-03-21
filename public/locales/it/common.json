@@ -1,5 +1,10 @@
 {
     "backToHome": "Torna all'elenco",
+    "fallback": {
+        "heading": "Errore",
+        "link": "$t(navLinks.home)",
+        "text": "$t(notFound.text)"
+    },
     "footer": {
         "dataSource": "Origine dei dati",
         "gurs": "Amministrazione geodetica della Repubblica di Slovenia",
@@ -15,7 +20,7 @@
     },
     "notFound": {
         "heading": "404: pagina non trovata",
-        "link": "Elenco",
+        "link": "$t(navLinks.home)",
         "text": "oops... qualcosa è andato storto 😞"
     },
     "search": {

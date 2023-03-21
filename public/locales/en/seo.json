@@ -3,6 +3,7 @@
     "keywords": "",
     "subtitle": "Doctors Tracker",
     "title": {
+        "500": "500: internal server error",
         "about": "About",
         "default": "Doctors",
         "den": "List of dentists",

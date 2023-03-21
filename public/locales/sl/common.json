@@ -1,5 +1,10 @@
 {
     "backToHome": "Nazaj na imenik",
+    "fallback": {
+        "heading": "Napaka",
+        "link": "$t(navLinks.home)",
+        "text": "$t(notFound.text)"
+    },
     "footer": {
         "dataSource": "Vir podatkov",
         "gurs": "Geodetska uprava Republike Slovenije.",
@@ -15,7 +20,7 @@
     },
     "notFound": {
         "heading": "404: stran ne obstaja",
-        "link": "Imenik",
+        "link": "$t(navLinks.home)",
         "text": "ups.. nekaj se je zalomilo 😞"
     },
     "search": {

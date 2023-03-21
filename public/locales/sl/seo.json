@@ -3,6 +3,7 @@
     "keywords": "",
     "subtitle": "Zdravniki Sledilnik",
     "title": {
+        "500": "500: napaka strežnika",
         "about": "O projektu",
         "default": "Zdravniki",
         "den": "Seznam zobozdravnikov za odrasle",
@@ -12,7 +13,7 @@
         "gp": "Seznam družinskih zdravnikov",
         "gp-x": "Seznam družinskih zdravnikov za boljšo dostopnost",
         "gyn": "Seznam ginekologov",
-        "pageNotFound": "404: Stran ne obstaja",
+        "pageNotFound": "404: stran ne obstaja",
         "ped": "Seznam pediatrov"
     }
 }
