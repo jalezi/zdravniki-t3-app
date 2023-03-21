@@ -21,6 +21,13 @@
   height: var(--doctor-card-map-height, 350px);
 }
 
+.Popup {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: space-between;
+}
+
 @media only screen and (min-width: 768px) {
   .MapSkeletonContainer {
     width: calc(100dvw - var(--list-width));
