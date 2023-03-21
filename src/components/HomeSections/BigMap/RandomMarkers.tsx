@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { useCallback, useEffect, useState } from 'react';
 
 import DrMarker from '@/components/Shared/Map/DrMarker';
 import { BOUNDS } from '@/lib/constants/map';
@@ -13,16 +14,7 @@ function getRandom(min: number, max: number, round = false) {
   return (max - min) * Math.random() + min;
 }
 
-type RandomMarkersProps = {
-  bounds: LatLngBounds | null;
-  count: number;
-};
-
-const RandomMarkers = ({ bounds, count = 50 }: RandomMarkersProps) => {
-  if (!bounds) {
-    return null;
-  }
-
+function getRandomPosition(bounds: LatLngBounds) {
   const swLat =
     bounds.getSouthWest().lat < BOUNDS.southWest.lat
       ? BOUNDS.southWest.lat
@@ -43,26 +35,63 @@ const RandomMarkers = ({ bounds, count = 50 }: RandomMarkersProps) => {
       ? BOUNDS.northEast.lng
       : bounds?.getNorthEast().lng;
 
-  const fakeMarkers = Array.from({ length: count }).map((_, i) => {
-    const lat = getRandom(swLat, neLat);
-    const lng = getRandom(swLng, neLng);
+  return {
+    swLat,
+    swLng,
+    neLat,
+    neLng,
+  };
+}
 
-    const randomAccepts = getRandom(0, 1, true);
+type RandomMarkersProps = {
+  bounds: LatLngBounds | null;
+  count: number;
+};
 
-    return (
-      <DrMarker
-        key={i}
-        center={{ lat, lng }}
-        className={clsx(
-          styles.DrCircle,
-          randomAccepts ? styles.Accepts : styles.Rejects
-        )}
-        accepts={randomAccepts ? 'y' : 'n'}
-      />
-    );
-  });
+const RandomMarkers = ({ bounds, count = 50 }: RandomMarkersProps) => {
+  const [markers, setMarkers] = useState<JSX.Element[]>();
 
-  return <>{fakeMarkers}</>;
+  const getFakeMarkers = useCallback(() => {
+    if (bounds) {
+      const { swLat, swLng, neLat, neLng } = getRandomPosition(bounds);
+
+      const fakeMarkers = Array.from({ length: count }).map((_, i) => {
+        const lat = getRandom(swLat, neLat);
+        const lng = getRandom(swLng, neLng);
+
+        const randomAccepts = getRandom(0, 1, true);
+
+        return (
+          <DrMarker
+            key={i}
+            center={{ lat, lng }}
+            className={clsx(
+              styles.DrCircle,
+              randomAccepts ? styles.Accepts : styles.Rejects
+            )}
+            accepts={randomAccepts ? 'y' : 'n'}
+          />
+        );
+      });
+
+      setMarkers(fakeMarkers);
+    }
+    return [];
+  }, [bounds, count]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getFakeMarkers();
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, [getFakeMarkers]);
+
+  if (!bounds) {
+    return null;
+  }
+
+  return <>{markers}</>;
 };
 
 export default RandomMarkers;
