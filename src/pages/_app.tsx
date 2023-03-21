@@ -1,7 +1,9 @@
 import type { NextComponentType } from 'next';
 import type { AppContext, AppInitialProps, AppLayoutProps } from 'next/app';
+import Error from 'next/error.js';
 import { appWithTranslation } from 'next-i18next';
 
+import { ErrorBoundary } from '@/components/Shared/Errors';
 import { api } from '@/lib/utils/api';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
@@ -25,9 +27,11 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
   }
 
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <ErrorBoundary fallback={<Error statusCode={500} />}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ErrorBoundary>
   );
 };
 
