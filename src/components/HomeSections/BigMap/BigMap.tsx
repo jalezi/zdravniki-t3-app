@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { useDebounce } from 'usehooks-ts';
 
+import { Fallback } from '@/components/Shared/Errors';
 import { Map, TotalHits } from '@/components/Shared/Map';
 import DataSource from '@/components/Shared/Map/DataSource';
 import type { MapProps } from '@/components/Shared/Map/Map';
@@ -30,7 +31,7 @@ function withMap(Component: typeof Map) {
 
     // todo handle error and loading status
     if (status === 'error') {
-      return <div>error</div>;
+      return <Fallback />;
     }
 
     const doctorFilter =

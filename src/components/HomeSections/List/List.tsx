@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next';
 import Skeleton from 'react-loading-skeleton';
 import { useDebounce } from 'usehooks-ts';
 
+import { Fallback } from '@/components/Shared/Errors';
 import useDoctors from '@/lib/hooks/useDoctors';
 import useBoundStore from '@/lib/store/useBoundStore';
 import { createDoctorFilter, normalize } from '@/lib/utils/search';
@@ -40,7 +41,7 @@ const List = ({ isVisible }: { isVisible: boolean }) => {
   }
 
   if (status === 'error') {
-    return <div>error</div>;
+    return <Fallback />;
   }
 
   const headerStyles = clsx(styles.ListHeader);
