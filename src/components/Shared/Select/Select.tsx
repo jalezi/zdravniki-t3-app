@@ -12,7 +12,7 @@ import { useOnClickOutside } from 'usehooks-ts';
 import useKeyboardNavigation from '@/lib/hooks/useKeyboardNavigation';
 
 import styles from './Select.module.css';
-import { CaretDown, CaretUp } from '../Icons';
+import { CaretDownSvg, CaretUpSvg } from '../Icons';
 
 type Option = {
   label?: string;
@@ -147,7 +147,7 @@ const Select = (
         <span>{selectedOption.current}</span>
         <span className="sr-only">{placeholder}</span>
         <span className={styles.Caret} aria-hidden="true">
-          {isOpen ? <CaretUp /> : <CaretDown />}
+          {isOpen ? <CaretUpSvg /> : <CaretDownSvg />}
         </span>
       </div>
       {isOpen ? (

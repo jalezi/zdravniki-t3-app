@@ -1,7 +1,10 @@
 import clsx from 'clsx';
 import { useCallback, useRef, useState } from 'react';
+import { useEventListener } from 'usehooks-ts';
 
 import { Footer } from '@/components/Footer';
+import { IconButton } from '@/components/Shared/Buttons';
+import { CaretUpSvg } from '@/components/Shared/Icons';
 import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './List.module.css';
@@ -27,11 +30,30 @@ const getGroupsByAlphabet = (doctors: Doctor[]) => {
 
 const ITEMS_PER_PAGE = 10;
 
-const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
+type InfiniteScrollProps = {
+  data: Doctor[];
+  isVisible: boolean;
+};
+
+const InfiniteScroll = ({ data, isVisible }: InfiniteScrollProps) => {
   const [pageNum, setPageNum] = useState(1);
   const observer = useRef<IntersectionObserver | null>(null);
   const list = data.slice(0, pageNum * ITEMS_PER_PAGE);
   const hasMore = data.length > list.length;
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEventListener(
+    'scroll',
+    () => {
+      if (ref.current && ref.current.scrollTop > 200) {
+        setShowScrollToTop(true);
+        return;
+      }
+      setShowScrollToTop(false);
+    },
+    ref
+  );
 
   const lastBookElementRef = useCallback(
     (node: Element | null) => {
@@ -82,10 +104,22 @@ const InfiniteScroll = ({ data }: { data: Doctor[] }) => {
 
   const innerContainerStyles = clsx(styles.ListInnerContainer);
 
+  const scrollToTopStyles = clsx(
+    styles.ScrollToTop,
+    isVisible && showScrollToTop && styles.Show
+  );
+
   return (
     <>
-      <div role="list" className={innerContainerStyles}>
+      <div ref={ref} role="list" className={innerContainerStyles}>
         {infiniteList}
+        <IconButton
+          type="button"
+          className={scrollToTopStyles}
+          onClick={() => ref.current?.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
+          <CaretUpSvg />
+        </IconButton>
         <Footer position="list" />
       </div>
     </>

@@ -103,7 +103,7 @@ const HomeSections = () => {
         tabIndex={isListFocusable ? undefined : -1}
       >
         <SkeletonTheme baseColor="#dae5e7" highlightColor="#c4d4d7">
-          <List />
+          <List isVisible={layoutVisible === 'list' || isMediumMediaQuery} />
         </SkeletonTheme>
       </section>
     </>

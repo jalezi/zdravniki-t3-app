@@ -11,7 +11,7 @@ import InfiniteScroll from './InfiniteScroll';
 import styles from './List.module.css';
 import { NoResult } from './NoResults';
 
-const List = () => {
+const List = ({ isVisible }: { isVisible: boolean }) => {
   const { data, status } = useDoctors();
   const accepts = useBoundStore(state => state.accepts);
   const bounds = useBoundStore(state => state.bounds);
@@ -51,7 +51,7 @@ const List = () => {
     <>
       <header className={headerStyles}>{totalHits}</header>
       {filteredDoctors?.length === 0 ? <NoResult /> : null}
-      <InfiniteScroll data={filteredDoctors ?? []} />
+      <InfiniteScroll data={filteredDoctors ?? []} isVisible={isVisible} />
     </>
   );
 };

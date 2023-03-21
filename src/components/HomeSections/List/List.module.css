@@ -25,7 +25,6 @@
   max-height: calc(
     100dvh - var(--header-height-sm) - var(--list-header-height)
   );
-  /* padding-bottom: var(--footer-height-sm__list); */
 
   background: transparent;
 }
@@ -57,11 +56,45 @@
   margin-inline: 0;
 }
 
+.ScrollToTop {
+  will-change: right;
+
+  position: fixed;
+  z-index: 1;
+  right: -5em;
+  bottom: calc(var(--footer-height) + 5em);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 3em;
+  height: 3em;
+
+  background-color: var(--color-blue-500-A76, grey);
+
+  transition: all 0.3s ease-in-out;
+}
+
+.ScrollToTop.Show {
+  right: 2em;
+}
+
+@media (hover: hover) {
+  .ScrollToTop:hover {
+    background-color: var(--color-blue-500-A87);
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .ListInnerContainer {
     max-height: calc(
       100dvh - var(--header-height-lg) * 2 - var(--list-header-height)
     );
     padding-bottom: var(--footer-height);
+  }
+
+  .ScrollToTop {
+    bottom: 2em;
   }
 }
