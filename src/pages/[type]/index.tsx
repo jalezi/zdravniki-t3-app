@@ -19,7 +19,7 @@ const DrTypePage: NextPage = () => {
   return (
     <>
       <Seo title={title} />
-      <HomeSections />;
+      <HomeSections />
     </>
   );
 };

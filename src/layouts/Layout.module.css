@@ -46,6 +46,13 @@
   --list-header-height: 2.5rem;
 }
 
+.Layout > .Absolute.ListSection > * {
+  visibility: hidden;
+}
+.Layout > .Absolute.ListSection.Visible > * {
+  visibility: visible;
+}
+
 .Layout > .Absolute.FiltersSection {
   z-index: 9;
   top: unset;

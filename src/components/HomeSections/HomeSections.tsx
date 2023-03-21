@@ -78,8 +78,6 @@ const HomeSections = () => {
     !isMediumMediaQuery && styles.Absolute
   );
 
-  const isListFocusable = layoutVisible === 'list' && !isMediumMediaQuery;
-
   // skeleton theme colors are --color-blue-100 and --color-blue-200
 
   return (
@@ -97,11 +95,7 @@ const HomeSections = () => {
           minZoom={MIN_ZOOM}
         />
       </section>
-      <section
-        id="list"
-        className={listStyles}
-        tabIndex={isListFocusable ? undefined : -1}
-      >
+      <section id="list" className={listStyles}>
         <SkeletonTheme baseColor="#dae5e7" highlightColor="#c4d4d7">
           <List isVisible={layoutVisible === 'list' || isMediumMediaQuery} />
         </SkeletonTheme>
