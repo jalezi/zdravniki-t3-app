@@ -22,6 +22,7 @@ export type PageLink = {
 
 export const DR_TYPE_LABELS = [
   'gp',
+  'gp-f',
   'gp-x',
   'ped',
   'den',
@@ -52,7 +53,7 @@ export const drTypeWithAgeTransformSchema = drTypeWithAgeSchema.transform(
   }
 );
 
-export const drTypeWithExtraSchema = z.enum(['gp', 'gp-x']);
+export const drTypeWithExtraSchema = z.enum(['gp', 'gp-x', 'gp-f']);
 
 export const drTypeWithExtraTransformSchema = drTypeWithExtraSchema.transform(
   value => {

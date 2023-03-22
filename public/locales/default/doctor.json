@@ -5,6 +5,7 @@
     "den": "zobozdravnik",
     "extra": {
         "btn": {
+            "f": "neopredeljeni",
             "normal": "normalno",
             "x": "dostopnost"
         },
@@ -16,6 +17,7 @@
         }
     },
     "gp": "družinski zdravnik",
+    "gp-f": "$t(gp)",
     "gp-x": "$t(gp)",
     "gyn": "ginekolog",
     "info": {
@@ -31,6 +33,7 @@
     "rejects": "ne sprejema",
     "reportError": {
         "cancel": "Prekliči",
+        "linkText": "Prijavi napako v objavljenih podatkih",
         "placeholder": {
             "address": "naslov",
             "availability": "obseg zaposlitve",
@@ -44,7 +47,6 @@
         "send": "Pošlji",
         "text": "Prijavi napako na posameznih podatkih o zdravniku in vnesi pravilne podatke ali opombo:",
         "title": "Prijavi napako",
-        "linkText": "Prijavi napako v objavljenih podatkih",
         "tooltip": "$t(linkText)"
     },
     "students": "študenti",

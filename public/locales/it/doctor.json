@@ -5,6 +5,7 @@
     "den": "odontoiatra",
     "extra": {
         "btn": {
+            "f": "indeterminato ",
             "normal": "normale",
             "x": "accessibile"
         },
@@ -16,6 +17,7 @@
         }
     },
     "gp": "medico di medicina generale",
+    "gp-f": "$t(gp)",
     "gp-x": "$t(gp)",
     "gyn": "ginecologo",
     "info": {
@@ -31,6 +33,7 @@
     "rejects": "non accetta",
     "reportError": {
         "cancel": "Annulla",
+        "linkText": "Segnala un errore nei dati pubblicati",
         "placeholder": {
             "address": "indirizzo",
             "availability": "disponibilità",
@@ -44,7 +47,6 @@
         "send": "Invia",
         "text": "Segnala un errore nei dati del medico e aggiungi i dati corretti o delle note:",
         "title": "Segnala un errore",
-        "linkText": "Segnala un errore nei dati pubblicati",
         "tooltip": "$t(linkText)"
     },
     "students": "studenti",

@@ -8,6 +8,7 @@ import {
   DentistSvg,
   FamilyDrSvg,
   GynSvg,
+  InfoSvg,
   PedSvg,
   StudentsSvg,
 } from '@/components/Shared/Icons';
@@ -50,6 +51,7 @@ const createAgeGroupIsActive = (
 export const EXTRA_HREF_SUFFIX = {
   normal: '',
   x: '-x',
+  f: '-f',
 } as const;
 
 const createExtraIsActive = (
@@ -100,6 +102,13 @@ export const EXTRA_GROUP = [
     value: 'x',
     Icon: ClinicSvg,
     translationKey: 'extra.btn.x',
+    createHref: createExtraGroupHref,
+    isActive: createExtraIsActive,
+  },
+  {
+    value: 'f',
+    Icon: InfoSvg,
+    translationKey: 'extra.btn.f',
     createHref: createExtraGroupHref,
     isActive: createExtraIsActive,
   },
