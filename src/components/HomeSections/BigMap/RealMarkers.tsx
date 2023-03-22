@@ -57,6 +57,7 @@ const RealMarkers = ({ doctors }: RealMarkersProps) => {
                 variant="popup"
               />
               <DrActions
+                drHref={doctor.href}
                 drId={doctor.fakeId}
                 phone={doctor.phone}
                 variant="popup"

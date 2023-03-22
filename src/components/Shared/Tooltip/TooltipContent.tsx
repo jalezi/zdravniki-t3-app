@@ -5,7 +5,7 @@ import styles from './Tooltip.module.css';
 import type { PolymorphicComponentProps } from '../Polymorphic';
 import { Polymorphic } from '../Polymorphic';
 
-const allowedTags = z.enum(['p', 'span', 'div']);
+const allowedTags = z.enum(['p', 'span', 'div', 'ul', 'li']);
 
 type AllowedTags = z.infer<typeof allowedTags>;
 

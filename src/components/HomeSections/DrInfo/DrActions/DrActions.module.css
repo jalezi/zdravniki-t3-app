@@ -6,3 +6,44 @@
 .DrActions.Row {
   flex-direction: row;
 }
+
+.DrActions > .MoreMenu {
+  align-self: center;
+}
+
+.DrActions .Tooltip {
+  padding-inline: 0;
+  color: inherit;
+  opacity: 1;
+  background: var(--color-white);
+}
+
+.DrActions .Tooltip > .Tooltip__group {
+  display: flex;
+  flex-direction: column;
+}
+
+.DrActions .Tooltip > .Tooltip__group > .Tooltip__item > * {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  width: 100%;
+
+  font-weight: 400;
+}
+
+.DrActions .Tooltip > .Tooltip__group > hr {
+  background-color: var(--color-blue-300);
+}
+
+.DrActions .Tooltip > .Tooltip__group > .Tooltip__item .Tooltip__icon {
+  display: flex;
+  align-items: center;
+}
+
+@media (hover: hover) {
+  .DrActions .Tooltip > .Tooltip__group > .Tooltip__item:hover {
+    background-color: var(--color-blue-300);
+  }
+}

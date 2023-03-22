@@ -13,6 +13,7 @@ type DrCardProps = {
   accepts: Doctor['accepts'];
   availability: Doctor['availability'];
   drId: Doctor['fakeId'];
+  drHref: Doctor['href'];
   href: Doctor['href'];
   fullAddress: Doctor['location']['address']['fullAddress'];
   isExtra: Doctor['isExtra'];
@@ -28,6 +29,7 @@ const DrCard = (
   {
     accepts,
     availability,
+    drHref,
     drId,
     fullAddress,
     href,
@@ -65,7 +67,12 @@ const DrCard = (
         override={override}
         className={styles.Availability}
       />
-      <DrActions drId={drId} phone={phone} className={styles.Actions} />
+      <DrActions
+        drHref={drHref}
+        drId={drId}
+        phone={phone}
+        className={styles.Actions}
+      />
     </div>
   );
 };

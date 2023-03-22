@@ -71,13 +71,11 @@
 
 .Tooltip.Regular,
 .Tooltip .Regular {
-  font: 1em;
   font-weight: 400;
 }
 
 .Tooltip.Bold,
 .Tooltip .Bold {
-  font: 1em;
   font-weight: 700;
 }
 

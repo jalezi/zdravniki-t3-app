@@ -86,6 +86,7 @@ const InfiniteScroll = ({ data, isVisible }: InfiniteScrollProps) => {
               ref={index === arr.length - 1 ? lastBookElementRef : undefined}
               accepts={doctor.accepts}
               availability={doctor.availability}
+              drHref={doctor.href}
               drId={doctor.fakeId}
               fullAddress={doctor.location.address.fullAddress}
               href={doctor.href}
