@@ -27,6 +27,8 @@ const RealMarkers = ({ doctors }: RealMarkersProps) => {
       doctor.accepts === 'y' ? styles.Accepts : styles.Rejects
     );
 
+    const actionsPopupStyles = clsx(styles.Popup, styles.Row);
+
     return (
       <DrMarker
         key={doctor.fakeId}
@@ -45,7 +47,7 @@ const RealMarkers = ({ doctors }: RealMarkersProps) => {
               provider={doctor.provider}
               variant="popup"
             />
-            <div className={styles.Popup}>
+            <div className={actionsPopupStyles}>
               <DrAvailabilityInfo
                 accepts={doctor.accepts}
                 availability={doctor.availability}
