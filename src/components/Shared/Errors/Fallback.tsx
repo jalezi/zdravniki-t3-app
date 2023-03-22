@@ -1,15 +1,18 @@
 import clsx from 'clsx';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
 import { Seo } from '@/components/Seo';
 
+import styles from './Fallback.module.css';
 import { Button } from '../Buttons';
 import type { PolymorphicComponentProps } from '../Polymorphic';
 import { Polymorphic } from '../Polymorphic';
-
 type FallbackProps = Omit<PolymorphicComponentProps<'div'>, 'as'>;
 
 const Fallback = (props: FallbackProps) => {
+  const { locale } = useRouter();
   const { t } = useTranslation('common');
   const { t: tSeo } = useTranslation('seo');
   const title = tSeo('title.500');
@@ -21,17 +24,27 @@ const Fallback = (props: FallbackProps) => {
 
   const { className, ...rest } = props;
 
-  const fallbackStyles = clsx(className);
+  const fallbackStyles = clsx(styles.Fallback, className);
 
   return (
     <>
       <Seo title={title} />
       <Polymorphic className={fallbackStyles} {...rest}>
-        <h1>{fallback.heading}</h1>
-        <p>{fallback.text}</p>
-        <Button as="a" href="/">
-          {fallback.link}
-        </Button>
+        <div className={styles.ContainerError}>
+          <div className={styles.ContainerError__text_container}>
+            <h2 className={styles.ContainerError__title}>{fallback.heading}</h2>
+            <p className={styles.ContainerError__message}>{fallback.text}</p>
+          </div>
+          <Button
+            as={Link}
+            passHref
+            href="/gp/"
+            locale={locale}
+            className={styles.ContainerError__button_outside}
+          >
+            {fallback.link}
+          </Button>
+        </div>
       </Polymorphic>
     </>
   );

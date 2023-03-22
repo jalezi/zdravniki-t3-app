@@ -1,7 +1,7 @@
 {
     "backToHome": "Nazaj na imenik",
     "fallback": {
-        "heading": "Napaka",
+        "heading": "500: napaka na strežniku",
         "link": "$t(navLinks.home)",
         "text": "$t(notFound.text)"
     },

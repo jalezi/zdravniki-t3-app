@@ -1,7 +1,7 @@
 {
     "backToHome": "Back home",
     "fallback": {
-        "heading": "Error",
+        "heading": "500: internal server error",
         "link": "$t(navLinks.home)",
         "text": "$t(notFound.text)"
     },
