@@ -56,7 +56,17 @@ export const drCSVSchema = z.object({
   orderform: trimmedStringSchema,
   phone: trimmedStringSchema,
   post: trimmedStringSchema,
-  type: z.enum(['gp', 'gp-x', 'ped', 'ped-x', 'den', 'den-y', 'den-s', 'gyn']),
+  type: z.enum([
+    'gp',
+    'gp-x',
+    'gp-f',
+    'ped',
+    'ped-x',
+    'den',
+    'den-y',
+    'den-s',
+    'gyn',
+  ]),
   website: trimmedStringSchema,
 });
 
