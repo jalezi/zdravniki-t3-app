@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 
 import useBoundStore from '@/lib/store/useBoundStore';
 import {
+  drTypeAcceptsOrRejectSchema,
   drTypeWithAgeSchema,
   drTypeWithExtraSchema,
 } from '@/lib/types/dr-type-page';
@@ -103,20 +104,22 @@ const FilterGroups = () => {
           ))}
         </div>
       ) : null}
-      <div className={acceptsGroupStyles}>
-        {ACCEPTS_GROUP.map(item => (
-          <FilterButton
-            key={item.value}
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            Icon={item.Icon}
-            text={t(item.translationKey)}
-            as="button"
-            type="button"
-            isActive={item.value === accepts}
-            onClick={() => onAcceptsChange(item.value)}
-          />
-        ))}
-      </div>
+      {drTypeAcceptsOrRejectSchema.safeParse(query.type).success ? (
+        <div className={acceptsGroupStyles}>
+          {ACCEPTS_GROUP.map(item => (
+            <FilterButton
+              key={item.value}
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+              Icon={item.Icon}
+              text={t(item.translationKey)}
+              as="button"
+              type="button"
+              isActive={item.value === accepts}
+              onClick={() => onAcceptsChange(item.value)}
+            />
+          ))}
+        </div>
+      ) : null}
     </>
   );
 };

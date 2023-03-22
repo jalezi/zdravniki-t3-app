@@ -61,3 +61,13 @@ export const drTypeWithExtraTransformSchema = drTypeWithExtraSchema.transform(
     return '';
   }
 );
+
+export const drTypeAcceptsOrRejectSchema = z.enum([
+  'gp',
+  'gp-x',
+  'ped',
+  'den',
+  'den-y',
+  'den-s',
+  'gyn',
+]);
