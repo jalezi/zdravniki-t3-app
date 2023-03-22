@@ -117,6 +117,7 @@ const InfiniteScroll = ({ data, isVisible }: InfiniteScrollProps) => {
           type="button"
           className={scrollToTopStyles}
           onClick={() => ref.current?.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="Scroll to top"
         >
           <CaretUpSvg />
         </IconButton>
