@@ -42,6 +42,7 @@ specifiers:
   lint-staged: ^13.1.2
   next: 13.2.3
   next-i18next: ^13.2.1
+  next-sitemap: ^4.0.6
   papaparse: ^5.4.0
   prettier: ^2.8.4
   react: 18.2.0
@@ -83,6 +84,7 @@ dependencies:
   leaflet.markercluster: 1.5.3_leaflet@1.9.3
   next: 13.2.3_biqbaboplfbrettd7655fr4n2y
   next-i18next: 13.2.2_tfixcuqpcfvvkxbuhkokcenyam
+  next-sitemap: 4.0.6_next@13.2.3
   papaparse: 5.4.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -1572,6 +1574,10 @@ packages:
     dependencies:
       chalk: 4.1.2
     dev: true
+
+  /@corex/deepmerge/4.0.37:
+    resolution: {integrity: sha512-PX90bEnrLdxd5e6rSFWsghExMuSw0Uov3fWJuuaoFuUQIS/446diu/4seExK5b+43L+SOBbd2uBGwYUkG1JfCw==}
+    dev: false
 
   /@cspotcode/source-map-support/0.8.1:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -5478,7 +5484,6 @@ packages:
 
   /minimist/1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
-    dev: true
 
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -5523,6 +5528,19 @@ packages:
       next: 13.2.3_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-i18next: 12.2.0_nuvg7z3l7c7q3mgp6kac62miay
+    dev: false
+
+  /next-sitemap/4.0.6_next@13.2.3:
+    resolution: {integrity: sha512-pZ9tynYe6mRR189qZqcOlWVgM1Gxo07BJQW0AjerKmLwQOt+6FQMdaDgifgCt6jDT3Y3EG/+NUDDZRcd0gbPkA==}
+    engines: {node: '>=14.18'}
+    hasBin: true
+    peerDependencies:
+      '@next/env': '*'
+      next: '*'
+    dependencies:
+      '@corex/deepmerge': 4.0.37
+      minimist: 1.2.8
+      next: 13.2.3_biqbaboplfbrettd7655fr4n2y
     dev: false
 
   /next/13.2.3_biqbaboplfbrettd7655fr4n2y:

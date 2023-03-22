@@ -2,7 +2,7 @@
 const locales = ['default', 'sl', 'en', 'it'];
 
 /** @type {{"default": "default", "sl": "slovenščina", "en": "english", "it": "italiano"}} */
-module.exports.localesMap = {
+const localesMap = {
   default: 'default',
   sl: 'slovenščina',
   en: 'english',
@@ -23,4 +23,5 @@ module.exports = {
   fallbackLang: {
     default: ['sl'],
   },
+  localesMap,
 };

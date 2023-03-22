@@ -20,7 +20,7 @@ export type PageLink = {
   label: string;
 };
 
-export const pageDrTypeSchema = z.enum([
+export const DR_TYPE_LABELS = [
   'gp',
   'gp-x',
   'ped',
@@ -28,7 +28,9 @@ export const pageDrTypeSchema = z.enum([
   'den-y',
   'den-s',
   'gyn',
-]);
+] as const;
+
+export const pageDrTypeSchema = z.enum(DR_TYPE_LABELS);
 
 export type PageDrType = z.infer<typeof pageDrTypeSchema>;
 
