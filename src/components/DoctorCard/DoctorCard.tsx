@@ -57,7 +57,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
   const { t: tDoctor } = useTranslation('doctor');
 
   const { override } = doctor;
-  const websiteURL = urlTransformSchema.safeParse(doctor.website);
+
   const orderform = urlOrEmailTransformSchema.safeParse(doctor.orderform);
 
   const goBack = () => {
@@ -108,18 +108,30 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
           override={doctor.override}
         />
         <hr className={styles.Divider} />
-        {websiteURL.success && (
-          <Button
-            as="a"
-            href={websiteURL.data.href}
-            container="span"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon name="LinkSvg" size="xxl" />{' '}
-            {websiteURL.data.host.replaceAll('www.', '')}
-          </Button>
-        )}
+        {doctor.websites.length >= 1 &&
+          doctor.websites.map(website => {
+            const websiteUrl = urlTransformSchema.safeParse(website);
+
+            if (websiteUrl.success) {
+              return (
+                urlTransformSchema.safeParse(website).success && (
+                  <Button
+                    key={website}
+                    as="a"
+                    href={websiteUrl.data.href}
+                    container="span"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Icon name="LinkSvg" size="xxl" />{' '}
+                    {websiteUrl.data.host.replaceAll('www.', '')}
+                  </Button>
+                )
+              );
+            }
+
+            return undefined;
+          })}
         {orderform.success && (
           <Button
             as="a"
@@ -143,11 +155,12 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
             <Icon name="EmailSvg" size="xxl" /> {doctor.email}
           </Button>
         )}
-        {doctor.phone && (
-          <Button as="a" href={`tel: ${doctor.phone}`} container="span">
-            <Icon name="Phone" size="xxl" /> {doctor.phone}
-          </Button>
-        )}
+        {doctor.phones.length >= 1 &&
+          doctor.phones.map(phone => (
+            <Button key={phone} as="a" href={`tel: ${phone}`} container="span">
+              <Icon name="Phone" size="xxl" /> {phone}
+            </Button>
+          ))}
         <Button
           as={Link}
           href="#"

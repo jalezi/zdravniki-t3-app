@@ -98,10 +98,15 @@ export const getStaticProps: GetStaticProps<
 
     const drMeta = { ...drLocationMeta, hasInst: !!institution } as const;
 
+    const phones = [...(phone?.split(',') ?? [])].map(val => val.trim());
+    const websites = [...(website?.split(',') ?? [])].map(val => val.trim());
+
     return {
       ...rest,
       phone,
+      phones,
       website,
+      websites,
       provider: institution?.name ?? null,
       institution: institution ?? null,
       location: {
