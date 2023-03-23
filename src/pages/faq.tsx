@@ -1,16 +1,19 @@
 import { MDXProvider } from '@mdx-js/react';
+import dynamic from 'next/dynamic.js';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import FaqEN from '@/assets/content/en/faq.mdx';
-import FaqIT from '@/assets/content/it/faq.mdx';
-import FaqSL from '@/assets/content/sl/faq.mdx';
-import { Seo } from '@/components/Seo';
 import { componentsMap } from '@/layouts/componentsMap';
-import LayoutMDX from '@/layouts/LayoutMDX';
 import type { Locale } from '@/lib/types/i18n.js';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
+
+const LayoutMDX = dynamic(() => import('../layouts/LayoutMDX'));
+const Seo = dynamic(() => import('@/components/Seo').then(mod => mod.Seo));
+
+const FaqEN = dynamic(() => import('@/assets/content/en/faq.mdx'));
+const FaqIT = dynamic(() => import('@/assets/content/it/faq.mdx'));
+const FaqSL = dynamic(() => import('@/assets/content/sl/faq.mdx'));
 
 const FAQIntlMap = {
   default: FaqSL,

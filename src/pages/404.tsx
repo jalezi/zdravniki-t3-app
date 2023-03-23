@@ -1,4 +1,5 @@
 import type { GetStaticProps } from 'next';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -7,9 +8,12 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import image from '@/../public/assets/images/doctor-404@2x.png';
 import { Seo } from '@/components/Seo';
-import { Button } from '@/components/Shared/Buttons';
-import LayoutError from '@/layouts/LayoutError';
 import styles from '@/layouts/LayoutError.module.css';
+
+const LayoutError = dynamic(() => import('@/layouts/LayoutError'));
+const Button = dynamic(() =>
+  import('@/components/Shared/Buttons').then(mod => mod.Button)
+);
 
 const NotFoundPage = () => {
   const { t } = useTranslation('common');

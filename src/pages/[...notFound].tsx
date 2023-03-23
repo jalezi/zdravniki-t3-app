@@ -1,12 +1,13 @@
 import type { GetServerSideProps } from 'next';
+import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import nextI18nextConfig from '@/../next-i18next.config';
 import { Seo } from '@/components/Seo';
-import LayoutError from '@/layouts/LayoutError';
 
-import NotFoundPage from './404';
+const LayoutError = dynamic(() => import('@/layouts/LayoutError'));
+const NotFoundPage = dynamic(() => import('./404'));
 
 export default function CatchAllPage() {
   const { t } = useTranslation('seo');

@@ -1,16 +1,19 @@
 import { MDXProvider } from '@mdx-js/react';
+import dynamic from 'next/dynamic.js';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import AboutEN from '@/assets/content/en/about.mdx';
-import AboutIT from '@/assets/content/it/about.mdx';
-import AboutSL from '@/assets/content/sl/about.mdx';
-import { Seo } from '@/components/Seo';
 import { componentsMap } from '@/layouts/componentsMap';
-import LayoutMDX from '@/layouts/LayoutMDX';
 import type { Locale } from '@/lib/types/i18n.js';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
+
+const LayoutMDX = dynamic(() => import('@/layouts/LayoutMDX'));
+const Seo = dynamic(() => import('@/components/Seo').then(mod => mod.Seo));
+
+const AboutEN = dynamic(() => import('@/assets/content/en/about.mdx'));
+const AboutIT = dynamic(() => import('@/assets/content/it/about.mdx'));
+const AboutSL = dynamic(() => import('@/assets/content/sl/about.mdx'));
 
 const AboutIntlMap = {
   default: AboutSL,

@@ -1,13 +1,12 @@
 import type { ParsedUrlQuery } from 'querystring';
 
 import type { GetStaticPaths, GetStaticProps } from 'next';
+import dynamic from 'next/dynamic';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Papa from 'papaparse';
 
 import nextI18nextConfig from '@/../../next-i18next.config.js';
-import { DoctorCard } from '@/components/DoctorCard';
 import { Seo } from '@/components/Seo';
-import LayoutDoctor from '@/layouts/LayoutDoctor';
 import { DOCTORS_CSV_URL } from '@/lib/constants/data-url';
 import { drListSchema } from '@/lib/types/doctors';
 import { instListSchema } from '@/lib/types/institutions';
@@ -18,6 +17,11 @@ import {
 } from '@/lib/utils/fetch-and-parse';
 import { drPersonalPageSchema, slugSchema } from '@/lib/utils/zod';
 import type { Doctor } from '@/server/api/routers/doctors';
+
+const LayoutDoctor = dynamic(() => import('@/layouts/LayoutDoctor'));
+const DoctorCard = dynamic(() =>
+  import('@/components/DoctorCard').then(mod => mod.DoctorCard)
+);
 
 interface DrTypeNameInstPageProps {
   doctors: Doctor[];

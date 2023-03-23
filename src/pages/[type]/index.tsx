@@ -1,12 +1,16 @@
 import type { GetServerSideProps, NextPage } from 'next';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import nextI18nextConfig from '@/../../next-i18next.config.js';
-import HomeSections from '@/components/HomeSections/HomeSections';
 import { Seo } from '@/components/Seo';
 import { pageDrTypeSchema } from '@/lib/types/dr-type-page';
+
+const HomeSections = dynamic(
+  () => import('@/components/HomeSections/HomeSections')
+);
 
 const DrTypePage: NextPage = () => {
   const { query } = useRouter();
