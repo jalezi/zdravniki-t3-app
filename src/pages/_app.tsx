@@ -23,7 +23,11 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
   const getLayout = Component?.getLayout;
 
   if (getLayout) {
-    return getLayout(<Component {...pageProps} />) as JSX.Element;
+    return (
+      <ErrorBoundary fallback={<Error statusCode={500} />}>
+        {getLayout(<Component {...pageProps} />)}
+      </ErrorBoundary>
+    );
   }
 
   return (
