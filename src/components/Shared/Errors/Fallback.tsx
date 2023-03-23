@@ -1,6 +1,4 @@
 import clsx from 'clsx';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
 import { Seo } from '@/components/Seo';
@@ -12,7 +10,6 @@ import { Polymorphic } from '../Polymorphic';
 type FallbackProps = Omit<PolymorphicComponentProps<'div'>, 'as'>;
 
 const Fallback = (props: FallbackProps) => {
-  const { locale } = useRouter();
   const { t } = useTranslation('common');
   const { t: tSeo } = useTranslation('seo');
   const title = tSeo('title.500');
@@ -36,10 +33,8 @@ const Fallback = (props: FallbackProps) => {
             <p className={styles.ContainerError__message}>{fallback.text}</p>
           </div>
           <Button
-            as={Link}
-            passHref
+            as="a"
             href="/gp/"
-            locale={locale}
             className={styles.ContainerError__button_outside}
           >
             {fallback.link}
