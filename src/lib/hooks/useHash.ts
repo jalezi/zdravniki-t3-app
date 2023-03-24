@@ -38,7 +38,7 @@ const useHash = () => {
       const newHash = stringifyHash(['all', [ZOOM, ...SL_CENTER], '']);
       setNewPath(`${asPath.replace(documentLocHash, '')}${newHash}`);
     }
-  }, [accepts, asPath, lat, lng, search, zoom]);
+  }, [accepts, asPath, search]);
 
   useEffect(() => {
     const documentLocHash = document.location.hash;

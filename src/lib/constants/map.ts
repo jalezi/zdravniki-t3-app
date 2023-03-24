@@ -18,12 +18,12 @@ export const BOUNDS: {
   northEast: LatLngLiteral;
 } = {
   southWest: {
-    lat: 45.421,
-    lng: 13.355,
+    lat: 45.421 - 1,
+    lng: 13.355 - 1,
   },
   northEast: {
-    lat: 46.894,
-    lng: 16.637,
+    lat: 46.894 + 1,
+    lng: 16.637 + 1,
   },
 };
 

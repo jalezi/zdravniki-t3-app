@@ -23,7 +23,7 @@ const BigMapEvents = () => {
     center,
   });
 
-  const debouncedState = useDebounce(state, 500);
+  const debouncedState = useDebounce(state, 0);
 
   const map = useMapEvents({
     moveend: () => {
