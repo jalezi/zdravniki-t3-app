@@ -16,6 +16,7 @@ type DrCardProps = {
   drHref: Doctor['href'];
   href: Doctor['href'];
   fullAddress: Doctor['location']['address']['fullAddress'];
+  geoLocation: Doctor['location']['geoLocation'];
   isExtra: Doctor['isExtra'];
   load: Doctor['load'];
   name: Doctor['name'];
@@ -32,6 +33,7 @@ const DrCard = (
     drHref,
     drId,
     fullAddress,
+    geoLocation,
     href,
     isExtra,
     load,
@@ -70,6 +72,7 @@ const DrCard = (
       <DrActions
         drHref={drHref}
         drId={drId}
+        geoLocation={geoLocation}
         phone={phone}
         className={styles.Actions}
       />

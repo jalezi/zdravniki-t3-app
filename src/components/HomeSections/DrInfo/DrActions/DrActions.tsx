@@ -5,18 +5,33 @@ import { useRouter } from 'next/router';
 import { Button, IconButton } from '@/components/Shared/Buttons';
 import { DotsVertSvg, Icon } from '@/components/Shared/Icons';
 import { Tooltip } from '@/components/Shared/Tooltip';
+import { MAX_ZOOM } from '@/lib/constants/map';
+import useBoundStore from '@/lib/store/useBoundStore';
+import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './DrActions.module.css';
 import type { PhoneButtonProps } from './Phone';
 import Phone from './Phone';
 
-export type DrActionsProps = {
-  drHref: string;
-  drId: string;
+type DrActionsCommonProps = {
+  drHref: Doctor['href'];
+  drId: Doctor['fakeId'];
   phone: PhoneButtonProps['tooltipContent'];
-  variant?: 'default' | 'popup' | 'page';
   className?: string;
 };
+
+type DrActionsDefaultProps = {
+  geoLocation: Doctor['location']['geoLocation'];
+  variant?: 'default';
+};
+
+type DrActionsPopupProps = {
+  geoLocation?: undefined;
+  variant: 'popup';
+};
+
+export type DrActionsProps =
+  | DrActionsCommonProps & (DrActionsDefaultProps | DrActionsPopupProps);
 
 const DrActions = ({
   drHref,
@@ -24,8 +39,10 @@ const DrActions = ({
   phone,
   className,
   variant = 'default',
+  ...rest
 }: DrActionsProps) => {
   const router = useRouter();
+  const map = useBoundStore(state => state.map);
 
   const actionsStyles = clsx(
     styles.DrActions,
@@ -35,6 +52,17 @@ const DrActions = ({
 
   const actionsId = `${drId}_actions_${variant}`;
   const phoneId = `${drId}_phone_${variant}`;
+
+  const isDefault = variant === 'default';
+  const geoLocation = isDefault ? rest.geoLocation : undefined;
+
+  const handleFlyTo = geoLocation
+    ? () => {
+        if (map) {
+          map.flyTo({ lat: geoLocation.lat, lng: geoLocation.lng }, MAX_ZOOM);
+        }
+      }
+    : undefined;
 
   return (
     <div className={actionsStyles}>
@@ -61,14 +89,16 @@ const DrActions = ({
               size="sm"
               className={styles.Tooltip__item}
             >
-              <Button type="button" container="span">
-                <Icon
-                  name="MapMarkerSvg"
-                  className={styles.Tooltip__icon}
-                  size="lg"
-                />
-                Pokaži na zemljevidu
-              </Button>
+              {isDefault && (
+                <Button type="button" container="span" onClick={handleFlyTo}>
+                  <Icon
+                    name="MapMarkerSvg"
+                    className={styles.Tooltip__icon}
+                    size="lg"
+                  />
+                  Pokaži na zemljevidu
+                </Button>
+              )}
             </Tooltip.TooltipContent>
             <Tooltip.TooltipContent
               as="li"

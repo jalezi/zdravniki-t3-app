@@ -89,6 +89,7 @@ const InfiniteScroll = ({ data, isVisible }: InfiniteScrollProps) => {
               drHref={doctor.href}
               drId={doctor.fakeId}
               fullAddress={doctor.location.address.fullAddress}
+              geoLocation={doctor.location.geoLocation}
               href={doctor.href}
               isExtra={doctor.isExtra}
               load={doctor.load}

@@ -7,7 +7,7 @@ import {
   SL_CENTER,
   ZOOM,
 } from '@/lib/constants/map';
-import type { LatLngBounds, LatLngTuple } from '@/lib/types/Map';
+import type { LatLngBounds, LatLngTuple, LeafletMap } from '@/lib/types/Map';
 
 const { southWest, northEast } = BOUNDS;
 
@@ -18,10 +18,12 @@ export type MapSliceState = {
   bounds: LatLngBounds | null;
   center: LatLngTuple;
   zoom: number;
+  map: LeafletMap | null;
 
   setBounds: (bounds: LatLngBounds | null) => void;
   setZoom: (zoom: number) => void;
   setCenter: (center: LatLngTuple) => void;
+  setMap: (map: LeafletMap | null) => void;
 };
 
 export const createMapSlice: StateCreator<
@@ -33,6 +35,7 @@ export const createMapSlice: StateCreator<
   bounds: null,
   zoom: ZOOM,
   center: SL_CENTER,
+  map: null,
   setBounds: (value: LatLngBounds | null) => set(() => ({ bounds: value })),
   setZoom: (value: number) =>
     set(() => {
@@ -49,4 +52,5 @@ export const createMapSlice: StateCreator<
 
       return { center: [newLat, newLng] };
     }),
+  setMap: (value: LeafletMap | null) => set(() => ({ map: value })),
 });
