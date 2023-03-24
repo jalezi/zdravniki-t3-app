@@ -7,13 +7,13 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import image from '@/../public/assets/images/doctor-404@2x.png';
-import { Seo } from '@/components/Seo';
 import styles from '@/layouts/LayoutError.module.css';
 
 const LayoutError = dynamic(() => import('@/layouts/LayoutError'));
 const Button = dynamic(() =>
   import('@/components/Shared/Buttons').then(mod => mod.Button)
 );
+const Seo = dynamic(() => import('@/components/Seo/Seo'));
 
 const NotFoundPage = () => {
   const { t } = useTranslation('common');
@@ -22,7 +22,7 @@ const NotFoundPage = () => {
   const { locale } = useRouter();
 
   return (
-    <>
+    <LayoutError>
       <Seo title={title} />
       <div id="error" className={styles.ContainerError}>
         <div className={styles.ContainerError__text_container}>
@@ -51,15 +51,11 @@ const NotFoundPage = () => {
           {t('navLinks.home')}
         </Button>
       </div>
-    </>
+    </LayoutError>
   );
 };
 
 export default NotFoundPage;
-
-NotFoundPage.getLayout = function getLayout(page: React.ReactNode) {
-  return <LayoutError> hello{page}</LayoutError>;
-};
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {

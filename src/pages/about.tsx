@@ -31,12 +31,12 @@ function About({ locale }: { locale: Locale }) {
   const { t } = useTranslation('seo');
   const title = t('title.about');
   return (
-    <>
+    <LayoutMDX>
       <Seo title={title} />
       <MDXProvider components={componentsMap}>
         <LanguagePageMDX name={locale} />
       </MDXProvider>
-    </>
+    </LayoutMDX>
   );
 }
 
@@ -57,9 +57,5 @@ export async function getStaticProps({ locale }: { locale: Locale }) {
     },
   };
 }
-
-About.getLayout = function getLayout(page: React.ReactNode) {
-  return <LayoutMDX>{page}</LayoutMDX>;
-};
 
 export default About;

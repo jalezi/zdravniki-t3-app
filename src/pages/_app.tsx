@@ -14,27 +14,14 @@ import 'the-new-css-reset';
 import '@/lib/styles/variables.css';
 import '@/lib/styles/globals.css';
 import '@/lib/styles/leaflet.css';
-import Layout from '../layouts/Layout';
 
 const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
   Component,
   pageProps,
 }: AppLayoutProps) => {
-  const getLayout = Component?.getLayout;
-
-  if (getLayout) {
-    return (
-      <ErrorBoundary fallback={<Error statusCode={500} />}>
-        {getLayout(<Component {...pageProps} />)}
-      </ErrorBoundary>
-    );
-  }
-
   return (
     <ErrorBoundary fallback={<Error statusCode={500} />}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Component {...pageProps} />
     </ErrorBoundary>
   );
 };

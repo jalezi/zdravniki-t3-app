@@ -6,7 +6,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Papa from 'papaparse';
 
 import nextI18nextConfig from '@/../../next-i18next.config.js';
-import { Seo } from '@/components/Seo';
 import { DOCTORS_CSV_URL } from '@/lib/constants/data-url';
 import { drListSchema } from '@/lib/types/doctors';
 import { instListSchema } from '@/lib/types/institutions';
@@ -22,6 +21,7 @@ const LayoutDoctor = dynamic(() => import('@/layouts/LayoutDoctor'));
 const DoctorCard = dynamic(() =>
   import('@/components/DoctorCard').then(mod => mod.DoctorCard)
 );
+const Seo = dynamic(() => import('@/components/Seo/Seo'));
 
 interface DrTypeNameInstPageProps {
   doctors: Doctor[];
@@ -41,18 +41,14 @@ const DrTypeNameInstPage = ({ doctors }: DrTypeNameInstPageProps) => {
   const doctor = doctors[0] as Doctor;
 
   return (
-    <>
+    <LayoutDoctor>
       <Seo title={doctor.name} />
       <DoctorCard doctor={doctor} />
-    </>
+    </LayoutDoctor>
   );
 };
 
 export default DrTypeNameInstPage;
-
-DrTypeNameInstPage.getLayout = function getLayout(page: React.ReactNode) {
-  return <LayoutDoctor>{page}</LayoutDoctor>;
-};
 
 export const getStaticProps: GetStaticProps<
   DrTypeNameInstPageProps,

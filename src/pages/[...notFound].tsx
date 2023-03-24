@@ -4,25 +4,21 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import nextI18nextConfig from '@/../next-i18next.config';
-import { Seo } from '@/components/Seo';
 
 const LayoutError = dynamic(() => import('@/layouts/LayoutError'));
 const NotFoundPage = dynamic(() => import('./404'));
+const Seo = dynamic(() => import('@/components/Seo/Seo'));
 
 export default function CatchAllPage() {
   const { t } = useTranslation('seo');
   const title = t('title.pageNotFound');
   return (
-    <>
+    <LayoutError>
       <Seo title={title} />
       <NotFoundPage />;
-    </>
+    </LayoutError>
   );
 }
-
-CatchAllPage.getLayout = function getLayout(page: React.ReactNode) {
-  return <LayoutError>{page}</LayoutError>;
-};
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   return {
