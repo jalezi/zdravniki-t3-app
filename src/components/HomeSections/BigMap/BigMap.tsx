@@ -4,6 +4,7 @@ import { useDebounce } from 'usehooks-ts';
 import { Fallback } from '@/components/Shared/Errors';
 import { Map, TotalHits } from '@/components/Shared/Map';
 import DataSource from '@/components/Shared/Map/DataSource';
+import LocateControl from '@/components/Shared/Map/LocateControl';
 import type { MapProps } from '@/components/Shared/Map/Map';
 import CustomMarkerClusterGroup, {
   createClusterCustomIcon,
@@ -52,6 +53,7 @@ function withMap(Component: typeof Map) {
           <RealMarkers doctors={filteredDoctors ?? []} />
         </CustomMarkerClusterGroup>
         <TotalHits count={filteredDoctors?.length ?? 0} />
+        <LocateControl flyTo initialZoomLevel={13} returnToPrevBounds />
         <DataSource />
       </Component>
     );

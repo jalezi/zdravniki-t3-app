@@ -28,6 +28,7 @@
     "i18next": "^22.4.13",
     "leaflet": "^1.9.3",
     "leaflet-defaulticon-compatibility": "^0.1.1",
+    "leaflet.locatecontrol": "^0.79.0",
     "leaflet.markercluster": "^1.5.3",
     "next": "13.2.4",
     "next-i18next": "^13.2.2",

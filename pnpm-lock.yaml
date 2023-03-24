@@ -38,6 +38,7 @@ specifiers:
   i18next: ^22.4.13
   leaflet: ^1.9.3
   leaflet-defaulticon-compatibility: ^0.1.1
+  leaflet.locatecontrol: ^0.79.0
   leaflet.markercluster: ^1.5.3
   lint-staged: ^13.2.0
   next: 13.2.4
@@ -81,6 +82,7 @@ dependencies:
   i18next: 22.4.13
   leaflet: 1.9.3
   leaflet-defaulticon-compatibility: 0.1.1
+  leaflet.locatecontrol: 0.79.0
   leaflet.markercluster: 1.5.3_leaflet@1.9.3
   next: 13.2.4_biqbaboplfbrettd7655fr4n2y
   next-i18next: 13.2.2_dt4g7v76vmr3y5vqc353t2czpa
@@ -4809,6 +4811,10 @@ packages:
 
   /leaflet-defaulticon-compatibility/0.1.1:
     resolution: {integrity: sha512-vDBFdlUAwjSEGep9ih8kfJilf6yN8V9zTbF5NC/1ZwLeGko3RUQepspPnGCRMFV51dY3Lb3hziboicrFz+rxQA==}
+    dev: false
+
+  /leaflet.locatecontrol/0.79.0:
+    resolution: {integrity: sha512-h64QIHFkypYdr90lkSfjKvPvvk8/b8UnP3m9WuoWdp5p2AaCWC0T1NVwyuj4rd5U4fBW3tQt4ppmZ2LceHMIDg==}
     dev: false
 
   /leaflet.markercluster/1.5.3_leaflet@1.9.3:
