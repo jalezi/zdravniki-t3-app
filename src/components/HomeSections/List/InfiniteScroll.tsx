@@ -76,7 +76,7 @@ const InfiniteScroll = ({ data, isVisible }: InfiniteScrollProps) => {
     })
     .map(([letter, doctors]) => (
       <div role="presentation" key={letter}>
-        <h2 className={styles.InfoLetter} translate="no">
+        <h2 role="presentation" className={styles.InfoLetter} translate="no">
           {letter}
         </h2>
         {doctors.map((doctor, index, arr) => {
@@ -112,8 +112,8 @@ const InfiniteScroll = ({ data, isVisible }: InfiniteScrollProps) => {
 
   return (
     <>
-      <div ref={ref} role="list" className={innerContainerStyles}>
-        {infiniteList}
+      <div ref={ref} className={innerContainerStyles}>
+        <div role="list">{infiniteList}</div>
         <IconButton
           type="button"
           className={scrollToTopStyles}

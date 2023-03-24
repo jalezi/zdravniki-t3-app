@@ -32,6 +32,7 @@ function Seo(props: SeoProps) {
       <title>{title}</title>
       <meta name="description" content={description} />
       {keywords ? <meta name="keywords" content={keywords} /> : null}
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" href="/favicon.ico" />
       <link
         rel="apple-touch-icon"
