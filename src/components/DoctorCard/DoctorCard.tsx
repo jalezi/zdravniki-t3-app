@@ -16,9 +16,9 @@ import { stringifyHash } from '@/lib/utils/url-hash';
 import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './DoctorCard.module.css';
-import DoctorCardFooter from './DoctorCardFooter';
 import DoctorContacts from './DoctorContacts';
-import OverrideChip from './OverrideChip';
+import DoctorFooter from './DoctorFooter';
+import DoctorOverride from './DoctorOverride';
 
 type DoctorCardProps = {
   doctor: Doctor;
@@ -103,12 +103,12 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
         </Button>
         <hr className={styles.Divider} />
         <div className={styles.DoctorCard__back}>
-          <DoctorCardFooter
+          <DoctorFooter
             goBack={goBack}
             backToHomeText={t('backToHome').toLowerCase()}
           >
             {override.isDateOverride ? (
-              <OverrideChip
+              <DoctorOverride
                 overrideId={doctor.fakeId}
                 changedOnText={tDoctor('info.changedOn')}
                 overrideChipText={formatDate(
@@ -119,7 +119,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
                 overideChipClassName={styles.Override}
               />
             ) : null}
-          </DoctorCardFooter>
+          </DoctorFooter>
         </div>
       </div>
       <div id="doctor-map" className={styles.DoctorCard__map}>

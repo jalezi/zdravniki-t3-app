@@ -3,12 +3,12 @@ import type { URL } from 'url';
 import { Button } from '@/components/Shared/Buttons';
 import { Icon } from '@/components/Shared/Icons';
 
-type WebsiteProps = {
+type DoctorWebsiteProps = {
   href: URL['href'];
   text: string;
 };
 
-const Website = ({ href, text }: WebsiteProps) => {
+const DoctorWebsite = ({ href, text }: DoctorWebsiteProps) => {
   return (
     <Button
       as="a"
@@ -22,4 +22,4 @@ const Website = ({ href, text }: WebsiteProps) => {
   );
 };
 
-export default Website;
+export default DoctorWebsite;

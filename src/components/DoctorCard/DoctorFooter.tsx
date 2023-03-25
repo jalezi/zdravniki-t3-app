@@ -1,17 +1,17 @@
 import { Button } from '@/components/Shared/Buttons';
 import { Icon } from '@/components/Shared/Icons';
 
-type DoctorCardFooterProps = {
+type DoctorFooterProps = {
   children?: React.ReactNode;
   backToHomeText: string;
   goBack: () => void;
 };
 
-const DoctorCardFooter = ({
+const DoctorFooter = ({
   children,
   backToHomeText,
   goBack,
-}: DoctorCardFooterProps) => {
+}: DoctorFooterProps) => {
   return (
     <>
       <Button type="button" onClick={goBack} container="span">
@@ -22,4 +22,4 @@ const DoctorCardFooter = ({
   );
 };
 
-export default DoctorCardFooter;
+export default DoctorFooter;

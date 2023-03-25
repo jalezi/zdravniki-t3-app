@@ -5,7 +5,7 @@ import {
 import type { Doctor } from '@/server/api/routers/doctors';
 
 import DoctorOrderForm from './DoctorOrderForm';
-import Website from './Website';
+import DoctorWebsite from './DoctorWebsite';
 import { Button } from '../Shared/Buttons';
 import { Icon } from '../Shared/Icons';
 
@@ -29,7 +29,7 @@ const DoctorContacts = ({
       {websites.map((website, i) => {
         const websiteUrl = urlTransformSchema.safeParse(website);
         return websiteUrl.success ? (
-          <Website
+          <DoctorWebsite
             key={`${websiteUrl.data.href}_${i}`}
             href={websiteUrl.data.href}
             text={websiteUrl.data.host.replaceAll('www.', '')}

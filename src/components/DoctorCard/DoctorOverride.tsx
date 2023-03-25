@@ -1,7 +1,7 @@
 import { Chip } from '@/components/Shared/Chip';
 import { Tooltip } from '@/components/Shared/Tooltip';
 
-type OverrideChipProps = {
+type DoctorOverrideProps = {
   overrideChipText: string;
   changedOnText: string;
   note: string;
@@ -9,13 +9,13 @@ type OverrideChipProps = {
   overideChipClassName?: string | undefined;
 };
 
-const OverrideChip = ({
+const DoctorOverride = ({
   overrideChipText,
   changedOnText,
   note,
   overrideId,
   overideChipClassName,
-}: OverrideChipProps) => {
+}: DoctorOverrideProps) => {
   return (
     <>
       <Chip
@@ -41,4 +41,4 @@ const OverrideChip = ({
   );
 };
 
-export default OverrideChip;
+export default DoctorOverride;
