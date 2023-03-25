@@ -5,8 +5,14 @@ import type { LatLngLiteral } from '@/lib/types/Map';
 
 import { DATA_URL } from '../constants';
 import { SL_CENTER } from '../constants/map';
-import type { DrAddress, DrCSV, DrLocation } from '../types/doctors';
+import type {
+  DrAddress,
+  DrCSV,
+  DrListSchema,
+  DrLocation,
+} from '../types/doctors';
 import type { InstAddress, InstCSV, InstLocation } from '../types/institutions';
+import { instListSchema } from '../types/institutions';
 
 const { DOCTORS_CSV_URL, INSTITUTIONS_CSV_URL } = DATA_URL;
 
@@ -136,3 +142,55 @@ export const getDrLocation = (
     meta: { address: address.source, geoLocation: geoLocation.source },
   };
 };
+
+export function getInstitutionById(
+  id: string,
+  institutionsParsedFromCsv: InstCSV[]
+) {
+  const institution = institutionsParsedFromCsv.find(
+    institution => institution.id_inst === id
+  );
+
+  return instListSchema.parse([institution])[0];
+}
+
+/**
+ * @description Create doctor from CSV
+ * @param institutions institutions parsed from CSV
+ * @returns callback to create doctor
+ */
+export function createDoctor(institutions: InstCSV[]) {
+  return (doctor: DrListSchema[number]) => {
+    const { location, phone: drPhone, website: drWebsite, ...rest } = doctor;
+
+    const institution = getInstitutionById(doctor.idInst, institutions);
+    const institutionLocation = institution?.location;
+
+    const {
+      address,
+      geoLocation,
+      meta: drLocationMeta,
+    } = getDrLocation(location, institutionLocation);
+
+    const phone = (drPhone || institution?.phone) ?? null;
+    const website = (drWebsite || institution?.website) ?? null;
+
+    const phones = [...(phone?.split(',') ?? [])].map(val => val.trim());
+    const websites = [...(website?.split(',') ?? [])].map(val => val.trim());
+
+    const drMeta = { ...drLocationMeta, hasInst: !!institution } as const;
+
+    return {
+      ...rest,
+      phones,
+      websites,
+      provider: institution?.name ?? null,
+      institution: institution ?? null,
+      location: {
+        address,
+        geoLocation,
+      },
+      meta: drMeta,
+    };
+  };
+}

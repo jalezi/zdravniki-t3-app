@@ -8,11 +8,10 @@ import Papa from 'papaparse';
 import nextI18nextConfig from '@/../../next-i18next.config.js';
 import { DOCTORS_CSV_URL } from '@/lib/constants/data-url';
 import { drListSchema } from '@/lib/types/doctors';
-import { instListSchema } from '@/lib/types/institutions';
 import {
   PARSE_OPTIONS,
+  createDoctor,
   fetchDrAndInstDataAndParse,
-  getDrLocation,
 } from '@/lib/utils/fetch-and-parse';
 import { drPersonalPageSchema, slugSchema } from '@/lib/utils/zod';
 import type { Doctor } from '@/server/api/routers/doctors';
@@ -77,45 +76,9 @@ export const getStaticProps: GetStaticProps<
 
   const doctorsValidated = drListSchema.parse(doctorsFiltered);
 
-  const doctors = doctorsValidated.map(doctor => {
-    const { location, phone: drPhone, website: drWebsite, ...rest } = doctor;
-
-    const _institution = institutionsParsedFromCsv.data.find(
-      institution => institution.id_inst === doctor.idInst
-    );
-
-    const institution = instListSchema.parse([_institution])[0];
-    const institutionLocation = institution?.location;
-
-    const {
-      address,
-      geoLocation,
-      meta: drLocationMeta,
-    } = getDrLocation(location, institutionLocation);
-
-    const phone = (drPhone || institution?.phone) ?? null;
-    const website = (drWebsite || institution?.website) ?? null;
-
-    const drMeta = { ...drLocationMeta, hasInst: !!institution } as const;
-
-    const phones = [...(phone?.split(',') ?? [])].map(val => val.trim());
-    const websites = [...(website?.split(',') ?? [])].map(val => val.trim());
-
-    return {
-      ...rest,
-      phone,
-      phones,
-      website,
-      websites,
-      provider: institution?.name ?? null,
-      institution: institution ?? null,
-      location: {
-        address,
-        geoLocation,
-      },
-      meta: drMeta,
-    };
-  });
+  const doctors = doctorsValidated.map(
+    createDoctor(institutionsParsedFromCsv.data)
+  );
 
   return {
     props: {
