@@ -141,19 +141,27 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
         </Button>
         <hr className={styles.Divider} />
         <div className={styles.DoctorCard__back}>
-          <DoctorCardFooter
-            overrideId={doctor.fakeId}
-            goBack={goBack}
-            isDateOverride={override.isDateOverride}
-            backToHomeText={t('backToHome').toLowerCase()}
-            changedOnText={tDoctor('info.changedOn')}
-            overrideChipText={formatDate(
-              override.date,
-              router.locale as Locale
-            )}
-            note={override.note}
-            overideChipClassName={styles.Override}
-          />
+          {override.isDateOverride ? (
+            <DoctorCardFooter
+              goBack={goBack}
+              variant={'override'}
+              backToHomeText={t('backToHome').toLowerCase()}
+              overrideId={doctor.fakeId}
+              changedOnText={tDoctor('info.changedOn')}
+              overrideChipText={formatDate(
+                override.date,
+                router.locale as Locale
+              )}
+              note={override.note}
+              overideChipClassName={styles.Override ?? ''}
+            />
+          ) : (
+            <DoctorCardFooter
+              goBack={goBack}
+              variant={'default'}
+              backToHomeText={t('backToHome').toLowerCase()}
+            />
+          )}
         </div>
       </div>
       <div id="doctor-map" className={styles.DoctorCard__map}>

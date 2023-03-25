@@ -4,33 +4,49 @@ import { Icon } from '@/components/Shared/Icons';
 import { Tooltip } from '@/components/Shared/Tooltip';
 import type { Doctor } from '@/server/api/routers/doctors';
 
-type DoctorCardFooterProps = {
+type DoctorFooterCommonProps = {
   backToHomeText: string;
-  changedOnText: string;
   goBack: () => void;
-  isDateOverride: boolean;
+};
+
+type DoctorFooterWithoutDateOverrideProps = DoctorFooterCommonProps & {
+  variant?: 'default';
+  changedOnText?: undefined;
+  note?: undefined;
+  overrideId?: undefined;
+  overideChipClassName?: undefined;
+  overrideChipText?: undefined;
+};
+
+type DoctorFooterWithDateOverrideProps = DoctorFooterCommonProps & {
+  variant: 'override';
+  changedOnText: string;
   note: Doctor['override']['note'];
   overrideId: string;
-  overideChipClassName: string | undefined;
+  overideChipClassName: string;
   overrideChipText: string;
 };
 
+type DoctorCardFooterProps =
+  | DoctorFooterWithoutDateOverrideProps
+  | DoctorFooterWithDateOverrideProps;
+
 const DoctorCardFooter = ({
+  variant,
   backToHomeText,
-  changedOnText,
   goBack,
-  isDateOverride,
+  overrideChipText,
+  changedOnText,
   note,
   overrideId,
   overideChipClassName,
-  overrideChipText,
 }: DoctorCardFooterProps) => {
   return (
     <>
       <Button type="button" onClick={goBack} container="span">
         <Icon name="BackSvg" size="xxl" /> {backToHomeText}
       </Button>
-      {isDateOverride && (
+      {variant === 'override' && (
         <>
           <Chip
             id={overrideId}
@@ -39,7 +55,7 @@ const DoctorCardFooter = ({
             text={overrideChipText}
             className={overideChipClassName}
           />
-          <Tooltip.Tooltip anchorSelect={`#${overrideId}`} place="bottom">
+          <Tooltip.Tooltip anchorSelect={`#${overrideId ?? ''}`} place="bottom">
             <Tooltip.TooltipContent weight="700">
               {changedOnText}
               {overrideChipText}
