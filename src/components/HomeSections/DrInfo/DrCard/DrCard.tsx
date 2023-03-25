@@ -21,7 +21,7 @@ type DrCardProps = {
   load: Doctor['load'];
   name: Doctor['name'];
   override: Doctor['override'];
-  phone: Doctor['phone'];
+  phones: Doctor['phones'];
   provider: Doctor['provider'];
   role?: AriaRole;
 };
@@ -39,7 +39,7 @@ const DrCard = (
     load,
     name,
     override,
-    phone,
+    phones,
     provider,
     role,
   }: DrCardProps,
@@ -73,7 +73,7 @@ const DrCard = (
         drHref={drHref}
         drId={drId}
         geoLocation={geoLocation}
-        phone={phone}
+        phones={phones}
         className={styles.Actions}
       />
     </div>

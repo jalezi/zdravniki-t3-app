@@ -95,7 +95,7 @@ const InfiniteScroll = ({ data, isVisible }: InfiniteScrollProps) => {
               load={doctor.load}
               name={doctor.name}
               override={doctor.override}
-              phone={doctor.phone}
+              phones={doctor.phones}
               provider={doctor.provider}
               role="listitem"
             />

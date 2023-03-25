@@ -59,7 +59,7 @@ const RealMarkers = ({ doctors }: RealMarkersProps) => {
               <DrActions
                 drHref={doctor.href}
                 drId={doctor.fakeId}
-                phone={doctor.phone}
+                phones={doctor.phones}
                 variant="popup"
               />
             </div>

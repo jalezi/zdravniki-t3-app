@@ -74,16 +74,15 @@ export const doctorsRouter = createTRPCRouter({
         const phone = (drPhone || institution?.phone) ?? null;
         const website = (drWebsite || institution?.website) ?? null;
 
-        const drMeta = { ...drLocationMeta, hasInst: !!institution } as const;
-
         const phones = [...(phone?.split(',') ?? [])].map(val => val.trim());
         const websites = [...(website?.split(',') ?? [])].map(val =>
           val.trim()
         );
 
+        const drMeta = { ...drLocationMeta, hasInst: !!institution } as const;
+
         return {
           ...rest,
-          phone,
           phones,
           website,
           websites,

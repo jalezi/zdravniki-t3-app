@@ -1,16 +1,14 @@
 import { useTranslation } from 'next-i18next';
+import type { ReactElement } from 'react';
 
 import { IconButton } from '@/components/Shared/Buttons';
 import { PhoneNoneSvg, PhoneSvg } from '@/components/Shared/Icons';
 import { Tooltip } from '@/components/Shared/Tooltip';
-import type { Doctor } from '@/server/api/routers/doctors';
-
-type Phone = Doctor['phone'];
 
 export type PhoneButtonProps = {
   id: string;
   href?: string;
-  tooltipContent: Phone;
+  tooltipContent: ReactElement | string | undefined;
 };
 
 export const PhoneButton = ({ id, href, tooltipContent }: PhoneButtonProps) => {

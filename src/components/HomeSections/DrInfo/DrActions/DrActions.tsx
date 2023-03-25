@@ -10,13 +10,12 @@ import useBoundStore from '@/lib/store/useBoundStore';
 import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './DrActions.module.css';
-import type { PhoneButtonProps } from './Phone';
 import Phone from './Phone';
 
 type DrActionsCommonProps = {
   drHref: Doctor['href'];
   drId: Doctor['fakeId'];
-  phone: PhoneButtonProps['tooltipContent'];
+  phones: Doctor['phones'];
   className?: string;
 };
 
@@ -33,10 +32,12 @@ type DrActionsPopupProps = {
 export type DrActionsProps =
   | DrActionsCommonProps & (DrActionsDefaultProps | DrActionsPopupProps);
 
+//  Drole Katja gp [ '04 51 51 151', '051 395 675' ]
+
 const DrActions = ({
   drHref,
   drId,
-  phone,
+  phones,
   className,
   variant = 'default',
   ...rest
@@ -146,8 +147,23 @@ const DrActions = ({
       </div>
       <Phone
         id={phoneId}
-        href={phone ? `tel: ${phone}` : undefined}
-        tooltipContent={phone}
+        href={phones[0] ? `tel: ${phones[0]}` : undefined}
+        tooltipContent={
+          phones[0] ? (
+            <ul>
+              {phones.map((phone, i) => (
+                <Tooltip.TooltipContent
+                  key={`${phone}_${i}`}
+                  as="li"
+                  size="sm"
+                  className={styles.Tooltip__item}
+                >
+                  {phone}
+                </Tooltip.TooltipContent>
+              ))}
+            </ul>
+          ) : undefined
+        }
       />
     </div>
   );
