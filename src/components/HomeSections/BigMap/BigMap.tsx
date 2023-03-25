@@ -21,7 +21,6 @@ import RealMarkers from './RealMarkers';
 export type BigMapProps = MapProps;
 
 function withMap(Component: typeof Map) {
-  // eslint-disable-next-line sonarjs/cognitive-complexity
   function BigMap(props: BigMapProps) {
     const { setMap, ...rest } = props;
     const { data, status } = useDoctors();
@@ -59,7 +58,7 @@ function withMap(Component: typeof Map) {
     );
   }
 
-  return memo(BigMap);
+  return BigMap;
 }
 
-export default withMap(Map);
+export default memo(withMap(Map));
