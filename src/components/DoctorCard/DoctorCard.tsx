@@ -21,6 +21,7 @@ import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './DoctorCard.module.css';
 import DoctorCardFooter from './DoctorCardFooter';
+import DoctorOrderForm from './DoctorOrderForm';
 import OverrideChip from './OverrideChip';
 import Website from './Website';
 
@@ -101,27 +102,15 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
           ) : null;
         })}
         {orderform.success && (
-          <Button
-            as="a"
+          <DoctorOrderForm
             href={
               orderform.data.type === 'url'
                 ? orderform.data.value
                 : `mailto: ${orderform.data.value}`
             }
-            container="span"
-            target={orderform.data.type === 'url' ? '_blank' : undefined}
-            rel={
-              orderform.data.type === 'url' ? 'noopener noreferrer' : undefined
-            }
-          >
-            <Icon name="BookingSvg" size="xxl" />{' '}
-            {tDoctor('orderform.linkReplaceText').toLowerCase()}
-          </Button>
-        )}
-        {doctor.email && (
-          <Button as="a" href={`mailto: ${doctor.email}`} container="span">
-            <Icon name="EmailSvg" size="xxl" /> {doctor.email}
-          </Button>
+            variant={orderform.data.type}
+            text={tDoctor('orderform.linkReplaceText').toLowerCase()}
+          />
         )}
         {doctor.phones.map(phone =>
           phone ? (
@@ -130,6 +119,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
             </Button>
           ) : null
         )}
+
         <Button
           as={Link}
           href="#"

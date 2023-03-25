@@ -224,11 +224,11 @@ const urlOrEmailSchema = z.union([urlSchema, emailSchema]);
 export const urlOrEmailTransformSchema = urlOrEmailSchema.transform(
   (value, ctx) => {
     if (emailSchema.safeParse(value).success) {
-      return { value, type: 'email' };
+      return { value, type: 'email' as const };
     }
 
     if (urlSchema.safeParse(value).success) {
-      return { value, type: 'url' };
+      return { value, type: 'url' as const };
     }
 
     ctx.addIssue({
@@ -238,3 +238,7 @@ export const urlOrEmailTransformSchema = urlOrEmailSchema.transform(
     return z.NEVER;
   }
 );
+
+export type UrlOrEmailTransformSchema = z.infer<
+  typeof urlOrEmailTransformSchema
+>;
