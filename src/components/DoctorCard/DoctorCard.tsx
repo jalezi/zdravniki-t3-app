@@ -3,9 +3,12 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { z } from 'zod';
 
 import { MAX_ZOOM } from '@/lib/constants/map';
+import {
+  urlOrEmailTransformSchema,
+  urlTransformSchema,
+} from '@/lib/types/doctors';
 import type { Locale } from '@/lib/types/i18n';
 import { formatDate } from '@/lib/utils/common';
 import { stringifyHash } from '@/lib/utils/url-hash';
@@ -23,28 +26,6 @@ import { Tooltip } from '../Shared/Tooltip';
 type DoctorCardProps = {
   doctor: Doctor;
 };
-
-const urlSchema = z.string().url();
-const urlTransformSchema = urlSchema.transform(value => {
-  return new URL(value);
-});
-const emailSchema = z.string().email();
-const urlOrEmailSchema = z.union([urlSchema, emailSchema]);
-const urlOrEmailTransformSchema = urlOrEmailSchema.transform((value, ctx) => {
-  if (emailSchema.safeParse(value).success) {
-    return { value, type: 'email' };
-  }
-
-  if (urlSchema.safeParse(value).success) {
-    return { value, type: 'url' };
-  }
-
-  ctx.addIssue({
-    code: z.ZodIssueCode.custom,
-    message: 'Not an email or an url',
-  });
-  return z.NEVER;
-});
 
 const DoctorCard = ({ doctor }: DoctorCardProps) => {
   const DrMap = dynamic(() => import('./DoctorMap'), {

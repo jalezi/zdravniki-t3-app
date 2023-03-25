@@ -214,3 +214,27 @@ export type DrListSchema = z.infer<typeof drListSchema>;
 
 export type DrLocation = DrListSchema[0]['location'];
 export type DrAddress = DrListSchema[0]['location']['address'];
+
+const urlSchema = z.string().url();
+export const urlTransformSchema = urlSchema.transform(value => {
+  return new URL(value);
+});
+const emailSchema = z.string().email();
+const urlOrEmailSchema = z.union([urlSchema, emailSchema]);
+export const urlOrEmailTransformSchema = urlOrEmailSchema.transform(
+  (value, ctx) => {
+    if (emailSchema.safeParse(value).success) {
+      return { value, type: 'email' };
+    }
+
+    if (urlSchema.safeParse(value).success) {
+      return { value, type: 'url' };
+    }
+
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Not an email or an url',
+    });
+    return z.NEVER;
+  }
+);
