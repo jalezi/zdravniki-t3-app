@@ -200,8 +200,14 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
                   {tDoctor('info.changedOn')}
                   {formatDate(override.date, router.locale as Locale)}
                 </Tooltip.TooltipContent>
-                <Tooltip.TooltipDivider />
-                <Tooltip.TooltipContent>{override.note}</Tooltip.TooltipContent>
+                {override.note ? (
+                  <>
+                    <Tooltip.TooltipDivider />
+                    <Tooltip.TooltipContent>
+                      {override.note}
+                    </Tooltip.TooltipContent>
+                  </>
+                ) : null}
               </Tooltip.Tooltip>
             </>
           )}
