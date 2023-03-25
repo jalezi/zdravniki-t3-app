@@ -5,16 +5,14 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
 import { MAX_ZOOM } from '@/lib/constants/map';
-import {
-  urlOrEmailTransformSchema,
-  urlTransformSchema,
-} from '@/lib/types/doctors';
+import { urlOrEmailTransformSchema } from '@/lib/types/doctors';
 import type { Locale } from '@/lib/types/i18n';
 import { formatDate } from '@/lib/utils/common';
 import { stringifyHash } from '@/lib/utils/url-hash';
 import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './DoctorCard.module.css';
+import Website from './Website';
 import MapSkeleton from '../HomeSections/BigMap/MapSkeleton';
 import { DrAvailabilityInfo } from '../HomeSections/DrInfo/DrAvailabilityInfo';
 import { DrBasicInfo } from '../HomeSections/DrInfo/DrBasicInfo';
@@ -90,29 +88,9 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
         />
         <hr className={styles.Divider} />
         {doctor.websites.length >= 1 &&
-          doctor.websites.map(website => {
-            const websiteUrl = urlTransformSchema.safeParse(website);
-
-            if (websiteUrl.success) {
-              return (
-                urlTransformSchema.safeParse(website).success && (
-                  <Button
-                    key={website}
-                    as="a"
-                    href={websiteUrl.data.href}
-                    container="span"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Icon name="LinkSvg" size="xxl" />{' '}
-                    {websiteUrl.data.host.replaceAll('www.', '')}
-                  </Button>
-                )
-              );
-            }
-
-            return undefined;
-          })}
+          doctor.websites.map(website => (
+            <Website key="website" website={website} />
+          ))}
         {orderform.success && (
           <Button
             as="a"
