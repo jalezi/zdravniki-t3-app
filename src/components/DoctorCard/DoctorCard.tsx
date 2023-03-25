@@ -21,6 +21,7 @@ import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './DoctorCard.module.css';
 import DoctorCardFooter from './DoctorCardFooter';
+import OverrideChip from './OverrideChip';
 import Website from './Website';
 
 type DoctorCardProps = {
@@ -141,27 +142,23 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
         </Button>
         <hr className={styles.Divider} />
         <div className={styles.DoctorCard__back}>
-          {override.isDateOverride ? (
-            <DoctorCardFooter
-              goBack={goBack}
-              variant={'override'}
-              backToHomeText={t('backToHome').toLowerCase()}
-              overrideId={doctor.fakeId}
-              changedOnText={tDoctor('info.changedOn')}
-              overrideChipText={formatDate(
-                override.date,
-                router.locale as Locale
-              )}
-              note={override.note}
-              overideChipClassName={styles.Override ?? ''}
-            />
-          ) : (
-            <DoctorCardFooter
-              goBack={goBack}
-              variant={'default'}
-              backToHomeText={t('backToHome').toLowerCase()}
-            />
-          )}
+          <DoctorCardFooter
+            goBack={goBack}
+            backToHomeText={t('backToHome').toLowerCase()}
+          >
+            {override.isDateOverride ? (
+              <OverrideChip
+                overrideId={doctor.fakeId}
+                changedOnText={tDoctor('info.changedOn')}
+                overrideChipText={formatDate(
+                  override.date,
+                  router.locale as Locale
+                )}
+                note={override.note}
+                overideChipClassName={styles.Override}
+              />
+            ) : null}
+          </DoctorCardFooter>
         </div>
       </div>
       <div id="doctor-map" className={styles.DoctorCard__map}>
