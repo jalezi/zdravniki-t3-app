@@ -8,9 +8,7 @@ import MapSkeleton from '@/components/HomeSections/BigMap/MapSkeleton';
 import { DrAvailabilityInfo } from '@/components/HomeSections/DrInfo/DrAvailabilityInfo';
 import { DrBasicInfo } from '@/components/HomeSections/DrInfo/DrBasicInfo';
 import { Button } from '@/components/Shared/Buttons';
-import { Chip } from '@/components/Shared/Chip';
 import { Icon } from '@/components/Shared/Icons';
-import { Tooltip } from '@/components/Shared/Tooltip';
 import { MAX_ZOOM } from '@/lib/constants/map';
 import { urlOrEmailTransformSchema } from '@/lib/types/doctors';
 import type { Locale } from '@/lib/types/i18n';
@@ -19,6 +17,7 @@ import { stringifyHash } from '@/lib/utils/url-hash';
 import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './DoctorCard.module.css';
+import DoctorCardFooter from './DoctorCardFooter';
 import Website from './Website';
 
 type DoctorCardProps = {
@@ -139,37 +138,19 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
         </Button>
         <hr className={styles.Divider} />
         <div className={styles.DoctorCard__back}>
-          <Button type="button" onClick={goBack} container="span">
-            <Icon name="BackSvg" size="xxl" /> {t('backToHome').toLowerCase()}
-          </Button>
-          {override.isDateOverride && (
-            <>
-              <Chip
-                id={doctor.slugName}
-                iconName="EditSvg"
-                iconSize="lg"
-                text={formatDate(override.date, router.locale as Locale)}
-                className={styles.Override}
-              />
-              <Tooltip.Tooltip
-                anchorSelect={`#${doctor.slugName}`}
-                place="bottom"
-              >
-                <Tooltip.TooltipContent weight="700">
-                  {tDoctor('info.changedOn')}
-                  {formatDate(override.date, router.locale as Locale)}
-                </Tooltip.TooltipContent>
-                {override.note ? (
-                  <>
-                    <Tooltip.TooltipDivider />
-                    <Tooltip.TooltipContent>
-                      {override.note}
-                    </Tooltip.TooltipContent>
-                  </>
-                ) : null}
-              </Tooltip.Tooltip>
-            </>
-          )}
+          <DoctorCardFooter
+            overrideId={doctor.fakeId}
+            goBack={goBack}
+            isDateOverride={override.isDateOverride}
+            backToHomeText={t('backToHome').toLowerCase()}
+            changedOnText={tDoctor('info.changedOn')}
+            overrideChipText={formatDate(
+              override.date,
+              router.locale as Locale
+            )}
+            note={override.note}
+            overideChipClassName={styles.Override}
+          />
         </div>
       </div>
       <div id="doctor-map" className={styles.DoctorCard__map}>
