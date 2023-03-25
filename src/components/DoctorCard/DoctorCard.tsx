@@ -4,6 +4,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
+import MapSkeleton from '@/components/HomeSections/BigMap/MapSkeleton';
+import { DrAvailabilityInfo } from '@/components/HomeSections/DrInfo/DrAvailabilityInfo';
+import { DrBasicInfo } from '@/components/HomeSections/DrInfo/DrBasicInfo';
+import { Button } from '@/components/Shared/Buttons';
+import { Chip } from '@/components/Shared/Chip';
+import { Icon } from '@/components/Shared/Icons';
+import { Tooltip } from '@/components/Shared/Tooltip';
 import { MAX_ZOOM } from '@/lib/constants/map';
 import { urlOrEmailTransformSchema } from '@/lib/types/doctors';
 import type { Locale } from '@/lib/types/i18n';
@@ -13,13 +20,6 @@ import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './DoctorCard.module.css';
 import Website from './Website';
-import MapSkeleton from '../HomeSections/BigMap/MapSkeleton';
-import { DrAvailabilityInfo } from '../HomeSections/DrInfo/DrAvailabilityInfo';
-import { DrBasicInfo } from '../HomeSections/DrInfo/DrBasicInfo';
-import { Button } from '../Shared/Buttons';
-import { Chip } from '../Shared/Chip';
-import { Icon } from '../Shared/Icons';
-import { Tooltip } from '../Shared/Tooltip';
 
 type DoctorCardProps = {
   doctor: Doctor;
