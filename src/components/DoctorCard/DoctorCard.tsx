@@ -10,10 +10,6 @@ import { DrBasicInfo } from '@/components/HomeSections/DrInfo/DrBasicInfo';
 import { Button } from '@/components/Shared/Buttons';
 import { Icon } from '@/components/Shared/Icons';
 import { MAX_ZOOM } from '@/lib/constants/map';
-import {
-  urlOrEmailTransformSchema,
-  urlTransformSchema,
-} from '@/lib/types/doctors';
 import type { Locale } from '@/lib/types/i18n';
 import { formatDate } from '@/lib/utils/common';
 import { stringifyHash } from '@/lib/utils/url-hash';
@@ -21,9 +17,8 @@ import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './DoctorCard.module.css';
 import DoctorCardFooter from './DoctorCardFooter';
-import DoctorOrderForm from './DoctorOrderForm';
+import DoctorContacts from './DoctorContacts';
 import OverrideChip from './OverrideChip';
-import Website from './Website';
 
 type DoctorCardProps = {
   doctor: Doctor;
@@ -40,8 +35,6 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
   const { t: tDoctor } = useTranslation('doctor');
 
   const { override } = doctor;
-
-  const orderform = urlOrEmailTransformSchema.safeParse(doctor.orderform);
 
   const goBack = () => {
     if (window.history.length > 2) {
@@ -91,34 +84,12 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
           override={doctor.override}
         />
         <hr className={styles.Divider} />
-        {doctor.websites.map(website => {
-          const websiteUrl = urlTransformSchema.safeParse(website);
-          return websiteUrl.success ? (
-            <Website
-              key="website"
-              href={websiteUrl.data.href}
-              text={websiteUrl.data.host.replaceAll('www.', '')}
-            />
-          ) : null;
-        })}
-        {orderform.success && (
-          <DoctorOrderForm
-            href={
-              orderform.data.type === 'url'
-                ? orderform.data.value
-                : `mailto: ${orderform.data.value}`
-            }
-            variant={orderform.data.type}
-            text={tDoctor('orderform.linkReplaceText').toLowerCase()}
-          />
-        )}
-        {doctor.phones.map(phone =>
-          phone ? (
-            <Button key={phone} as="a" href={`tel: ${phone}`} container="span">
-              <Icon name="Phone" size="xxl" /> {phone}
-            </Button>
-          ) : null
-        )}
+        <DoctorContacts
+          websites={doctor.websites}
+          phones={doctor.phones}
+          orderform={doctor.orderform}
+          orderformText={tDoctor('orderform.linkReplaceText').toLowerCase()}
+        />
 
         <Button
           as={Link}
