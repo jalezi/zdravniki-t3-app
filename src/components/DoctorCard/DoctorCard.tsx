@@ -10,7 +10,10 @@ import { DrBasicInfo } from '@/components/HomeSections/DrInfo/DrBasicInfo';
 import { Button } from '@/components/Shared/Buttons';
 import { Icon } from '@/components/Shared/Icons';
 import { MAX_ZOOM } from '@/lib/constants/map';
-import { urlOrEmailTransformSchema } from '@/lib/types/doctors';
+import {
+  urlOrEmailTransformSchema,
+  urlTransformSchema,
+} from '@/lib/types/doctors';
 import type { Locale } from '@/lib/types/i18n';
 import { formatDate } from '@/lib/utils/common';
 import { stringifyHash } from '@/lib/utils/url-hash';
@@ -86,10 +89,16 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
           override={doctor.override}
         />
         <hr className={styles.Divider} />
-        {doctor.websites.length >= 1 &&
-          doctor.websites.map(website => (
-            <Website key="website" website={website} />
-          ))}
+        {doctor.websites.map(website => {
+          const websiteUrl = urlTransformSchema.safeParse(website);
+          return websiteUrl.success ? (
+            <Website
+              key="website"
+              href={websiteUrl.data.href}
+              text={websiteUrl.data.host.replaceAll('www.', '')}
+            />
+          ) : null;
+        })}
         {orderform.success && (
           <Button
             as="a"
@@ -113,19 +122,13 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
             <Icon name="EmailSvg" size="xxl" /> {doctor.email}
           </Button>
         )}
-        {doctor.phones.length >= 1 &&
-          doctor.phones.map(phone =>
-            phone ? (
-              <Button
-                key={phone}
-                as="a"
-                href={`tel: ${phone}`}
-                container="span"
-              >
-                <Icon name="Phone" size="xxl" /> {phone}
-              </Button>
-            ) : null
-          )}
+        {doctor.phones.map(phone =>
+          phone ? (
+            <Button key={phone} as="a" href={`tel: ${phone}`} container="span">
+              <Icon name="Phone" size="xxl" /> {phone}
+            </Button>
+          ) : null
+        )}
         <Button
           as={Link}
           href="#"
