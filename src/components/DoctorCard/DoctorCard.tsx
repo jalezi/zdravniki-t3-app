@@ -156,11 +156,18 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
           </Button>
         )}
         {doctor.phones.length >= 1 &&
-          doctor.phones.map(phone => (
-            <Button key={phone} as="a" href={`tel: ${phone}`} container="span">
-              <Icon name="Phone" size="xxl" /> {phone}
-            </Button>
-          ))}
+          doctor.phones.map(phone =>
+            phone ? (
+              <Button
+                key={phone}
+                as="a"
+                href={`tel: ${phone}`}
+                container="span"
+              >
+                <Icon name="Phone" size="xxl" /> {phone}
+              </Button>
+            ) : null
+          )}
         <Button
           as={Link}
           href="#"
