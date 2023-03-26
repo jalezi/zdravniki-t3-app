@@ -10,6 +10,7 @@ import { Button } from '../Shared/Buttons';
 import { Icon } from '../Shared/Icons';
 
 type DoctorContactsProps = {
+  email: Doctor['email'];
   websites: Doctor['websites'];
   phones: Doctor['phones'];
   orderform: Doctor['orderform'];
@@ -17,6 +18,7 @@ type DoctorContactsProps = {
 };
 
 const DoctorContacts = ({
+  email,
   websites,
   phones,
   orderform,
@@ -43,6 +45,12 @@ const DoctorContacts = ({
           </Button>
         ) : null
       )}
+      {email ? (
+        <Button as="a" href={`mailto: ${email}`} container="span">
+          <Icon name="EmailSvg" size="xxl" /> {email}
+        </Button>
+      ) : null}
+
       {orderformParsed.success && (
         <DoctorOrderForm
           href={

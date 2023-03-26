@@ -85,6 +85,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
         />
         <hr className={styles.Divider} />
         <DoctorContacts
+          email={doctor.email}
           websites={doctor.websites}
           phones={doctor.phones}
           orderform={doctor.orderform}
