@@ -36,11 +36,13 @@ const DoctorContacts = ({
           />
         ) : null;
       })}
-      {phones.map(phone => (
-        <Button key={phone} as="a" href={`tel: ${phone}`} container="span">
-          <Icon name="Phone" size="xxl" /> {phone}
-        </Button>
-      ))}
+      {phones.map(phone =>
+        phone ? (
+          <Button key={phone} as="a" href={`tel: ${phone}`} container="span">
+            <Icon name="Phone" size="xxl" /> {phone}
+          </Button>
+        ) : null
+      )}
       {orderformParsed.success && (
         <DoctorOrderForm
           href={
