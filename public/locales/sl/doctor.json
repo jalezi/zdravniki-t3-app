@@ -35,6 +35,7 @@
         "cancel": "Prekliči",
         "linkText": "Prijavi napako v objavljenih podatkih",
         "placeholder": {
+            "accepts": "$t(accepts)",
             "address": "naslov",
             "availability": "obseg zaposlitve",
             "email": "e-pošta",
@@ -44,6 +45,7 @@
             "website": "spletna stran"
         },
         "reportReceived": "Hvala za poslano! Podatke bomo pregledali.",
+        "reset": "Ponastavi",
         "send": "Pošlji",
         "text": "Prijavi napako na posameznih podatkih o zdravniku in vnesi pravilne podatke ali opombo:",
         "title": "Prijavi napako",
