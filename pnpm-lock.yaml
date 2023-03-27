@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@commitlint/cli': ^17.5.0
   '@commitlint/config-conventional': ^17.4.4
+  '@hookform/resolvers': ^3.0.0
   '@mdx-js/loader': ^2.3.0
   '@mdx-js/react': ^2.3.0
   '@next/mdx': ^13.2.4
@@ -48,6 +49,7 @@ specifiers:
   prettier: ^2.8.6
   react: 18.2.0
   react-dom: 18.2.0
+  react-hook-form: ^7.43.8
   react-i18next: ^12.2.0
   react-leaflet: ^4.2.1
   react-loading-skeleton: ^3.2.0
@@ -68,6 +70,7 @@ specifiers:
   zustand: ^4.3.6
 
 dependencies:
+  '@hookform/resolvers': 3.0.0_react-hook-form@7.43.8
   '@mdx-js/loader': 2.3.0
   '@mdx-js/react': 2.3.0_react@18.2.0
   '@next/mdx': 13.2.4_msthxdjvrhmdkfpqqalumiidgq
@@ -90,6 +93,7 @@ dependencies:
   papaparse: 5.4.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-hook-form: 7.43.8_react@18.2.0
   react-i18next: 12.2.0_2rh65uwnd6kial3dj4kteywnti
   react-leaflet: 4.2.1_yydtlhsdonbqao6vgvkwhv2zki
   react-loading-skeleton: 3.2.0_react@18.2.0
@@ -1668,6 +1672,14 @@ packages:
     resolution: {integrity: sha512-TpIO93+DIujg3g7SykEAGZMDtbJRrmnYRCNYSjJlvIbGhBjRSNTLVbNeDQBrzy9qDgUbiWdc7KA0uZHZ2tJmiw==}
     dependencies:
       '@floating-ui/core': 1.2.4
+    dev: false
+
+  /@hookform/resolvers/3.0.0_react-hook-form@7.43.8:
+    resolution: {integrity: sha512-SQPefakODpyq25b/phHXDKCdRrEfPcCXV7B4nAa139wE1DxufYbbNAjeo0T04ZXBokRxZ+wD8iA1kkVMa3QwjQ==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.43.8_react@18.2.0
     dev: false
 
   /@humanwhocodes/config-array/0.11.8:
@@ -5984,6 +5996,15 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-hook-form/7.43.8_react@18.2.0:
+    resolution: {integrity: sha512-BQm+Ge5KjTk1EchDBRhdP8Pkb7MArO2jFF+UWYr3rtvh6197khi22uloLqlWeuY02ItlCzPunPsFt1/q9wQKnw==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-i18next/12.2.0_2rh65uwnd6kial3dj4kteywnti:
