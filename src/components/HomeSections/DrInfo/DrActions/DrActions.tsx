@@ -1,6 +1,7 @@
 import { clsx } from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 import { Button, IconButton } from '@/components/Shared/Buttons';
 import { DotsVertSvg, Icon } from '@/components/Shared/Icons';
@@ -44,6 +45,7 @@ const DrActions = ({
 }: DrActionsProps) => {
   const router = useRouter();
   const map = useBoundStore(state => state.map);
+  const { t } = useTranslation('doctor');
 
   const actionsStyles = clsx(
     styles.DrActions,
@@ -97,7 +99,7 @@ const DrActions = ({
                     className={styles.Tooltip__icon}
                     size="lg"
                   />
-                  Pokaži na zemljevidu
+                  {t('info.showOnMap')}
                 </Button>
               )}
             </Tooltip.TooltipContent>
@@ -108,7 +110,7 @@ const DrActions = ({
             >
               <Button
                 as={Link}
-                href="#"
+                href={drHref}
                 passHref
                 locale={router.locale}
                 container="span"
@@ -118,7 +120,7 @@ const DrActions = ({
                   className={styles.Tooltip__icon}
                   size="lg"
                 />
-                Prijavi napako v objavljenih podatkih
+                {t('reportError.linkText')}
               </Button>
             </Tooltip.TooltipContent>
             <Tooltip.TooltipDivider />
@@ -139,7 +141,7 @@ const DrActions = ({
                   className={styles.Tooltip__icon}
                   size="lg"
                 />
-                Več
+                {t('info.more')}
               </Button>
             </Tooltip.TooltipContent>
           </ul>
