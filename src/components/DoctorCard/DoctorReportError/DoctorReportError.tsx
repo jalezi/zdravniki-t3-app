@@ -4,11 +4,11 @@ import { useTranslation } from 'next-i18next';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@/components/Shared/Buttons';
 import { api } from '@/lib/utils/api';
 import type { Doctor, SendReportInput } from '@/server/api/routers/doctors';
 
 import styles from './DoctorReportError.module.css';
+import DoctorReportErrorActions from './DoctorReportErrorActions';
 
 type ReportErrorTranslations = {
   cancel: string;
@@ -119,17 +119,19 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
     sendReport.data?.success && props.setEdit(false);
   });
 
+  const actions = (
+    <DoctorReportErrorActions
+      onCancel={() => props.setEdit(false)}
+      onReset={reset}
+      onResetText={reportErrorTranslation.reset}
+      onSubmitText={reportErrorTranslation.send}
+      onCancelText={reportErrorTranslation.cancel}
+    />
+  );
+
   return (
     <form onSubmit={onSubmit} className={styles.DoctorReportError__form}>
-      <div className={styles.DoctorReportError__action_container}>
-        <Button type="submit">{reportErrorTranslation.send}</Button>
-        <Button type="button" onClick={() => reset()}>
-          {reportErrorTranslation.reset}
-        </Button>
-        <Button type="button" onClick={() => props.setEdit(false)}>
-          {reportErrorTranslation.cancel}
-        </Button>
-      </div>
+      {actions}
       <div className={styles.DoctorReportError__input_container}>
         <label htmlFor="address">
           {reportErrorTranslation.placeholder.address}
@@ -269,15 +271,7 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
         />
         <p>{errors.note?.message}</p>
       </div>
-      <div className={styles.DoctorReportError__action_container}>
-        <Button type="submit">{reportErrorTranslation.send}</Button>
-        <Button type="button" onClick={() => reset()}>
-          {reportErrorTranslation.reset}
-        </Button>
-        <Button type="button" onClick={() => props.setEdit(false)}>
-          {reportErrorTranslation.cancel}
-        </Button>
-      </div>
+      {actions}
     </form>
   );
 };
