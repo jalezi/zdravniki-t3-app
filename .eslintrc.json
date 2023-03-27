@@ -44,6 +44,12 @@
     "plugin:security/recommended"
   ],
   "rules": {
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ],
     "@typescript-eslint/consistent-type-imports": "warn",
     "sort-imports": [
       "error",
