@@ -1,0 +1,119 @@
+.DoctorReportError__container {
+  --card-padding: 1rem;
+  --card-border-radius: 5px;
+
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  padding-top: calc(var(--card-padding) * 3);
+  padding-bottom: var(--card-padding);
+  padding-inline: var(--card-padding);
+
+  font-size: 0.875rem;
+
+  background-color: white;
+  border-radius: var(--card-border-radius);
+}
+
+.DoctorReportError__container > .Cancel {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: grid;
+  place-items: center;
+
+  width: 3rem;
+  height: 3rem;
+
+  background-color: transparent;
+}
+
+.DoctorReportError__form {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  max-height: calc(
+    100% - var(--card-padding) * 4 + 2rem + 2rem
+  ); /* temporary */
+
+  margin-top: auto;
+  padding: 1rem;
+
+  background-color: transparent;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.08) 1px 1px 4px 0px;
+}
+
+.DoctorReportError__field_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.DoctorReportError__input_container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.DoctorReportError__input_container.Row {
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.DoctorReportError__input_container.Row input {
+  max-width: 5ch;
+}
+
+.DoctorReportError__field_container input {
+  max-width: 15ch;
+}
+
+.DoctorReportError__field_container > div {
+  display: inline-flex;
+  flex-grow: 0;
+}
+
+.DoctorReportError__input_container *:is(input, select, textarea) {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5em;
+}
+
+.DoctorReportError__input_container:not(.Row) label {
+  align-self: start;
+}
+
+.DoctorReportError__action_container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.DoctorReportError__action_container > *:nth-child(2) {
+  margin-left: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .DoctorReportError__container {
+    --card-border-radius: 5px;
+
+    max-width: 768px;
+    max-height: 70dvh;
+    margin: auto;
+  }
+}
