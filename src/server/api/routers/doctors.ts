@@ -13,6 +13,19 @@ import {
 
 import { createTRPCRouter, publicProcedure } from '../trpc';
 
+const sendReportInputSchema = z.object({
+  accepts: z.enum(['y', 'n']),
+  address: z.string(),
+  availability: z.string(),
+  email: z.string(),
+  note: z.string(),
+  phone: z.string(),
+  orderform: z.string(),
+  website: z.string(),
+});
+
+export type SendReportInput = z.infer<typeof sendReportInputSchema>;
+
 const filterDoctors = (
   doctors: DrListSchema,
   { type }: { type: PageDrType }
@@ -61,6 +74,10 @@ export const doctorsRouter = createTRPCRouter({
         },
       };
     }),
+  // add { input } to the mutation function
+  sendReport: publicProcedure.input(sendReportInputSchema).mutation(() => {
+    return { success: true };
+  }),
 });
 
 export type Doctor = RouterOutputs['doctors']['get']['doctors'][number];
