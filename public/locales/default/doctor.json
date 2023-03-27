@@ -22,9 +22,11 @@
     "gyn": "ginekolog",
     "info": {
         "changedOn": "Popravek od: ",
+        "more": "Več",
         "noData": "Ni podatka!",
         "noPhone": "Ni telefonske številke",
-        "noResults": "Noben zdravnik ne ustreza iskalnim pogojem. Preverite, če imate označeno pravilno vrsto zdravnika ali razširite pogled na zemljevidu."
+        "noResults": "Noben zdravnik ne ustreza iskalnim pogojem. Preverite, če imate označeno pravilno vrsto zdravnika ali razširite pogled na zemljevidu.",
+        "showOnMap": "Pokaži na zemljevidu"
     },
     "orderform": {
         "linkReplaceText": "naročanje"

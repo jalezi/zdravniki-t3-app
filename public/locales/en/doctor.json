@@ -22,9 +22,11 @@
     "gyn": "gynecologist",
     "info": {
         "changedOn": "Changed on: ",
+        "more": "More",
         "noData": "No data available!",
         "noPhone": "Phone number not available",
-        "noResults": "No doctor found based on your search criteria. Check if you have the right doctor type selected or zoom out the map."
+        "noResults": "No doctor found based on your search criteria. Check if you have the right doctor type selected or zoom out the map.",
+        "showOnMap": "Show on map"
     },
     "orderform": {
         "linkReplaceText": "get appointment"

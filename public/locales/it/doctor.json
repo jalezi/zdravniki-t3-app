@@ -22,9 +22,11 @@
     "gyn": "ginecologo",
     "info": {
         "changedOn": "Modificato il: ",
+        "more": "Altro",
         "noData": "Nessun dato disponibile!",
         "noPhone": "Numero telefonico non disponibile",
-        "noResults": "Nessun medico trovato in base ai tuoi criteri di ricerca. Controlla di aver selezionato il tipo di medico corretto o ingrandisci la mappa."
+        "noResults": "Nessun medico trovato in base ai tuoi criteri di ricerca. Controlla di aver selezionato il tipo di medico corretto o ingrandisci la mappa.",
+        "showOnMap": "Visualizza sulla mappa"
     },
     "orderform": {
         "linkReplaceText": "prenota un appuntamento"
