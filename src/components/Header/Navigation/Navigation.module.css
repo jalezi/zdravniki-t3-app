@@ -20,11 +20,13 @@
 }
 
 .Navigation .navLinks {
+  --button-padding-inline: 0;
+  --button-padding-block: 0;
+  --button-border: none;
+  --button-border-radius: 0;
+
   display: flex;
   gap: 1em;
-
-  padding-block: 1em;
-
   font-weight: 500;
   color: var(--color-black-A66);
 }
@@ -61,10 +63,6 @@
 
   .Navigation .title {
     display: none;
-  }
-
-  .Navigation .navLinks {
-    padding-block: 0;
   }
 
   .Navigation .navLinks.first {

@@ -1,19 +1,17 @@
 .Button {
-  /* TODO rename vars to be more specifix */
-
-  --button-size: var(--size-md, 1.5rem);
-  --font-weight: 500;
-
   display: inline-flex;
   align-items: center;
 
-  min-width: calc(var(--button-size) + var(--padding-inline, 1em) * 2);
-  min-height: calc(var(--button-size) + var(--padding-block, 0.5em) * 2);
-  padding-block: var(--padding-block, 0.5em);
-  padding-inline: var(--padding-inline, 1em);
+  min-width: calc(
+    var(--button-size, 1.5em) + var(--button-padding-inline, 1em) * 2
+  );
+  min-height: calc(
+    var(--button-size, 1.5em) + var(--button-padding-block, 0.5em) * 2
+  );
+  padding-block: var(--button-padding-block, 0.5em);
+  padding-inline: var(--button-padding-inline, 1em);
 
-  font-weight: var(--font-weight);
-  color: inherit;
+  font-weight: var(--font-weight, 500);
 }
 
 .Button__container {

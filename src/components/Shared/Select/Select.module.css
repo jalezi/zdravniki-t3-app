@@ -1,7 +1,7 @@
 .Select {
   --offset: 0.25em;
-  --padding-inline: 0;
-  --padding-block: 0;
+  --button-padding-inline: 0;
+  --button-padding-block: 0;
   --color-select: var(--color-black, #000);
 
   position: relative;
@@ -22,8 +22,8 @@
   gap: 0.1em;
   align-items: center;
 
-  padding-block: var(--padding-block);
-  padding-inline: var(--padding-inline);
+  padding-block: var(--button-padding-block);
+  padding-inline: var(--button-padding-inline);
 
   color: inherit;
 

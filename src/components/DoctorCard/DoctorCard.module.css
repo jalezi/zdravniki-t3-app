@@ -37,8 +37,8 @@
 
 .DoctorCard .DoctorCard__info a,
 .DoctorCard .DoctorCard__info button {
-  --padding-inline: 0;
-  --padding-block: 0;
+  --button-padding-inline: 0;
+  --button-padding-block: 0;
 }
 
 .DoctorCard .DoctorCard__info > *:last-child {
