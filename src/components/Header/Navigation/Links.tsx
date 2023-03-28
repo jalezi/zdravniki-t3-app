@@ -56,6 +56,7 @@ const mainLinks = [...pageLinks, ...sledilnikLinks];
 export const PageLinks = () => {
   const { locale } = useRouter();
   const { t } = useTranslation('common');
+  const navLinks = t('navLinks', { returnObjects: true });
 
   return (
     <>
@@ -70,7 +71,7 @@ export const PageLinks = () => {
               isActive={isActive}
               {...rest}
             >
-              {t(`navLinks.${label}`)}
+              {navLinks[`${label as keyof typeof navLinks}`]}
             </ActiveLink>
           </li>
         );

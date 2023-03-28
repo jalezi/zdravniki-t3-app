@@ -22,7 +22,7 @@ export const DR_GROUP = [
   { value: 'ped', Icon: PedSvg, translationKey: 'ped', href: '/ped/' },
   { value: 'gyn', Icon: GynSvg, translationKey: 'gyn', href: '/gyn/' },
   { value: 'den', Icon: DentistSvg, translationKey: 'den', href: '/den/' },
-];
+] as const;
 
 const createAgeGroupHref = (drType: string | undefined, suffix = '') =>
   `/${drTypeWithAgeTransformSchema.parse(drType)}${suffix}/`;

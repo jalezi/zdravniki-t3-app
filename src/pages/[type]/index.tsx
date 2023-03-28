@@ -18,10 +18,14 @@ const Seo = dynamic(() => import('@/components/Seo/Seo'));
 const DrTypePage = () => {
   const { query } = useRouter();
   const { t } = useTranslation('seo');
+  const titles = t('title', { returnObjects: true });
 
-  const type = query.type as string;
+  const type = query.type;
 
-  const title = t(`title.${type}`);
+  if (!pageDrTypeSchema.safeParse(type).success) {
+  }
+
+  const title = titles[type as keyof typeof titles];
 
   return (
     <Layout>
