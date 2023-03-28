@@ -3,29 +3,14 @@ import dynamic from 'next/dynamic.js';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
+import { LanguagePageMDX } from '@/components/LanguagePageMDX';
 import { componentsMap } from '@/layouts/componentsMap';
+import LayoutMDX from '@/layouts/LayoutMDX';
 import type { Locale } from '@/lib/types/i18n.js';
 
 import nextI18nextConfig from '../../next-i18next.config.js';
 
-const LayoutMDX = dynamic(() => import('@/layouts/LayoutMDX'));
 const Seo = dynamic(() => import('@/components/Seo').then(mod => mod.Seo));
-
-const AboutEN = dynamic(() => import('@/assets/content/en/about.mdx'));
-const AboutIT = dynamic(() => import('@/assets/content/it/about.mdx'));
-const AboutSL = dynamic(() => import('@/assets/content/sl/about.mdx'));
-
-const AboutIntlMap = {
-  default: AboutSL,
-  it: AboutIT,
-  sl: AboutSL,
-  en: AboutEN,
-} as const;
-
-const LanguagePageMDX = function LanguagePageMDX({ name }: { name: Locale }) {
-  const Page = AboutIntlMap[`${name}`];
-  return <Page id="about-mdx" />;
-};
 
 function About({ locale }: { locale: Locale }) {
   const { t } = useTranslation('seo');
@@ -34,7 +19,7 @@ function About({ locale }: { locale: Locale }) {
     <LayoutMDX>
       <Seo title={title} />
       <MDXProvider components={componentsMap}>
-        <LanguagePageMDX name={locale} />
+        <LanguagePageMDX slug="about" name={locale} />
       </MDXProvider>
     </LayoutMDX>
   );
