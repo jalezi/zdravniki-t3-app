@@ -110,7 +110,7 @@ const DrActions = ({
             >
               <Button
                 as={Link}
-                href={drHref}
+                href={drHref + '?edit=true'}
                 passHref
                 locale={router.locale}
                 container="span"

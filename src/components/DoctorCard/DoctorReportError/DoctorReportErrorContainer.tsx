@@ -7,12 +7,12 @@ import styles from './DoctorReportError.module.css';
 
 type DoctorReportErrorContainerProps = {
   children: React.ReactNode;
-  setEdit: () => void;
+  onClose: () => void;
 };
 
 const DoctorReportErrorContainer = ({
   children,
-  setEdit,
+  onClose,
 }: DoctorReportErrorContainerProps) => {
   const doctorReportErrorStyles = clsx(styles.DoctorReportError__container);
 
@@ -20,7 +20,7 @@ const DoctorReportErrorContainer = ({
     <div className={doctorReportErrorStyles}>
       {children}
       <div className={styles.Cancel}>
-        <IconButton type="button" onClick={setEdit} className={styles.Cancel}>
+        <IconButton type="button" onClick={onClose} className={styles.Cancel}>
           <Icon name="CloseSvg" size="md" />
         </IconButton>
       </div>

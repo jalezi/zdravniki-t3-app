@@ -2,14 +2,14 @@ import { clsx } from 'clsx';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import MapSkeleton from '@/components/HomeSections/BigMap/MapSkeleton';
 import { DrAvailabilityInfo } from '@/components/HomeSections/DrInfo/DrAvailabilityInfo';
 import { DrBasicInfo } from '@/components/HomeSections/DrInfo/DrBasicInfo';
 import { Button } from '@/components/Shared/Buttons';
 import { Icon } from '@/components/Shared/Icons';
-import { MAX_ZOOM } from '@/lib/constants/map';
+import useBoundStore from '@/lib/store/useBoundStore';
 import type { Locale } from '@/lib/types/i18n';
 import { formatDate } from '@/lib/utils/common';
 import { stringifyHash } from '@/lib/utils/url-hash';
@@ -33,32 +33,32 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
     loading: MapSkeleton.bind(null, { size: 'sm' }),
   });
 
+  const zoom = useBoundStore(state => state.zoom);
+  const center = useBoundStore(state => state.center);
+  const accepts = useBoundStore(state => state.accepts);
+  const search = useBoundStore(state => state.search);
+
   const router = useRouter();
 
-  const [edit, setEdit] = useState('edit' in router.query);
+  const [edit, setEdit] = useState(false);
   const { t } = useTranslation('common');
   const { t: tDoctor } = useTranslation('doctor');
+
+  useEffect(() => {
+    if ('edit' in router.query && router.query.edit === 'true') {
+      setEdit(true);
+      return;
+    }
+    setEdit(false);
+  }, [router.query]);
 
   const { override } = doctor;
 
   const goBack = () => {
-    if (window.history.length > 2) {
-      router.back();
-    } else {
-      const { locale } = router;
-      const hash = stringifyHash([
-        'all',
-        [
-          MAX_ZOOM,
-          doctor.location.geoLocation.lat,
-          doctor.location.geoLocation.lng,
-        ],
-        doctor.name,
-      ]);
-
-      const asPath = `/${doctor.type}${hash}`;
-      void router.push(`/${doctor.type}`, asPath, { locale });
-    }
+    const { locale } = router;
+    const hash = stringifyHash([accepts, [zoom, ...center], search]);
+    const asPath = `/${doctor.type}${hash}`;
+    void router.push(`/${doctor.type}`, asPath, { locale });
   };
 
   const doctorCardStyles = clsx(
@@ -68,6 +68,30 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
   );
 
   const doctorInfoStyles = clsx(styles.DoctorCard__info);
+
+  const onEdit = async () => {
+    setEdit(true);
+    await router.push(
+      {
+        pathname: router.asPath,
+        query: { edit: true },
+      },
+      `/${doctor.type}/${doctor.slugName}/${doctor.idInst}/?edit=true`,
+      { locale: router.locale as Locale }
+    );
+  };
+
+  const onEditDone = async () => {
+    setEdit(false);
+    await router.push(
+      {
+        pathname: router.asPath,
+        query: {},
+      },
+      `/${doctor.type}/${doctor.slugName}/${doctor.idInst}`,
+      { locale: router.locale as Locale }
+    );
+  };
 
   return (
     <div className={doctorCardStyles}>
@@ -97,7 +121,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
           orderformText={tDoctor('orderform.linkReplaceText').toLowerCase()}
         />
 
-        <Button type="button" onClick={() => setEdit(true)} container="span">
+        <Button type="button" onClick={onEdit} container="span">
           <Icon name="AlertSvg" size="xxl" />{' '}
           {tDoctor('reportError.linkText').toLowerCase()}
         </Button>
@@ -127,7 +151,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
       </div>
       {edit && (
         <Portal>
-          <DoctorReportError.Container setEdit={() => setEdit(false)}>
+          <DoctorReportError.Container onClose={onEditDone}>
             <Typography as="h3" element="h2">
               {tDoctor('reportError.title')}
             </Typography>
@@ -144,6 +168,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
               availability={doctor.availability}
               note={doctor.override.note}
               setEdit={setEdit}
+              onEditDone={onEditDone}
             />
           </DoctorReportError.Container>
         </Portal>

@@ -62,6 +62,7 @@ type DoctorReportErrorProps = {
   availability: Doctor['availability'];
   note: Doctor['override']['note'];
   setEdit: (edit: boolean) => void;
+  onEditDone: () => void;
 };
 
 const DoctorReportError = (props: DoctorReportErrorProps) => {
@@ -121,7 +122,7 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
 
   const actions = (
     <DoctorReportErrorActions
-      onCancel={() => props.setEdit(false)}
+      onCancel={() => props.onEditDone()}
       onReset={reset}
       onResetText={reportErrorTranslation.reset}
       onSubmitText={reportErrorTranslation.send}
