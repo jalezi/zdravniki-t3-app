@@ -1,14 +1,14 @@
 .Button {
   /* TODO rename vars to be more specifix */
 
-  --size: var(--size-md, 1.5rem);
+  --button-size: var(--size-md, 1.5rem);
   --font-weight: 500;
 
   display: inline-flex;
   align-items: center;
 
-  min-width: calc(var(--size) + var(--padding-inline, 1em) * 2);
-  min-height: calc(var(--size) + var(--padding-block, 0.5em) * 2);
+  min-width: calc(var(--button-size) + var(--padding-inline, 1em) * 2);
+  min-height: calc(var(--button-size) + var(--padding-block, 0.5em) * 2);
   padding-block: var(--padding-block, 0.5em);
   padding-inline: var(--padding-inline, 1em);
 
