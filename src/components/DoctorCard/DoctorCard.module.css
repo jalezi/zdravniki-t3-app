@@ -39,6 +39,7 @@
 .DoctorCard .DoctorCard__info button {
   --button-padding-inline: 0;
   --button-padding-block: 0;
+  --button-font-size: 0.875rem;
 }
 
 .DoctorCard .DoctorCard__info > *:last-child {

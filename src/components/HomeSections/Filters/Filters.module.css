@@ -5,6 +5,8 @@
   --border-radius: 1.5rem;
   --padding: calc(var(--border-radius) / 2);
 
+  --button-font-size: 0.875rem;
+
   display: flex;
   flex-direction: column;
   gap: 1em;

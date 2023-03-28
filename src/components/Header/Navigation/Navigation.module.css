@@ -32,6 +32,8 @@
 }
 
 .Navigation .navLinks > li > :is(a, button):hover {
+  --button-background-color: transparent;
+
   color: var(--color-black-A87);
 }
 
