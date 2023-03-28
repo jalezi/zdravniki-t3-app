@@ -20,7 +20,12 @@ const DoctorReportErrorContainer = ({
     <div className={doctorReportErrorStyles}>
       {children}
       <div className={styles.Cancel}>
-        <IconButton type="button" onClick={onClose} className={styles.Cancel}>
+        <IconButton
+          type="button"
+          onClick={onClose}
+          className={styles.Cancel}
+          aria-label="close"
+        >
           <Icon name="CloseSvg" size="md" />
         </IconButton>
       </div>

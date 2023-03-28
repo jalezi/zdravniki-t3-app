@@ -156,6 +156,7 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
               type="text"
               id={field.id}
               placeholder={reportErrorTranslation.placeholder.website}
+              inputMode="url"
             />
 
             <p>{errors.websites?.[`${index}`]?.website?.message}</p>
@@ -186,6 +187,7 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
               type="text"
               id={field.id}
               placeholder={reportErrorTranslation.placeholder.phone}
+              inputMode="tel"
             />
 
             <p>{errors.phones?.[`${index}`]?.phone?.message}</p>
@@ -209,8 +211,9 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
         <input
           {...register('email')}
           type="text"
-          id="address"
+          id="email"
           placeholder={reportErrorTranslation.placeholder.email}
+          inputMode="email"
         />
         <p>{errors.email?.message}</p>
       </div>
