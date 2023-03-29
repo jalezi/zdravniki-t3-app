@@ -15,6 +15,7 @@ export type DrBasicInfoProps = {
   name: string;
   href: string;
   isExtra: boolean;
+  isFloating: boolean;
   drId: string;
   provider: string | null;
   address: string;
@@ -23,6 +24,7 @@ export type DrBasicInfoProps = {
   variant?: 'list' | 'popup' | 'page';
 };
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 const DrBasicInfo = ({ variant = 'list', ...props }: DrBasicInfoProps) => {
   const router = useRouter();
   const { t } = useTranslation('doctor');
@@ -34,9 +36,14 @@ const DrBasicInfo = ({ variant = 'list', ...props }: DrBasicInfoProps) => {
     returnObjects: true,
   }) satisfies { title: string; description: string };
 
+  const floating = t('extra.clinic.floating', {
+    returnObjects: true,
+  }) satisfies { title: string; description: string };
+
   const basicStyles = clsx(styles.BasicInfo, props.className);
 
   const extraId = `${props.drId}_extra_${variant}`;
+  const floatingId = `${props.drId}_floating_${variant}`;
 
   return (
     <div className={basicStyles}>
@@ -49,6 +56,9 @@ const DrBasicInfo = ({ variant = 'list', ...props }: DrBasicInfoProps) => {
         {variant === 'list' && props.isExtra ? (
           <DrTypeChip.ExtraChip id={extraId} />
         ) : null}
+        {variant === 'list' && props.isFloating ? (
+          <DrTypeChip.FloatingChip id={floatingId} />
+        ) : null}
       </DrName>
       {variant === 'popup' ? (
         <div className={styles.TypeContainer}>
@@ -60,6 +70,9 @@ const DrBasicInfo = ({ variant = 'list', ...props }: DrBasicInfoProps) => {
           />
           {props.isExtra ? (
             <DrTypeChip.ExtraChip id={extraId} variant="contained" />
+          ) : null}
+          {props.isFloating ? (
+            <DrTypeChip.FloatingChip id={floatingId} variant="contained" />
           ) : null}
         </div>
       ) : null}
@@ -79,12 +92,26 @@ const DrBasicInfo = ({ variant = 'list', ...props }: DrBasicInfoProps) => {
               variant="contained"
             />
           ) : null}
+          {props.isFloating ? (
+            <DrTypeChip.FloatingChip
+              id={floatingId}
+              text={floating?.title}
+              variant="contained"
+            />
+          ) : null}
         </div>
       ) : null}
 
-      <Tooltip.Tooltip anchorSelect={`#${extraId}`} place="bottom">
-        {variant === 'page' ? extra.description : extra?.title}
-      </Tooltip.Tooltip>
+      {props.isExtra && (
+        <Tooltip.Tooltip anchorSelect={`#${extraId}`} place="bottom">
+          {variant === 'page' ? extra.description : extra?.title}
+        </Tooltip.Tooltip>
+      )}
+      {props.isFloating && (
+        <Tooltip.Tooltip anchorSelect={`#${floatingId}`} place="bottom">
+          {variant === 'page' ? floating.description : floating?.title}
+        </Tooltip.Tooltip>
+      )}
       <div>
         <DrProvider
           provider={props.provider ? props.provider : 'Ni podatka'}

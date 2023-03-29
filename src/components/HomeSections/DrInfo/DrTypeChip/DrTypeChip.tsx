@@ -38,10 +38,36 @@ export const ExtraChip = ({
     />
   );
 };
+export const FloatingChip = ({
+  iconSize = 'xl',
+  id,
+  size = 'sm',
+  text,
+  variant = 'text',
+  className,
+}: ExtraChipProps) => {
+  const chipStyles = clsx(
+    styles.DrTypeChip,
+    styles.Floating,
+    variant === 'contained' && styles.WithBg,
+    className
+  );
+
+  return (
+    <Chip
+      id={id}
+      iconName="FloatingSvg"
+      size={size}
+      iconSize={iconSize}
+      text={text}
+      className={chipStyles}
+    />
+  );
+};
 
 const DR_TYPE_SVG = {
   gp: 'FamilyDrSvg',
-  'gp-f': 'InfoSvg',
+  'gp-f': 'FloatingSvg',
   'gp-x': 'FamilyDrSvg',
   ped: 'PedSvg',
   gyn: 'GynSvg',

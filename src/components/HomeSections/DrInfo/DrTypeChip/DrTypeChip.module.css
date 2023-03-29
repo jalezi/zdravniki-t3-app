@@ -21,3 +21,14 @@
 .DrTypeChip.Extra.WithBg {
   --color-bg-dr-type: var(--color-violet-200);
 }
+
+.DrTypeChip.Floating {
+  --color-bg-dr-type: transparent;
+  --color-dr-type: var(--color-blue-600);
+
+  cursor: help;
+}
+
+.DrTypeChip.Floating.WithBg {
+  --color-bg-dr-type: var(--color-blue-150);
+}

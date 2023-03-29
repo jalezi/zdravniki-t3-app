@@ -101,6 +101,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
           drId={doctor.fakeId}
           href={doctor.href}
           isExtra={doctor.isExtra}
+          isFloating={doctor.isFloating}
           name={doctor.name}
           provider={doctor.provider}
           variant="page"

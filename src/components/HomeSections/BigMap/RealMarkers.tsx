@@ -43,6 +43,7 @@ const RealMarkers = ({ doctors }: RealMarkersProps) => {
               name={doctor.name}
               href={doctor.href}
               isExtra={doctor.isExtra}
+              isFloating={doctor.isFloating}
               address={doctor.location.address.fullAddress}
               provider={doctor.provider}
               variant="popup"

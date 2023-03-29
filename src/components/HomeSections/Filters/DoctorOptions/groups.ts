@@ -7,8 +7,8 @@ import {
   ClinicSvg,
   DentistSvg,
   FamilyDrSvg,
+  FloatingSvg,
   GynSvg,
-  InfoSvg,
   PedSvg,
   StudentsSvg,
 } from '@/components/Shared/Icons';
@@ -107,7 +107,7 @@ export const EXTRA_GROUP = [
   },
   {
     value: 'f',
-    Icon: InfoSvg,
+    Icon: FloatingSvg,
     translationKey: 'extra.btn.f',
     createHref: createExtraGroupHref,
     isActive: createExtraIsActive,

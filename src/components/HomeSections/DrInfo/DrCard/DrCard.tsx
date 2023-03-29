@@ -18,6 +18,7 @@ type DrCardProps = {
   fullAddress: Doctor['location']['address']['fullAddress'];
   geoLocation: Doctor['location']['geoLocation'];
   isExtra: Doctor['isExtra'];
+  isFloating: Doctor['isFloating'];
   load: Doctor['load'];
   name: Doctor['name'];
   override: Doctor['override'];
@@ -36,6 +37,7 @@ const DrCard = (
     geoLocation,
     href,
     isExtra,
+    isFloating,
     load,
     name,
     override,
@@ -57,6 +59,7 @@ const DrCard = (
         drId={drId}
         href={href}
         isExtra={isExtra}
+        isFloating={isFloating}
         name={name}
         provider={provider}
         className={styles.BasicInfo}
