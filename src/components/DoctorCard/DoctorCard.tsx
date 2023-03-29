@@ -99,9 +99,8 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
         <DrBasicInfo
           address={doctor.location.address.fullAddress}
           drId={doctor.fakeId}
+          clinic={doctor.clinic}
           href={doctor.href}
-          isExtra={doctor.isExtra}
-          isFloating={doctor.isFloating}
           name={doctor.name}
           provider={doctor.provider}
           variant="page"

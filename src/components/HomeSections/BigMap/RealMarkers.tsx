@@ -39,11 +39,10 @@ const RealMarkers = ({ doctors }: RealMarkersProps) => {
         <ReactLeafletPopup>
           <div className={styles.Popup}>
             <DrBasicInfo
+              clinic={doctor.clinic}
               drId={doctor.fakeId}
               name={doctor.name}
               href={doctor.href}
-              isExtra={doctor.isExtra}
-              isFloating={doctor.isFloating}
               address={doctor.location.address.fullAddress}
               provider={doctor.provider}
               variant="popup"

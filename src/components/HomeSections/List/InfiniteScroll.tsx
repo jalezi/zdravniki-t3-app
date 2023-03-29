@@ -86,13 +86,12 @@ const InfiniteScroll = ({ data, isVisible }: InfiniteScrollProps) => {
               ref={index === arr.length - 1 ? lastBookElementRef : undefined}
               accepts={doctor.accepts}
               availability={doctor.availability}
+              clinic={doctor.clinic}
               drHref={doctor.href}
               drId={doctor.fakeId}
               fullAddress={doctor.location.address.fullAddress}
               geoLocation={doctor.location.geoLocation}
               href={doctor.href}
-              isExtra={doctor.isExtra}
-              isFloating={doctor.isFloating}
               load={doctor.load}
               name={doctor.name}
               override={doctor.override}

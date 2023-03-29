@@ -12,13 +12,12 @@ import { DrBasicInfo } from '../DrBasicInfo';
 type DrCardProps = {
   accepts: Doctor['accepts'];
   availability: Doctor['availability'];
+  clinic: Doctor['clinic'];
   drId: Doctor['fakeId'];
   drHref: Doctor['href'];
   href: Doctor['href'];
   fullAddress: Doctor['location']['address']['fullAddress'];
   geoLocation: Doctor['location']['geoLocation'];
-  isExtra: Doctor['isExtra'];
-  isFloating: Doctor['isFloating'];
   load: Doctor['load'];
   name: Doctor['name'];
   override: Doctor['override'];
@@ -31,13 +30,12 @@ const DrCard = (
   {
     accepts,
     availability,
+    clinic,
     drHref,
     drId,
     fullAddress,
     geoLocation,
     href,
-    isExtra,
-    isFloating,
     load,
     name,
     override,
@@ -56,10 +54,9 @@ const DrCard = (
     <div role={role} ref={ref} className={infoCardStyles}>
       <DrBasicInfo
         address={fullAddress}
+        clinic={clinic}
         drId={drId}
         href={href}
-        isExtra={isExtra}
-        isFloating={isFloating}
         name={name}
         provider={provider}
         className={styles.BasicInfo}
