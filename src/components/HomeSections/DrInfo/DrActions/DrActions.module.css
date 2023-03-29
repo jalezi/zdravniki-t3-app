@@ -1,6 +1,7 @@
 .DrActions {
   display: inline-flex;
   flex-direction: column;
+  font-size: 0.875rem;
 }
 
 .DrActions.Row {
@@ -24,6 +25,8 @@
 }
 
 .DrActions .Tooltip > .Tooltip__group > .Tooltip__item > * {
+  --button-font-size: 0.875;
+
   display: flex;
   flex-direction: row;
   align-items: center;
