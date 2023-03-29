@@ -53,49 +53,6 @@
   box-shadow: rgba(0, 0, 0, 0.08) 1px 1px 4px 0px;
 }
 
-.DoctorReportError__field_container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.DoctorReportError__input_container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.DoctorReportError__input_container.Row {
-  flex-direction: row;
-  gap: 1rem;
-  align-items: center;
-}
-
-.DoctorReportError__input_container.Row input {
-  max-width: 5ch;
-}
-
-.DoctorReportError__field_container input {
-  max-width: 15ch;
-}
-
-.DoctorReportError__field_container > div {
-  display: inline-flex;
-  flex-grow: 0;
-}
-
-.DoctorReportError__input_container *:is(input, select, textarea) {
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 0.5em;
-}
-
-.DoctorReportError__input_container:not(.Row) label {
-  align-self: start;
-}
-
 .DoctorReportError__action_container {
   display: flex;
   flex-direction: row;
@@ -104,6 +61,11 @@
   justify-content: flex-end;
 }
 
+.DoctorReportError__action_container > button {
+  --button-font-size: 0.875rem;
+
+  border: 1px solid black;
+}
 .DoctorReportError__action_container > *:nth-child(2) {
   margin-left: auto;
 }

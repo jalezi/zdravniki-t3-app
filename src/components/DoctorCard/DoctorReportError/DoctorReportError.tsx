@@ -1,5 +1,4 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { clsx } from 'clsx';
 import { useTranslation } from 'next-i18next';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -133,7 +132,7 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
   return (
     <form onSubmit={onSubmit} className={styles.DoctorReportError__form}>
       {actions}
-      <div className={styles.DoctorReportError__input_container}>
+      <div>
         <label htmlFor="address">
           {reportErrorTranslation.placeholder.address}
         </label>
@@ -145,66 +144,69 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
         />
         <p>{errors.address?.message}</p>
       </div>
-      {websiteFields.fields.map((field, index, arr) => (
-        <div key={field.id}>
-          <div className={styles.DoctorReportError__input_container}>
-            <label htmlFor={field.id}>
-              {reportErrorTranslation.placeholder.website} {index + 1}
-            </label>
-            <input
-              {...register(`websites.${index}.website`)}
-              type="text"
-              id={field.id}
-              placeholder={reportErrorTranslation.placeholder.website}
-              inputMode="url"
-            />
+      <fieldset>
+        <legend>Websites</legend>
+        {websiteFields.fields.map((field, index, arr) => (
+          <div key={field.id}>
+            <div>
+              <label htmlFor={field.id}>
+                {reportErrorTranslation.placeholder.website} {index + 1}
+              </label>
+              <input
+                {...register(`websites.${index}.website`)}
+                type="text"
+                id={field.id}
+                placeholder={reportErrorTranslation.placeholder.website}
+                inputMode="url"
+              />
 
-            <p>{errors.websites?.[`${index}`]?.website?.message}</p>
+              <p>{errors.websites?.[`${index}`]?.website?.message}</p>
+            </div>
+            <div>
+              {arr.length !== 1 && (
+                <button onClick={() => websiteFields.remove(index)}>-</button>
+              )}
+              {arr.length - 1 === index && (
+                <button onClick={() => websiteFields.append({ website: '' })}>
+                  +
+                </button>
+              )}
+            </div>
           </div>
-          <div>
-            {arr.length !== 1 && (
-              <button onClick={() => websiteFields.remove(index)}>-</button>
-            )}
-            {arr.length - 1 === index && (
-              <button onClick={() => websiteFields.append({ website: '' })}>
-                +
-              </button>
-            )}
-          </div>
-        </div>
-      ))}
-      {phoneFields.fields.map((field, index, arr) => (
-        <div
-          key={field.id}
-          className={styles.DoctorReportError__field_container}
-        >
-          <div className={styles.DoctorReportError__input_container}>
-            <label htmlFor={field.id}>
-              {reportErrorTranslation.placeholder.phone} {index + 1}
-            </label>
-            <input
-              {...register(`phones.${index}.phone`)}
-              type="text"
-              id={field.id}
-              placeholder={reportErrorTranslation.placeholder.phone}
-              inputMode="tel"
-            />
+        ))}
+      </fieldset>
+      <fieldset>
+        <legend>Phones</legend>
+        {phoneFields.fields.map((field, index, arr) => (
+          <div key={field.id}>
+            <div>
+              <label htmlFor={field.id}>
+                {reportErrorTranslation.placeholder.phone} {index + 1}
+              </label>
+              <input
+                {...register(`phones.${index}.phone`)}
+                type="text"
+                id={field.id}
+                placeholder={reportErrorTranslation.placeholder.phone}
+                inputMode="tel"
+              />
 
-            <p>{errors.phones?.[`${index}`]?.phone?.message}</p>
+              <p>{errors.phones?.[`${index}`]?.phone?.message}</p>
+            </div>
+            <div>
+              {arr.length !== 1 && (
+                <button onClick={() => phoneFields.remove(index)}>-</button>
+              )}
+              {arr.length - 1 === index && (
+                <button onClick={() => phoneFields.append({ phone: '' })}>
+                  +
+                </button>
+              )}
+            </div>
           </div>
-          <div>
-            {arr.length !== 1 && (
-              <button onClick={() => phoneFields.remove(index)}>-</button>
-            )}
-            {arr.length - 1 === index && (
-              <button onClick={() => phoneFields.append({ phone: '' })}>
-                +
-              </button>
-            )}
-          </div>
-        </div>
-      ))}
-      <div className={styles.DoctorReportError__input_container}>
+        ))}
+      </fieldset>
+      <div>
         <label htmlFor="email">
           {reportErrorTranslation.placeholder.email}
         </label>
@@ -217,7 +219,7 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
         />
         <p>{errors.email?.message}</p>
       </div>
-      <div className={styles.DoctorReportError__input_container}>
+      <div>
         <label htmlFor="orderform">
           {reportErrorTranslation.placeholder.orderform}
         </label>
@@ -229,15 +231,8 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
         />
         <p>{errors.orderform?.message}</p>
       </div>
-      <div
-        className={clsx(styles.DoctorReportError__input_container, styles.Row)}
-      >
-        <div
-          className={clsx(
-            styles.DoctorReportError__input_container,
-            styles.Row
-          )}
-        >
+      <div>
+        <div>
           <label htmlFor="accepts">
             {reportErrorTranslation.placeholder.accepts}
           </label>
@@ -247,12 +242,7 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
           </select>
           <p>{errors.accepts?.message}</p>
         </div>
-        <div
-          className={clsx(
-            styles.DoctorReportError__input_container,
-            styles.Row
-          )}
-        >
+        <div>
           <label htmlFor="availability">
             {reportErrorTranslation.placeholder.availability}
           </label>
@@ -266,7 +256,7 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
         </div>
       </div>
 
-      <div className={styles.DoctorReportError__input_container}>
+      <div>
         <label htmlFor="note">{reportErrorTranslation.placeholder.note}</label>
         <textarea
           {...register('note')}
