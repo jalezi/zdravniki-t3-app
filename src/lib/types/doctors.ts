@@ -114,6 +114,24 @@ export const addressSchema = z
     };
   });
 
+export const clinicSchema = z.enum(['default', 'extra', 'floating']);
+export type Clinic = z.infer<typeof clinicSchema>;
+
+const getClinicSchema = z
+  .function()
+  .args(drCSVSchema.shape['type'])
+  .returns(clinicSchema)
+  .implement(type => {
+    let result: Clinic = 'default';
+    if (type.endsWith('-x')) {
+      result = 'extra';
+    }
+    if (type.endsWith('-f')) {
+      result = 'floating';
+    }
+    return result;
+  });
+
 const isExtraSchema = z
   .function()
   .args(z.string())
@@ -187,6 +205,7 @@ export const drTransformedSchema = drCSVSchema.transform(dr => {
     availability: z.coerce
       .number()
       .parse(availability_override || availability),
+    clinic: getClinicSchema(type),
     fakeId: `${type}-${slugName}-${id_inst}`,
     isExtra: isExtraSchema(type),
     isFloating: isFloatingSchema(type),
