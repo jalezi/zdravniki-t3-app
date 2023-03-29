@@ -132,18 +132,6 @@ const getClinicSchema = z
     return result;
   });
 
-const isExtraSchema = z
-  .function()
-  .args(z.string())
-  .returns(z.boolean())
-  .implement(type => type.endsWith('-x'));
-
-const isFloatingSchema = z
-  .function()
-  .args(z.string())
-  .returns(z.boolean())
-  .implement(type => type.endsWith('-f'));
-
 const isAcceptsOverrideSchema = z
   .function()
   .args(z.string().or(z.number()))
@@ -207,8 +195,6 @@ export const drTransformedSchema = drCSVSchema.transform(dr => {
       .parse(availability_override || availability),
     clinic: getClinicSchema(type),
     fakeId: `${type}-${slugName}-${id_inst}`,
-    isExtra: isExtraSchema(type),
-    isFloating: isFloatingSchema(type),
     href,
     idInst,
     location: { address: addressObject, geoLocation },
