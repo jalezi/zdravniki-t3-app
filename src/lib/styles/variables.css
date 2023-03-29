@@ -90,6 +90,9 @@
   --color-availability-circle-lg: var(--color-brand);
   --color-availability-circle-sm: var(--color-red-800);
 
+  /* floating clinic color */
+  --color-floating-clinic: var(--color-blue-600);
+
   /* box-shadow */
   --box-shadow: var(--color-blue-800-A76) 0px 0px 7px 0px;
 

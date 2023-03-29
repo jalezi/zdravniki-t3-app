@@ -1,6 +1,7 @@
 .BigMap {
   --color-accepts-y_marker: var(--color-green-300);
   --color-accepts-n_marker: var(--color-red-300);
+  --color-accepts-f_marker: var(--color-floating-clinic);
 }
 
 .BigMap .DrCircle.Accepts {
@@ -9,6 +10,10 @@
 
 .BigMap .DrCircle.Rejects {
   fill: var(--color-accepts-n_marker);
+}
+
+.BigMap .DrCircle.Floating {
+  fill: var(--color-accepts-f_marker);
 }
 
 .MapSkeletonContainer {

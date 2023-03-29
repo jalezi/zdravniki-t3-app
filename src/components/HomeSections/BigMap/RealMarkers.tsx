@@ -24,7 +24,8 @@ const RealMarkers = ({ doctors }: RealMarkersProps) => {
 
     const markerStyles = clsx(
       styles.DrCircle,
-      doctor.accepts === 'y' ? styles.Accepts : styles.Rejects
+      doctor.accepts === 'y' ? styles.Accepts : styles.Rejects,
+      doctor.clinic === 'floating' && styles.Floating
     );
 
     const actionsPopupStyles = clsx(styles.Popup, styles.Row);
