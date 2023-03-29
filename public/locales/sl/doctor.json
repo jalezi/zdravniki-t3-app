@@ -15,7 +15,7 @@
                 "title": "Ambulanta za boljšo dostopnost"
             },
             "floating": {
-                "description": "V ambulantah za neopredeljen...",
+                "description": "$t(extra.clinic.floating.title)",
                 "title": "Ambulanta za neopredeljene"
             }
         }

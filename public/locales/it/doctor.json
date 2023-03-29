@@ -15,8 +15,8 @@
                 "title": "Clinica per una migliore accessibilità"
             },
             "floating": {
-                "description": "Nelle cliniche per gli imprecisati...",
-                "title": "Clinica per pazienti senza un medico"
+                "description": "$t(extra.clinic.floating.title)",
+                "title": "Ambulatorio per pazienti senza medico"
             }
         }
     },

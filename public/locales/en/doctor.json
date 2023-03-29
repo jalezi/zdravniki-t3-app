@@ -15,8 +15,8 @@
                 "title": "Clinic for better accessibility"
             },
             "floating": {
-                "description": "In floating clinics...",
-                "title": "Floating clinic"
+                "description": "$t(extra.clinic.floating.title)",
+                "title": "Infirmary for patients without doctors"
             }
         }
     },
