@@ -9,15 +9,22 @@ import type { ButtonInternalProps } from './Button.types';
 
 type ButtonProps = ButtonInternalProps & {
   container?: 'span' | 'div';
+  containerClassName?: string;
 };
 
 type ButtonComponent = (
-  { as, children, container, ...polymorphicProps }: ButtonProps,
+  {
+    as,
+    children,
+    container,
+    containerClassName,
+    ...polymorphicProps
+  }: ButtonProps,
   ref?: Ref<HTMLElement>
 ) => React.ReactElement | null;
 
 const Button: ButtonComponent = (
-  { children, container, ...polymorphicProps }: ButtonProps,
+  { children, container, containerClassName, ...polymorphicProps }: ButtonProps,
   ref?: Ref<HTMLElement>
 ) => {
   const as = polymorphicProps.as || 'button';
@@ -29,7 +36,10 @@ const Button: ButtonComponent = (
 
   const componentStyles = clsx(styles.Button, className);
 
-  const iconContainerStyles = clsx(styles.Button__container);
+  const iconContainerStyles = clsx(
+    styles.Button__container,
+    containerClassName
+  );
 
   return (
     <Polymorphic ref={ref} as={as} className={componentStyles} {...restProps}>
