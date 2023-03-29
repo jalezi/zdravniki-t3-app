@@ -108,6 +108,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
         <DrAvailabilityInfo
           availability={doctor.availability}
           accepts={doctor.accepts}
+          clinic={doctor.clinic}
           drId={doctor.fakeId}
           load={doctor.load}
           override={doctor.override}

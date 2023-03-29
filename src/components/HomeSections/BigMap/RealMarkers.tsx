@@ -51,6 +51,7 @@ const RealMarkers = ({ doctors }: RealMarkersProps) => {
               <DrAvailabilityInfo
                 accepts={doctor.accepts}
                 availability={doctor.availability}
+                clinic={doctor.clinic}
                 override={doctor.override}
                 load={doctor.load}
                 drId={doctor.fakeId}

@@ -16,11 +16,13 @@ export type DrAvailabilityInfoProps = {
   override: Doctor['override'];
   className?: string;
   variant?: 'default' | 'popup' | 'page';
+  clinic: Doctor['clinic'];
 };
 
 const DrAvailabilityInfo = ({
   accepts,
   availability,
+  clinic,
   drId,
   override,
   load,
@@ -43,7 +45,9 @@ const DrAvailabilityInfo = ({
         load={load}
         override={override}
       />
-      <Availability id={availabilityId} value={Number(availability)} />
+      {clinic !== 'floating' && (
+        <Availability id={availabilityId} value={Number(availability)} />
+      )}
     </div>
   );
 };

@@ -64,6 +64,7 @@ const DrCard = (
       <DrAvailabilityInfo
         availability={availability}
         accepts={accepts}
+        clinic={clinic}
         drId={drId}
         load={load}
         override={override}
