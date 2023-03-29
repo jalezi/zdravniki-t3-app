@@ -67,7 +67,7 @@ export const FloatingChip = ({
 
 const DR_TYPE_SVG = {
   gp: 'FamilyDrSvg',
-  'gp-f': 'FloatingSvg',
+  'gp-f': 'FamilyDrSvg',
   'gp-x': 'FamilyDrSvg',
   ped: 'PedSvg',
   gyn: 'GynSvg',
