@@ -1,12 +1,7 @@
 .Typography {
   position: relative;
-
-  display: flex;
-  gap: 0.2em;
-  align-items: center;
-
   font-size: inherit;
-  color: var(--color-grey-900);
+  color: inherit;
 }
 
 .Typography.H1 {

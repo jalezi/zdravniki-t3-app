@@ -18,7 +18,14 @@ const allowedAsSchema = z.enum([
   'strong',
 ]);
 
-const allowedElementSchema = z.enum(['address', 'h1', 'h2', 'h3', 'h4']);
+const allowedElementSchema = z.enum([
+  'address',
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'strong',
+]);
 
 const customProps = z.object({
   as: allowedAsSchema.optional().default('h2').optional(),
