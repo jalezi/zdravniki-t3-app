@@ -12,7 +12,7 @@ type AllowedTags = z.infer<typeof allowedTags>;
 const sizeSchema = z.enum(['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl']);
 type Size = z.infer<typeof sizeSchema>;
 
-const weightSchema = z.enum(['500', '700']);
+const weightSchema = z.enum(['400', '500', '700']);
 type Weight = z.infer<typeof weightSchema>;
 
 const alignSchema = z.enum(['left', 'center', 'right']);
@@ -28,7 +28,8 @@ const customProps = z.object({
 type CustomProps = z.infer<typeof customProps>;
 
 const WEIGHT_STYLES = {
-  500: styles.Regular,
+  400: styles.Regular,
+  500: styles.SemiBold,
   700: styles.Bold,
 } satisfies Record<Weight, string | undefined>;
 

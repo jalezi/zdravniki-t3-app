@@ -74,6 +74,11 @@
   font-weight: 400;
 }
 
+.Tooltip.SemiBold,
+.Tooltip .SemiBold {
+  font-weight: 500;
+}
+
 .Tooltip.Bold,
 .Tooltip .Bold {
   font-weight: 700;
