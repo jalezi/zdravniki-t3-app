@@ -34,6 +34,7 @@ export { default as StudentsSvg } from '@/assets/svg/icon-students.svg';
 export { default as TwSvg } from '@/assets/svg/icon-tw.svg';
 export { default as LogoSvg } from '@/assets/svg/zdravniki-sledilnik-logo.svg';
 export { default as MapMarkerSvg } from '@/assets/svg/icon-map-marker.svg';
+export { default as FloatingSvg } from '@/assets/svg/icon-gp-floating.svg';
 
 export { icons } from './icons';
 
