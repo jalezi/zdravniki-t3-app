@@ -134,7 +134,9 @@ const DrBasicInfo = ({ variant = 'list', ...props }: DrBasicInfoProps) => {
       ) : null}
       {ClinicTooltip && clinicChipId ? (
         <ClinicTooltip anchorSelect={`#${clinicChipId}`} place="bottom">
-          {clinicTooltip[`${variant}`]}
+          <Tooltip.TooltipContent as="p" weight="500">
+            {clinicTooltip[`${variant}`]}
+          </Tooltip.TooltipContent>
         </ClinicTooltip>
       ) : null}
 

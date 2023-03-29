@@ -34,7 +34,11 @@ const DoctorContacts = ({
           <DoctorWebsite
             key={`${websiteUrl.data.href}_${i}`}
             href={websiteUrl.data.href}
-            text={websiteUrl.data.host.replaceAll('www.', '')}
+            host={websiteUrl.data.host.replaceAll('www.', '')}
+            text={websiteUrl.data.href
+              .replace(websiteUrl.data.host, '')
+              .replace(websiteUrl.data.protocol, '')
+              .replace('//', '')}
           />
         ) : null;
       })}

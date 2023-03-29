@@ -1,0 +1,23 @@
+.Container {
+  position: relative;
+}
+
+.Elipsis {
+  overflow: hidden;
+  max-width: 70dvw;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Elipsis *:not(:first-child) {
+  font-weight: 300;
+}
+.Elipsis *:not(:first-child):hover {
+  color: inherit;
+}
+
+@media only screen and (min-width: 768px) {
+  .Elipsis {
+    max-width: 50ch;
+  }
+}
