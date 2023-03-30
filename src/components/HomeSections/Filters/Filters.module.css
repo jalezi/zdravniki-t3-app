@@ -2,8 +2,8 @@
   --size-container: 3rem;
   --size-button: 2.5rem;
 
-  --border-radius: 1.5rem;
-  --padding: calc(var(--border-radius) / 2);
+  --filter-border-radius: 1.5rem; /* ? 24px should I convert to px*/
+  --padding: calc(var(--filter-border-radius) / 2);
 
   --button-font-size: 0.875rem;
 
@@ -21,7 +21,7 @@
   display: flex;
   flex-direction: column;
   background: var(--color-blue-300);
-  border-radius: var(--border-radius);
+  border-radius: var(--filter-border-radius);
 }
 
 .SearchContainer {

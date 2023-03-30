@@ -14,7 +14,7 @@
   padding: var(--padding__content__group);
 
   background: var(--color-blue-100);
-  border-radius: var(--border-radius);
+  border-radius: var(--filter-border-radius);
 }
 
 .FilterGroups.DrGroup {

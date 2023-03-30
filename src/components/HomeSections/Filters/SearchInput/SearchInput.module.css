@@ -12,7 +12,7 @@
 
   background: var(--color-white);
   border: 1px solid var(--color-blue-200);
-  border-radius: var(--border-radius);
+  border-radius: var(--filter-border-radius);
 
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
@@ -72,7 +72,7 @@
   box-shadow: var(--box-shadow);
 }
 
-.SearchLabel .Icon,
+.SearchLabel .Icon, /* ? why did I set this selector? */
 .SearchLabel input::placeholder {
   color: var(--color-placeholder);
 }

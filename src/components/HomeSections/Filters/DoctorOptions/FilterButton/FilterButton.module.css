@@ -7,7 +7,7 @@
   height: 100%;
   padding-inline: 0.5em;
 
-  border-radius: var(--border-radius);
+  border-radius: var(--filter-border-radius);
 
   transition: all var(--cubic-bezier);
 }
