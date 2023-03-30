@@ -1,13 +1,4 @@
 .Button {
-  display: inline-flex;
-  align-items: center;
-
-  min-width: calc(
-    var(--button-size, 1.5em) + var(--button-padding-inline, 1em) * 2
-  );
-  min-height: calc(
-    var(--button-size, 1.5em) + var(--button-padding-block, 0.5em) * 2
-  );
   padding-block: var(--button-padding-block, 0.5em);
   padding-inline: var(--button-padding-inline, 1em);
 
@@ -17,7 +8,7 @@
 
   background-color: var(--button-background-color, transparent);
   border: var(--button-border, 1px solid transparent);
-  border-radius: var(--button-border-radius, 0.5em);
+  border-radius: var(--button-border-radius, 0);
 
   transition: var(--button-transition, background-color 300ms ease);
 }
