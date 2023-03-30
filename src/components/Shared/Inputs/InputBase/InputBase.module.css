@@ -1,0 +1,85 @@
+.InputBase {
+  cursor: text;
+
+  padding-block: var(--input-base-padding-block, 0.5em);
+  padding-inline: var(--input-base-padding-inline, 1em);
+
+  font-size: var(--input-base-font-size, 1rem);
+  font-weight: var(--input-base-font-weight, 400);
+  color: var(--input-base-color, inherit);
+
+  background-color: var(--input-base-background-color, inherit);
+  border: var(--input-base-border, 1px solid inherit);
+  border-radius: var(--input-base-border-radius, 0);
+  box-shadow: var(--input-base-box-shadow, none);
+
+  transition: var(--input-base-transition, none);
+}
+
+.InputBase input {
+  flex: 1 1 100%;
+  outline: none;
+}
+
+.InputBase input::placeholder {
+  color: var(--input-base-color-placeholder, var(--color-placeholder, initial));
+}
+
+.InputBase:has(input:disabled),
+.InputBase > .InputBase__label_icon:has(+ input:disabled),
+.InputBase input:disabled {
+  cursor: not-allowed;
+}
+
+.InputBase > .InputBase__label_icon {
+  --font-size-icon: 1em;
+
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  font-size: var(--font-size-icon);
+}
+
+.InputBase.XXSmall {
+  --input-base-font-size: 0.625rem;
+}
+
+.InputBase.XSmall {
+  --input-base-font-size: 0.6875rem;
+}
+
+.InputBase.Small {
+  --input-base-font-size: 0.75rem;
+}
+
+.InputBase.Medium {
+  --input-base-font-size: 0.875rem;
+}
+
+.InputBase.Large {
+  --input-base-font-size: 1rem;
+}
+
+.InputBase.XLarge {
+  --input-base-font-size: 1.125rem;
+}
+
+.InputBase.XXLarge {
+  --input-base-font-size: 1.25rem;
+}
+
+.InputBase.Regular {
+  --input-font-weight: 400;
+}
+
+.InputBase.SemiBold {
+  --input-font-weight: 500;
+}
+
+.InputBase.Bold {
+  --input-font-weight: 600;
+}
+
+.InputBase.ExtraBold {
+  --input-font-weight: 700;
+}
