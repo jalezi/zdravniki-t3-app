@@ -10,7 +10,7 @@
   border: var(--button-border, 1px solid transparent);
   border-radius: var(--button-border-radius, 0);
 
-  transition: var(--button-transition, background-color 300ms ease);
+  transition: var(--button-transition, none);
 }
 
 .Button__container {
