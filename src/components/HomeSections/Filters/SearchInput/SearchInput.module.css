@@ -74,7 +74,7 @@
 
 .SearchLabel .Icon,
 .SearchLabel input::placeholder {
-  color: var(--color-grey-900-A50);
+  color: var(--color-placeholder);
 }
 
 .SearchLabel .Icon.CancelIcon:hover,
