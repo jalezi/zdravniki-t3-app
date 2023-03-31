@@ -44,13 +44,14 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
   const { t } = useTranslation('common');
   const { t: tDoctor } = useTranslation('doctor');
 
+  const editQuery = router.query.edit;
   useEffect(() => {
-    if ('edit' in router.query && router.query.edit === 'true') {
+    if (editQuery === 'true') {
       setEdit(true);
       return;
     }
     setEdit(false);
-  }, [router.query]);
+  }, [editQuery]);
 
   const { override } = doctor;
 
@@ -69,9 +70,8 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
 
   const doctorInfoStyles = clsx(styles.DoctorCard__info);
 
-  const onEdit = async () => {
-    setEdit(true);
-    await router.push(
+  const onEdit = () => {
+    void router.replace(
       {
         pathname: router.asPath,
         query: { edit: true },
@@ -81,9 +81,8 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
     );
   };
 
-  const onEditDone = async () => {
-    setEdit(false);
-    await router.push(
+  const onEditDone = () => {
+    void router.replace(
       {
         pathname: router.asPath,
         query: {},
@@ -168,7 +167,6 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
               accepts={doctor.accepts}
               availability={doctor.availability}
               note={doctor.override.note}
-              setEdit={setEdit}
               onEditDone={onEditDone}
             />
           </DoctorReportError.Container>

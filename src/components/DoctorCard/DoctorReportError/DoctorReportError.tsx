@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'next-i18next';
+import { useEffect } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -32,17 +33,21 @@ type ReportErrorTranslations = {
 
 const formDataSchema = z.object({
   address: z.string().min(0).max(255),
-  websites: z.array(
-    z.object({
-      website: z.string(),
-    })
-  ),
-  phones: z.array(
-    z.object({
-      phone: z.string(),
-    })
-  ),
-  email: z.string().email(),
+  websites: z
+    .array(
+      z.object({
+        website: z.string(),
+      })
+    )
+    .nonempty(),
+  phones: z
+    .array(
+      z.object({
+        phone: z.string(),
+      })
+    )
+    .nonempty(),
+  email: z.string(),
   orderform: z.string(),
   accepts: z.enum(['y', 'n']),
   availability: z.string(),
@@ -60,11 +65,13 @@ type DoctorReportErrorProps = {
   accepts: Doctor['accepts'];
   availability: Doctor['availability'];
   note: Doctor['override']['note'];
-  setEdit: (edit: boolean) => void;
   onEditDone: () => void;
 };
 
-const DoctorReportError = (props: DoctorReportErrorProps) => {
+const DoctorReportError = ({
+  onEditDone,
+  ...props
+}: DoctorReportErrorProps) => {
   const { t } = useTranslation('doctor');
   const reportErrorTranslation: ReportErrorTranslations = t('reportError', {
     returnObjects: true,
@@ -88,6 +95,13 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
     resolver: zodResolver(formDataSchema),
     mode: 'onChange',
   });
+
+  const { isSuccess } = sendReport;
+  useEffect(() => {
+    if (isSuccess) {
+      onEditDone();
+    }
+  }, [isSuccess, onEditDone]);
 
   const websiteFields = useFieldArray({
     control,
@@ -116,13 +130,12 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
     } satisfies SendReportInput;
 
     sendReport.mutate(mutationInput);
-    sendReport.data?.success && props.setEdit(false);
   });
 
   const actions = (
     <DoctorReportErrorActions
-      onCancel={() => props.onEditDone()}
-      onReset={reset}
+      onCancel={() => onEditDone()}
+      onReset={() => reset()}
       onResetText={reportErrorTranslation.reset}
       onSubmitText={reportErrorTranslation.send}
       onCancelText={reportErrorTranslation.cancel}
@@ -130,7 +143,11 @@ const DoctorReportError = (props: DoctorReportErrorProps) => {
   );
 
   return (
-    <form onSubmit={onSubmit} className={styles.DoctorReportError__form}>
+    <form
+      onSubmit={onSubmit}
+      className={styles.DoctorReportError__form}
+      autoComplete="off"
+    >
       {actions}
       <div>
         <label htmlFor="address">
