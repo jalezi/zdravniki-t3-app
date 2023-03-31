@@ -1,0 +1,60 @@
+.Input.InputWrapper {
+  --input-base-padding-block: var(--input-padding-block, 0.5em);
+  --input-base-padding-inline: var(--input-padding-inline, 1em);
+
+  --input-base-font-size: var(--input-font-size, 1rem);
+  --input-base-font-weight: var(--input-font-weight, 400);
+  --input-base-color: var(--input-color, var(--color-blue-900));
+
+  --input-base-background-color: var(--input-background-color, transparent);
+  --input-base-border: var(--input-border, 1px solid var(--color-blue-200));
+  --input-base-border-radius: var(--input-border-radius, 24px);
+  --input-base-box-shadow: var(--input-box-shadow, none);
+
+  --input-base-transition: var(
+    --input-transition,
+    box-shadow var(--cubic-bezier)
+  );
+
+  display: grid;
+  gap: 0.5em;
+}
+
+.Input.InputWrapper:focus-within {
+  --input-box-shadow: var(--box-shadow);
+
+  outline: none;
+}
+
+.Input.InputWrapper:hover {
+  --input-box-shadow: var(--box-shadow);
+}
+
+.Input.InputWrapper:has(input:disabled) {
+  --input-box-shadow: none;
+  --input-color: var(--color-blue-400-A76);
+  --input-background-color: var(--color-blue-100);
+}
+
+.Input.InputWrapper.InputErrorActive {
+  --input-box-shadow: var(--box-shadow__error);
+  --input-color: var(--color-red-500);
+  --input-border: 1px solid var(--color-red-200);
+}
+
+.Input .InputDescription,
+.Input .InputError {
+  --input-error-font-size: 0.925em;
+
+  min-height: var(--input-error-font-size);
+  font-size: var(--input-error-font-size);
+  line-height: 0.925;
+}
+
+.Input .InputDescription {
+  color: var(--color-blue-400);
+}
+
+.Input .InputError {
+  color: var(--color-red-500);
+}
