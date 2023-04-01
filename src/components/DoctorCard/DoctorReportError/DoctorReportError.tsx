@@ -4,6 +4,13 @@ import { useEffect } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import {
+  EmailSvg,
+  LinkSvg,
+  MapMarkerSvg,
+  PhoneSvg,
+} from '@/components/Shared/Icons';
+import { Input } from '@/components/Shared/Inputs/Input';
 import { api } from '@/lib/utils/api';
 import type { Doctor, SendReportInput } from '@/server/api/routers/doctors';
 
@@ -149,36 +156,29 @@ const DoctorReportError = ({
       autoComplete="off"
     >
       {actions}
-      <div>
-        <label htmlFor="address">
-          {reportErrorTranslation.placeholder.address}
-        </label>
-        <input
-          {...register('address')}
-          type="text"
-          id="address"
-          placeholder={reportErrorTranslation.placeholder.address}
-        />
-        <p>{errors.address?.message}</p>
-      </div>
+      <Input
+        {...register('address')}
+        type="text"
+        id="address"
+        placeholder={reportErrorTranslation.placeholder.address}
+        icon={<MapMarkerSvg />}
+        label={reportErrorTranslation.placeholder.address}
+      />
+
       <fieldset>
         <legend>Websites</legend>
         {websiteFields.fields.map((field, index, arr) => (
           <div key={field.id}>
-            <div>
-              <label htmlFor={field.id}>
-                {reportErrorTranslation.placeholder.website} {index + 1}
-              </label>
-              <input
-                {...register(`websites.${index}.website`)}
-                type="text"
-                id={field.id}
-                placeholder={reportErrorTranslation.placeholder.website}
-                inputMode="url"
-              />
-
-              <p>{errors.websites?.[`${index}`]?.website?.message}</p>
-            </div>
+            <Input
+              {...register(`websites.${index}.website`)}
+              type="text"
+              id={field.id}
+              placeholder={reportErrorTranslation.placeholder.website}
+              inputMode="url"
+              icon={<LinkSvg />}
+              label={reportErrorTranslation.placeholder.website}
+              error={errors.websites?.[`${index}`]?.website?.message}
+            />
             <div>
               {arr.length !== 1 && (
                 <button onClick={() => websiteFields.remove(index)}>-</button>
@@ -196,20 +196,16 @@ const DoctorReportError = ({
         <legend>Phones</legend>
         {phoneFields.fields.map((field, index, arr) => (
           <div key={field.id}>
-            <div>
-              <label htmlFor={field.id}>
-                {reportErrorTranslation.placeholder.phone} {index + 1}
-              </label>
-              <input
-                {...register(`phones.${index}.phone`)}
-                type="text"
-                id={field.id}
-                placeholder={reportErrorTranslation.placeholder.phone}
-                inputMode="tel"
-              />
-
-              <p>{errors.phones?.[`${index}`]?.phone?.message}</p>
-            </div>
+            <Input
+              {...register(`phones.${index}.phone`)}
+              type="text"
+              id={field.id}
+              placeholder={reportErrorTranslation.placeholder.phone}
+              inputMode="tel"
+              icon={<PhoneSvg />}
+              label={`${reportErrorTranslation.placeholder.phone} ${index + 1}`}
+              error={errors.phones?.[`${index}`]?.phone?.message}
+            />
             <div>
               {arr.length !== 1 && (
                 <button onClick={() => phoneFields.remove(index)}>-</button>
@@ -223,31 +219,25 @@ const DoctorReportError = ({
           </div>
         ))}
       </fieldset>
-      <div>
-        <label htmlFor="email">
-          {reportErrorTranslation.placeholder.email}
-        </label>
-        <input
-          {...register('email')}
-          type="text"
-          id="email"
-          placeholder={reportErrorTranslation.placeholder.email}
-          inputMode="email"
-        />
-        <p>{errors.email?.message}</p>
-      </div>
-      <div>
-        <label htmlFor="orderform">
-          {reportErrorTranslation.placeholder.orderform}
-        </label>
-        <input
-          {...register('orderform')}
-          type="text"
-          id="orderform"
-          placeholder={reportErrorTranslation.placeholder.orderform}
-        />
-        <p>{errors.orderform?.message}</p>
-      </div>
+      <Input
+        {...register('email')}
+        type="text"
+        id="email"
+        placeholder={reportErrorTranslation.placeholder.email}
+        inputMode="email"
+        icon={<EmailSvg />}
+        label={reportErrorTranslation.placeholder.email}
+        error={errors.email?.message}
+      />
+      <Input
+        {...register('orderform')}
+        type="text"
+        id="orderform"
+        placeholder={reportErrorTranslation.placeholder.orderform}
+        icon={<LinkSvg />}
+        label={reportErrorTranslation.placeholder.orderform}
+        error={errors.orderform?.message}
+      />
       <div>
         <div>
           <label htmlFor="accepts">
@@ -259,18 +249,14 @@ const DoctorReportError = ({
           </select>
           <p>{errors.accepts?.message}</p>
         </div>
-        <div>
-          <label htmlFor="availability">
-            {reportErrorTranslation.placeholder.availability}
-          </label>
-          <input
-            {...register('availability')}
-            inputMode="decimal"
-            id="availability"
-            placeholder="0.0"
-          />
-          <p>{errors.availability?.message}</p>
-        </div>
+        <Input
+          {...register('availability')}
+          inputMode="decimal"
+          id="availability"
+          placeholder="0.0"
+          label={reportErrorTranslation.placeholder.availability}
+          error={errors.availability?.message}
+        />
       </div>
 
       <div>
