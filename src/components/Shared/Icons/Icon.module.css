@@ -1,8 +1,11 @@
 .Icon {
   --font-size-icon: inherit;
 
+  display: inline-block;
+
   width: 1em;
   height: 1em;
+
   font-size: var(--font-size-icon);
   color: inherit;
 }
