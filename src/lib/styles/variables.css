@@ -44,12 +44,16 @@
   --color-blue-500-A87: rgba(38, 198, 237, 0.87);
   --color-blue-500-A76: rgba(38, 198, 237, 0.76);
   --color-blue-500-A40: rgba(38, 198, 237, 0.4);
+  --color-blue-400-A87: rgba(108, 112, 116, 0.87);
+  --color-blue-400-A76: rgba(108, 112, 116, 0.76);
 
   /* red colors */
   --color-red-800: rgb(255, 76, 76);
   --color-red-700: rgb(220, 52, 53);
   --color-red-500: rgb(220, 50, 50);
   --color-red-300: rgb(211, 47, 47);
+  --color-red-500-A87: rgba(220, 50, 50, 0.87);
+  --color-red-200: rgb(219 184 184);
 
   /* green colors */
   --color-green-800: rgb(99, 125, 54); /* contrast ratio with white text ok! */
@@ -99,6 +103,7 @@
 
   /* box-shadow */
   --box-shadow: var(--color-blue-800-A76) 0px 0px 7px 0px;
+  --box-shadow__error: var(--color-red-500-A87) 0px 0px 7px 0px;
 
   /* breakpoints */
   --break-point-xxs: 0;
