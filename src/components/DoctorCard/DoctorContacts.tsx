@@ -38,7 +38,8 @@ const DoctorContacts = ({
             text={websiteUrl.data.href
               .replace(websiteUrl.data.host, '')
               .replace(websiteUrl.data.protocol, '')
-              .replace('//', '')}
+              .replace('//', '')
+              .replace(/\/+$/, '')}
           />
         ) : null;
       })}
