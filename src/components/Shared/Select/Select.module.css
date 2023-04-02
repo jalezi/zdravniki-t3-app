@@ -1,8 +1,6 @@
 .Select {
-  --offset: 0.25em;
-  --button-padding-inline: 0;
-  --button-padding-block: 0;
-  --color-select: var(--color-black, #000);
+  --select-options-offset: 0.25em;
+  --select-color: var(--color-black, inherit);
 
   position: relative;
 
@@ -11,7 +9,7 @@
 
   width: auto;
 
-  color: var(--color-select);
+  color: var(--select-color);
 }
 
 .Select .SelectedOption {
@@ -21,12 +19,27 @@
   gap: 0.1em;
   align-items: center;
 
-  padding-block: var(--button-padding-block);
-  padding-inline: var(--button-padding-inline);
+  padding-block: var(--select-selected-padding-block);
+  padding-inline: var(--select-selected-padding-inline);
 
   color: inherit;
 
-  border: 1px solid var(--color-select);
+  border: 1px solid var(--select-color);
+}
+
+.Select .SelectedOption .Input {
+  width: var(--select-input-width, auto);
+  max-width: var(--select-input-max-width, auto);
+  padding-block: var(--select-input-padding-block);
+  padding-inline: var(--select-input-padding-inline);
+
+  outline: none;
+}
+
+.Select .SelectedOption:focus-within {
+  outline: auto;
+  outline-color: #007bff;
+  outline-offset: 1px;
 }
 
 .Select .Caret {
@@ -50,17 +63,17 @@
   color: inherit;
 
   background-color: var(--color-blue-50, #fff);
-  border: 1px solid var(--color-select);
+  border: 1px solid var(--select-color);
 }
 
 .Select .OptionsList.Bottom {
-  top: calc(100% + var(--offset));
+  top: calc(100% + var(--select-options-offset));
   bottom: auto;
 }
 
 .Select .OptionsList.Top {
   top: auto;
-  bottom: calc(100% + var(--offset));
+  bottom: calc(100% + var(--select-options-offset));
 }
 
 .Select .OptionsList.Left {

@@ -35,6 +35,8 @@ export type SelectProps = {
   selectedStyle?: string;
   dropdownStyle?: string;
   dropdownItemStyle?: string;
+  id?: string;
+  readOnly?: boolean;
 };
 
 export type SelectRefProps = {
@@ -65,6 +67,8 @@ const Select = (
     selectedStyle,
     dropdownStyle,
     dropdownItemStyle,
+    id,
+    readOnly,
   }: SelectProps,
   ref: SelectRef
 ) => {
@@ -97,7 +101,7 @@ const Select = (
   const handleSelectClick = useCallback(() => setIsOpen(false), []);
   useKeyboardNavigation(isOpen, handleSelectClick, optionsRef);
 
-  const onToggle = () => setIsOpen(prev => !prev);
+  const onToggle = () => !readOnly && setIsOpen(prev => !prev);
 
   const handleOptionClick = (option: string) => {
     selectedOption.current = option;
@@ -119,6 +123,7 @@ const Select = (
   );
 
   const optionStyles = clsx(styles.Option, dropdownItemStyle);
+  const inputStyles = clsx(styles.Input);
 
   return (
     <div
@@ -134,7 +139,6 @@ const Select = (
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         onClick={onToggle}
-        tabIndex={0}
         onKeyDown={e => {
           if (e.key === 'Enter' || e.key === ' ') {
             onToggle();
@@ -144,7 +148,13 @@ const Select = (
         data-value={isOptionSelected ? selectedOption.current : ''}
         data-name={name}
       >
-        <span>{selectedOption.current}</span>
+        <input
+          id={id}
+          value={selectedOption.current}
+          readOnly
+          className={inputStyles}
+          aria-hidden="true"
+        />
         <span className="sr-only">{placeholder}</span>
         <span className={styles.Caret} aria-hidden="true">
           {isOpen ? <CaretUpSvg /> : <CaretDownSvg />}

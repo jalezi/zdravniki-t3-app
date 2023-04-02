@@ -5,6 +5,8 @@
   --color-dropdown__lng: var(--color-black-A66);
   --color-item-hover__lng: var(--color-black-A87);
   --color-background-dropdown__lng: var(--color-black-A12);
+
+  --select-input-width: 5ch;
 }
 
 .LanguageSelector.SelectedOption {
