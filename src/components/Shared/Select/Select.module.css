@@ -8,9 +8,8 @@
 
   display: inline-flex;
   align-items: center;
-  justify-content: flex-end;
 
-  width: 100%;
+  width: auto;
 
   color: var(--color-select);
 }
