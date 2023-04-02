@@ -16,7 +16,7 @@
             },
             "floating": {
                 "description": "$t(extra.clinic.floating.title)",
-                "title": "Ambulatorio per pazienti senza medico"
+                "title": "Ambulatorio per pazienti senza medico di base"
             }
         }
     },
@@ -33,7 +33,7 @@
         "showOnMap": "Visualizza sulla mappa"
     },
     "orderform": {
-        "linkReplaceText": "prenota un appuntamento"
+        "linkReplaceText": "prenotazione"
     },
     "ped": "pediatra",
     "rejects": "non accetta",
