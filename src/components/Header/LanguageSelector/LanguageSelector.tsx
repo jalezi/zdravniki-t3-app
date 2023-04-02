@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useWindowSize } from 'usehooks-ts';
 
 import { type localesMap } from '@/../next-i18next.config';
-import Select from '@/components/Shared/Select/Select';
+import { SelectBase } from '@/components/Shared/Selects/SelectBase';
 import { BREAKPOINTS } from '@/lib/constants';
 
 import styles from './LanguageSelector.module.css';
@@ -45,7 +45,7 @@ const LanguageSelector = () => {
   const value = flag + ' ' + localeUpperCase;
 
   return (
-    <Select
+    <SelectBase
       options={options}
       name="language-selector"
       value={value}

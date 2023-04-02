@@ -9,17 +9,17 @@ import React, {
 } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
 
+import { CaretDownSvg, CaretUpSvg } from '@/components/Shared/Icons';
 import useKeyboardNavigation from '@/lib/hooks/useKeyboardNavigation';
 
-import styles from './Select.module.css';
-import { CaretDownSvg, CaretUpSvg } from '../Icons';
+import styles from './SelectBase.module.css';
 
 type Option = {
   label?: string;
   value: string;
 };
 
-export type SelectProps = {
+export type SelectBaseProps = {
   placeholder?: string;
   value?: string;
   options: Option[];
@@ -39,13 +39,13 @@ export type SelectProps = {
   readOnly?: boolean;
 };
 
-export type SelectRefProps = {
+export type SelectBaseRefProps = {
   selectedOption: string;
   refs: Record<string, React.RefObject<HTMLElement>>;
   value: string;
 };
 
-export type SelectRef = React.Ref<SelectRefProps>;
+export type SelectBaseRef = React.Ref<SelectBaseRefProps>;
 
 const OptionsPositionClassName = {
   ['top-left']: clsx(styles.Top, styles.Left),
@@ -56,7 +56,7 @@ const OptionsPositionClassName = {
   ['bottom-right']: clsx(styles.Bottom, styles.Right),
 } as const;
 
-const Select = (
+const SelectBase = (
   {
     options,
     value,
@@ -69,8 +69,8 @@ const Select = (
     dropdownItemStyle,
     id,
     readOnly,
-  }: SelectProps,
-  ref: SelectRef
+  }: SelectBaseProps,
+  ref: SelectBaseRef
 ) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const selectWrapperRef = useRef<HTMLDivElement>(null);
@@ -191,4 +191,4 @@ const Select = (
   );
 };
 
-export default forwardRef(Select);
+export default forwardRef(SelectBase);
