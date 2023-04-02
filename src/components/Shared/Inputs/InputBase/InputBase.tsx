@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import type { ReactNode, Ref } from 'react';
-import { forwardRef } from 'react';
+import { forwardRef, useId } from 'react';
 import { z } from 'zod';
 
 import { Polymorphic } from '@/components/Shared/Polymorphic';
@@ -38,22 +38,32 @@ export type InputBaseCustomProps = {
   weight?: Weight;
 };
 
-export type InputBaseProps = Omit<
-  PolymorphicComponentPropsWithRef<'input'>,
-  'as' | keyof InputBaseCustomProps
-> &
-  InputBaseCustomProps;
+export type InputBaseProps =
+  | (
+      | ({ as?: 'input' } & Omit<
+          PolymorphicComponentPropsWithRef<'input'>,
+          'as' | keyof InputBaseCustomProps
+        >)
+      | ({ as: 'textarea' } & Omit<
+          PolymorphicComponentPropsWithRef<'textarea'>,
+          'as' | keyof InputBaseCustomProps
+        >)
+    ) &
+      InputBaseCustomProps;
 
 const InputBase = (
   {
+    as = 'input',
     className,
     icon,
     size = 'md',
     weight = 'regular',
+    id,
     ...props
   }: InputBaseProps,
-  ref: Ref<HTMLInputElement>
+  ref: Ref<HTMLInputElement | HTMLTextAreaElement>
 ) => {
+  const _id = useId();
   const validSize = sizeSchema.safeParse(size);
   const validWeight = weightSchema.safeParse(weight);
 
@@ -71,13 +81,16 @@ const InputBase = (
   return (
     <InputBaseWrapper className={inputBaseWrapperStyles}>
       {icon && (
-        <label htmlFor={props.id} className={styles.InputBase__label_icon}>
+        <label htmlFor={id ?? _id} className={styles.InputBase__label_icon}>
           {icon}
         </label>
       )}
-      <Polymorphic ref={ref} as="input" {...props} />
+      <Polymorphic ref={ref} as={as} id={id ?? _id} {...props} />
     </InputBaseWrapper>
   );
 };
 
-export default forwardRef<HTMLInputElement, InputBaseProps>(InputBase);
+export default forwardRef<
+  HTMLInputElement | HTMLTextAreaElement,
+  InputBaseProps
+>(InputBase);

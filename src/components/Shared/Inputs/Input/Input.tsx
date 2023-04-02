@@ -15,7 +15,7 @@ export type InputProps = InputBaseProps & InputCustomProps;
 
 const Input = (
   { className, id, description, error, label, ...props }: InputProps,
-  ref: Ref<HTMLInputElement>
+  ref: Ref<HTMLInputElement | HTMLTextAreaElement>
 ) => {
   const _id = useId();
   const inputId = id ?? _id;
@@ -41,4 +41,6 @@ const Input = (
   );
 };
 
-export default forwardRef<HTMLInputElement, InputProps>(Input);
+export default forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
+  Input
+);
