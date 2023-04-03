@@ -38,20 +38,8 @@
     "ped": "pediatrician",
     "rejects": "not accepting",
     "reportError": {
-        "cancel": "Cancel",
         "linkText": "Report error in doctor data",
-        "placeholder": {
-            "address": "address",
-            "availability": "availability",
-            "email": "email",
-            "note": "note",
-            "orderform": "link to order page",
-            "phone": "phone",
-            "website": "web page"
-        },
         "reportReceived": "Thank you! We will look into it.",
-        "reset": "Reset",
-        "send": "Send",
         "text": "Report error in doctor data and add the correct data or notes:",
         "title": "Report error",
         "tooltip": "$t(linkText)"

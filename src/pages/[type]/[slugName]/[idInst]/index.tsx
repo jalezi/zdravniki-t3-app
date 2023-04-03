@@ -84,7 +84,7 @@ export const getStaticProps: GetStaticProps<
     props: {
       ...(await serverSideTranslations(
         ctx.locale ?? 'sl',
-        ['common', 'doctor', 'map', 'seo'],
+        ['common', 'doctor', 'map', 'seo', 'dr-report-error'],
 
         nextI18nextConfig
       )),

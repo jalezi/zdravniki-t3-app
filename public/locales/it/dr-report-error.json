@@ -1,0 +1,69 @@
+{
+    "buttons": {
+        "cancel": "Annulla",
+        "reset": "Resettare",
+        "send": "Invia"
+    },
+    "groups": {
+        "phones": "Telefoni",
+        "websites": "Pagine web"
+    },
+    "heading": {
+        "description": "Segnala un errore nei dati del medico e aggiungi i dati corretti o delle note",
+        "title": "Segnala un errore"
+    },
+    "inputs": {
+        "accepts": {
+            "description": "",
+            "label": "Accetta",
+            "placeholder": "",
+            "message": ""
+        },
+        "address": {
+            "description": "",
+            "label": "Indirizzo",
+            "placeholder": "Indirizzo",
+            "message": "La nota è troppo lunga. Per favore inserisci meno di 255 caratteri."
+        },
+        "availability": {
+            "description": "",
+            "label": "Disponibilità",
+            "placeholder": "",
+            "message": ""
+        },
+        "email": {
+            "description": "",
+            "label": "E-mail",
+            "placeholder": "E-mail",
+            "message": ""
+        },
+        "note": {
+            "description": "Una breve nota sull'errore",
+            "label": "Nota",
+            "placeholder": "Nota",
+            "message": "La nota è troppo lunga. Per favore inserisci meno di 255 caratteri."
+        },
+        "orderform": {
+            "description": "",
+            "label": "Link alla pagina di prenotazione",
+            "placeholder": "Link alla pagina di prenotazione",
+            "message": ""
+        },
+        "phone": {
+            "description": "",
+            "label": "Telefono",
+            "placeholder": "Telefono",
+            "message": ""
+        },
+        "website": {
+            "description": "",
+            "label": "Pagina web",
+            "placeholder": "Pagina web",
+            "message": ""
+        }
+    },
+    "notification": {
+        "error": "C'è stato un errore. Per favore riprova.",
+        "success": "Grazie! Esamineremo i dati."
+    }
+}

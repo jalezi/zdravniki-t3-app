@@ -1,8 +1,15 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import type { CustomTypeOptions } from 'i18next';
 import { useTranslation } from 'next-i18next';
-import { useEffect } from 'react';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { useEffect, useRef, useState } from 'react';
+import { Controller, useFieldArray, useForm } from 'react-hook-form';
 import { z } from 'zod';
+
+type ReportErrorTranslations =
+  CustomTypeOptions['resources']['dr-report-error'];
+
+const ADDRESS_LENGTH_LIMIT = 255;
+const NOTE_LENGTH_LIMIT = 255;
 
 import {
   EmailSvg,
@@ -11,35 +18,15 @@ import {
   PhoneSvg,
 } from '@/components/Shared/Icons';
 import { Input } from '@/components/Shared/Inputs/Input';
+import SelectBase from '@/components/Shared/Selects/SelectBase/SelectBase';
 import { api } from '@/lib/utils/api';
 import type { Doctor, SendReportInput } from '@/server/api/routers/doctors';
 
 import styles from './DoctorReportError.module.css';
 import DoctorReportErrorActions from './DoctorReportErrorActions';
 
-type ReportErrorTranslations = {
-  cancel: string;
-  linkText: string;
-  placeholder: {
-    accepts: string;
-    address: string;
-    availability: string;
-    email: string;
-    note: string;
-    orderform: string;
-    phone: string;
-    website: string;
-  };
-  reportReceived: string;
-  reset: string;
-  send: string;
-  text: string;
-  title: string;
-  tooltip: string;
-};
-
 const formDataSchema = z.object({
-  address: z.string().min(0).max(255),
+  address: z.string().max(ADDRESS_LENGTH_LIMIT),
   websites: z
     .array(
       z.object({
@@ -58,7 +45,7 @@ const formDataSchema = z.object({
   orderform: z.string(),
   accepts: z.enum(['y', 'n']),
   availability: z.string(),
-  note: z.string().min(0).max(255),
+  note: z.string().max(NOTE_LENGTH_LIMIT),
 });
 
 type FormData = z.infer<typeof formDataSchema>;
@@ -79,10 +66,24 @@ const DoctorReportError = ({
   onEditDone,
   ...props
 }: DoctorReportErrorProps) => {
-  const { t } = useTranslation('doctor');
-  const reportErrorTranslation: ReportErrorTranslations = t('reportError', {
-    returnObjects: true,
-  });
+  const { t: tReportError } = useTranslation('dr-report-error');
+  const buttonTranslations: ReportErrorTranslations['buttons'] = tReportError(
+    'buttons',
+    { returnObjects: true }
+  );
+  const groupTranslations: ReportErrorTranslations['groups'] = tReportError(
+    'groups',
+    { returnObjects: true }
+  );
+  const inputTranslations: ReportErrorTranslations['inputs'] = tReportError(
+    'inputs',
+    { returnObjects: true }
+  );
+
+  const noteRef = useRef<HTMLTextAreaElement | HTMLInputElement | null>(null);
+  const [noteLength, setNoteLength] = useState<number>(
+    noteRef.current?.value.length ?? 0
+  );
 
   const sendReport = api.doctors.sendReport.useMutation();
 
@@ -103,12 +104,29 @@ const DoctorReportError = ({
     mode: 'onChange',
   });
 
+  const { ref: reactHookNoteRef, ...noteProps } = register('note');
+
   const { isSuccess } = sendReport;
   useEffect(() => {
     if (isSuccess) {
       onEditDone();
     }
   }, [isSuccess, onEditDone]);
+
+  useEffect(() => {
+    const textArea = noteRef.current;
+    if (!textArea) return;
+    const setHeight = () => {
+      textArea.style.height = 'auto';
+      textArea.style.height = `${textArea.scrollHeight}px`;
+      setNoteLength(textArea.value.length);
+    };
+    textArea.addEventListener('input', setHeight);
+
+    return () => {
+      textArea.removeEventListener('input', setHeight);
+    };
+  }, []);
 
   const websiteFields = useFieldArray({
     control,
@@ -143,11 +161,15 @@ const DoctorReportError = ({
     <DoctorReportErrorActions
       onCancel={() => onEditDone()}
       onReset={() => reset()}
-      onResetText={reportErrorTranslation.reset}
-      onSubmitText={reportErrorTranslation.send}
-      onCancelText={reportErrorTranslation.cancel}
+      onResetText={buttonTranslations.reset}
+      onSubmitText={buttonTranslations.send}
+      onCancelText={buttonTranslations.cancel}
     />
   );
+
+  // ? why must coercion be used here? TS complains about unsafe member access
+  const websitesGroup = groupTranslations.websites;
+  const phonesGroup = groupTranslations.phones;
 
   return (
     <form
@@ -160,23 +182,28 @@ const DoctorReportError = ({
         {...register('address')}
         type="text"
         id="address"
-        placeholder={reportErrorTranslation.placeholder.address}
+        placeholder={inputTranslations.address.placeholder}
         icon={<MapMarkerSvg />}
-        label={reportErrorTranslation.placeholder.address}
+        label={inputTranslations.address.placeholder}
+        error={
+          errors.address?.message
+            ? inputTranslations.address.message
+            : undefined
+        }
       />
 
       <fieldset>
-        <legend>Websites</legend>
+        <legend>{websitesGroup}</legend>
         {websiteFields.fields.map((field, index, arr) => (
           <div key={field.id}>
             <Input
               {...register(`websites.${index}.website`)}
               type="text"
               id={field.id}
-              placeholder={reportErrorTranslation.placeholder.website}
+              placeholder={inputTranslations.website.placeholder}
               inputMode="url"
               icon={<LinkSvg />}
-              label={reportErrorTranslation.placeholder.website}
+              label={`${inputTranslations.website.label} ${index + 1}`}
               error={errors.websites?.[`${index}`]?.website?.message}
             />
             <div>
@@ -193,17 +220,17 @@ const DoctorReportError = ({
         ))}
       </fieldset>
       <fieldset>
-        <legend>Phones</legend>
+        <legend>{phonesGroup}</legend>
         {phoneFields.fields.map((field, index, arr) => (
           <div key={field.id}>
             <Input
               {...register(`phones.${index}.phone`)}
               type="text"
               id={field.id}
-              placeholder={reportErrorTranslation.placeholder.phone}
+              placeholder={inputTranslations.phone.placeholder}
               inputMode="tel"
               icon={<PhoneSvg />}
-              label={`${reportErrorTranslation.placeholder.phone} ${index + 1}`}
+              label={`${inputTranslations.phone.label} ${index + 1}`}
               error={errors.phones?.[`${index}`]?.phone?.message}
             />
             <div>
@@ -223,51 +250,65 @@ const DoctorReportError = ({
         {...register('email')}
         type="text"
         id="email"
-        placeholder={reportErrorTranslation.placeholder.email}
+        placeholder={inputTranslations.email.placeholder}
         inputMode="email"
         icon={<EmailSvg />}
-        label={reportErrorTranslation.placeholder.email}
+        label={inputTranslations.email.label}
         error={errors.email?.message}
       />
       <Input
         {...register('orderform')}
         type="text"
         id="orderform"
-        placeholder={reportErrorTranslation.placeholder.orderform}
+        placeholder={inputTranslations.orderform.placeholder}
         icon={<LinkSvg />}
-        label={reportErrorTranslation.placeholder.orderform}
+        label={inputTranslations.orderform.label}
         error={errors.orderform?.message}
       />
       <div>
         <div>
-          <label htmlFor="accepts">
-            {reportErrorTranslation.placeholder.accepts}
-          </label>
-          <select {...register('accepts')} id="accepts">
-            <option value="y">Yes</option>
-            <option value="n">No</option>
-          </select>
-          <p>{errors.accepts?.message}</p>
+          <label htmlFor="accepts">{inputTranslations.accepts.label}</label>
+          <Controller
+            name="accepts"
+            control={control}
+            render={({ field }) => (
+              <SelectBase
+                {...field}
+                options={[
+                  { value: 'y', label: 'Yes' },
+                  { value: 'n', label: 'No' },
+                ]}
+                id="accepts"
+              />
+            )}
+          />
+          <label htmlFor="accepts">{errors.accepts?.message}</label>
         </div>
         <Input
           {...register('availability')}
           inputMode="decimal"
           id="availability"
           placeholder="0.0"
-          label={reportErrorTranslation.placeholder.availability}
+          label={inputTranslations.availability.label}
           error={errors.availability?.message}
         />
       </div>
 
-      <div>
-        <label htmlFor="note">{reportErrorTranslation.placeholder.note}</label>
-        <textarea
-          {...register('note')}
-          id="note"
-          placeholder={reportErrorTranslation.placeholder.note}
-        />
-        <p>{errors.note?.message}</p>
-      </div>
+      <Input
+        as="textarea"
+        {...noteProps}
+        ref={e => {
+          reactHookNoteRef(e);
+          noteRef.current = e;
+        }}
+        id="note"
+        label={inputTranslations.note.label}
+        placeholder={inputTranslations.note.placeholder}
+        error={
+          errors.note?.message ? inputTranslations.note.message : undefined
+        }
+        description={`${inputTranslations.note.description} ${noteLength}/${NOTE_LENGTH_LIMIT}`}
+      />
       {actions}
     </form>
   );

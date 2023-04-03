@@ -1,0 +1,69 @@
+{
+    "buttons": {
+        "cancel": "Prekliči",
+        "reset": "Ponastavi",
+        "send": "Pošlji"
+    },
+    "groups": {
+        "phones": "Telefoni",
+        "websites": "Spletne strani"
+    },
+    "heading": {
+        "description": "Prijavi napako na posameznih podatkih o zdravniku in vnesi pravilne podatke ali opombo",
+        "title": "Prijavi napako"
+    },
+    "inputs": {
+        "accepts": {
+            "description": "",
+            "label": "Sprejema",
+            "placeholder": "",
+            "message": ""
+        },
+        "address": {
+            "description": "",
+            "label": "Naslov",
+            "placeholder": "Naslov",
+            "message": "Predolgo. Največ 255 znakov."
+        },
+        "availability": {
+            "description": "",
+            "label": "Obseg zaposlitve",
+            "placeholder": "",
+            "message": ""
+        },
+        "email": {
+            "description": "",
+            "label": "E-pošta",
+            "placeholder": "E-pošta",
+            "message": ""
+        },
+        "note": {
+            "description": "Kratka opomba o napaki",
+            "label": "Opomba",
+            "placeholder": "Opomba",
+            "message": "Predolgo. Največ 255 znakov."
+        },
+        "orderform": {
+            "description": "",
+            "label": "Povezava za naročanje",
+            "placeholder": "Povezava za naročanje",
+            "message": ""
+        },
+        "phone": {
+            "description": "",
+            "label": "Telefon",
+            "placeholder": "Telefon",
+            "message": ""
+        },
+        "website": {
+            "description": "",
+            "label": "Spletna stran",
+            "placeholder": "Spletna stran",
+            "message": ""
+        }
+    },
+    "notification": {
+        "error": "Prišlo je do napake. Poskusite znova.",
+        "success": "Hvala za poslano! Podatke bomo pregledali."
+    }
+}

@@ -1,0 +1,69 @@
+{
+    "buttons": {
+        "cancel": "Cancel",
+        "reset": "Reset",
+        "send": "Send"
+    },
+    "groups": {
+        "phones": "Phones",
+        "websites": "Web pages"
+    },
+    "heading": {
+        "description": "Report error in doctor data and add the correct data or notes",
+        "title": "Report error"
+    },
+    "inputs": {
+        "accepts": {
+            "description": "",
+            "label": "Accepts",
+            "placeholder": "",
+            "message": ""
+        },
+        "address": {
+            "description": "",
+            "label": "Address",
+            "placeholder": "Address",
+            "message": "Too long. Max 255 characters."
+        },
+        "availability": {
+            "description": "",
+            "label": "Availability",
+            "placeholder": "",
+            "message": ""
+        },
+        "email": {
+            "description": "",
+            "label": "E-mail",
+            "placeholder": "E-mail",
+            "message": ""
+        },
+        "note": {
+            "description": "A quick note about the error",
+            "label": "Note",
+            "placeholder": "Note",
+            "message": "Too long. Max 255 characters."
+        },
+        "orderform": {
+            "description": "",
+            "label": "Link to order page",
+            "placeholder": "Link to order page",
+            "message": ""
+        },
+        "phone": {
+            "description": "",
+            "label": "Phone",
+            "placeholder": "Phone",
+            "message": ""
+        },
+        "website": {
+            "description": "",
+            "label": "Web page",
+            "placeholder": "Web page",
+            "message": ""
+        }
+    },
+    "notification": {
+        "error": "Something went wrong. Please try again later.",
+        "success": "Thank you! We will look into it."
+    }
+}

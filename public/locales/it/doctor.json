@@ -38,20 +38,8 @@
     "ped": "pediatra",
     "rejects": "non accetta",
     "reportError": {
-        "cancel": "Annulla",
         "linkText": "Segnala un errore nei dati pubblicati",
-        "placeholder": {
-            "address": "indirizzo",
-            "availability": "disponibilità",
-            "email": "e-mail",
-            "note": "nota",
-            "orderform": "link alla pagina di prenotazione",
-            "phone": "telefono",
-            "website": "pagina web"
-        },
         "reportReceived": "Grazie! Esamineremo i dati.",
-        "reset": "Resettare",
-        "send": "Invia",
         "text": "Segnala un errore nei dati del medico e aggiungi i dati corretti o delle note:",
         "title": "Segnala un errore",
         "tooltip": "$t(linkText)"
