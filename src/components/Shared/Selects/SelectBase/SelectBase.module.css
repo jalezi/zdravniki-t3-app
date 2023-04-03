@@ -1,7 +1,4 @@
 .SelectBase {
-  --select-options-offset: 0.25em;
-  --select-color: var(--color-black, inherit);
-
   position: relative;
 
   display: inline-flex;
@@ -9,29 +6,32 @@
 
   width: auto;
 
-  color: var(--select-color);
+  color: var(--select-color, inherit);
 }
 
 .SelectBase .SelectBase__selected_option {
   cursor: pointer;
 
   display: inline-flex;
-  gap: 0.1em;
   align-items: center;
 
-  padding-block: var(--select-selected-padding-block);
-  padding-inline: var(--select-selected-padding-inline);
+  min-width: var(--select-selected-min-width, auto);
+  max-width: var(--select-selected-max-width, auto);
+  padding-block: var(--select-selected-padding-block, 0);
+  padding-inline: var(--select-selected-padding-inline, 0);
 
-  color: inherit;
+  color: var(--select-selected-color, inherit);
 
-  border: 1px solid var(--select-color);
+  background-color: var(--select-selected-background-color, transparent);
+  border: var(--select-selected-border, 1px solid var(--select-color, #000));
+  border-radius: var(--select-selected-border-radius, 0.25em);
 }
 
 .SelectBase .SelectBase__selected_option .SelectBase__input {
   width: var(--select-input-width, auto);
   max-width: var(--select-input-max-width, auto);
-  padding-block: var(--select-input-padding-block);
-  padding-inline: var(--select-input-padding-inline);
+  padding-block: var(--select-input-padding-block, 0);
+  padding-inline: var(--select-input-padding-inline, 0);
 
   outline: none;
 }
@@ -54,26 +54,29 @@
 
   display: inline-flex;
   flex-direction: column;
-  gap: 0.125em;
+  gap: var(--select-dropdown-gap, 0.125em);
 
   width: max-content;
+  min-width: var(--select-dropdown-min-width, auto);
   margin: 0;
-  padding: 0;
+  padding-block: var(--select-dropdown-padding-block, 0.25em);
+  padding-inline: var(--select-dropdown-padding-inline, 0.5em);
 
-  color: inherit;
+  color: var(--select-dropdown-color, inherit);
 
-  background-color: var(--color-blue-50, #fff);
-  border: 1px solid var(--select-color);
+  background-color: var(--select-dropdown-background-color, #fff);
+  border: var(--select-dropdown-border, 1px solid var(--select-color, #000));
+  border-radius: var(--select-dropdown-border-radius, 0.25em);
 }
 
 .SelectBase .SelectBase__dropdown.Bottom {
-  top: calc(100% + var(--select-options-offset));
+  top: calc(100% + var(--select-options-offset, 0.25em));
   bottom: auto;
 }
 
 .SelectBase .SelectBase__dropdown.Top {
   top: auto;
-  bottom: calc(100% + var(--select-options-offset));
+  bottom: calc(100% + var(--select-options-offset, 0.25em));
 }
 
 .SelectBase .SelectBase__dropdown.Left {
@@ -95,31 +98,33 @@
   cursor: pointer;
 
   width: 100%;
+  height: var(--select-dropdown-item-height);
 
+  color: var(--select-dropdown-item-color, inherit);
   text-align: right;
+  text-decoration: var(--select-dropdown-item-text-decoration, none);
 
-  background: inherit;
+  background: var(--select-dropdown-item-background, transparent);
 
-  transition: all 0.2s ease-in-out;
+  transition: var(--select-dropdown-item-transition, all 0.2s ease-in-out);
 }
 
 @media (hover: hover) {
   .SelectBase .SelectBase__dropdown_item:hover {
-    text-decoration: underline;
+    --select-dropdown-item-text-decoration: underline;
+  }
+
+  .SelectBase .SelectBase__dropdown_item[aria-disabled='true']:hover {
+    --select-dropdown-item-text-decoration: none;
   }
 }
 
 .SelectBase .SelectBase__dropdown_item[aria-selected='true'] {
-  text-decoration: underline;
+  --select-dropdown-item-text-decoration: underline;
 }
 
 .SelectBase .SelectBase__dropdown_item[aria-disabled='true'] {
-  cursor: not-allowed;
-  text-decoration: none;
-}
+  --select-dropdown-item-text-decoration: none;
 
-@media (hover: hover) {
-  .SelectBase .SelectBase__dropdown_item[aria-disabled='true']:hover {
-    text-decoration: none;
-  }
+  cursor: not-allowed;
 }
