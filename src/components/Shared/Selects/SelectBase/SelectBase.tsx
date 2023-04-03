@@ -114,21 +114,27 @@ const SelectBase = (
     optionsRef.current?.focus();
   }
 
-  const selectedStyles = clsx(styles.SelectedOption, selectedStyle);
+  const selectedStyles = clsx(
+    styles.SelectBase__selected_option,
+    selectedStyle
+  );
 
   const optionsStyles = clsx(
-    styles.OptionsList,
+    styles.SelectBase__dropdown,
     OptionsPositionClassName[`${position}`],
     dropdownStyle
   );
 
-  const optionStyles = clsx(styles.Option, dropdownItemStyle);
-  const inputStyles = clsx(styles.Input);
+  const optionStyles = clsx(
+    styles.SelectBase__dropdown_item,
+    dropdownItemStyle
+  );
+  const inputStyles = clsx(styles.SelectBase__input);
 
   return (
     <div
       ref={selectWrapperRef}
-      className={styles.Select}
+      className={styles.SelectBase}
       data-select-value={selectedOption.current}
       translate="no"
     >
@@ -156,7 +162,7 @@ const SelectBase = (
           aria-hidden="true"
         />
         <span className="sr-only">{placeholder}</span>
-        <span className={styles.Caret} aria-hidden="true">
+        <span className={styles.SelectBase__caret} aria-hidden="true">
           {isOpen ? <CaretUpSvg /> : <CaretDownSvg />}
         </span>
       </div>

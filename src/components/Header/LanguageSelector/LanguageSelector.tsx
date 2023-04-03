@@ -58,9 +58,15 @@ const LanguageSelector = () => {
       }}
       placeholder="Select language"
       position={position}
-      selectedStyle={clsx(styles.LanguageSelector, styles.SelectedOption)}
-      dropdownStyle={clsx(styles.LanguageSelector, styles.Dropdown)}
-      dropdownItemStyle={clsx(styles.LanguageSelector, styles.DropdownItem)}
+      selectedStyle={clsx(
+        styles.LanguageSelector,
+        styles.SelectBase__selected_option
+      )}
+      dropdownStyle={clsx(styles.LanguageSelector, styles.SelectBase__dropdown)}
+      dropdownItemStyle={clsx(
+        styles.LanguageSelector,
+        styles.SelectBase__dropdown_item
+      )}
     />
   );
 };

@@ -1,4 +1,4 @@
-.Select {
+.SelectBase {
   --select-options-offset: 0.25em;
   --select-color: var(--color-black, inherit);
 
@@ -12,7 +12,7 @@
   color: var(--select-color);
 }
 
-.Select .SelectedOption {
+.SelectBase .SelectBase__selected_option {
   cursor: pointer;
 
   display: inline-flex;
@@ -27,7 +27,7 @@
   border: 1px solid var(--select-color);
 }
 
-.Select .SelectedOption .Input {
+.SelectBase .SelectBase__selected_option .SelectBase__input {
   width: var(--select-input-width, auto);
   max-width: var(--select-input-max-width, auto);
   padding-block: var(--select-input-padding-block);
@@ -36,19 +36,19 @@
   outline: none;
 }
 
-.Select .SelectedOption:focus-within {
+.SelectBase .SelectBase__selected_option:focus-within {
   outline: auto;
   outline-color: #007bff;
   outline-offset: 1px;
 }
 
-.Select .Caret {
+.SelectBase .SelectBase__caret {
   display: inline-flex;
   align-items: center;
   color: inherit;
 }
 
-.Select .OptionsList {
+.SelectBase .SelectBase__dropdown {
   position: absolute;
   z-index: 1;
 
@@ -66,32 +66,32 @@
   border: 1px solid var(--select-color);
 }
 
-.Select .OptionsList.Bottom {
+.SelectBase .SelectBase__dropdown.Bottom {
   top: calc(100% + var(--select-options-offset));
   bottom: auto;
 }
 
-.Select .OptionsList.Top {
+.SelectBase .SelectBase__dropdown.Top {
   top: auto;
   bottom: calc(100% + var(--select-options-offset));
 }
 
-.Select .OptionsList.Left {
+.SelectBase .SelectBase__dropdown.Left {
   right: auto;
   left: 0;
 }
 
-.Select .OptionsList.Right {
+.SelectBase .SelectBase__dropdown.Right {
   right: 0;
   left: auto;
 }
 
-.Select .OptionsList.Center {
+.SelectBase .SelectBase__dropdown.Center {
   left: 50%;
   transform: translateX(-50%);
 }
 
-.Select .Option {
+.SelectBase .SelectBase__dropdown_item {
   cursor: pointer;
 
   width: 100%;
@@ -104,22 +104,22 @@
 }
 
 @media (hover: hover) {
-  .Select .Option:hover {
+  .SelectBase .SelectBase__dropdown_item:hover {
     text-decoration: underline;
   }
 }
 
-.Select .Option[aria-selected='true'] {
+.SelectBase .SelectBase__dropdown_item[aria-selected='true'] {
   text-decoration: underline;
 }
 
-.Select .Option[aria-disabled='true'] {
+.SelectBase .SelectBase__dropdown_item[aria-disabled='true'] {
   cursor: not-allowed;
   text-decoration: none;
 }
 
 @media (hover: hover) {
-  .Select .Option[aria-disabled='true']:hover {
+  .SelectBase .SelectBase__dropdown_item[aria-disabled='true']:hover {
     text-decoration: none;
   }
 }
