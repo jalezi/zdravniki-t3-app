@@ -42,12 +42,20 @@
   --input-border: 1px solid var(--color-red-200);
 }
 
-.Input .InputDescription,
-.Input .InputError {
-  --input-error-font-size: 0.925em;
+.Input .InputLabel {
+  min-height: var(--input-label-font-size, 0.925em);
+  font-size: var(--input-label-font-size, 0.925em);
+  font-weight: var(--input-label-font-weight, 600);
+}
 
-  min-height: var(--input-error-font-size);
-  font-size: var(--input-error-font-size);
+.Input .InputDescription {
+  min-height: var(--input-description-font-size, 0.925em);
+  font-size: var(--input-description-font-size, 0.925em);
+}
+
+.Input .InputError {
+  min-height: var(--input-error-font-size, 0.925em);
+  font-size: var(--input-error-font-size, 0.925em);
   line-height: 0.925;
 }
 

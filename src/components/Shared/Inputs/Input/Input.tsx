@@ -10,34 +10,69 @@ export type InputCustomProps = {
   label: string;
   error?: string;
   description?: string;
+  inputWrapperClassName?: string;
+  inputLabelClassName?: string;
+  inputDescriptionClassName?: string;
+  inputErrorClassName?: string;
 };
 export type InputProps = InputBaseProps & InputCustomProps;
 
 const Input = (
-  { className, id, description, error, label, ...props }: InputProps,
+  {
+    inputLabelClassName,
+    inputWrapperClassName,
+    inputDescriptionClassName,
+    inputErrorClassName,
+    id,
+    description,
+    error,
+    label,
+    ...props
+  }: InputProps,
   ref: Ref<HTMLInputElement | HTMLTextAreaElement>
 ) => {
   const _id = useId();
   const inputId = id ?? _id;
+
   const inputWrapperStyles = clsx(
     styles.Input,
     styles.InputWrapper,
     error && styles.InputErrorActive,
-    className
+    inputWrapperClassName
   );
-
-  const inputDescriptionStyles = clsx(styles.InputDescription);
-  const inputErrorStyles = clsx(styles.InputError);
+  const inputLabelStyles = clsx(styles.InputLabel, inputLabelClassName);
+  const inputDescriptionStyles = clsx(
+    styles.InputDescription,
+    inputDescriptionClassName
+  );
+  const inputErrorStyles = clsx(styles.InputError, inputErrorClassName);
 
   return (
-    <div className={inputWrapperStyles}>
-      <label htmlFor={inputId}>{label}</label>
-      {description && <p className={inputDescriptionStyles}>{description}</p>}
-      <InputBase ref={ref} id={inputId} aria-invalid={!!error} {...props} />
-      <label htmlFor={inputId} className={inputErrorStyles}>
-        {error}
-      </label>
-    </div>
+    <InputBase.Wrapper className={inputWrapperStyles}>
+      <div>
+        <InputBase.Label
+          htmlFor={inputId}
+          text={label}
+          className={inputLabelStyles}
+        />
+        <InputBase.Description
+          text={description}
+          className={inputDescriptionStyles}
+        />
+      </div>
+      <InputBase.Input
+        ref={ref}
+        id={inputId}
+        aria-invalid={!!error}
+        {...props}
+      />
+      <InputBase.Error
+        as="label"
+        htmlFor={inputId}
+        text={error}
+        className={inputErrorStyles}
+      />
+    </InputBase.Wrapper>
   );
 };
 

@@ -32,7 +32,7 @@ const WEIGHT_STYLES = {
   extrabold: styles.ExtraBold,
 } satisfies Record<Weight, string | undefined>;
 
-export type InputBaseCustomProps = {
+type InputBaseCustomProps = {
   icon?: ReactNode;
   size?: Size;
   weight?: Weight;
