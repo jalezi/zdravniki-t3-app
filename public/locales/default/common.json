@@ -1,5 +1,11 @@
 {
     "backToHome": "Nazaj na imenik",
+    "chars": {
+        "charsWithCount_few": "{{count}} znakov",
+        "charsWithCount_one": "{{count}} znak",
+        "charsWithCount_other": "{{count}} znakov",
+        "charsWithCount_two": "{{count}} znaka"
+    },
     "fallback": {
         "heading": "500: napaka na strežniku",
         "link": "$t(navLinks.home)",

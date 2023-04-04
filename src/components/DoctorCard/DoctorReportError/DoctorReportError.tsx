@@ -66,6 +66,7 @@ const DoctorReportError = ({
   onEditDone,
   ...props
 }: DoctorReportErrorProps) => {
+  const { t } = useTranslation('common');
   const { t: tReportError } = useTranslation('dr-report-error');
   const buttonTranslations: ReportErrorTranslations['buttons'] = tReportError(
     'buttons',
@@ -167,10 +168,6 @@ const DoctorReportError = ({
     />
   );
 
-  // ? why must coercion be used here? TS complains about unsafe member access
-  const websitesGroup = groupTranslations.websites;
-  const phonesGroup = groupTranslations.phones;
-
   return (
     <form
       onSubmit={onSubmit}
@@ -193,7 +190,7 @@ const DoctorReportError = ({
       />
 
       <fieldset>
-        <legend>{websitesGroup}</legend>
+        <legend>{groupTranslations.websites}</legend>
         {websiteFields.fields.map((field, index, arr) => (
           <div key={field.id}>
             <Input
@@ -220,7 +217,7 @@ const DoctorReportError = ({
         ))}
       </fieldset>
       <fieldset>
-        <legend>{phonesGroup}</legend>
+        <legend>{groupTranslations.phones}</legend>
         {phoneFields.fields.map((field, index, arr) => (
           <div key={field.id}>
             <Input
@@ -307,7 +304,11 @@ const DoctorReportError = ({
         error={
           errors.note?.message ? inputTranslations.note.message : undefined
         }
-        description={`${inputTranslations.note.description} ${noteLength}/${NOTE_LENGTH_LIMIT}`}
+        description={`${inputTranslations.note.description} (max: ${t(
+          'chars.charsWithCount',
+          { count: NOTE_LENGTH_LIMIT }
+        )})`}
+        data-limit-remain={NOTE_LENGTH_LIMIT - noteLength}
       />
       {actions}
     </form>

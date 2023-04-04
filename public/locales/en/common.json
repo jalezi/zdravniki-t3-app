@@ -1,5 +1,9 @@
 {
     "backToHome": "Back home",
+    "chars": {
+        "charsWithCount_one": "{{count}} character",
+        "charsWithCount_other": "{{count}} characters"
+    },
     "fallback": {
         "heading": "500: internal server error",
         "link": "$t(navLinks.home)",

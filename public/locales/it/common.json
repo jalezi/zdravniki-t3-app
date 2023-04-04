@@ -1,5 +1,9 @@
 {
     "backToHome": "Torna all'elenco",
+    "chars": {
+        "charsWithCount_one": "{{count}} carattere",
+        "charsWithCount_other": "{{count}} caratteri"
+    },
     "fallback": {
         "heading": "500: errore interno del server",
         "link": "$t(navLinks.home)",
