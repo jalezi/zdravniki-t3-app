@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { clsx } from 'clsx';
 import type { CustomTypeOptions } from 'i18next';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useRef, useState } from 'react';
@@ -9,7 +10,7 @@ type ReportErrorTranslations =
   CustomTypeOptions['resources']['dr-report-error'];
 
 const ADDRESS_LENGTH_LIMIT = 255;
-const NOTE_LENGTH_LIMIT = 2;
+const NOTE_LENGTH_LIMIT = 255;
 
 import {
   EmailSvg,
@@ -22,6 +23,7 @@ import { Select } from '@/components/Shared/Selects/Select';
 import { api } from '@/lib/utils/api';
 import type { Doctor, SendReportInput } from '@/server/api/routers/doctors';
 
+import { AddRemoveField } from './AddRemoveField';
 import styles from './DoctorReportError.module.css';
 import DoctorReportErrorActions from './DoctorReportErrorActions';
 
@@ -189,10 +191,21 @@ const DoctorReportError = ({
         }
       />
 
-      <fieldset>
+      <fieldset
+        className={clsx(
+          styles.FormGroup__fieldset,
+          styles.FormGroup__full_width
+        )}
+      >
         <legend>{groupTranslations.websites}</legend>
         {websiteFields.fields.map((field, index, arr) => (
-          <div key={field.id}>
+          <div
+            key={field.id}
+            className={clsx(
+              styles.FormGroup__field,
+              styles.FormGroup__full_width
+            )}
+          >
             <Input
               {...register(`websites.${index}.website`)}
               type="text"
@@ -203,23 +216,19 @@ const DoctorReportError = ({
               label={`${inputTranslations.website.label} ${index + 1}`}
               error={errors.websites?.[`${index}`]?.website?.message}
             />
-            <div>
-              {arr.length !== 1 && (
-                <button onClick={() => websiteFields.remove(index)}>-</button>
-              )}
-              {arr.length - 1 === index && (
-                <button onClick={() => websiteFields.append({ website: '' })}>
-                  +
-                </button>
-              )}
-            </div>
+            <AddRemoveField
+              hasRemove={arr.length !== 1}
+              hasAdd={arr.length - 1 === index}
+              onRemove={() => websiteFields.remove(index)}
+              onAdd={() => websiteFields.append({ website: '' })}
+            />
           </div>
         ))}
       </fieldset>
-      <fieldset>
+      <fieldset className={styles.FormGroup__fieldset}>
         <legend>{groupTranslations.phones}</legend>
         {phoneFields.fields.map((field, index, arr) => (
-          <div key={field.id}>
+          <div key={field.id} className={clsx(styles.FormGroup__field)}>
             <Input
               {...register(`phones.${index}.phone`)}
               type="text"
@@ -230,16 +239,12 @@ const DoctorReportError = ({
               label={`${inputTranslations.phone.label} ${index + 1}`}
               error={errors.phones?.[`${index}`]?.phone?.message}
             />
-            <div>
-              {arr.length !== 1 && (
-                <button onClick={() => phoneFields.remove(index)}>-</button>
-              )}
-              {arr.length - 1 === index && (
-                <button onClick={() => phoneFields.append({ phone: '' })}>
-                  +
-                </button>
-              )}
-            </div>
+            <AddRemoveField
+              hasRemove={arr.length !== 1}
+              hasAdd={arr.length - 1 === index}
+              onRemove={() => phoneFields.remove(index)}
+              onAdd={() => phoneFields.append({ phone: '' })}
+            />
           </div>
         ))}
       </fieldset>
@@ -262,7 +267,7 @@ const DoctorReportError = ({
         label={inputTranslations.orderform.label}
         error={errors.orderform?.message}
       />
-      <div>
+      <div className={styles.FormGroup__accepts_and_availability}>
         <Controller
           name="accepts"
           control={control}

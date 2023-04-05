@@ -73,6 +73,53 @@
   margin-left: auto;
 }
 
+.FormGroup__fieldset {
+  display: grid;
+  gap: 1em;
+}
+
+.FormGroup__fieldset legend {
+  margin-bottom: 0.5em;
+}
+
+.FormGroup__fieldset .FormGroup__full_width {
+  grid-column: 1 / -1;
+}
+
+.FormGroup__fieldset .FormGroup__field {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1em;
+}
+
+.FormGroup__fieldset .FormGroup__field .Input {
+  grid-column: 1 / 2;
+}
+
+.FormGroup__accepts_and_availability {
+  --select-base-input-width: 3ch;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
+  align-items: center;
+}
+
+.FormGroup__accepts_and_availability > * {
+  flex: 0 1;
+}
+
+.FormGroup__accepts_and_availability > * input {
+  flex: 0 1;
+}
+
+@media only screen and (min-width: 768px) {
+  .FormGroup__fieldset {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .DoctorReportError__container {
     --card-border-radius: 5px;
