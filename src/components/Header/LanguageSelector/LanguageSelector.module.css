@@ -1,44 +1,44 @@
 .LanguageSelector {
-  --select-input-width: 5ch;
+  --select-base-input-width: 5ch;
 
   /* selected option vars */
-  --select-selected-max-width: 8ch;
-  --select-selected-padding-block: 0.3em;
-  --select-selected-padding-inline: 0.25em;
+  --select-base-selected-max-width: 8ch;
+  --select-base-selected-padding-block: 0.3em;
+  --select-base-selected-padding-inline: 0.25em;
 
-  --select-selected-color: var(--color-black-A66);
+  --select-base-selected-color: var(--color-black-A66);
 
-  --select-selected-border: 1px solid var(--color-black-A39);
-  --select-selected-border-radius: 0.4em;
+  --select-base-selected-border: 1px solid var(--color-black-A39);
+  --select-base-selected-border-radius: 0.4em;
 
   /* dropdown vars */
-  --select-dropdown-gap: 0.4em;
+  --select-base-dropdown-gap: 0.4em;
 
-  --select-dropdown-min-width: 15ch;
-  --select-dropdown-padding-block: 0.25em;
-  --select-dropdown-padding-inline: 0.25em;
+  --select-base-dropdown-min-width: 15ch;
+  --select-base-dropdown-padding-block: 0.25em;
+  --select-base-dropdown-padding-inline: 0.25em;
 
-  --select-dropdown-color: var(--color-black-A66);
+  --select-base-dropdown-color: var(--color-black-A66);
 
-  --select-dropdown-background-color: var(--color-black-A12);
-  --select-dropdown-border: 1px solid var(--color-black-A39);
-  --select-dropdown-border-radius: 0.4em;
+  --select-base-dropdown-background-color: var(--color-black-A12);
+  --select-base-dropdown-border: 1px solid var(--color-black-A39);
+  --select-base-dropdown-border-radius: 0.4em;
 }
 
 .LanguageSelector.SelectBase__dropdown_item[aria-selected='true'] {
-  --select-dropdown-color: var(--color-black-A87);
+  --select-base-dropdown-color: var(--color-black-A87);
 }
 
 @media (hover: hover) {
   .LanguageSelector.SelectBase__selected_option:hover,
   .LanguageSelector.SelectBase__dropdown_item:hover {
-    --select-selected-color: var(--color-black-A87);
-    --select-dropdown-item-color: var(--color-black-A87);
+    --select-base-selected-color: var(--color-black-A87);
+    --select-base-dropdown-item-color: var(--color-black-A87);
   }
 }
 
 @media only screen and (min-width: 768px) {
   .LanguageSelector {
-    --select-dropdown-background-color: var(--color-white, #fff);
+    --select-base-dropdown-background-color: var(--color-white, #fff);
   }
 }

@@ -45,6 +45,7 @@ const Input = (
     styles.InputDescription,
     inputDescriptionClassName
   );
+  const inputStyles = clsx(styles.InputBase);
   const inputErrorStyles = clsx(styles.InputError, inputErrorClassName);
 
   return (
@@ -64,6 +65,7 @@ const Input = (
         ref={ref}
         id={inputId}
         aria-invalid={!!error}
+        className={inputStyles}
         {...props}
       />
       <InputBase.Error

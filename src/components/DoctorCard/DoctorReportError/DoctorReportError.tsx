@@ -9,7 +9,7 @@ type ReportErrorTranslations =
   CustomTypeOptions['resources']['dr-report-error'];
 
 const ADDRESS_LENGTH_LIMIT = 255;
-const NOTE_LENGTH_LIMIT = 255;
+const NOTE_LENGTH_LIMIT = 2;
 
 import {
   EmailSvg,
@@ -18,7 +18,7 @@ import {
   PhoneSvg,
 } from '@/components/Shared/Icons';
 import { Input } from '@/components/Shared/Inputs/Input';
-import SelectBase from '@/components/Shared/Selects/SelectBase/SelectBase';
+import { Select } from '@/components/Shared/Selects/Select';
 import { api } from '@/lib/utils/api';
 import type { Doctor, SendReportInput } from '@/server/api/routers/doctors';
 
@@ -263,24 +263,22 @@ const DoctorReportError = ({
         error={errors.orderform?.message}
       />
       <div>
-        <div>
-          <label htmlFor="accepts">{inputTranslations.accepts.label}</label>
-          <Controller
-            name="accepts"
-            control={control}
-            render={({ field }) => (
-              <SelectBase
-                {...field}
-                options={[
-                  { value: 'y', label: 'Yes' },
-                  { value: 'n', label: 'No' },
-                ]}
-                id="accepts"
-              />
-            )}
-          />
-          <label htmlFor="accepts">{errors.accepts?.message}</label>
-        </div>
+        <Controller
+          name="accepts"
+          control={control}
+          render={({ field }) => (
+            <Select
+              label={inputTranslations.accepts.label}
+              error={errors.accepts?.message}
+              {...field}
+              options={[
+                { value: 'y', label: 'Yes' },
+                { value: 'n', label: 'No' },
+              ]}
+              id="accepts"
+            />
+          )}
+        />
         <Input
           {...register('availability')}
           inputMode="decimal"

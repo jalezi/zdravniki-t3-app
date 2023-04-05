@@ -26,8 +26,8 @@
   outline: none;
 }
 
-.Input.InputWrapper:hover {
-  --input-box-shadow: var(--box-shadow);
+.Input.InputWrapper .InputBase {
+  --input-base-box-shadow: var(--input-box-shadow, none);
 }
 
 .Input.InputWrapper:has(input:disabled) {
@@ -65,4 +65,14 @@
 
 .Input .InputError {
   color: var(--color-red-500);
+}
+
+@media (hover: hover) {
+  .Input.InputWrapper:has(.InputBase:hover) {
+    --input-box-shadow: var(--box-shadow);
+  }
+
+  .Input.InputWrapper.InputErrorActive:has(.InputBase:hover) {
+    --input-box-shadow: var(--box-shadow__error);
+  }
 }
