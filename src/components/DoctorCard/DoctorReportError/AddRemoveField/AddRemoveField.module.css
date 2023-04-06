@@ -1,0 +1,23 @@
+.AddRemoveField.AddRemoveField__container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.AddRemoveField .Button {
+  --icon-button-size: 1.2rem;
+
+  width: 1em;
+  height: 1em;
+  font-size: 1em;
+}
+
+.AddRemoveField .Button__remove {
+  color: var(--color-accepts-n);
+}
+
+.AddRemoveField .Button__add {
+  color: var(--color-accepts-y);
+}
