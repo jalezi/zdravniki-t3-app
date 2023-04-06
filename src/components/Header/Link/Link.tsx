@@ -18,6 +18,8 @@ const Link = ({ as = 'a', children, isActive, ...props }: Props) => {
   const { asPath } = useRouter();
   const regularStyles = clsx(styles.Link, props.className);
 
+  const radius = 'xxs';
+
   if (as === 'a') {
     const { href, ...anchorProps } = props as Omit<
       InternalAnchorProps,
@@ -25,7 +27,13 @@ const Link = ({ as = 'a', children, isActive, ...props }: Props) => {
     >;
 
     return (
-      <Button as={as} href={href} {...anchorProps} className={regularStyles}>
+      <Button
+        as={as}
+        href={href}
+        radius={radius}
+        {...anchorProps}
+        className={regularStyles}
+      >
         {children}
       </Button>
     );
@@ -39,7 +47,7 @@ const Link = ({ as = 'a', children, isActive, ...props }: Props) => {
   const linkProps = props as Omit<InternalNextJsLinkProps, 'as' | 'children'>;
   const activeStyles = clsx(regularStyles, applyActive && styles.Active);
   return (
-    <Button as={as} {...linkProps} className={activeStyles}>
+    <Button as={as} radius={radius} {...linkProps} className={activeStyles}>
       {children}
     </Button>
   );

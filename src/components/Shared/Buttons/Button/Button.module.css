@@ -19,6 +19,64 @@
   align-items: center;
 }
 
+/* Button font */
+.Button.XXSmall__font {
+  --button-font-size: 0.625rem;
+}
+
+.Button.XSmall__font {
+  --button-font-size: 0.6875rem;
+}
+
+.Button.Small__font {
+  --button-font-size: 0.75rem;
+}
+
+.Button.Medium__font {
+  --button-font-size: 0.875rem;
+}
+
+.Button.Large__font {
+  --button-font-size: 1rem;
+}
+
+.Button.XLarge__font {
+  --button-font-size: 1.125rem;
+}
+
+.Button.XXLarge__font {
+  --button-font-size: 1.25rem;
+}
+
+/* Button Radius */
+.Button.XXSmall__radius {
+  --button-border-radius: 0;
+}
+
+.Button.XSmall__radius {
+  --button-border-radius: 0.25rem;
+}
+
+.Button.Small__radius {
+  --button-border-radius: 0.5rem;
+}
+
+.Button.Medium__radius {
+  --button-border-radius: 0.75rem;
+}
+
+.Button.Large__radius {
+  --button-border-radius: 1rem;
+}
+
+.Button.XLarge__radius {
+  --button-border-radius: 1.25rem;
+}
+
+.Button.XXLarge__radius {
+  --button-border-radius: 1.5rem;
+}
+
 @media (hover: hover) {
   .Button:hover {
     --button-color: var(--button-color-hover, inherit);

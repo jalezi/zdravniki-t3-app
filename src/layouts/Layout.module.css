@@ -71,7 +71,7 @@
 
     display: grid;
     grid-auto-flow: row;
-    grid-template: 'filters filters' 64px 'map list' 1fr / auto var(
+    grid-template: 'filters filters' 4rem 'map list' 1fr / auto var(
         --list-width
       );
     gap: 0;

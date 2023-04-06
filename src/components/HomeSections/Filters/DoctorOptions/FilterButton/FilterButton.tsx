@@ -38,7 +38,7 @@ const FilterButton: FilterButtonComponent = (
   const textStyles = clsx(styles.FilterButtonText, isActive && styles.isActive);
 
   return (
-    <Button ref={ref} className={combinedStyles} {...rest}>
+    <Button ref={ref} radius="xxl" className={combinedStyles} {...rest}>
       {Icon ? (
         <span className={iconStyles}>
           <Icon />
