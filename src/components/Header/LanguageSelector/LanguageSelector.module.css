@@ -27,6 +27,8 @@
 
 .LanguageSelector.SelectBase__dropdown_item[aria-selected='true'] {
   --select-base-dropdown-color: var(--color-black-A87);
+
+  text-decoration: underline;
 }
 
 @media (hover: hover) {
@@ -34,6 +36,8 @@
   .LanguageSelector.SelectBase__dropdown_item:hover {
     --select-base-selected-color: var(--color-black-A87);
     --select-base-dropdown-item-color: var(--color-black-A87);
+
+    text-decoration: underline;
   }
 }
 

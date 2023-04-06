@@ -51,11 +51,6 @@
   background-color: var(--color-white);
 }
 
-.Select .DropdownItem,
-.Select .DropdownItem[aria-selected='true'] {
-  --select-base-dropdown-item-text-decoration: none;
-}
-
 @media (hover: hover) {
   .Select .Selected:hover {
     --select-base-selected-box-shadow: var(--box-shadow);
@@ -65,10 +60,5 @@
     --select-base-dropdown-item-color: var(--color-blue-900);
 
     background-color: var(--color-blue-50);
-  }
-
-  .Select .DropdownItem:hover,
-  .Select .DropdownItem[aria-selected='true']:hover {
-    --select-base-dropdown-item-text-decoration: none;
   }
 }
