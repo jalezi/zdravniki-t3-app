@@ -29,8 +29,10 @@ import LinkSvg from '@/assets/svg/icon-link.svg';
 import ListSvg from '@/assets/svg/icon-list-view.svg';
 import MapMarkerSvg from '@/assets/svg/icon-map-marker.svg';
 import MapSvg from '@/assets/svg/icon-map-view.svg';
-import PhoneNone from '@/assets/svg/icon-phone-none.svg';
-import Phone from '@/assets/svg/icon-phone.svg';
+import MinusCircleSvg from '@/assets/svg/icon-minus-circle.svg';
+import PhoneNoneSvg from '@/assets/svg/icon-phone-none.svg';
+import PhoneSvg from '@/assets/svg/icon-phone.svg';
+import PlusCircleSvg from '@/assets/svg/icon-plus-circle.svg';
 import SearchSvg from '@/assets/svg/icon-search.svg';
 import StudentsSvg from '@/assets/svg/icon-students.svg';
 import TwSvg from '@/assets/svg/icon-tw.svg';
@@ -68,8 +70,10 @@ export const icons = {
   ListSvg,
   MapSvg,
   MapMarkerSvg,
-  Phone,
-  PhoneNone,
+  MinusCircleSvg,
+  PhoneSvg,
+  PhoneNoneSvg,
+  PlusCircleSvg,
   SearchSvg,
   StudentsSvg,
   TwSvg,

@@ -46,7 +46,7 @@ const DoctorContacts = ({
       {phones.map(phone =>
         phone ? (
           <Button key={phone} as="a" href={`tel: ${phone}`} container="span">
-            <Icon name="Phone" size="xxl" /> {phone}
+            <Icon name="PhoneSvg" size="xxl" /> {phone}
           </Button>
         ) : null
       )}
