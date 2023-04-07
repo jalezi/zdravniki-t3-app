@@ -4,11 +4,11 @@ import type { GetServerSideProps } from 'next';
 import { getServerSideSitemapLegacy } from 'next-sitemap';
 
 import { DR_TYPE_LABELS } from '@/lib/types/dr-type-page';
+import { getSiteUrl } from '@/lib/utils/common';
 import { fetchDrAndInstDataAndParse } from '@/lib/utils/fetch-and-parse';
 import { toSlug } from '@/lib/utils/zod';
 
-const DEFAULT_SITE_URL = 'https://zdravniki.sledilnik.org';
-const siteUrl = process.env.SITE_URL || DEFAULT_SITE_URL;
+const siteUrl = getSiteUrl();
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   // Method to source urls from cms

@@ -31,3 +31,9 @@ export const formatPercent = (number: number, locale: Locale = 'sl') => {
     maximumFractionDigits: 2,
   }).format(number);
 };
+
+export const getSiteUrl = () => {
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  if (process.env.SITE_URL) return process.env.SITE_URL;
+  return `http://localhost:${process.env.PORT ?? 3000}`;
+};

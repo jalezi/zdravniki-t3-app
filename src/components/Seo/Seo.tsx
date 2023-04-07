@@ -1,16 +1,20 @@
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 
+import { getSiteUrl } from '@/lib/utils/common';
+
+const siteUrl = getSiteUrl();
+
 const defaultSeoData = {
   title: 'Zdravniki - Sledilnik',
   description:
     'Zdravniki Sledilnik Slovenija - zbrani, preverjeni, ažurirani, analizirani in pregledni podatki o prostih zdravnikih v Sloveniji',
   keywords: '',
 };
-const SOCIAL_IMG_URL = 'https://zdravniki.sledilnik.org/social.png';
+const SOCIAL_IMG_URL = `${siteUrl}/social.png`;
 
 const SOCIAL_COLOR = '#09AFDA';
-const CANONICAL_URL = 'https://zdravniki.sledilnik.org/';
+const CANONICAL_URL = siteUrl;
 
 type SeoProps = {
   title?: string;

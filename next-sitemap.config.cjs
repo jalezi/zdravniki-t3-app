@@ -1,7 +1,12 @@
 /** @type {import('next-sitemap').IConfig} */
 
-const DEFAULT_SITE_URL = 'https://zdravniki.sledilnik.org';
-const siteUrl = process.env.SITE_URL || DEFAULT_SITE_URL;
+const getSiteUrl = () => {
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  if (process.env.SITE_URL) return process.env.SITE_URL;
+  return `http://localhost:${process.env.PORT ?? 3000}`;
+};
+
+const siteUrl = getSiteUrl();
 
 module.exports = {
   /** @type {import('next-sitemap').IConfig} */
