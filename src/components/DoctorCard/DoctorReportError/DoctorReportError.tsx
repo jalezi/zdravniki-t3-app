@@ -12,6 +12,7 @@ type ReportErrorTranslations =
 const ADDRESS_LENGTH_LIMIT = 255;
 const NOTE_LENGTH_LIMIT = 255;
 
+import { Chip } from '@/components/Shared/Chip';
 import {
   EmailSvg,
   LinkSvg,
@@ -197,7 +198,14 @@ const DoctorReportError = ({
           styles.FormGroup__full_width
         )}
       >
-        <legend>{groupTranslations.websites}</legend>
+        <legend className={styles.FormGroup__legend}>
+          <Chip
+            size="sm"
+            iconName="LinkSvg"
+            text={groupTranslations.websites}
+            className={styles.FormGroup__chip}
+          />
+        </legend>
         {websiteFields.fields.map((field, index, arr) => (
           <div
             key={field.id}
@@ -226,7 +234,14 @@ const DoctorReportError = ({
         ))}
       </fieldset>
       <fieldset className={styles.FormGroup__fieldset}>
-        <legend>{groupTranslations.phones}</legend>
+        <legend className={styles.FormGroup__legend}>
+          <Chip
+            size="sm"
+            iconName="PhoneSvg"
+            text={groupTranslations.phones}
+            className={styles.FormGroup__chip}
+          />
+        </legend>
         {phoneFields.fields.map((field, index, arr) => (
           <div key={field.id} className={clsx(styles.FormGroup__field)}>
             <Input
