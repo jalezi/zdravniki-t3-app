@@ -171,6 +171,9 @@ const DoctorReportError = ({
     />
   );
 
+  const yes = tReportError('yes');
+  const no = tReportError('no');
+
   return (
     <form
       onSubmit={onSubmit}
@@ -292,8 +295,8 @@ const DoctorReportError = ({
               error={errors.accepts?.message}
               {...field}
               options={[
-                { value: 'y', label: 'Yes', valueToShow: 'Yes' },
-                { value: 'n', label: 'No', valueToShow: 'No' },
+                { value: 'y', label: yes, valueToShow: yes },
+                { value: 'n', label: no, valueToShow: no },
               ]}
               id="accepts"
             />

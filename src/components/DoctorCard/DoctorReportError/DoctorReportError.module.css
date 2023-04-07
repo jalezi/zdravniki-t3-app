@@ -83,12 +83,13 @@
 }
 
 .FormGroup__chip {
-  border-radius: 24px;
+  width: max-content;
+
   font-weight: 500;
   letter-spacing: 0.1px;
-  background-color: var(--color-blue-800-A40);
 
-  width: max-content;
+  background-color: var(--color-blue-800-A40);
+  border-radius: 24px;
 }
 
 .FormGroup__fieldset .FormGroup__full_width {
