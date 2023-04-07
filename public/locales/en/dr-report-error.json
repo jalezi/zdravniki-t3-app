@@ -16,54 +16,56 @@
         "accepts": {
             "description": "",
             "label": "Accepts",
-            "placeholder": "",
-            "message": ""
+            "message": "",
+            "placeholder": ""
         },
         "address": {
             "description": "",
             "label": "Address",
-            "placeholder": "Address",
-            "message": "Too long. Max 255 characters."
+            "message": "Too long. Max 255 characters.",
+            "placeholder": "Address"
         },
         "availability": {
             "description": "",
             "label": "Availability",
-            "placeholder": "",
-            "message": ""
+            "message": "",
+            "placeholder": ""
         },
         "email": {
             "description": "",
             "label": "E-mail",
-            "placeholder": "E-mail",
-            "message": ""
+            "message": "",
+            "placeholder": "E-mail"
         },
         "note": {
             "description": "A quick note about the error",
             "label": "Note",
-            "placeholder": "Note",
-            "message": "Too long. Max 255 characters."
+            "message": "Too long. Max 255 characters.",
+            "placeholder": "Note"
         },
         "orderform": {
             "description": "",
             "label": "Link to order page",
-            "placeholder": "Link to order page",
-            "message": ""
+            "message": "",
+            "placeholder": "Link to order page"
         },
         "phone": {
             "description": "",
             "label": "Phone",
-            "placeholder": "Phone",
-            "message": ""
+            "message": "",
+            "placeholder": "Phone"
         },
         "website": {
             "description": "",
             "label": "Web page",
-            "placeholder": "Web page",
-            "message": ""
+            "message": "",
+            "placeholder": "Web page"
         }
     },
+    "no": "No",
     "notification": {
         "error": "Something went wrong. Please try again later.",
         "success": "Thank you! We will look into it."
-    }
+    },
+    "yes": "Yes"
 }

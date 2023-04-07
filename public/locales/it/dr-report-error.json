@@ -16,54 +16,56 @@
         "accepts": {
             "description": "",
             "label": "Accetta",
-            "placeholder": "",
-            "message": ""
+            "message": "",
+            "placeholder": ""
         },
         "address": {
             "description": "",
             "label": "Indirizzo",
-            "placeholder": "Indirizzo",
-            "message": "La nota è troppo lunga. Per favore inserisci meno di 255 caratteri."
+            "message": "La nota è troppo lunga. Per favore inserisci meno di 255 caratteri.",
+            "placeholder": "Indirizzo"
         },
         "availability": {
             "description": "",
             "label": "Disponibilità",
-            "placeholder": "",
-            "message": ""
+            "message": "",
+            "placeholder": ""
         },
         "email": {
             "description": "",
             "label": "E-mail",
-            "placeholder": "E-mail",
-            "message": ""
+            "message": "",
+            "placeholder": "E-mail"
         },
         "note": {
             "description": "Una breve nota sull'errore",
             "label": "Nota",
-            "placeholder": "Nota",
-            "message": "La nota è troppo lunga. Per favore inserisci meno di 255 caratteri."
+            "message": "La nota è troppo lunga. Per favore inserisci meno di 255 caratteri.",
+            "placeholder": "Nota"
         },
         "orderform": {
             "description": "",
             "label": "Link alla pagina di prenotazione",
-            "placeholder": "Link alla pagina di prenotazione",
-            "message": ""
+            "message": "",
+            "placeholder": "Link alla pagina di prenotazione"
         },
         "phone": {
             "description": "",
             "label": "Telefono",
-            "placeholder": "Telefono",
-            "message": ""
+            "message": "",
+            "placeholder": "Telefono"
         },
         "website": {
             "description": "",
             "label": "Pagina web",
-            "placeholder": "Pagina web",
-            "message": ""
+            "message": "",
+            "placeholder": "Pagina web"
         }
     },
+    "no": "No",
     "notification": {
         "error": "C'è stato un errore. Per favore riprova.",
         "success": "Grazie! Esamineremo i dati."
-    }
+    },
+    "yes": "Sì"
 }

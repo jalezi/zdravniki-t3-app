@@ -16,54 +16,56 @@
         "accepts": {
             "description": "",
             "label": "Sprejema",
-            "placeholder": "",
-            "message": ""
+            "message": "",
+            "placeholder": ""
         },
         "address": {
             "description": "",
             "label": "Naslov",
-            "placeholder": "Naslov",
-            "message": "Predolgo. Največ 255 znakov."
+            "message": "Predolgo. Največ 255 znakov.",
+            "placeholder": "Naslov"
         },
         "availability": {
             "description": "",
             "label": "Obseg zaposlitve",
-            "placeholder": "",
-            "message": ""
+            "message": "",
+            "placeholder": ""
         },
         "email": {
             "description": "",
             "label": "E-pošta",
-            "placeholder": "E-pošta",
-            "message": ""
+            "message": "",
+            "placeholder": "E-pošta"
         },
         "note": {
             "description": "Kratka opomba o napaki",
             "label": "Opomba",
-            "placeholder": "Opomba",
-            "message": "Predolgo. Največ 255 znakov."
+            "message": "Predolgo. Največ 255 znakov.",
+            "placeholder": "Opomba"
         },
         "orderform": {
             "description": "",
             "label": "Povezava za naročanje",
-            "placeholder": "Povezava za naročanje",
-            "message": ""
+            "message": "",
+            "placeholder": "Povezava za naročanje"
         },
         "phone": {
             "description": "",
             "label": "Telefon",
-            "placeholder": "Telefon",
-            "message": ""
+            "message": "",
+            "placeholder": "Telefon"
         },
         "website": {
             "description": "",
             "label": "Spletna stran",
-            "placeholder": "Spletna stran",
-            "message": ""
+            "message": "",
+            "placeholder": "Spletna stran"
         }
     },
+    "no": "Ne",
     "notification": {
         "error": "Prišlo je do napake. Poskusite znova.",
         "success": "Hvala za poslano! Podatke bomo pregledali."
-    }
+    },
+    "yes": "Da"
 }
