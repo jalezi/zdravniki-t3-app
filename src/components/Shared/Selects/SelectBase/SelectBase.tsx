@@ -14,15 +14,16 @@ import useKeyboardNavigation from '@/lib/hooks/useKeyboardNavigation';
 
 import styles from './SelectBase.module.css';
 
-type Option = {
+export type SelectBaseOption = {
   label?: string;
+  valueToShow?: string;
   value: string;
 };
 
 export type SelectBaseProps = {
   placeholder?: string;
   value?: string;
-  options: Option[];
+  options: SelectBaseOption[];
   onChange?: (value: string) => void;
   name: string;
   position?:
@@ -86,8 +87,13 @@ const SelectBase = (
       options.map(option => ({
         ...option,
         label: option.label || option.value,
+        valueToShow: option.valueToShow || option.value,
       })),
     [options]
+  );
+
+  const selected = internalOptions.find(
+    ({ value }) => value === selectedOption.current
   );
 
   useImperativeHandle(ref, () => ({
@@ -152,11 +158,12 @@ const SelectBase = (
         }}
         data-value-selected={isOptionSelected}
         data-value={isOptionSelected ? selectedOption.current : ''}
+        data-label={selected ? selected.label : placeholder}
         data-name={name}
       >
         <input
           id={id}
-          value={selectedOption.current}
+          value={selected?.valueToShow}
           readOnly
           className={inputStyles}
           aria-hidden="true"

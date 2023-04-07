@@ -3,4 +3,5 @@ export type {
   SelectBaseProps,
   SelectBaseRef,
   SelectBaseRefProps,
+  SelectBaseOption,
 } from './SelectBase';

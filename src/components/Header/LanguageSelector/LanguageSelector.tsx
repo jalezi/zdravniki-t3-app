@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useWindowSize } from 'usehooks-ts';
 
 import { type localesMap } from '@/../next-i18next.config';
+import type { SelectBaseOption } from '@/components/Shared/Selects/SelectBase';
 import { SelectBase } from '@/components/Shared/Selects/SelectBase';
 import { BREAKPOINTS } from '@/lib/constants';
 
@@ -33,27 +34,24 @@ const LanguageSelector = () => {
   const options = Object.entries(langs).map(([value, label]) => {
     const flag = flags[`${value as keyof typeof flags}`];
     return {
-      value: flag + ' ' + value,
+      value,
       label: flag + ' ' + label,
+      valueToShow: flag + ' ' + value.toUpperCase(),
     };
-  });
+  }) satisfies SelectBaseOption[];
 
   const position = isMediumMediaQuery ? 'bottom-right' : 'top-right';
 
   const localeUpperCase = router.locale?.toUpperCase() as keyof typeof langs;
-  const flag = flags[`${localeUpperCase}`] as keyof typeof flags;
-  const value = flag + ' ' + localeUpperCase;
 
   return (
     <SelectBase
       options={options}
       name="language-selector"
-      value={value}
+      value={localeUpperCase}
       onChange={value => {
-        const lang = value.split(' ')?.[1]?.toLowerCase();
-        if (!lang) return;
         void router.push(router.asPath, router.asPath, {
-          locale: lang,
+          locale: value.toLowerCase(),
         });
       }}
       placeholder="Select language"

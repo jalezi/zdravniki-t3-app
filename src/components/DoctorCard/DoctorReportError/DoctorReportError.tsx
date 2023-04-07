@@ -277,8 +277,8 @@ const DoctorReportError = ({
               error={errors.accepts?.message}
               {...field}
               options={[
-                { value: 'y', label: 'Yes' },
-                { value: 'n', label: 'No' },
+                { value: 'y', label: 'Yes', valueToShow: 'Yes' },
+                { value: 'n', label: 'No', valueToShow: 'No' },
               ]}
               id="accepts"
             />
