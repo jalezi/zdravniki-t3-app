@@ -22,6 +22,7 @@ import DoctorReportErrorReadOnlyForm from './DoctorReportErrorReadOnlyForm';
 import type { DoctorReportErrorProps, FormData } from './types';
 import { NOTE_LENGTH_LIMIT, formDataSchema } from './types';
 import useDoctorReportErrorTranslations from './useDoctorReportErrorTranslations';
+import { getMutationInput } from './utils';
 
 const DoctorReportError = ({
   onEditDone,
@@ -66,7 +67,6 @@ const DoctorReportError = ({
     control,
     name: 'websites',
   });
-
   const phoneFields = useFieldArray({
     control,
     name: 'phones',
@@ -91,20 +91,7 @@ const DoctorReportError = ({
   const onSubmit = handleSubmit((data, e) => {
     if (!e) return;
     e.preventDefault();
-    const website = data.websites.map(({ website }) => website).join(',');
-    const phone = data.phones.map(({ phone }) => phone).join(',');
-    const mutationInput = {
-      accepts: data.accepts,
-      address: data.address.trim(),
-      availability: data.availability.trim(),
-      email: data.email.trim(),
-      note: data.note.trim(),
-      phone: phone.trim(),
-      orderform: data.orderform.trim(),
-      website: website.trim(),
-    } satisfies SendReportInput;
-
-    setDataToSend(mutationInput);
+    setDataToSend(getMutationInput(data));
   });
 
   const actions = (
