@@ -21,12 +21,12 @@ import {
 } from '@/components/Shared/Icons';
 import { Input } from '@/components/Shared/Inputs/Input';
 import { Select } from '@/components/Shared/Selects/Select';
-import { api } from '@/lib/utils/api';
 import type { Doctor, SendReportInput } from '@/server/api/routers/doctors';
 
 import { AddRemoveField } from './AddRemoveField';
 import styles from './DoctorReportError.module.css';
 import DoctorReportErrorActions from './DoctorReportErrorActions';
+import DoctorReportErrorReadOnlyForm from './DoctorReportErrorReadOnlyForm';
 
 const formDataSchema = z.object({
   address: z.string().max(ADDRESS_LENGTH_LIMIT),
@@ -69,6 +69,7 @@ const DoctorReportError = ({
   onEditDone,
   ...props
 }: DoctorReportErrorProps) => {
+  // translations
   const { t } = useTranslation('common');
   const { t: tReportError } = useTranslation('dr-report-error');
   const buttonTranslations: ReportErrorTranslations['buttons'] = tReportError(
@@ -84,12 +85,12 @@ const DoctorReportError = ({
     { returnObjects: true }
   );
 
+  // ref and state
   const noteRef = useRef<HTMLTextAreaElement | HTMLInputElement | null>(null);
   const [noteLength, setNoteLength] = useState<number>(
     noteRef.current?.value.length ?? 0
   );
-
-  const sendReport = api.doctors.sendReport.useMutation();
+  const [dataToSend, setDataToSend] = useState<SendReportInput | null>(null);
 
   const {
     register,
@@ -109,13 +110,6 @@ const DoctorReportError = ({
   });
 
   const { ref: reactHookNoteRef, ...noteProps } = register('note');
-
-  const { isSuccess } = sendReport;
-  useEffect(() => {
-    if (isSuccess) {
-      onEditDone();
-    }
-  }, [isSuccess, onEditDone]);
 
   useEffect(() => {
     const textArea = noteRef.current;
@@ -158,7 +152,7 @@ const DoctorReportError = ({
       website: website.trim(),
     } satisfies SendReportInput;
 
-    sendReport.mutate(mutationInput);
+    setDataToSend(mutationInput);
   });
 
   const actions = (
@@ -174,165 +168,184 @@ const DoctorReportError = ({
   const yes = tReportError('yes');
   const no = tReportError('no');
 
-  return (
-    <form
-      onSubmit={onSubmit}
-      className={styles.DoctorReportError__form}
-      autoComplete="off"
-    >
-      {actions}
-      <Input
-        {...register('address')}
-        type="text"
-        id="address"
-        placeholder={inputTranslations.address.placeholder}
-        icon={<MapMarkerSvg />}
-        label={inputTranslations.address.placeholder}
-        error={
-          errors.address?.message
-            ? inputTranslations.address.message
-            : undefined
-        }
-      />
+  const formStyles = clsx(
+    styles.DoctorReportError__form,
+    !dataToSend && styles.Show,
+    dataToSend && styles.HideForm
+  );
 
-      <fieldset
-        className={clsx(
-          styles.FormGroup__fieldset,
-          styles.FormGroup__full_width
-        )}
-      >
-        <legend className={styles.FormGroup__legend}>
-          <Chip
-            size="sm"
-            iconName="LinkSvg"
-            text={groupTranslations.websites}
-            className={styles.FormGroup__chip}
-          />
-        </legend>
-        {websiteFields.fields.map((field, index, arr) => (
-          <div
-            key={field.id}
-            className={clsx(
-              styles.FormGroup__field,
-              styles.FormGroup__full_width
-            )}
-          >
-            <Input
-              {...register(`websites.${index}.website`)}
-              type="text"
-              id={field.id}
-              placeholder={inputTranslations.website.placeholder}
-              inputMode="url"
-              icon={<LinkSvg />}
-              label={`${inputTranslations.website.label} ${index + 1}`}
-              error={errors.websites?.[`${index}`]?.website?.message}
-            />
-            <AddRemoveField
-              hasRemove={arr.length !== 1}
-              hasAdd={arr.length - 1 === index}
-              onRemove={() => websiteFields.remove(index)}
-              onAdd={() => websiteFields.append({ website: '' })}
-            />
-          </div>
-        ))}
-      </fieldset>
-      <fieldset className={styles.FormGroup__fieldset}>
-        <legend className={styles.FormGroup__legend}>
-          <Chip
-            size="sm"
-            iconName="PhoneSvg"
-            text={groupTranslations.phones}
-            className={styles.FormGroup__chip}
-          />
-        </legend>
-        {phoneFields.fields.map((field, index, arr) => (
-          <div key={field.id} className={clsx(styles.FormGroup__field)}>
-            <Input
-              {...register(`phones.${index}.phone`)}
-              type="text"
-              id={field.id}
-              placeholder={inputTranslations.phone.placeholder}
-              inputMode="tel"
-              icon={<PhoneSvg />}
-              label={`${inputTranslations.phone.label} ${index + 1}`}
-              error={errors.phones?.[`${index}`]?.phone?.message}
-            />
-            <AddRemoveField
-              hasRemove={arr.length !== 1}
-              hasAdd={arr.length - 1 === index}
-              onRemove={() => phoneFields.remove(index)}
-              onAdd={() => phoneFields.append({ phone: '' })}
-            />
-          </div>
-        ))}
-      </fieldset>
-      <Input
-        {...register('email')}
-        type="text"
-        id="email"
-        placeholder={inputTranslations.email.placeholder}
-        inputMode="email"
-        icon={<EmailSvg />}
-        label={inputTranslations.email.label}
-        error={errors.email?.message}
-      />
-      <Input
-        {...register('orderform')}
-        type="text"
-        id="orderform"
-        placeholder={inputTranslations.orderform.placeholder}
-        icon={<LinkSvg />}
-        label={inputTranslations.orderform.label}
-        error={errors.orderform?.message}
-      />
-      <div className={styles.FormGroup__accepts_and_availability}>
-        <Controller
-          name="accepts"
-          control={control}
-          render={({ field }) => (
-            <Select
-              label={inputTranslations.accepts.label}
-              error={errors.accepts?.message}
-              {...field}
-              options={[
-                { value: 'y', label: yes, valueToShow: yes },
-                { value: 'n', label: no, valueToShow: no },
-              ]}
-              id="accepts"
-            />
+  return (
+    <>
+      <form onSubmit={onSubmit} className={formStyles} autoComplete="off">
+        {actions}
+        <Input
+          {...register('address')}
+          type="text"
+          id="address"
+          placeholder={inputTranslations.address.placeholder}
+          icon={<MapMarkerSvg />}
+          label={inputTranslations.address.placeholder}
+          error={
+            errors.address?.message
+              ? inputTranslations.address.message
+              : undefined
+          }
+        />
+
+        <fieldset
+          className={clsx(
+            styles.FormGroup__fieldset,
+            styles.FormGroup__full_width
           )}
+        >
+          <legend className={styles.FormGroup__legend}>
+            <Chip
+              size="sm"
+              iconName="LinkSvg"
+              text={groupTranslations.websites}
+              className={styles.FormGroup__chip}
+            />
+          </legend>
+          {websiteFields.fields.map((field, index, arr) => (
+            <div
+              key={field.id}
+              className={clsx(
+                styles.FormGroup__field,
+                styles.FormGroup__full_width
+              )}
+            >
+              <Input
+                {...register(`websites.${index}.website`)}
+                type="text"
+                id={field.id}
+                placeholder={inputTranslations.website.placeholder}
+                inputMode="url"
+                icon={<LinkSvg />}
+                label={`${inputTranslations.website.label} ${index + 1}`}
+                error={errors.websites?.[`${index}`]?.website?.message}
+              />
+              <AddRemoveField
+                hasRemove={arr.length !== 1}
+                hasAdd={arr.length - 1 === index}
+                onRemove={() => websiteFields.remove(index)}
+                onAdd={() => websiteFields.append({ website: '' })}
+              />
+            </div>
+          ))}
+        </fieldset>
+        <fieldset className={styles.FormGroup__fieldset}>
+          <legend className={styles.FormGroup__legend}>
+            <Chip
+              size="sm"
+              iconName="PhoneSvg"
+              text={groupTranslations.phones}
+              className={styles.FormGroup__chip}
+            />
+          </legend>
+          {phoneFields.fields.map((field, index, arr) => (
+            <div key={field.id} className={clsx(styles.FormGroup__field)}>
+              <Input
+                {...register(`phones.${index}.phone`)}
+                type="text"
+                id={field.id}
+                placeholder={inputTranslations.phone.placeholder}
+                inputMode="tel"
+                icon={<PhoneSvg />}
+                label={`${inputTranslations.phone.label} ${index + 1}`}
+                error={errors.phones?.[`${index}`]?.phone?.message}
+              />
+              <AddRemoveField
+                hasRemove={arr.length !== 1}
+                hasAdd={arr.length - 1 === index}
+                onRemove={() => phoneFields.remove(index)}
+                onAdd={() => phoneFields.append({ phone: '' })}
+              />
+            </div>
+          ))}
+        </fieldset>
+        <Input
+          {...register('email')}
+          type="text"
+          id="email"
+          placeholder={inputTranslations.email.placeholder}
+          inputMode="email"
+          icon={<EmailSvg />}
+          label={inputTranslations.email.label}
+          error={errors.email?.message}
         />
         <Input
-          {...register('availability')}
-          inputMode="decimal"
-          id="availability"
-          placeholder="0.0"
-          label={inputTranslations.availability.label}
-          error={errors.availability?.message}
+          {...register('orderform')}
+          type="text"
+          id="orderform"
+          placeholder={inputTranslations.orderform.placeholder}
+          icon={<LinkSvg />}
+          label={inputTranslations.orderform.label}
+          error={errors.orderform?.message}
         />
-      </div>
+        <div className={styles.FormGroup__accepts_and_availability}>
+          <Controller
+            name="accepts"
+            control={control}
+            render={({ field }) => (
+              <Select
+                label={inputTranslations.accepts.label}
+                error={errors.accepts?.message}
+                {...field}
+                options={[
+                  { value: 'y', label: yes, valueToShow: yes },
+                  { value: 'n', label: no, valueToShow: no },
+                ]}
+                id="accepts"
+              />
+            )}
+          />
+          <Input
+            {...register('availability')}
+            inputMode="decimal"
+            id="availability"
+            placeholder="0.0"
+            label={inputTranslations.availability.label}
+            error={errors.availability?.message}
+          />
+        </div>
 
-      <Input
-        as="textarea"
-        {...noteProps}
-        ref={e => {
-          reactHookNoteRef(e);
-          noteRef.current = e;
+        <Input
+          as="textarea"
+          {...noteProps}
+          ref={e => {
+            reactHookNoteRef(e);
+            noteRef.current = e;
+          }}
+          id="note"
+          label={inputTranslations.note.label}
+          placeholder={inputTranslations.note.placeholder}
+          error={
+            errors.note?.message ? inputTranslations.note.message : undefined
+          }
+          description={`${inputTranslations.note.description} (max: ${t(
+            'chars.charsWithCount',
+            { count: NOTE_LENGTH_LIMIT }
+          )})`}
+          data-limit-remain={NOTE_LENGTH_LIMIT - noteLength}
+        />
+        {actions}
+      </form>
+      <DoctorReportErrorReadOnlyForm
+        data={dataToSend}
+        initialData={{
+          address: props.address,
+          accepts: props.accepts,
+          availability: props.availability.toString(),
+          email: props.email,
+          note: props.note,
+          orderform: props.orderform,
+          phone: props.phones.join(', '),
+          website: props.websites.join(', '),
         }}
-        id="note"
-        label={inputTranslations.note.label}
-        placeholder={inputTranslations.note.placeholder}
-        error={
-          errors.note?.message ? inputTranslations.note.message : undefined
-        }
-        description={`${inputTranslations.note.description} (max: ${t(
-          'chars.charsWithCount',
-          { count: NOTE_LENGTH_LIMIT }
-        )})`}
-        data-limit-remain={NOTE_LENGTH_LIMIT - noteLength}
+        back={() => setDataToSend(null)}
+        onEditDone={onEditDone}
       />
-      {actions}
-    </form>
+    </>
   );
 };
 
