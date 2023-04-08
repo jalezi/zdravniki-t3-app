@@ -20,6 +20,7 @@ import DoctorContacts from './DoctorContacts';
 import DoctorFooter from './DoctorFooter';
 import DoctorOverride from './DoctorOverride';
 import { DoctorReportError } from './DoctorReportError';
+import type { DoctorReportErrorDataProps } from './DoctorReportError/types';
 import { Portal } from '../Shared/Portal';
 import { Typography } from '../Shared/Typography';
 
@@ -92,6 +93,17 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
     );
   };
 
+  const formData: DoctorReportErrorDataProps['data'] = {
+    address: doctor.location.address.fullAddress,
+    accepts: doctor.accepts,
+    availability: doctor.availability,
+    email: doctor.email,
+    note: doctor.override.note,
+    orderform: doctor.orderform,
+    phones: doctor.phones,
+    websites: doctor.websites,
+  };
+
   return (
     <div className={doctorCardStyles}>
       <div id="doctor-info" className={doctorInfoStyles}>
@@ -158,17 +170,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
             <div>
               <p>{tDoctor('reportError.text')}</p>
             </div>
-            <DoctorReportError.Form
-              address={doctor.location.address.fullAddress}
-              websites={doctor.websites}
-              phones={doctor.phones}
-              email={doctor.email}
-              orderform={doctor.orderform}
-              accepts={doctor.accepts}
-              availability={doctor.availability}
-              note={doctor.override.note}
-              onEditDone={onEditDone}
-            />
+            <DoctorReportError.Form data={formData} onEditDone={onEditDone} />
           </DoctorReportError.Container>
         </Portal>
       )}

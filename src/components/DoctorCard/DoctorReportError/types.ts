@@ -34,14 +34,16 @@ export const formDataSchema = z.object({
 export type FormData = z.infer<typeof formDataSchema>;
 
 export type DoctorReportErrorDataProps = {
-  address: Doctor['location']['address']['fullAddress'];
-  accepts: Doctor['accepts'];
-  availability: Doctor['availability'];
-  email: Doctor['email'];
-  note: Doctor['override']['note'];
-  phones: Doctor['phones'];
-  orderform: Doctor['orderform'];
-  websites: Doctor['websites'];
+  data: {
+    address: Doctor['location']['address']['fullAddress'];
+    accepts: Doctor['accepts'];
+    availability: Doctor['availability'];
+    email: Doctor['email'];
+    note: Doctor['override']['note'];
+    phones: Doctor['phones'];
+    orderform: Doctor['orderform'];
+    websites: Doctor['websites'];
+  };
 };
 
 export type DoctorReportErrorProps = DoctorReportErrorDataProps & {

@@ -25,10 +25,7 @@ import useDoctorReportErrorTranslations from './useDoctorReportErrorTranslations
 import useInputHeight from './useInputHeight';
 import { getMutationInput } from './utils';
 
-const DoctorReportError = ({
-  onEditDone,
-  ...props
-}: DoctorReportErrorProps) => {
+const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
   // translations
   const { t } = useTranslation('common');
   const {
@@ -55,10 +52,10 @@ const DoctorReportError = ({
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      ...props,
-      websites: props.websites.map(website => ({ website })),
-      phones: props.phones.map(phone => ({ phone })),
-      availability: props.availability.toString(),
+      ...data,
+      websites: data.websites.map(website => ({ website })),
+      phones: data.phones.map(phone => ({ phone })),
+      availability: data.availability.toString(),
     },
     resolver: zodResolver(formDataSchema),
     mode: 'onChange',
@@ -258,14 +255,14 @@ const DoctorReportError = ({
       <DoctorReportErrorReadOnlyForm
         data={dataToSend}
         initialData={{
-          address: props.address,
-          accepts: props.accepts,
-          availability: props.availability.toString(),
-          email: props.email,
-          note: props.note,
-          orderform: props.orderform,
-          phone: props.phones.join(', '),
-          website: props.websites.join(', '),
+          address: data.address,
+          accepts: data.accepts,
+          availability: data.availability.toString(),
+          email: data.email,
+          note: data.note,
+          orderform: data.orderform,
+          phone: data.phones.join(', '),
+          website: data.websites.join(', '),
         }}
         back={() => setDataToSend(null)}
         onEditDone={onEditDone}
