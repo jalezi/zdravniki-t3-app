@@ -1,6 +1,8 @@
 {
     "buttons": {
+        "back": "Nazaj",
         "cancel": "Prekliči",
+        "confirm": "Potrdi",
         "reset": "Ponastavi",
         "send": "Pošlji"
     },

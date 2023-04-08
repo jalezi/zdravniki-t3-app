@@ -1,6 +1,8 @@
 {
     "buttons": {
+        "back": "Indietro",
         "cancel": "Annulla",
+        "confirm": "Confermare",
         "reset": "Resettare",
         "send": "Invia"
     },

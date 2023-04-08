@@ -1,6 +1,8 @@
 {
     "buttons": {
+        "back": "Back",
         "cancel": "Cancel",
+        "confirm": "Confirm",
         "reset": "Reset",
         "send": "Send"
     },
