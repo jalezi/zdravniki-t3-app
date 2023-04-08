@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { clsx } from 'clsx';
 import { useTranslation } from 'next-i18next';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 
 import { Chip } from '@/components/Shared/Chip';
@@ -22,6 +22,7 @@ import DoctorReportErrorReadOnlyForm from './DoctorReportErrorReadOnlyForm';
 import type { DoctorReportErrorProps, FormData } from './types';
 import { NOTE_LENGTH_LIMIT, formDataSchema } from './types';
 import useDoctorReportErrorTranslations from './useDoctorReportErrorTranslations';
+import useInputHeight from './useInputHeight';
 import { getMutationInput } from './utils';
 
 const DoctorReportError = ({
@@ -73,19 +74,7 @@ const DoctorReportError = ({
   });
 
   // adjust note height
-  useEffect(() => {
-    const textArea = noteRef.current;
-    if (!textArea) return;
-    const setHeight = () => {
-      textArea.style.height = 'auto';
-      textArea.style.height = `${textArea.scrollHeight}px`;
-    };
-    textArea.addEventListener('input', setHeight);
-
-    return () => {
-      textArea.removeEventListener('input', setHeight);
-    };
-  }, []);
+  useInputHeight(noteRef.current);
 
   const onSubmit = handleSubmit((data, e) => {
     if (!e) return;
