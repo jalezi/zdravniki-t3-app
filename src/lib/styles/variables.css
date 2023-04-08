@@ -53,6 +53,8 @@
   --color-red-500: rgb(220, 50, 50);
   --color-red-300: rgb(211, 47, 47);
   --color-red-500-A87: rgba(220, 50, 50, 0.87);
+  --color-red-500-A76: rgba(220, 50, 50, 0.76);
+  --color-red-500-A40: rgba(220, 50, 50, 0.4);
   --color-red-200: rgb(219 184 184);
 
   /* green colors */
