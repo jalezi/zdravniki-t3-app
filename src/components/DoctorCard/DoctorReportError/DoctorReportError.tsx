@@ -79,7 +79,6 @@ const DoctorReportError = ({
     const setHeight = () => {
       textArea.style.height = 'auto';
       textArea.style.height = `${textArea.scrollHeight}px`;
-      setNoteLength(textArea.value.length);
     };
     textArea.addEventListener('input', setHeight);
 
@@ -252,6 +251,7 @@ const DoctorReportError = ({
             reactHookNoteRef(e);
             noteRef.current = e;
           }}
+          onChange={e => setNoteLength(e.target.value.length)}
           id="note"
           label={inputTranslations.note.label}
           placeholder={inputTranslations.note.placeholder}
