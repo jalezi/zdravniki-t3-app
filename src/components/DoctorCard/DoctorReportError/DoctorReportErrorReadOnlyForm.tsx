@@ -1,7 +1,6 @@
 import { clsx } from 'clsx';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
 
 import { Chip } from '@/components/Shared/Chip';
 import type { IconName } from '@/components/Shared/Icons';
@@ -11,7 +10,8 @@ import type { SendReportInput } from '@/server/api/routers/doctors';
 
 import styles from './DoctorReportError.module.css';
 import DoctorReportErrorActions from './DoctorReportErrorActions';
-import type { DoctorReportErrorProps, ReportErrorTranslations } from './types';
+import type { DoctorReportErrorProps } from './types';
+import useDoctorReportErrorTranslations from './useDoctorReportErrorTranslations';
 
 type DoctorReportErrorReadOnlyFormProps = {
   data: SendReportInput | null;
@@ -37,17 +37,12 @@ const DoctorReportErrorReadOnlyForm = ({
   onEditDone,
   initialData,
 }: DoctorReportErrorReadOnlyFormProps) => {
-  const { t: tReportError } = useTranslation('dr-report-error');
-  const buttonTranslations: ReportErrorTranslations['buttons'] = tReportError(
-    'buttons',
-    { returnObjects: true }
-  );
-  const inputTranslations: ReportErrorTranslations['inputs'] = tReportError(
-    'inputs',
-    { returnObjects: true }
-  );
-  const yes = tReportError('yes');
-  const no = tReportError('no');
+  const {
+    yes,
+    no,
+    buttons: buttonTranslations,
+    inputs: inputTranslations,
+  } = useDoctorReportErrorTranslations();
 
   const { register, handleSubmit } = useForm<SendReportInput>({
     defaultValues: data ?? undefined,

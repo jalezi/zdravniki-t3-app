@@ -19,12 +19,9 @@ import { AddRemoveField } from './AddRemoveField';
 import styles from './DoctorReportError.module.css';
 import DoctorReportErrorActions from './DoctorReportErrorActions';
 import DoctorReportErrorReadOnlyForm from './DoctorReportErrorReadOnlyForm';
-import type {
-  DoctorReportErrorProps,
-  FormData,
-  ReportErrorTranslations,
-} from './types';
+import type { DoctorReportErrorProps, FormData } from './types';
 import { NOTE_LENGTH_LIMIT, formDataSchema } from './types';
+import useDoctorReportErrorTranslations from './useDoctorReportErrorTranslations';
 
 const DoctorReportError = ({
   onEditDone,
@@ -32,21 +29,13 @@ const DoctorReportError = ({
 }: DoctorReportErrorProps) => {
   // translations
   const { t } = useTranslation('common');
-  const { t: tReportError } = useTranslation('dr-report-error');
-  const buttonTranslations: ReportErrorTranslations['buttons'] = tReportError(
-    'buttons',
-    { returnObjects: true }
-  );
-  const groupTranslations: ReportErrorTranslations['groups'] = tReportError(
-    'groups',
-    { returnObjects: true }
-  );
-  const inputTranslations: ReportErrorTranslations['inputs'] = tReportError(
-    'inputs',
-    { returnObjects: true }
-  );
-  const yes = tReportError('yes');
-  const no = tReportError('no');
+  const {
+    yes,
+    no,
+    buttons: buttonTranslations,
+    groups: groupTranslations,
+    inputs: inputTranslations,
+  } = useDoctorReportErrorTranslations();
 
   // ref and state
   const noteRef = useRef<HTMLTextAreaElement | HTMLInputElement | null>(null);
@@ -55,6 +44,7 @@ const DoctorReportError = ({
   );
   const [dataToSend, setDataToSend] = useState<SendReportInput | null>(null);
 
+  // react-hook-form
   const {
     register,
     reset,
@@ -71,9 +61,18 @@ const DoctorReportError = ({
     resolver: zodResolver(formDataSchema),
     mode: 'onChange',
   });
-
   const { ref: reactHookNoteRef, ...noteProps } = register('note');
+  const websiteFields = useFieldArray({
+    control,
+    name: 'websites',
+  });
 
+  const phoneFields = useFieldArray({
+    control,
+    name: 'phones',
+  });
+
+  // adjust note height
   useEffect(() => {
     const textArea = noteRef.current;
     if (!textArea) return;
@@ -88,16 +87,6 @@ const DoctorReportError = ({
       textArea.removeEventListener('input', setHeight);
     };
   }, []);
-
-  const websiteFields = useFieldArray({
-    control,
-    name: 'websites',
-  });
-
-  const phoneFields = useFieldArray({
-    control,
-    name: 'phones',
-  });
 
   const onSubmit = handleSubmit((data, e) => {
     if (!e) return;
