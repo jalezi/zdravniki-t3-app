@@ -1,16 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { clsx } from 'clsx';
-import type { CustomTypeOptions } from 'i18next';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useRef, useState } from 'react';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
-import { z } from 'zod';
-
-type ReportErrorTranslations =
-  CustomTypeOptions['resources']['dr-report-error'];
-
-const ADDRESS_LENGTH_LIMIT = 255;
-const NOTE_LENGTH_LIMIT = 255;
 
 import { Chip } from '@/components/Shared/Chip';
 import {
@@ -21,49 +13,18 @@ import {
 } from '@/components/Shared/Icons';
 import { Input } from '@/components/Shared/Inputs/Input';
 import { Select } from '@/components/Shared/Selects/Select';
-import type { Doctor, SendReportInput } from '@/server/api/routers/doctors';
+import type { SendReportInput } from '@/server/api/routers/doctors';
 
 import { AddRemoveField } from './AddRemoveField';
 import styles from './DoctorReportError.module.css';
 import DoctorReportErrorActions from './DoctorReportErrorActions';
 import DoctorReportErrorReadOnlyForm from './DoctorReportErrorReadOnlyForm';
-
-const formDataSchema = z.object({
-  address: z.string().max(ADDRESS_LENGTH_LIMIT),
-  websites: z
-    .array(
-      z.object({
-        website: z.string(),
-      })
-    )
-    .nonempty(),
-  phones: z
-    .array(
-      z.object({
-        phone: z.string(),
-      })
-    )
-    .nonempty(),
-  email: z.string(),
-  orderform: z.string(),
-  accepts: z.enum(['y', 'n']),
-  availability: z.string(),
-  note: z.string().max(NOTE_LENGTH_LIMIT),
-});
-
-type FormData = z.infer<typeof formDataSchema>;
-
-type DoctorReportErrorProps = {
-  address: Doctor['location']['address']['fullAddress'];
-  websites: Doctor['websites'];
-  phones: Doctor['phones'];
-  email: Doctor['email'];
-  orderform: Doctor['orderform'];
-  accepts: Doctor['accepts'];
-  availability: Doctor['availability'];
-  note: Doctor['override']['note'];
-  onEditDone: () => void;
-};
+import type {
+  DoctorReportErrorProps,
+  FormData,
+  ReportErrorTranslations,
+} from './types';
+import { NOTE_LENGTH_LIMIT, formDataSchema } from './types';
 
 const DoctorReportError = ({
   onEditDone,
@@ -84,6 +45,8 @@ const DoctorReportError = ({
     'inputs',
     { returnObjects: true }
   );
+  const yes = tReportError('yes');
+  const no = tReportError('no');
 
   // ref and state
   const noteRef = useRef<HTMLTextAreaElement | HTMLInputElement | null>(null);
@@ -164,9 +127,6 @@ const DoctorReportError = ({
       onCancelText={buttonTranslations.cancel}
     />
   );
-
-  const yes = tReportError('yes');
-  const no = tReportError('no');
 
   const formStyles = clsx(
     styles.DoctorReportError__form,
