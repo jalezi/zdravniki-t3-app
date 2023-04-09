@@ -3,18 +3,24 @@ import { useCallback, useEffect } from 'react';
 
 const useKeyboardNavigation = (
   shouldContinue: boolean,
-  cb: () => void,
-  parent: RefObject<HTMLElement>
+  cb: (e: KeyboardEvent) => void,
+  parent: RefObject<HTMLElement>,
+  querySelector = "[data-keep-focus='true']"
 ) => {
   const handleKeyDown = useCallback(
+    // eslint-disable-next-line sonarjs/cognitive-complexity
     (event: KeyboardEvent, element: HTMLElement) => {
+      if (event.metaKey || event.ctrlKey || event.altKey) {
+        return;
+      }
+
       if (['Escape', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
-        cb();
+        cb(event);
         return;
       }
 
       const focusableElements = [
-        ...element.querySelectorAll("[data-keep-focus='true']"),
+        ...element.querySelectorAll(querySelector),
       ] as HTMLElement[];
 
       const length = focusableElements.length;
@@ -33,6 +39,11 @@ const useKeyboardNavigation = (
       let nextElement: HTMLElement | undefined;
 
       switch (event.key) {
+        case 'Enter':
+          event.preventDefault();
+          activeElement.click();
+          // todo - handle enter
+          break;
         case 'Tab':
           // keep focus inside the focusableElements
           if (activeElementIndex === 0 && event.shiftKey) {
@@ -77,7 +88,7 @@ const useKeyboardNavigation = (
           return;
       }
     },
-    [cb]
+    [cb, querySelector]
   );
 
   useEffect(() => {
