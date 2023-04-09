@@ -73,10 +73,32 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
   // adjust note height
   useInputHeight(noteRef.current);
 
-  const onSubmit = handleSubmit((data, e) => {
+  const onSubmit = handleSubmit((formData, e) => {
     if (!e) return;
     e.preventDefault();
-    setDataToSend(getMutationInput(data));
+
+    const mutationInput = getMutationInput(formData);
+    const initialValues = getMutationInput({
+      ...data,
+      availability: data.availability.toString(),
+      phones: [...data.phones.map(phone => ({ phone }))] as FormData['phones'],
+      websites: [
+        ...data.websites.map(website => ({
+          website,
+        })),
+      ] as FormData['websites'],
+    });
+
+    const isDifference = Object.entries(mutationInput).some(
+      ([key, value]) => value !== initialValues[key as keyof SendReportInput]
+    );
+
+    if (!isDifference) {
+      // todo notify user that there is no difference
+      return;
+    }
+
+    setDataToSend(mutationInput);
   });
 
   const actions = (
