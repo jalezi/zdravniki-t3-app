@@ -80,7 +80,6 @@ const DoctorReportErrorReadOnlyForm = ({
 
   return (
     <form className={beforeSendStyles} onSubmit={onSubmit}>
-      {actions}
       {data &&
         Object.entries(data).map(([label, value]) => {
           const _label = label as keyof SendReportInput;

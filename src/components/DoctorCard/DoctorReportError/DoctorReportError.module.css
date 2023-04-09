@@ -35,41 +35,23 @@
 }
 
 .DoctorReportError__form {
-  position: absolute;
-  top: 6.5rem;
-  bottom: 1rem;
-
   overflow-y: auto;
   display: flex;
+  flex: 1 1 100%;
   flex-direction: column;
   gap: 1rem;
+  justify-content: space-between;
 
   max-height: calc(
     100% - var(--card-padding) * 4 + 2rem + 2rem
   ); /* temporary */
 
-  margin-top: auto;
   padding: 1rem;
 
   background-color: transparent;
   border: 1px solid #e0e0e0;
   border-radius: 0.5em;
   box-shadow: rgba(0, 0, 0, 0.08) 1px 1px 4px 0px;
-}
-
-.DoctorReportError__form.Show {
-  right: 1rem;
-  left: 1rem;
-}
-
-.DoctorReportError__form.HideForm {
-  right: -100%;
-  left: 100%;
-}
-
-.DoctorReportError__form.HideCheck {
-  right: 100%;
-  left: -100%;
 }
 
 .DoctorReportError__action_container {
