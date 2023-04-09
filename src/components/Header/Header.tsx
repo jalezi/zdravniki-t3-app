@@ -1,11 +1,11 @@
 import { clsx } from 'clsx';
 import { useCallback, useMemo, useRef, useState } from 'react';
+import FocusLock from 'react-focus-lock';
 import { useEventListener, useWindowSize } from 'usehooks-ts';
 
 import { IBMPlexSans } from '@/assets/fonts';
 import * as Navigation from '@/components/Header/Navigation';
 import { BREAKPOINTS } from '@/lib/constants';
-import useKeyboardNavigation from '@/lib/hooks/useKeyboardNavigation';
 import useScroll from '@/lib/hooks/useScroll';
 
 import styles from './Header.module.css';
@@ -26,7 +26,6 @@ function Header() {
     setShowNavigation(false);
   }, []);
   useEventListener('click', handleOverlayClick, overlayRef);
-  useKeyboardNavigation(showNavigation, handleOverlayClick, navRef);
 
   const onShowOrHideNavigation = useCallback(() => {
     setShowNavigation(prev => !prev);
@@ -66,13 +65,15 @@ function Header() {
       <header className={headerStyles}>
         <Logo />
       </header>
-      <Toggler.Container>
-        <Toggler.Button
-          onToggle={onShowOrHideNavigation}
-          showNavigation={showNavigation}
-        />
-      </Toggler.Container>
-      {nav}
+      <FocusLock returnFocus disabled={!showNavigation}>
+        <Toggler.Container>
+          <Toggler.Button
+            onToggle={onShowOrHideNavigation}
+            showNavigation={showNavigation}
+          />
+        </Toggler.Container>
+        {nav}
+      </FocusLock>
       <Overlay ref={overlayRef} show={showNavigation} />
     </>
   );

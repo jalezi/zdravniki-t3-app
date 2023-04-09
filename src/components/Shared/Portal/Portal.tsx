@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import FocusLock from 'react-focus-lock';
 
 import styles from './Portal.module.css';
 
@@ -33,7 +34,9 @@ const Portal = ({
 
   const overlay = noOverlay ? <> {children} </> : <Overlay>{children}</Overlay>;
 
-  return mounted && ref.current ? createPortal(overlay, ref.current) : null;
+  return mounted && ref.current
+    ? createPortal(<FocusLock returnFocus>{overlay}</FocusLock>, ref.current)
+    : null;
 };
 
 Portal.defaultProps = {
