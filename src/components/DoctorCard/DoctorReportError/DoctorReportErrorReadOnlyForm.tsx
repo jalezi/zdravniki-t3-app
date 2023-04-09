@@ -100,7 +100,7 @@ const DoctorReportErrorReadOnlyForm = ({
 
           return isChanged ? (
             <>
-              <div className={styles.FormGroup__values}>
+              <div key={label + '_div'} className={styles.FormGroup__values}>
                 <Chip
                   size="sm"
                   iconName={iconName}
@@ -123,7 +123,7 @@ const DoctorReportErrorReadOnlyForm = ({
                 </p>
               </div>
               <input
-                key={label}
+                key={label + '_hidden_input'}
                 value={value}
                 hidden
                 {...register(label as keyof SendReportInput)}
