@@ -164,12 +164,14 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
       {edit && (
         <Portal>
           <DoctorReportError.Container onClose={onEditDone}>
-            <Typography as="h3" element="h2">
-              {tDoctor('reportError.title')}
-            </Typography>
-            <div>
-              <p>{tDoctor('reportError.text')}</p>
-            </div>
+            <header>
+              <Typography as="h3" element="h2">
+                {tDoctor('reportError.title')}
+              </Typography>
+              <div>
+                <p>{tDoctor('reportError.text')}</p>
+              </div>
+            </header>
             <DoctorReportError.Form data={formData} onEditDone={onEditDone} />
           </DoctorReportError.Container>
         </Portal>

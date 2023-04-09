@@ -80,56 +80,65 @@ const DoctorReportErrorReadOnlyForm = ({
 
   return (
     <form className={beforeSendStyles} onSubmit={onSubmit}>
-      {data &&
-        Object.entries(data).map(([label, value]) => {
-          const _label = label as keyof SendReportInput;
-          const iconName = INPUT_ICONS_MAP[`${_label}`];
+      <div>
+        <p>Prikazani so samo spremenjeni podatki.</p>
+      </div>
+      <div
+        style={{
+          flex: '1 1 100%',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1em',
+        }}
+      >
+        {data &&
+          Object.entries(data).map(([label, value]) => {
+            const _label = label as keyof SendReportInput;
+            const iconName = INPUT_ICONS_MAP[`${_label}`];
 
-          const _value =
-            _label === 'accepts' ? (value === 'y' ? yes : no) : value;
+            const _value =
+              _label === 'accepts' ? (value === 'y' ? yes : no) : value;
 
-          const initialValue = initialData[`${_label}`];
-          const _initialValue =
-            _label === 'accepts'
-              ? initialValue === 'y'
-                ? yes
-                : no
-              : initialValue;
-          const isChanged = value !== initialValue;
+            const initialValue = initialData[`${_label}`];
+            const _initialValue =
+              _label === 'accepts'
+                ? initialValue === 'y'
+                  ? yes
+                  : no
+                : initialValue;
+            const isChanged = value !== initialValue;
 
-          return isChanged ? (
-            <>
-              <div key={label + '_div'} className={styles.FormGroup__values}>
-                <Chip
-                  size="sm"
-                  iconName={iconName}
-                  text={inputTranslations[`${_label}`].label}
-                  className={clsx(
-                    styles.FormGroup__chip,
-                    isChanged && styles.Changed
-                  )}
+            return isChanged ? (
+              <>
+                <div key={label + '_div'} className={styles.FormGroup__values}>
+                  <Chip
+                    size="sm"
+                    iconName={iconName}
+                    text={inputTranslations[`${_label}`].label}
+                    className={clsx(styles.FormGroup__chip)}
+                  />
+
+                  <p className={clsx(styles.Value, styles.InitialValue)}>
+                    <Typography as="h6" element="strong">
+                      {_initialValue ? _initialValue : "''"}
+                    </Typography>
+                  </p>
+                  <p className={clsx(styles.Value, styles.ChangedValue)}>
+                    <Typography as="h6" element="strong">
+                      {_value ? _value : "''"}
+                    </Typography>
+                  </p>
+                </div>
+                <input
+                  key={label + '_hidden_input'}
+                  value={value}
+                  hidden
+                  {...register(label as keyof SendReportInput)}
                 />
-
-                <p className={clsx(styles.Value, styles.InitialValue)}>
-                  <Typography as="h6" element="strong">
-                    {_initialValue ? _initialValue : '---'}
-                  </Typography>
-                </p>
-                <p className={clsx(styles.Value, styles.ChangedValue)}>
-                  <Typography as="h6" element="strong">
-                    {_value ? _value : '---'}
-                  </Typography>
-                </p>
-              </div>
-              <input
-                key={label + '_hidden_input'}
-                value={value}
-                hidden
-                {...register(label as keyof SendReportInput)}
-              />
-            </>
-          ) : null;
-        })}
+              </>
+            ) : null;
+          })}
+      </div>
       {actions}
     </form>
   );

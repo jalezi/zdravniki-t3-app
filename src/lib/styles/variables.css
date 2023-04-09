@@ -61,6 +61,7 @@
   --color-green-800: rgb(99, 125, 54); /* contrast ratio with white text ok! */
   --color-green-700: rgb(129, 177, 48);
   --color-green-500: rgb(149, 200, 63);
+  --color-green-500-A40: rgba(149, 200, 63, 0.4);
   --color-green-300: hsl(123, 46%, 34%);
   --color-green-300-A95: hsla(
     123,

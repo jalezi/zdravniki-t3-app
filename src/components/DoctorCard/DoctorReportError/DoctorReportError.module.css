@@ -97,13 +97,24 @@
   border-radius: 24px;
 }
 
-.FormGroup__chip.Changed {
+.Value {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Value.InitialValue > strong {
+  display: inline-block;
+  padding-inline: 0.5em;
+  line-height: 1.5;
   background-color: var(--color-red-500-A40);
 }
 
-.Value.InitialValue {
-  color: red;
-  text-decoration: line-through;
+.Value.ChangedValue > strong {
+  display: inline-block;
+  padding-inline: 0.5em;
+  line-height: 1.5;
+  background-color: var(--color-green-500-A40);
 }
 
 .FormGroup__fieldset .FormGroup__full_width {
