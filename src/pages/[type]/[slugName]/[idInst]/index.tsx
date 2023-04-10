@@ -103,7 +103,7 @@ export const getStaticPaths: GetStaticPaths<
   const doctorsParsedFromCsv = Papa.parse(
     doctorsResult,
     PARSE_OPTIONS
-  ).data.slice(0, 10);
+  ).data.slice(0, 0);
 
   const doctorsValidated = drListSchema.parse(doctorsParsedFromCsv);
 
