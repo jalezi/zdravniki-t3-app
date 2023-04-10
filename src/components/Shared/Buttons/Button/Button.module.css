@@ -3,7 +3,7 @@
   padding-inline: var(--button-padding-inline, 1em);
 
   font-size: var(--button-font-size, 1rem);
-  font-weight: var(--font-weight, 500);
+  font-weight: var(--button-font-weight, 500);
   color: var(--button-color, inherit);
 
   background-color: var(--button-background-color, transparent);
