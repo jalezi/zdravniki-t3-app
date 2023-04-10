@@ -63,13 +63,60 @@
   justify-content: flex-end;
 }
 
-.DoctorReportError__action_container > button {
-  --button-font-size: 0.875rem;
-
-  border: 1px solid black;
-}
 .DoctorReportError__action_container > *:nth-child(2) {
   margin-left: auto;
+}
+
+.DoctorReportError__action_container .Button {
+  --button-font-weight: 600;
+}
+
+.Button {
+  --form-btn-box-shadow__values: 0px 0px 7px 0px;
+
+  color: var(--form-btn-color, inherit);
+
+  background-color: var(--form-btn-background-color, transparent);
+  border: 1px solid var(--form-btn-border-color, transparent);
+  box-shadow: var(--form-btn-box-shadow, none);
+
+  transition: var(--cubic-bezier);
+}
+
+.Button.Contained {
+  --form-btn-color: var(--color-white);
+  --form-btn-background-color: var(--color-accepts-y);
+  --form-btn-border-color: var(--form-btn-background-color);
+}
+
+.Button.Outlined {
+  --form-btn-border-color: var(--color-accepts-n);
+  --form-btn-color: var(--color-accepts-n);
+}
+
+.Button.Text {
+  --form-btn-color: inherit;
+  --form-btn-background-color: transparent;
+  --form-btn-border-color: transparent;
+
+  opacity: 0.7;
+}
+
+@media (hover: hover) {
+  .Button.Contained:hover {
+    --form-btn-box-shadow: var(--form-btn-background-color)
+      var(--form-btn-box-shadow__values);
+    --form-btn-border-color: var(--form-btn-background-color);
+  }
+
+  .Button.Outlined:hover {
+    --form-btn-box-shadow: var(--form-btn-color)
+      var(--form-btn-box-shadow__values);
+  }
+
+  .Button.Text:hover {
+    opacity: 1;
+  }
 }
 
 .FormGroup__fieldset {

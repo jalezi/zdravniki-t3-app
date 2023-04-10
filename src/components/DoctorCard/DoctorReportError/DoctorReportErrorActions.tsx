@@ -1,3 +1,5 @@
+import { clsx } from 'clsx';
+
 import { Button } from '@/components/Shared/Buttons';
 
 import styles from './DoctorReportError.module.css';
@@ -24,25 +26,40 @@ const DoctorReportErrorActions = (props: DoctorReportErrorActionsProps) => {
   const hasOnBack = 'onBackText' in props && 'onBack' in props;
   const hasOnConfirm = 'onConfirmText' in props;
 
+  const submitStyles = clsx(styles.Button, styles.Contained);
+  const resetStyles = clsx(styles.Button, styles.Text);
+  const cancelStyles = clsx(styles.Button, styles.Outlined);
+
+  const backStyles = clsx(styles.Button, styles.Text);
+  const confirmStyles = clsx(styles.Button, styles.Contained);
+
   return (
     <div className={styles.DoctorReportError__action_container}>
-      {hasOnSubmit && <Button type="submit">{props.onSubmitText}</Button>}
+      {hasOnSubmit && (
+        <Button type="submit" className={submitStyles}>
+          {props.onSubmitText}
+        </Button>
+      )}
       {hasOnReset && (
-        <Button type="button" onClick={props.onReset}>
+        <Button type="button" onClick={props.onReset} className={resetStyles}>
           {props.onResetText}
         </Button>
       )}
       {hasOnCancel && (
-        <Button type="button" onClick={props.onCancel}>
+        <Button type="button" onClick={props.onCancel} className={cancelStyles}>
           {props.onCancelText}
         </Button>
       )}
       {hasOnBack && (
-        <Button type="button" onClick={props.onBack}>
+        <Button type="button" onClick={props.onBack} className={backStyles}>
           {props.onBackText}
         </Button>
       )}
-      {hasOnConfirm && <Button type="submit">{props.onConfirmText}</Button>}
+      {hasOnConfirm && (
+        <Button type="submit" className={confirmStyles}>
+          {props.onConfirmText}
+        </Button>
+      )}
     </div>
   );
 };
