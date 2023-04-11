@@ -80,6 +80,7 @@ const DoctorReportErrorReadOnlyForm = ({
         )}
       </div>
       <DoctorReportErrorActions
+        formStatus="validate"
         onBack={() => back()}
         onConfirmText={buttonTranslations.confirm}
         onBackText={buttonTranslations.back}
@@ -93,6 +94,7 @@ const DoctorReportErrorReadOnlyForm = ({
         <p>Napaka pri pošiljanju sporočila.</p>
       </div>
       <DoctorReportErrorActions
+        formStatus="error"
         onTryAgain={() => back()}
         onTryAgainText="Poskusi ponovno"
         onDone={onEditDone}
@@ -107,7 +109,11 @@ const DoctorReportErrorReadOnlyForm = ({
         <p>Sporočilo je bilo uspešno poslano.</p>
         <p>Okno se bo zaprlo čez 3 sekunde</p>
       </div>
-      <DoctorReportErrorActions onClose={onEditDone} onCloseText="Zapri" />
+      <DoctorReportErrorActions
+        formStatus="success"
+        onClose={onEditDone}
+        onCloseText="Zapri"
+      />
     </>
   );
 

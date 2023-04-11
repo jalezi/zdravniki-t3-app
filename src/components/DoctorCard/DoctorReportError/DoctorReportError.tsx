@@ -103,6 +103,7 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
 
   const actions = (
     <DoctorReportErrorActions
+      formStatus="initial"
       onCancel={() => onEditDone()}
       onReset={() => reset()}
       onResetText={buttonTranslations.reset}
