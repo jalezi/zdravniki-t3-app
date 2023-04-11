@@ -1,8 +1,8 @@
 import { clsx } from 'clsx';
-import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { CountDown } from '@/components/Shared/CountDown';
 import { api } from '@/lib/utils/api';
 import type { SendReportInput } from '@/server/api/routers/doctors';
 
@@ -32,7 +32,6 @@ const DoctorReportErrorReadOnlyForm = ({
     buttons: buttonTranslations,
     notifications: notificationTransaltions,
   } = useDoctorReportErrorTranslations();
-  const { t } = useTranslation('common');
 
   const { register, handleSubmit } = useForm<SendReportInput>({
     defaultValues: data ?? undefined,
@@ -118,10 +117,7 @@ const DoctorReportErrorReadOnlyForm = ({
           <p>{notificationTransaltions.success}</p>
           <p>
             {notificationTransaltions.closing}{' '}
-            {t('seconds.secondsWithCount', {
-              count: CLOSE_TIMEOUT / 1000,
-              defaultValue: 'seconds',
-            })}
+            <CountDown deadline={CLOSE_TIMEOUT} />
             ...
           </p>
         </div>
