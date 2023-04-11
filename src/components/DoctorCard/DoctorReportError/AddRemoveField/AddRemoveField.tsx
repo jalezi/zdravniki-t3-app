@@ -6,6 +6,7 @@ import { MinusCircleSvg, PlusCircleSvg } from '@/components/Shared/Icons';
 import styles from './AddRemoveField.module.css';
 
 export type AddRemoveFieldProps = {
+  label: string;
   onRemove: () => void;
   onAdd: () => void;
   hasRemove?: boolean;
@@ -13,6 +14,7 @@ export type AddRemoveFieldProps = {
 };
 
 const AddRemoveField = ({
+  label,
   hasRemove,
   hasAdd,
   onRemove,
@@ -28,12 +30,22 @@ const AddRemoveField = ({
   return (
     <div className={containerStyles}>
       {hasRemove && (
-        <IconButton type="button" className={removeStyels} onClick={onRemove}>
+        <IconButton
+          type="button"
+          className={removeStyels}
+          onClick={onRemove}
+          aria-label={`remove ${label}`}
+        >
           <MinusCircleSvg />
         </IconButton>
       )}
       {hasAdd && (
-        <IconButton type="button" className={addStyles} onClick={onAdd}>
+        <IconButton
+          type="button"
+          className={addStyles}
+          onClick={onAdd}
+          aria-label={`add ${label}`}
+        >
           <PlusCircleSvg />
         </IconButton>
       )}

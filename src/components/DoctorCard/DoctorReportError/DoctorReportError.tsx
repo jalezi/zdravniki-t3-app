@@ -169,6 +169,7 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
                   error={errors.websites?.[`${index}`]?.website?.message}
                 />
                 <AddRemoveField
+                  label="website"
                   hasRemove={arr.length !== 1}
                   hasAdd={arr.length - 1 === index}
                   onRemove={() => websiteFields.remove(index)}
@@ -199,6 +200,7 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
                   error={errors.phones?.[`${index}`]?.phone?.message}
                 />
                 <AddRemoveField
+                  label="phone"
                   hasRemove={arr.length !== 1}
                   hasAdd={arr.length - 1 === index}
                   onRemove={() => phoneFields.remove(index)}
