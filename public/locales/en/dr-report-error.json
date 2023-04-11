@@ -2,9 +2,11 @@
     "buttons": {
         "back": "Back",
         "cancel": "Cancel",
+        "close": "Close",
         "confirm": "Confirm",
         "reset": "Reset",
-        "send": "Send"
+        "send": "Send",
+        "tryAgain": "Try again"
     },
     "groups": {
         "phones": "Phones",
@@ -66,7 +68,10 @@
     },
     "no": "No",
     "notification": {
+        "closing": "Closing in",
         "error": "Something went wrong. Please try again later.",
+        "initial": "Only changed data is shown.",
+        "sending": "Sending...",
         "success": "Thank you! We will look into it."
     },
     "yes": "Yes"

@@ -2,9 +2,11 @@
     "buttons": {
         "back": "Indietro",
         "cancel": "Annulla",
+        "close": "Chiudi",
         "confirm": "Confermare",
         "reset": "Resettare",
-        "send": "Invia"
+        "send": "Invia",
+        "tryAgain": "Riprova"
     },
     "groups": {
         "phones": "Telefoni",
@@ -66,7 +68,10 @@
     },
     "no": "No",
     "notification": {
+        "closing": "Chiudare la finestra in",
         "error": "C'è stato un errore. Per favore riprova.",
+        "initial": "Vengono visualizzati solo i dati modificati.",
+        "sending": "Invio...",
         "success": "Grazie! Esamineremo i dati."
     },
     "yes": "Sì"
