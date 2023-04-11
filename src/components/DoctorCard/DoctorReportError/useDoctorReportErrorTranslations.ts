@@ -17,12 +17,21 @@ const useDoctorReportErrorTranslations = () => {
   const yes = tReportError('yes');
   const no = tReportError('no');
 
+  const notifications: ReportErrorTranslations['notification'] = tReportError(
+    'notification',
+    {
+      returnObjects: true,
+    }
+  );
+
   return {
     buttons,
     groups,
     inputs,
     yes,
     no,
+    notifications,
+    tReportError,
   };
 };
 
