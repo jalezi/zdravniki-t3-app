@@ -74,6 +74,12 @@
   gap: 1em;
 }
 
+.DoctorReportError__info_container {
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
 .Button {
   --form-btn-box-shadow__values: 0px 0px 7px 0px;
 

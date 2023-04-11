@@ -1,4 +1,5 @@
 import { clsx } from 'clsx';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -26,7 +27,12 @@ const DoctorReportErrorReadOnlyForm = ({
   onEditDone,
   initialData,
 }: DoctorReportErrorReadOnlyFormProps) => {
-  const { buttons: buttonTranslations } = useDoctorReportErrorTranslations();
+  // translations
+  const {
+    buttons: buttonTranslations,
+    notifications: notificationTransaltions,
+  } = useDoctorReportErrorTranslations();
+  const { t } = useTranslation('common');
 
   const { register, handleSubmit } = useForm<SendReportInput>({
     defaultValues: data ?? undefined,
@@ -62,13 +68,15 @@ const DoctorReportErrorReadOnlyForm = ({
   );
 
   const loadingContent = sendReport.isLoading && (
-    <div>Pošiljanje sporočila...</div>
+    <div className={clsx(styles.DoctorReportError__info_container)}>
+      {notificationTransaltions.sending}
+    </div>
   );
 
   const idleContent = sendReport.isIdle && (
     <>
       <div>
-        <p>Prikazani so samo spremenjeni podatki.</p>
+        <p>{notificationTransaltions.initial}</p>
       </div>
       <div className={styles.DoctorReportError__diffs_container}>
         {data && (
@@ -90,29 +98,38 @@ const DoctorReportErrorReadOnlyForm = ({
 
   const errorContent = sendReport.isError && (
     <>
-      <div>
-        <p>Napaka pri pošiljanju sporočila.</p>
+      <div className={clsx(styles.DoctorReportError__info_container)}>
+        <p>{notificationTransaltions.error}</p>
       </div>
       <DoctorReportErrorActions
         formStatus="error"
         onTryAgain={() => back()}
-        onTryAgainText="Poskusi ponovno"
+        onTryAgainText={buttonTranslations.tryAgain}
         onDone={onEditDone}
-        onDoneText="Zapri"
+        onDoneText={buttonTranslations.close}
       />
     </>
   );
 
   const successContent = sendReport.isSuccess && (
     <>
-      <div>
-        <p>Sporočilo je bilo uspešno poslano.</p>
-        <p>Okno se bo zaprlo čez 3 sekunde</p>
+      <div className={clsx(styles.DoctorReportError__info_container)}>
+        <div>
+          <p>{notificationTransaltions.success}</p>
+          <p>
+            {notificationTransaltions.closing}{' '}
+            {t('seconds.secondsWithCount', {
+              count: CLOSE_TIMEOUT / 1000,
+              defaultValue: 'seconds',
+            })}
+            ...
+          </p>
+        </div>
       </div>
       <DoctorReportErrorActions
         formStatus="success"
         onClose={onEditDone}
-        onCloseText="Zapri"
+        onCloseText={buttonTranslations.close}
       />
     </>
   );
