@@ -71,6 +71,13 @@
   --button-font-weight: 600;
 }
 
+.DoctorReportError__diffs_container {
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: column;
+  gap: 1em;
+}
+
 .Button {
   --form-btn-box-shadow__values: 0px 0px 7px 0px;
 

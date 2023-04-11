@@ -65,14 +65,7 @@ const DoctorReportErrorReadOnlyForm = ({
       <div>
         <p>Prikazani so samo spremenjeni podatki.</p>
       </div>
-      <div
-        style={{
-          flex: '1 1 100%',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1em',
-        }}
-      >
+      <div className={styles.DoctorReportError__diffs_container}>
         {data && (
           <DoctorReportErrosDiffs
             data={data}
