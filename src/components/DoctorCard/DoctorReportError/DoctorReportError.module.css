@@ -90,6 +90,10 @@
   transition: var(--cubic-bezier);
 }
 
+.Button.Right {
+  margin-left: auto;
+}
+
 .Button.Contained {
   --form-btn-color: var(--color-white);
   --form-btn-background-color: var(--color-accepts-y);

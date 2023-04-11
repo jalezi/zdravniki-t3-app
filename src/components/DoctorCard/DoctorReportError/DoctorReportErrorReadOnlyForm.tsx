@@ -11,6 +11,8 @@ import DoctorReportErrosDiffs from './DoctorReportErrorDiffs';
 import type { DoctorReportErrorProps } from './types';
 import useDoctorReportErrorTranslations from './useDoctorReportErrorTranslations';
 
+const CLOSE_TIMEOUT = 3000;
+
 type DoctorReportErrorReadOnlyFormProps = {
   data: SendReportInput | null;
   initialData: SendReportInput;
@@ -35,9 +37,16 @@ const DoctorReportErrorReadOnlyForm = ({
 
   const { isSuccess } = sendReport;
   useEffect(() => {
+    let timeout: NodeJS.Timeout | null = null;
+
     if (isSuccess) {
-      onEditDone();
+      timeout = setTimeout(() => {
+        onEditDone();
+      }, CLOSE_TIMEOUT);
     }
+    return () => {
+      timeout && clearTimeout(timeout);
+    };
   }, [isSuccess, onEditDone]);
 
   const onSubmit = handleSubmit((data, e) => {
@@ -52,16 +61,12 @@ const DoctorReportErrorReadOnlyForm = ({
     !data && styles.HideCheck
   );
 
-  const actions = (
-    <DoctorReportErrorActions
-      onBack={() => back()}
-      onConfirmText={buttonTranslations.confirm}
-      onBackText={buttonTranslations.back}
-    />
+  const loadingContent = sendReport.isLoading && (
+    <div>Pošiljanje sporočila...</div>
   );
 
-  return (
-    <form className={beforeSendStyles} onSubmit={onSubmit}>
+  const idleContent = sendReport.isIdle && (
+    <>
       <div>
         <p>Prikazani so samo spremenjeni podatki.</p>
       </div>
@@ -74,7 +79,44 @@ const DoctorReportErrorReadOnlyForm = ({
           />
         )}
       </div>
-      {actions}
+      <DoctorReportErrorActions
+        onBack={() => back()}
+        onConfirmText={buttonTranslations.confirm}
+        onBackText={buttonTranslations.back}
+      />
+    </>
+  );
+
+  const errorContent = sendReport.isError && (
+    <>
+      <div>
+        <p>Napaka pri pošiljanju sporočila.</p>
+      </div>
+      <DoctorReportErrorActions
+        onTryAgain={() => back()}
+        onTryAgainText="Poskusi ponovno"
+        onDone={onEditDone}
+        onDoneText="Zapri"
+      />
+    </>
+  );
+
+  const successContent = sendReport.isSuccess && (
+    <>
+      <div>
+        <p>Sporočilo je bilo uspešno poslano.</p>
+        <p>Okno se bo zaprlo čez 3 sekunde</p>
+      </div>
+      <DoctorReportErrorActions onClose={onEditDone} onCloseText="Zapri" />
+    </>
+  );
+
+  return (
+    <form className={beforeSendStyles} onSubmit={onSubmit}>
+      {loadingContent}
+      {idleContent}
+      {errorContent}
+      {successContent}
     </form>
   );
 };
