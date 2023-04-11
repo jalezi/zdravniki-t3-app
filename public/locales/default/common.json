@@ -32,6 +32,12 @@
     "search": {
         "placeholder": "Išči..."
     },
+    "seconds": {
+        "secondsWithCount_few": "{{count}} sekund",
+        "secondsWithCount_one": "{{count}} sekunda",
+        "secondsWithCount_other": "{{count}} sekund",
+        "secondsWithCount_two": "{{count}} sekundi"
+    },
     "test": "slovensko",
     "timestamps": {
         "at": "ob",

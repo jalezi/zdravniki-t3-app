@@ -30,6 +30,10 @@
     "search": {
         "placeholder": "Cerca..."
     },
+    "seconds": {
+        "secondsWithCount_one": "{{count}} secondo",
+        "secondsWithCount_other": "{{count}} secondi"
+    },
     "test": "italiano",
     "timestamps": {
         "at": "alle",
