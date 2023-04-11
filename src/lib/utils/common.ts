@@ -39,3 +39,31 @@ export const getSiteUrl = () => {
     return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
   return `http://localhost:${process.env.PORT ?? 3000}`;
 };
+
+type FakePromiseResult = {
+  status: 'ok';
+  error: null;
+};
+
+// fake promise to simulate a server call; it should resolve / reject in ration 50/50
+/**
+ *
+ * @param timeout - timeout in ms
+ * @param ratio - ratio of success, 0.5 means 50% of success; 0.1 means 10% of success; 0.9 means 90% of success
+ * @returns
+ */
+export const fakePromise = async (
+  timeout = 2000,
+  ratio = 0.5
+): Promise<FakePromiseResult> => {
+  if (ratio > 1 || ratio < 0)
+    throw new Error('Ratio should be between 0 and 1');
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      Math.random() < ratio
+        ? resolve({ status: 'ok', error: null })
+        : reject({ status: 'error', error: 'Something went wrong' });
+    }, timeout);
+  });
+};

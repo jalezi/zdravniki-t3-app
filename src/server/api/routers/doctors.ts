@@ -6,6 +6,7 @@ import type { PageDrType } from '@/lib/types/dr-type-page';
 import { pageDrTypeSchema } from '@/lib/types/dr-type-page';
 import { instListSchema } from '@/lib/types/institutions';
 import type { RouterOutputs } from '@/lib/utils/api';
+import { fakePromise } from '@/lib/utils/common';
 import {
   createDoctor,
   fetchDrAndInstDataAndParse,
@@ -75,9 +76,11 @@ export const doctorsRouter = createTRPCRouter({
       };
     }),
   // add { input } to the mutation function
-  sendReport: publicProcedure.input(sendReportInputSchema).mutation(() => {
-    return { success: true };
-  }),
+  sendReport: publicProcedure
+    .input(sendReportInputSchema)
+    .mutation(async () => {
+      return fakePromise();
+    }),
 });
 
 export type Doctor = RouterOutputs['doctors']['get']['doctors'][number];
