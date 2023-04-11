@@ -102,7 +102,7 @@ const DoctorReportErrorReadOnlyForm = ({
       </div>
       <DoctorReportErrorActions
         formStatus="error"
-        onTryAgain={() => back()}
+        onTryAgain={onSubmit}
         onTryAgainText={buttonTranslations.tryAgain}
         onDone={onEditDone}
         onDoneText={buttonTranslations.close}
