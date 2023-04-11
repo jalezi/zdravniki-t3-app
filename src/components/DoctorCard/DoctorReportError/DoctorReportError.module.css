@@ -63,10 +63,6 @@
   justify-content: flex-end;
 }
 
-.DoctorReportError__action_container > *:nth-child(2) {
-  margin-left: auto;
-}
-
 .DoctorReportError__action_container .Button {
   --button-font-weight: 600;
 }

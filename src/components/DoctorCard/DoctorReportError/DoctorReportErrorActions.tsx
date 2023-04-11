@@ -34,7 +34,7 @@ type DoctorReportErrorActionsProps =
 
 const DoctorReportErrorActions = (props: DoctorReportErrorActionsProps) => {
   const submitStyles = clsx(styles.Button, styles.Contained);
-  const resetStyles = clsx(styles.Button, styles.Text);
+  const resetStyles = clsx(styles.Button, styles.Text, styles.Right);
   const cancelStyles = clsx(styles.Button, styles.Outlined);
 
   const backStyles = clsx(styles.Button, styles.Text);
