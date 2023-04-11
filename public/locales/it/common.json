@@ -31,6 +31,8 @@
         "placeholder": "Cerca..."
     },
     "seconds": {
+        "inSecondsWithCount_one": "{{count}} secondo",
+        "inSecondsWithCount_other": "{{count}} secondi",
         "secondsWithCount_one": "{{count}} secondo",
         "secondsWithCount_other": "{{count}} secondi"
     },

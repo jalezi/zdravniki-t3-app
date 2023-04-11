@@ -31,6 +31,8 @@
         "placeholder": "Search..."
     },
     "seconds": {
+        "inSecondsWithCount_one": "{{count}} second",
+        "inSecondsWithCount_other": "{{count}} seconds",
         "secondsWithCount_one": "{{count}} second",
         "secondsWithCount_other": "{{count}} seconds"
     },

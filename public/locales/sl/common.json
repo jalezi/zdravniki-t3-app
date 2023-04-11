@@ -33,6 +33,10 @@
         "placeholder": "Išči..."
     },
     "seconds": {
+        "inSecondsWithCount_few": "{{count}} sekund",
+        "inSecondsWithCount_one": "{{count}} sekundo",
+        "inSecondsWithCount_other": "{{count}} sekund",
+        "inSecondsWithCount_two": "{{count}} sekundi",
         "secondsWithCount_few": "{{count}} sekund",
         "secondsWithCount_one": "{{count}} sekunda",
         "secondsWithCount_other": "{{count}} sekund",
