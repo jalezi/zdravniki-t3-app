@@ -4,7 +4,10 @@ import { useForm } from 'react-hook-form';
 
 import { CountDown } from '@/components/Shared/CountDown';
 import { api } from '@/lib/utils/api';
-import type { SendReportInput } from '@/server/api/routers/doctors';
+import type {
+  SendReportInput,
+  SendReportInputNotNull,
+} from '@/server/api/routers/doctors';
 
 import styles from './DoctorReportError.module.css';
 import DoctorReportErrorActions from './DoctorReportErrorActions';
@@ -15,8 +18,8 @@ import useDoctorReportErrorTranslations from './useDoctorReportErrorTranslations
 const CLOSE_TIMEOUT = 3000;
 
 type DoctorReportErrorReadOnlyFormProps = {
-  data: SendReportInput | null;
-  initialData: SendReportInput;
+  data: SendReportInputNotNull | null;
+  initialData: SendReportInputNotNull;
   back: () => void;
   onEditDone: DoctorReportErrorProps['onEditDone'];
 };
@@ -33,7 +36,7 @@ const DoctorReportErrorReadOnlyForm = ({
     notifications: notificationTransaltions,
   } = useDoctorReportErrorTranslations();
 
-  const { register, handleSubmit } = useForm<SendReportInput>({
+  const { register, handleSubmit } = useForm<SendReportInputNotNull>({
     defaultValues: data ?? undefined,
   });
 
@@ -57,7 +60,23 @@ const DoctorReportErrorReadOnlyForm = ({
   const onSubmit = handleSubmit((data, e) => {
     if (!e) return;
     e.preventDefault();
-    sendReport.mutate(data);
+
+    const onlyChangedData: SendReportInput = {
+      accepts: data.accepts !== initialData.accepts ? data.accepts : null,
+      address: data.address !== initialData.address ? data.address : null,
+      availability:
+        data.availability !== initialData.availability
+          ? data.availability
+          : null,
+      email: data.email !== initialData.email ? data.email : null,
+      note: data.note !== initialData.note ? data.note : null,
+      phone: data.phone !== initialData.phone ? data.phone : null,
+      orderform:
+        data.orderform !== initialData.orderform ? data.orderform : null,
+      website: data.website !== initialData.website ? data.website : null,
+    };
+
+    sendReport.mutate(onlyChangedData);
   });
 
   const beforeSendStyles = clsx(

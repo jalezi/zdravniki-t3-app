@@ -13,7 +13,10 @@ import {
 } from '@/components/Shared/Icons';
 import { Input } from '@/components/Shared/Inputs/Input';
 import { Select } from '@/components/Shared/Selects/Select';
-import type { SendReportInput } from '@/server/api/routers/doctors';
+import type {
+  SendReportInput,
+  SendReportInputNotNull,
+} from '@/server/api/routers/doctors';
 
 import { AddRemoveField } from './AddRemoveField';
 import styles from './DoctorReportError.module.css';
@@ -41,7 +44,9 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
   const [noteLength, setNoteLength] = useState<number>(
     noteRef.current?.value.length ?? 0
   );
-  const [dataToSend, setDataToSend] = useState<SendReportInput | null>(null);
+  const [dataToSend, setDataToSend] = useState<SendReportInputNotNull | null>(
+    null
+  );
 
   // react-hook-form
   const {

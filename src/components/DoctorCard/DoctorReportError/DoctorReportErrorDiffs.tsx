@@ -4,7 +4,7 @@ import type { UseFormRegister } from 'react-hook-form';
 import { Chip } from '@/components/Shared/Chip';
 import type { IconName } from '@/components/Shared/Icons';
 import { Typography } from '@/components/Shared/Typography';
-import type { SendReportInput } from '@/server/api/routers/doctors';
+import type { SendReportInputNotNull } from '@/server/api/routers/doctors';
 
 import styles from './DoctorReportError.module.css';
 import useDoctorReportErrorTranslations from './useDoctorReportErrorTranslations';
@@ -18,12 +18,12 @@ const INPUT_ICONS_MAP = {
   accepts: undefined,
   availability: undefined,
   phone: 'PhoneSvg',
-} satisfies Record<keyof SendReportInput, IconName | undefined>;
+} satisfies Record<keyof SendReportInputNotNull, IconName | undefined>;
 
 type DoctorReportErrorDiffsProps = {
-  data: SendReportInput;
-  initialData: SendReportInput;
-  register: UseFormRegister<SendReportInput>;
+  data: SendReportInputNotNull;
+  initialData: SendReportInputNotNull;
+  register: UseFormRegister<SendReportInputNotNull>;
 };
 
 function DoctorReportErrosDiffs({
@@ -37,7 +37,7 @@ function DoctorReportErrosDiffs({
     inputs: inputTranslations,
   } = useDoctorReportErrorTranslations();
   const diffs = Object.entries(data).map(([label, value]) => {
-    const _label = label as keyof SendReportInput;
+    const _label = label as keyof SendReportInputNotNull;
     const iconName = INPUT_ICONS_MAP[`${_label}`];
 
     const _value = _label === 'accepts' ? (value === 'y' ? yes : no) : value;
@@ -72,7 +72,7 @@ function DoctorReportErrosDiffs({
         <input
           value={value}
           hidden
-          {...register(label as keyof SendReportInput)}
+          {...register(label as keyof SendReportInputNotNull)}
         />
       </div>
     ) : null;
