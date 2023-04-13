@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import type { DrListSchema } from '@/lib/types/doctors';
-import { drListSchema } from '@/lib/types/doctors';
+import { drCSVTypeSchema, drListSchema } from '@/lib/types/doctors';
 import type { PageDrType } from '@/lib/types/dr-type-page';
 import { pageDrTypeSchema } from '@/lib/types/dr-type-page';
 import { instListSchema } from '@/lib/types/institutions';
@@ -15,17 +15,35 @@ import {
 import { createTRPCRouter, publicProcedure } from '../trpc';
 
 const sendReportInputSchema = z.object({
-  accepts: z.enum(['y', 'n']),
-  address: z.string(),
-  availability: z.string(),
-  email: z.string(),
-  note: z.string(),
-  phone: z.string(),
-  orderform: z.string(),
-  website: z.string(),
+  fromUser: z.object({
+    accepts: z.enum(['y', 'n']).nullable(),
+    address: z.string().nullable(),
+    availability: z.string().nullable(),
+    email: z.string().nullable(),
+    note: z.string().nullable(),
+    phone: z.string().nullable(),
+    orderform: z.string().nullable(),
+    website: z.string().nullable(),
+  }),
+  fixed: z.object({
+    name: z.string(),
+    url: z.string(),
+    type: drCSVTypeSchema,
+    instId: z.string(),
+    provider: z.string(),
+  }),
 });
 
 export type SendReportInput = z.infer<typeof sendReportInputSchema>;
+
+export type SendReportInputFromUser = SendReportInput['fromUser'];
+export type SendReportInputFixed = SendReportInput['fixed'];
+export type SendReportInputUserNotNull = {
+  [key in keyof SendReportInputFromUser]: Exclude<
+    SendReportInputFromUser[key],
+    null
+  >;
+};
 
 const filterDoctors = (
   doctors: DrListSchema,

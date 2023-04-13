@@ -35,14 +35,23 @@ export type FormData = z.infer<typeof formDataSchema>;
 
 export type DoctorReportErrorDataProps = {
   data: {
-    address: Doctor['location']['address']['fullAddress'];
-    accepts: Doctor['accepts'];
-    availability: Doctor['availability'];
-    email: Doctor['email'];
-    note: Doctor['override']['note'];
-    phones: Doctor['phones'];
-    orderform: Doctor['orderform'];
-    websites: Doctor['websites'];
+    fromUser: {
+      address: Doctor['location']['address']['fullAddress'];
+      accepts: Doctor['accepts'];
+      availability: Doctor['availability'];
+      email: Doctor['email'];
+      note: Doctor['override']['note'];
+      phones: Doctor['phones'];
+      orderform: Doctor['orderform'];
+      websites: Doctor['websites'];
+    };
+    fixed: {
+      name: string;
+      url: string;
+      type: Doctor['type'];
+      instId: string; // Doctor["institution"]["id"] does not work (TS complains)
+      provider: string;
+    };
   };
 };
 

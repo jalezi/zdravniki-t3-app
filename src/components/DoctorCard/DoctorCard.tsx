@@ -11,7 +11,7 @@ import { Button } from '@/components/Shared/Buttons';
 import { Icon } from '@/components/Shared/Icons';
 import useBoundStore from '@/lib/store/useBoundStore';
 import type { Locale } from '@/lib/types/i18n';
-import { formatDate } from '@/lib/utils/common';
+import { formatDate, getSiteUrl } from '@/lib/utils/common';
 import { stringifyHash } from '@/lib/utils/url-hash';
 import type { Doctor } from '@/server/api/routers/doctors';
 
@@ -93,7 +93,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
     );
   };
 
-  const formData: DoctorReportErrorDataProps['data'] = {
+  const formData: DoctorReportErrorDataProps['data']['fromUser'] = {
     address: doctor.location.address.fullAddress,
     accepts: doctor.accepts,
     availability: doctor.availability,
@@ -103,6 +103,18 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
     phones: doctor.phones,
     websites: doctor.websites,
   };
+
+  const fixedData: DoctorReportErrorDataProps['data']['fixed'] & {
+    provider: string;
+  } = {
+    name: doctor.name,
+    url: getSiteUrl() + router.asPath,
+    instId: doctor.idInst,
+    type: doctor.type,
+    provider: doctor.provider ?? '',
+  };
+
+  const data = { fromUser: formData, fixed: fixedData };
 
   return (
     <div className={doctorCardStyles}>
@@ -172,7 +184,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
                 <p>{tDoctor('reportError.text')}</p>
               </div>
             </header>
-            <DoctorReportError.Form data={formData} onEditDone={onEditDone} />
+            <DoctorReportError.Form data={data} onEditDone={onEditDone} />
           </DoctorReportError.Container>
         </Portal>
       )}

@@ -14,8 +14,8 @@ import {
 import { Input } from '@/components/Shared/Inputs/Input';
 import { Select } from '@/components/Shared/Selects/Select';
 import type {
-  SendReportInput,
-  SendReportInputNotNull,
+  SendReportInputFromUser,
+  SendReportInputUserNotNull,
 } from '@/server/api/routers/doctors';
 
 import { AddRemoveField } from './AddRemoveField';
@@ -44,9 +44,8 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
   const [noteLength, setNoteLength] = useState<number>(
     noteRef.current?.value.length ?? 0
   );
-  const [dataToSend, setDataToSend] = useState<SendReportInputNotNull | null>(
-    null
-  );
+  const [dataToSend, setDataToSend] =
+    useState<SendReportInputUserNotNull | null>(null);
 
   // react-hook-form
   const {
@@ -57,10 +56,10 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      ...data,
-      websites: data.websites.map(website => ({ website })),
-      phones: data.phones.map(phone => ({ phone })),
-      availability: data.availability.toString(),
+      ...data.fromUser,
+      websites: data.fromUser.websites.map(website => ({ website })),
+      phones: data.fromUser.phones.map(phone => ({ phone })),
+      availability: data.fromUser.availability.toString(),
     },
     resolver: zodResolver(formDataSchema),
     mode: 'onChange',
@@ -84,18 +83,21 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
 
     const mutationInput = getMutationInput(formData);
     const initialValues = getMutationInput({
-      ...data,
-      availability: data.availability.toString(),
-      phones: [...data.phones.map(phone => ({ phone }))] as FormData['phones'],
+      ...data.fromUser,
+      availability: data.fromUser.availability.toString(),
+      phones: [
+        ...data.fromUser.phones.map(phone => ({ phone })),
+      ] as FormData['phones'],
       websites: [
-        ...data.websites.map(website => ({
+        ...data.fromUser.websites.map(website => ({
           website,
         })),
       ] as FormData['websites'],
     });
 
     const isDifference = Object.entries(mutationInput).some(
-      ([key, value]) => value !== initialValues[key as keyof SendReportInput]
+      ([key, value]) =>
+        value !== initialValues[key as keyof SendReportInputFromUser]
     );
 
     if (!isDifference) {
@@ -287,15 +289,16 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
         <DoctorReportErrorReadOnlyForm
           data={dataToSend}
           initialData={{
-            address: data.address,
-            accepts: data.accepts,
-            availability: data.availability.toString(),
-            email: data.email,
-            note: data.note,
-            orderform: data.orderform,
-            phone: data.phones.join(', '),
-            website: data.websites.join(', '),
+            address: data.fromUser.address,
+            accepts: data.fromUser.accepts,
+            availability: data.fromUser.availability.toString(),
+            email: data.fromUser.email,
+            note: data.fromUser.note,
+            orderform: data.fromUser.orderform,
+            phone: data.fromUser.phones.join(', '),
+            website: data.fromUser.websites.join(', '),
           }}
+          fixed={data.fixed}
           back={() => setDataToSend(null)}
           onEditDone={onEditDone}
         />

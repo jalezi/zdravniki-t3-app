@@ -5,8 +5,9 @@ import { useForm } from 'react-hook-form';
 import { CountDown } from '@/components/Shared/CountDown';
 import { api } from '@/lib/utils/api';
 import type {
-  SendReportInput,
-  SendReportInputNotNull,
+  SendReportInputFixed,
+  SendReportInputFromUser,
+  SendReportInputUserNotNull,
 } from '@/server/api/routers/doctors';
 
 import styles from './DoctorReportError.module.css';
@@ -18,8 +19,9 @@ import useDoctorReportErrorTranslations from './useDoctorReportErrorTranslations
 const CLOSE_TIMEOUT = 3000;
 
 type DoctorReportErrorReadOnlyFormProps = {
-  data: SendReportInputNotNull | null;
-  initialData: SendReportInputNotNull;
+  data: SendReportInputUserNotNull | null;
+  fixed: SendReportInputFixed;
+  initialData: SendReportInputUserNotNull;
   back: () => void;
   onEditDone: DoctorReportErrorProps['onEditDone'];
 };
@@ -29,6 +31,7 @@ const DoctorReportErrorReadOnlyForm = ({
   back,
   onEditDone,
   initialData,
+  fixed,
 }: DoctorReportErrorReadOnlyFormProps) => {
   // translations
   const {
@@ -36,7 +39,7 @@ const DoctorReportErrorReadOnlyForm = ({
     notifications: notificationTransaltions,
   } = useDoctorReportErrorTranslations();
 
-  const { register, handleSubmit } = useForm<SendReportInputNotNull>({
+  const { register, handleSubmit } = useForm<SendReportInputUserNotNull>({
     defaultValues: data ?? undefined,
   });
 
@@ -61,7 +64,7 @@ const DoctorReportErrorReadOnlyForm = ({
     if (!e) return;
     e.preventDefault();
 
-    const onlyChangedData: SendReportInput = {
+    const onlyChangedData: SendReportInputFromUser = {
       accepts: data.accepts !== initialData.accepts ? data.accepts : null,
       address: data.address !== initialData.address ? data.address : null,
       availability:
@@ -76,7 +79,10 @@ const DoctorReportErrorReadOnlyForm = ({
       website: data.website !== initialData.website ? data.website : null,
     };
 
-    sendReport.mutate(onlyChangedData);
+    sendReport.mutate({
+      fromUser: onlyChangedData,
+      fixed,
+    });
   });
 
   const beforeSendStyles = clsx(

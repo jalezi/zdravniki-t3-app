@@ -1,8 +1,10 @@
-import type { SendReportInputNotNull } from '@/server/api/routers/doctors';
+import type { SendReportInputUserNotNull } from '@/server/api/routers/doctors';
 
 import type { FormData } from './types';
 
-export const getMutationInput = (data: FormData): SendReportInputNotNull => {
+export const getMutationInput = (
+  data: FormData
+): SendReportInputUserNotNull => {
   const website = data.websites.map(({ website }) => website).join(', ');
   const phone = data.phones.map(({ phone }) => phone).join(', ');
   return {
