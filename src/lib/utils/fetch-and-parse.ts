@@ -41,8 +41,10 @@ export const fetchDrAndInstDataAndParse = async () => {
     );
   }
 
-  const doctorsResult = await doctorsResponse.text();
-  const institutionsResult = await institutionsResponse.text();
+  const [doctorsResult, institutionsResult] = await Promise.all([
+    doctorsResponse.text(),
+    institutionsResponse.text(),
+  ]);
 
   const doctorsParsedFromCsv = Papa.parse(doctorsResult, PARSE_OPTIONS);
   const institutionsParsedFromCsv = Papa.parse(
