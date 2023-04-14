@@ -2,7 +2,19 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: var(--basic-info-gap, 0);
+}
+
+.BasicInfo.List {
+  --basic-info-gap: 0;
+}
+
+.BasicInfo.Popup {
+  --basic-info-gap: 0.5em;
+}
+
+.BasicInfo.Page {
+  --basic-info-gap: 0.5em;
 }
 
 .BasicInfo .TypeContainer {

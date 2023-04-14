@@ -50,7 +50,13 @@ const DrBasicInfo = ({ variant = 'list', ...props }: DrBasicInfoProps) => {
     returnObjects: true,
   }) satisfies { title: string; description: string };
 
-  const basicStyles = clsx(styles.BasicInfo, props.className);
+  const basicStyles = clsx(
+    styles.BasicInfo,
+    variant === 'list' && styles.List,
+    variant === 'popup' && styles.Popup,
+    variant === 'page' && styles.Page,
+    props.className
+  );
 
   const extraId = `${props.drId}_extra_${variant}`;
   const floatingId = `${props.drId}_floating_${variant}`;
