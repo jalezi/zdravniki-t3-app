@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.825em;
+  gap: 0;
 }
 
 .BasicInfo .TypeContainer {

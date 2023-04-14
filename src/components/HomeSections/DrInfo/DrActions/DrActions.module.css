@@ -12,6 +12,10 @@
   align-self: center;
 }
 
+.DrActions > .Phone {
+  --icon-button-size: 1.5em;
+}
+
 .DrActions .Tooltip {
   padding-inline: 0;
   color: inherit;

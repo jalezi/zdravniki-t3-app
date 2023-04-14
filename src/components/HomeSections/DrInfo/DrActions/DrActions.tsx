@@ -150,6 +150,7 @@ const DrActions = ({
       <Phone
         id={phoneId}
         href={phones[0] ? `tel: ${phones[0]}` : undefined}
+        className={styles.Phone}
         tooltipContent={
           phones[0] ? (
             <ul>

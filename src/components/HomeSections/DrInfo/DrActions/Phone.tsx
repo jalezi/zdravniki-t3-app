@@ -9,9 +9,15 @@ export type PhoneButtonProps = {
   id: string;
   href?: string;
   tooltipContent: ReactElement | string | undefined;
+  className?: string;
 };
 
-export const PhoneButton = ({ id, href, tooltipContent }: PhoneButtonProps) => {
+export const PhoneButton = ({
+  className,
+  id,
+  href,
+  tooltipContent,
+}: PhoneButtonProps) => {
   const aOrButtonAttrs = href
     ? ({ as: 'a', href } as const)
     : ({ type: 'button', ['aria-disabled']: true } as const);
@@ -22,6 +28,7 @@ export const PhoneButton = ({ id, href, tooltipContent }: PhoneButtonProps) => {
         id={id}
         {...aOrButtonAttrs}
         aria-label={href ? 'Call doctor' : 'No phone number'}
+        className={className}
       >
         {href ? <PhoneSvg /> : <PhoneNoneSvg />}
       </IconButton>
