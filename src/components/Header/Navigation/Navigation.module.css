@@ -73,6 +73,7 @@
   }
   .Navigation .navLinks.last {
     flex-direction: row;
+    gap: 0.25em;
     margin-bottom: unset;
   }
 }

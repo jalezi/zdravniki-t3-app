@@ -21,10 +21,8 @@ const Navigation = (_: unknown, ref: Ref<HTMLDivElement>) => {
       </ul>
       <ul className={navLinksLastStyles}>
         <SocialLinks />
-        <li>
-          <LanguageSelector />
-        </li>
       </ul>
+      <LanguageSelector />
     </nav>
   );
 };

@@ -82,14 +82,14 @@ export const PageLinks = () => {
 
 const socialLinks = [
   {
-    href: 'https://twitter.com/sledilnik',
-    label: 'Twitter',
-    icon: <TwSvg />,
-  },
-  {
     href: 'https://www.facebook.com/sledilnik',
     label: 'Facebook',
     icon: <FbSvg />,
+  },
+  {
+    href: 'https://twitter.com/sledilnik',
+    label: 'Twitter',
+    icon: <TwSvg />,
   },
 ];
 
