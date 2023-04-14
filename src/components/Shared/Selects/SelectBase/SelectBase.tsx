@@ -151,6 +151,7 @@ const SelectBase = (
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         onClick={onToggle}
+        tabIndex={readOnly ? -1 : 0}
         onKeyDown={e => {
           if (e.key === 'Enter' || e.key === ' ') {
             onToggle();
