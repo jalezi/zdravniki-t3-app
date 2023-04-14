@@ -21,22 +21,15 @@ const langs: Langs = {
   SL: 'Slovenščina',
 };
 
-const flags = {
-  EN: '🇬🇧',
-  IT: '🇮🇹',
-  SL: '🇸🇮',
-} as const;
-
 const LanguageSelector = () => {
   const router = useRouter();
   const { width } = useWindowSize();
   const isMediumMediaQuery = width >= BREAKPOINTS.md;
   const options = Object.entries(langs).map(([value, label]) => {
-    const flag = flags[`${value as keyof typeof flags}`];
     return {
       value,
-      label: flag + ' ' + label,
-      valueToShow: flag + ' ' + value.toUpperCase(),
+      label,
+      valueToShow: value.toUpperCase(),
     };
   }) satisfies SelectBaseOption[];
 

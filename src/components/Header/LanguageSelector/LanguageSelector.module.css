@@ -1,5 +1,5 @@
 .LanguageSelector {
-  --select-base-input-width: 5ch;
+  --select-base-input-width: 3ch;
 
   /* selected option vars */
   --select-base-selected-max-width: 8ch;
@@ -25,8 +25,14 @@
   --select-base-dropdown-border-radius: 0.4em;
 }
 
+.LanguageSelector.SelectBase__dropdown_item {
+  padding-block: 0.25em;
+  padding-inline: 0.5em;
+}
+
 .LanguageSelector.SelectBase__dropdown_item[aria-selected='true'] {
   --select-base-dropdown-color: var(--color-black-A87);
+  --select-base-dropdown-item-color: var(--color-black-A87);
 
   text-decoration: underline;
 }

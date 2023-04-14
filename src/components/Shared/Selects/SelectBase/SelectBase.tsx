@@ -161,13 +161,9 @@ const SelectBase = (
         data-label={selected ? selected.label : placeholder}
         data-name={name}
       >
-        <input
-          id={id}
-          value={selected?.valueToShow}
-          readOnly
-          className={inputStyles}
-          aria-hidden="true"
-        />
+        <span id={id} className={inputStyles} aria-hidden="true">
+          {selected?.valueToShow}
+        </span>
         <span className="sr-only">{placeholder}</span>
         <span className={styles.SelectBase__caret} aria-hidden="true">
           {isOpen ? <CaretUpSvg /> : <CaretDownSvg />}
