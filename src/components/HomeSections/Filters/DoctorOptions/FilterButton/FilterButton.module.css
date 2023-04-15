@@ -42,7 +42,7 @@
   gap: 0.5em;
 }
 
-.FilterButtonText.isActive.AlwaysText {
+.FilterButtonText.isActive {
   margin-right: 0.5em;
 }
 
