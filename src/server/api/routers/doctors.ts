@@ -1,18 +1,53 @@
 import { z } from 'zod';
 
+import { env } from '@/env/server.mjs';
 import type { DrListSchema } from '@/lib/types/doctors';
 import { drCSVTypeSchema, drListSchema } from '@/lib/types/doctors';
 import type { PageDrType } from '@/lib/types/dr-type-page';
 import { pageDrTypeSchema } from '@/lib/types/dr-type-page';
 import { instListSchema } from '@/lib/types/institutions';
 import type { RouterOutputs } from '@/lib/utils/api';
-import { fakePromise } from '@/lib/utils/common';
 import {
   createDoctor,
   fetchDrAndInstDataAndParse,
 } from '@/lib/utils/fetch-and-parse';
 
 import { createTRPCRouter, publicProcedure } from '../trpc';
+
+const {
+  GOOGLE_FORM_ID,
+  GOOGLE_FORM_INPUT_ACCEPTS,
+  GOOGLE_FORM_INPUT_ADDRESS,
+  GOOGLE_FORM_INPUT_AVAILABILITY,
+  GOOGLE_FORM_INPUT_EMAIL,
+  GOOGLE_FORM_INPUT_INSTID,
+  GOOGLE_FORM_INPUT_NAME,
+  GOOGLE_FORM_INPUT_NOTE,
+  GOOGLE_FORM_INPUT_ORDERFORM,
+  GOOGLE_FORM_INPUT_PHONE,
+  GOOGLE_FORM_INPUT_PROVIDER,
+  GOOGLE_FORM_INPUT_TYPE,
+  GOOGLE_FORM_INPUT_URL,
+  GOOGLE_FORM_INPUT_WEBSITE,
+} = env;
+
+const GOOGLE_FORM_INPUTS = {
+  accepts: GOOGLE_FORM_INPUT_ACCEPTS,
+  address: GOOGLE_FORM_INPUT_ADDRESS,
+  availability: GOOGLE_FORM_INPUT_AVAILABILITY,
+  email: GOOGLE_FORM_INPUT_EMAIL,
+  instId: GOOGLE_FORM_INPUT_INSTID,
+  name: GOOGLE_FORM_INPUT_NAME,
+  note: GOOGLE_FORM_INPUT_NOTE,
+  orderform: GOOGLE_FORM_INPUT_ORDERFORM,
+  phone: GOOGLE_FORM_INPUT_PHONE,
+  provider: GOOGLE_FORM_INPUT_PROVIDER,
+  type: GOOGLE_FORM_INPUT_TYPE,
+  url: GOOGLE_FORM_INPUT_URL,
+  website: GOOGLE_FORM_INPUT_WEBSITE,
+} as const;
+
+const FORM_URL = `https://docs.google.com/forms/d/${GOOGLE_FORM_ID}/formResponse`;
 
 const sendReportInputSchema = z.object({
   fromUser: z.object({
@@ -93,11 +128,46 @@ export const doctorsRouter = createTRPCRouter({
         },
       };
     }),
-  // add { input } to the mutation function
   sendReport: publicProcedure
     .input(sendReportInputSchema)
-    .mutation(async () => {
-      return fakePromise();
+    .mutation(async ({ input }) => {
+      const { fromUser, fixed } = input;
+      const reportData = { ...fromUser, ...fixed } as const;
+
+      const formData = new FormData();
+
+      Object.entries(reportData).forEach(([key, value]) => {
+        formData.append(
+          `entry.${
+            GOOGLE_FORM_INPUTS[`${key as keyof typeof GOOGLE_FORM_INPUTS}`]
+          }`,
+          value ?? 'null'
+        );
+      });
+
+      const FORM_FETCH_OPTIONS = {
+        method: 'POST',
+        mode: 'no-cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        redirect: 'follow',
+        referrerPolicy: 'unsafe-url',
+        body: formData,
+      } as const;
+
+      const response = await fetch(FORM_URL, FORM_FETCH_OPTIONS);
+      if (response.ok) {
+        return { success: true };
+      }
+
+      console.error(response);
+      throw new Error(
+        `Failed to send report to Google Form with status: ${response.status} ${response.statusText}`,
+        { cause: response }
+      );
     }),
 });
 
