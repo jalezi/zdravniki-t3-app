@@ -46,9 +46,12 @@
 .Navigation .navLinks.last {
   flex-direction: row;
   flex-grow: 0;
+  gap: 0.25em;
   align-items: center;
+
   margin-bottom: 1em;
 }
+
 .Navigation .navLinks.last > li:last-child {
   margin-left: auto;
 }
@@ -75,5 +78,9 @@
     flex-direction: row;
     gap: 0.25em;
     margin-bottom: unset;
+  }
+
+  .Navigation .navLinks.last > li:last-child {
+    margin-left: 0.5em;
   }
 }
