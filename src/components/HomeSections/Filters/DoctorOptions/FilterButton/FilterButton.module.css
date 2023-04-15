@@ -39,6 +39,15 @@
   font-size: 0.75rem;
 }
 
+.FilterButtonText.AlwaysText {
+  width: auto;
+  height: auto;
+}
+
+.FilterButton:has(.AlwaysText) {
+  gap: 0.5em;
+}
+
 .FilterButtonText.isActive {
   overflow: hidden;
   flex-grow: 1;

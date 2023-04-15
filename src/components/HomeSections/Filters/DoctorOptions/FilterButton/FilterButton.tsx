@@ -13,15 +13,16 @@ type Props = ButtonInternalProps & {
   Icon?: any;
   text: string;
   isActive?: boolean;
+  alwaysText?: boolean;
 };
 
 type FilterButtonComponent = (
-  { Icon, text, isActive, ...ploymorphicPros }: Props,
+  { Icon, text, isActive, alwaysText, ...ploymorphicPros }: Props,
   ref: Ref<HTMLElement>
 ) => React.ReactElement | null;
 
 const FilterButton: FilterButtonComponent = (
-  { Icon, text, isActive, ...props }: Props,
+  { Icon, text, isActive, alwaysText, ...props }: Props,
   ref: Ref<HTMLElement>
 ) => {
   const { className, ...rest } = props;
@@ -35,7 +36,11 @@ const FilterButton: FilterButtonComponent = (
 
   const iconStyles = clsx(styles.FilterButtonIcon, isActive && styles.isActive);
 
-  const textStyles = clsx(styles.FilterButtonText, isActive && styles.isActive);
+  const textStyles = clsx(
+    styles.FilterButtonText,
+    isActive && styles.isActive,
+    alwaysText && styles.AlwaysText
+  );
 
   return (
     <Button ref={ref} radius="xxl" className={combinedStyles} {...rest}>
@@ -44,7 +49,9 @@ const FilterButton: FilterButtonComponent = (
           <Icon />
         </span>
       ) : null}
-      <span className={textStyles}>{text}</span>
+      {isActive || alwaysText ? (
+        <span className={textStyles}>{text}</span>
+      ) : null}
     </Button>
   );
 };

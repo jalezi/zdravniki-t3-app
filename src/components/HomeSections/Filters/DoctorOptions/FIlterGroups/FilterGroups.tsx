@@ -3,7 +3,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
+import { useWindowSize } from 'usehooks-ts';
 
+import { BREAKPOINTS } from '@/lib/constants';
 import useBoundStore from '@/lib/store/useBoundStore';
 import {
   drTypeAcceptsOrRejectSchema,
@@ -33,6 +35,8 @@ const FilterGroups = () => {
   const { query } = useRouter();
   const accepts = useBoundStore(state => state.accepts);
   const setAccepts = useBoundStore(state => state.setAccepts);
+  const { width } = useWindowSize();
+  const isLargeMediumQuery = width >= BREAKPOINTS.lg;
 
   useEffect(() => {
     const documentLocHash = document.location.hash;
@@ -65,6 +69,7 @@ const FilterGroups = () => {
             passHref
             as={Link}
             isActive={query.type?.includes(item.value)}
+            alwaysText={isLargeMediumQuery}
           />
         ))}
       </div>
