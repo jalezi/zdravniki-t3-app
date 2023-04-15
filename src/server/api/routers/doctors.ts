@@ -150,9 +150,6 @@ export const doctorsRouter = createTRPCRouter({
         mode: 'no-cors',
         cache: 'no-cache',
         credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         redirect: 'follow',
         referrerPolicy: 'unsafe-url',
         body: formData,
