@@ -7,7 +7,7 @@
   padding-inline: var(--px-chip, 0.5em);
 
   font-size: var(--font-size-chip, 1rem);
-  line-height: 1;
+  line-height: normal;
   color: var(--color-chip-text, inherit);
 
   background-color: var(--color-chip-background, transparent);

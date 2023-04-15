@@ -1,9 +1,10 @@
 .FilterButton {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1.786em auto;
   align-items: center;
   justify-content: center;
 
-  min-width: calc(var(--size-container) - var(--padding__content__group) * 2);
   height: 100%;
   padding-inline: 0.5em;
 
@@ -11,19 +12,13 @@
 }
 
 .FilterButton.isActive {
-  flex-grow: 1;
   gap: 0.5em;
-
-  min-width: 48px;
-
   color: var(--color-white);
-
   background: var(--color-blue-850);
 }
 
 .FilterButtonIcon {
   display: grid;
-  flex-shrink: 0;
   place-items: center;
 }
 
@@ -34,31 +29,21 @@
 
 .FilterButtonText {
   overflow: hidden;
-  width: 0;
-  height: 0;
   font-size: 0.75rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .FilterButtonText.AlwaysText {
-  width: auto;
-  height: auto;
+  margin-right: 0.5em;
 }
 
 .FilterButton:has(.AlwaysText) {
   gap: 0.5em;
 }
 
-.FilterButtonText.isActive {
-  overflow: hidden;
-  flex-grow: 1;
-
-  min-width: 5ch;
-  max-width: max-content;
-  height: auto;
-  margin-inline: auto;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.FilterButtonText.isActive.AlwaysText {
+  margin-right: 0.5em;
 }
 
 @media (hover: hover) {
