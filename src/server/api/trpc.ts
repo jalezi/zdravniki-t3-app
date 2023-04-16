@@ -38,6 +38,14 @@ const createInnerTRPCContext = (_opts: CreateContextOptions) => {
   return {};
 };
 
+// I need this to get types to work properly;
+export const createContext = ({ req, res }: CreateNextContextOptions) => {
+  return {
+    req,
+    res,
+  };
+};
+
 /**
  * This is the actual context you will use in your router. It will be used to
  * process every request that goes through your tRPC endpoint.
@@ -45,7 +53,7 @@ const createInnerTRPCContext = (_opts: CreateContextOptions) => {
  * @see https://trpc.io/docs/context
  */
 export const createTRPCContext = (_opts: CreateNextContextOptions) => {
-  return createInnerTRPCContext({});
+  return createContext({ ...createInnerTRPCContext({}), ..._opts }); // also not sure if this is the right way to do this
 };
 
 /**
