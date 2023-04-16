@@ -87,6 +87,11 @@ const FilterGroups = () => {
               )}
               passHref
               isActive={item.isActive(query?.type as string, item.value)}
+              aria-label={
+                item.isActive(query?.type as string, item.value)
+                  ? undefined
+                  : item.translationKey
+              }
             />
           ))}
         </div>
@@ -105,6 +110,11 @@ const FilterGroups = () => {
                 EXTRA_HREF_SUFFIX[item.value]
               )}
               isActive={item.isActive(query?.type as string, item.value)}
+              aria-label={
+                item.isActive(query?.type as string, item.value)
+                  ? undefined
+                  : item.translationKey
+              }
             />
           ))}
         </div>
@@ -121,6 +131,9 @@ const FilterGroups = () => {
               type="button"
               isActive={item.value === accepts}
               onClick={() => onAcceptsChange(item.value)}
+              aria-label={
+                item.value === accepts ? undefined : item.translationKey
+              }
             />
           ))}
         </div>
