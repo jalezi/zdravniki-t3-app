@@ -80,6 +80,8 @@ type DrTypeChipProps = {
   size?: ChipProps['size'];
   iconSize?: ChipProps['iconSize'];
   variant?: 'text' | 'contained';
+  className?: string;
+  textOverflowHidden?: boolean;
 };
 
 export const DrTypeChip = ({
@@ -88,12 +90,20 @@ export const DrTypeChip = ({
   size = 'sm',
   iconSize = 'xl',
   variant = 'text',
+  className,
+  textOverflowHidden = false,
 }: DrTypeChipProps) => {
   const DrTypeSvg = DR_TYPE_SVG[`${drType}`];
 
   const chipStyles = clsx(
     styles.DrTypeChip,
-    variant === 'contained' && styles.WithBg
+    variant === 'contained' && styles.WithBg,
+    className
+  );
+
+  const textStyles = clsx(
+    styles.DrTypeChipText,
+    textOverflowHidden && styles.TextOverflowHidden
   );
 
   return (
@@ -103,6 +113,7 @@ export const DrTypeChip = ({
       iconSize={iconSize}
       text={text}
       className={chipStyles}
+      textClassName={textStyles}
     />
   );
 };

@@ -32,3 +32,9 @@
 .DrTypeChip.Floating.WithBg {
   --color-bg-dr-type: var(--color-blue-150);
 }
+
+.DrTypeChip > .TextOverflowHidden {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

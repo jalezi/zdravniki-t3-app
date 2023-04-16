@@ -23,6 +23,7 @@ type CustomChipProps = {
   text?: string;
   size?: ChipSize;
   iconSize?: IconSize;
+  textClassName?: string;
 };
 export type ChipProps = CustomChipProps &
   Omit<PolymorphicComponentProps<'span'>, 'children' | 'as'>;
@@ -33,14 +34,17 @@ const Chip = ({
   iconName,
   iconSize,
   text,
+  textClassName,
   ...props
 }: ChipProps) => {
   const chipStyles = clsx(styles.Chip, SizeStyles[`${size}`], className);
 
+  const textStyles = clsx(textClassName);
+
   return (
     <Polymorphic as="span" className={chipStyles} {...props}>
       {iconName ? <Icon name={iconName} size={iconSize ?? size} /> : null}
-      {text ? <span>{text}</span> : null}
+      {text ? <span className={textStyles}>{text}</span> : null}
     </Polymorphic>
   );
 };

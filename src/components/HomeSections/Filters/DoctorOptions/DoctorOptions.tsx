@@ -61,16 +61,33 @@ const DoctorOptions = () => {
           onClick={onToggleClick}
           className={drOptionTogglerStyles}
         >
-          <Chip iconName="FilterSvg" size="md" iconSize="lg" text="" />
-          <span>Filter</span>
+          <Chip
+            iconName="FilterSvg"
+            size="md"
+            iconSize="lg"
+            text=""
+            className={styles.DoctorOptionsToggler__px_0}
+          />
+          <span className={styles.DoctorOptionsToggler__label}>Filter</span>
           <DrTypeChip.DrTypeChip
             drType={drTypeParsed}
             text={drTypeTranslated}
             size="md"
             iconSize="lg"
+            className={clsx(
+              styles.DoctorOptionsToggler__px_0,
+              styles.DoctorOptionsToggler__dr_type_chip
+            )}
+            textOverflowHidden
           />
           <hr />
-          <Chip iconName={AcceptsSvg} size="md" iconSize="lg" text="" />
+          <Chip
+            iconName={AcceptsSvg}
+            size="md"
+            iconSize="lg"
+            text=""
+            className={styles.DoctorOptionsToggler__px_0}
+          />
         </button>
       )}
     </>

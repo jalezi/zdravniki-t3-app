@@ -39,24 +39,17 @@
   border: 1px solid var(--color-blue-100);
 }
 
-.DoctorOptionsToggler > *:nth-child(1),
-.DoctorOptionsToggler > *:nth-child(3),
-.DoctorOptionsToggler > *:nth-child(5) {
+.DoctorOptionsToggler > .DoctorOptionsToggler__px_0 {
   padding-inline: 0;
 }
 
-.DoctorOptionsToggler > *:nth-child(2) {
+.DoctorOptionsToggler > .DoctorOptionsToggler__label {
   font-weight: 600;
 }
 
-.DoctorOptionsToggler > *:nth-child(3) {
+.DoctorOptionsToggler > .DoctorOptionsToggler__dr_type_chip {
   min-width: 1ch; /* Prevents the text from overflowing the container */
   margin-left: auto;
-}
-.DoctorOptionsToggler > *:nth-child(3) > span + span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .DoctorOptionsContent.Expanded {
