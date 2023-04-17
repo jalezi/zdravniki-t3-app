@@ -11,7 +11,7 @@
   min-height: unset;
   padding: 0;
 
-  line-height: 30px;
+  line-height: 1.875rem;
   letter-spacing: 0;
   white-space: nowrap;
 
@@ -20,10 +20,10 @@
 
 @media (hover: hover) {
   .Link:hover {
-    box-shadow: var(--color-white) 0px -10px 0px inset;
+    box-shadow: var(--color-white) 0px -0.625rem 0px inset;
   }
 }
 
 .Link.Active {
-  box-shadow: var(--color-white) 0px -10px 0px inset;
+  box-shadow: var(--color-white) 0px -0.625rem 0px inset;
 }
