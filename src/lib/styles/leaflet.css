@@ -1,4 +1,10 @@
 .leaflet-container {
+  --cluster-color-accepts-0: #d32f2f54;
+  --cluster-color-accepts-25: #ef741f54;
+  --cluster-color-accepts-50: #ffa80054;
+  --cluster-color-accepts-75: #aeb11854;
+  --cluster-color-accepts-100: #2e7d323b;
+
   width: 100%;
   height: 100%;
 }
@@ -47,21 +53,21 @@
 
 /* low contrast ration - subject to change*/
 .marker-cluster.marker-cluster-accepts-0 {
-  background-color: #d32f2f54;
+  background-color: var(--cluster-color-accepts-0);
 }
 
 .marker-cluster.marker-cluster-accepts-25 {
-  background-color: #ef741f54;
+  background-color: var(--cluster-color-accepts-25);
 }
 
 .marker-cluster.marker-cluster.marker-cluster-accepts-50 {
-  background-color: #ffa80054;
+  background-color: var(--cluster-color-accepts-50);
 }
 
 .marker-cluster.marker-cluster-accepts-75 {
-  background-color: #aeb11854;
+  background-color: var(--cluster-color-accepts-75);
 }
 
 .marker-cluster.marker-cluster-accepts-100 {
-  background-color: #2e7d3257;
+  background-color: var(--cluster-color-accepts-100);
 }
