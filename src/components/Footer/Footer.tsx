@@ -30,7 +30,7 @@ const Footer = ({ position = 'mdx' }: FooterProps) => {
     positionStyles
   );
 
-  const contentStyles = clsx(styles.Content, positionStyles);
+  const contentStyles = clsx(styles.Content__wrapper, positionStyles);
 
   const dataSource = t`footer.dataSource`;
   const lastChange = t`footer.lastChange`;
@@ -41,22 +41,27 @@ const Footer = ({ position = 'mdx' }: FooterProps) => {
     <footer className={footerStyles}>
       <div className={contentStyles}>
         <div>
-          {dataSource}:{' '}
-          <a href="https://www.zzzs.si" target="_blank" rel="noreferrer">
-            <abbr title={zzzs}>ZZZS</abbr>
-          </a>
-          ,{' '}
-          <a
-            href="https://www.gov.si/drzavni-organi/organi-v-sestavi/geodetska-uprava/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <abbr title={gurs}>GURS</abbr>
-          </a>
-          <br />
-          {lastChange}: <LongDate timestamp={timestamp} />
-          .
-          <br />© 2021-{new Date().getFullYear()} <strong>Sledilnik.org</strong>
+          <p className={styles.Content__item}>
+            {dataSource}:{' '}
+            <a href="https://www.zzzs.si" target="_blank" rel="noreferrer">
+              <abbr title={zzzs}>ZZZS</abbr>
+            </a>
+            ,{' '}
+            <a
+              href="https://www.gov.si/drzavni-organi/organi-v-sestavi/geodetska-uprava/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <abbr title={gurs}>GURS</abbr>
+            </a>
+          </p>
+          <p className={styles.Content__item}>
+            {lastChange}: <LongDate timestamp={timestamp} />.
+          </p>
+          <p className={styles.Content__item}>
+            © 2021-
+            {new Date().getFullYear()} <strong>Sledilnik.org</strong>
+          </p>
         </div>
       </div>
     </footer>
