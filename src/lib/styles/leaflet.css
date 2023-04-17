@@ -71,3 +71,11 @@
 .marker-cluster.marker-cluster-accepts-100 {
   background-color: var(--cluster-color-accepts-100);
 }
+
+.marker-cluster.marker-cluster-gp-f {
+  --cluster-color-accepts-0: var(--color-blue-600-A40);
+  --cluster-color-accepts-25: var(--color-blue-600-A40);
+  --cluster-color-accepts-50: var(--color-blue-600-A40);
+  --cluster-color-accepts-75: var(--color-blue-600-A40);
+  --cluster-color-accepts-100: var(--color-blue-600-A40);
+}

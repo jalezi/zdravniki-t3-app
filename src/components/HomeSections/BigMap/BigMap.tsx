@@ -12,17 +12,18 @@ import CustomMarkerClusterGroup, {
 import useDoctors from '@/lib/hooks/useDoctors';
 import useBoundStore from '@/lib/store/useBoundStore';
 import { createDoctorFilter } from '@/lib/utils/search';
+import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './BigMap.module.css';
 import BigMapEvents from './BigMapEvents';
 import RandomMarkers from './RandomMarkers';
 import RealMarkers from './RealMarkers';
 
-export type BigMapProps = MapProps;
+export type BigMapProps = MapProps & { drType: Doctor['type'] | undefined };
 
 function withMap(Component: typeof Map) {
   function BigMap(props: BigMapProps) {
-    const { setMap, ...rest } = props;
+    const { setMap, drType, ...rest } = props;
     const { data, status } = useDoctors();
     const accepts = useBoundStore(state => state.accepts);
     const bounds = useBoundStore(state => state.bounds);
@@ -41,12 +42,15 @@ function withMap(Component: typeof Map) {
       ? data?.doctors.filter(doctorFilter)
       : [];
 
+    const c = createClusterCustomIcon(drType ? { drType } : undefined);
+
     return (
       <Component setMap={setMap} {...rest} className={styles.BigMap}>
         {status === 'loading' && <RandomMarkers bounds={bounds} count={20} />}
         <BigMapEvents />
         <CustomMarkerClusterGroup
-          iconCreateFunction={createClusterCustomIcon}
+          key={drType}
+          iconCreateFunction={c}
           maxClusterRadius={40}
         >
           <RealMarkers doctors={filteredDoctors ?? []} />

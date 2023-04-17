@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { useWindowSize } from 'usehooks-ts';
@@ -15,6 +16,7 @@ import {
 } from '@/lib/constants/map';
 import useHash from '@/lib/hooks/useHash';
 import useBoundStore from '@/lib/store/useBoundStore';
+import { drTypeCoerceSchema } from '@/lib/types/doctors';
 import type { LeafletMap } from '@/lib/types/Map';
 import { getDefaultFontSize } from '@/lib/utils/common';
 
@@ -32,6 +34,8 @@ const HomeSections = () => {
       }),
     []
   );
+
+  const { query } = useRouter();
 
   const [layoutVisible, setLayoutVisible] = useState<View>('map');
   const [map, setMap] = useState<null | LeafletMap>(null);
@@ -89,6 +93,8 @@ const HomeSections = () => {
 
   // skeleton theme colors are --color-blue-100 and --color-blue-200
 
+  const drTypeParsed = drTypeCoerceSchema.safeParse(query.type);
+
   return (
     <>
       <section id="filters" className={filtersStyles}>
@@ -102,6 +108,7 @@ const HomeSections = () => {
           zoom={zoom || ZOOM}
           maxZoom={MAX_ZOOM}
           minZoom={MIN_ZOOM}
+          drType={drTypeParsed.success ? drTypeParsed.data : undefined}
         />
       </section>
       <section id="list" className={listStyles}>

@@ -14,38 +14,44 @@ import type {
   MarkerOptions,
 } from 'leaflet';
 import L from 'leaflet';
+
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+import type { Doctor } from '@/server/api/routers/doctors';
 
-export const createClusterCustomIcon = (cluster: {
-  getChildCount: () => number;
-  getAllChildMarkers: () => Marker<CircleMarker>[];
-}) => {
-  let acceptsCnt = 0;
+export const createClusterCustomIcon =
+  (options?: { drType: Doctor['type'] } | undefined) =>
+  (cluster: {
+    getChildCount: () => number;
+    getAllChildMarkers: () => Marker<CircleMarker>[];
+  }) => {
+    let acceptsCnt = 0;
 
-  Object.values(cluster.getAllChildMarkers()).forEach(marker => {
-    const options = marker.options as MarkerOptions & {
-      ['data-accepts']: 'y' | 'n';
-    };
+    Object.values(cluster.getAllChildMarkers()).forEach(marker => {
+      const options = marker.options as MarkerOptions & {
+        ['data-accepts']: 'y' | 'n';
+      };
 
-    acceptsCnt += options['data-accepts'] === 'y' ? 1 : 0;
-  });
+      acceptsCnt += options['data-accepts'] === 'y' ? 1 : 0;
+    });
 
-  let acceptsPercentage =
-    Math.round(((acceptsCnt / cluster.getChildCount()) * 10) / 2.5) * 25;
-  if (acceptsPercentage === 100 && acceptsCnt !== cluster.getChildCount()) {
-    acceptsPercentage = 75;
-  } else if (acceptsPercentage === 0 && acceptsCnt > 0) {
-    acceptsPercentage = 25;
-  }
+    let acceptsPercentage =
+      Math.round(((acceptsCnt / cluster.getChildCount()) * 10) / 2.5) * 25;
+    if (acceptsPercentage === 100 && acceptsCnt !== cluster.getChildCount()) {
+      acceptsPercentage = 75;
+    } else if (acceptsPercentage === 0 && acceptsCnt > 0) {
+      acceptsPercentage = 25;
+    }
 
-  return L.divIcon({
-    html: `<div><span>${cluster.getChildCount()}</span></div>`,
-    className: `marker-cluster marker-cluster-small marker-cluster-accepts-${acceptsPercentage}`,
-    // eslint-disable-next-line no-undef
-    iconSize: L.point(40, 40, true),
-  });
-};
+    return L.divIcon({
+      html: `<div><span>${cluster.getChildCount()}</span></div>`,
+      className: `marker-cluster marker-cluster-small marker-cluster-accepts-${acceptsPercentage} ${
+        options?.drType ? `marker-cluster-${options.drType}` : ''
+      }`,
+      // eslint-disable-next-line no-undef
+      iconSize: L.point(40, 40, true),
+    });
+  };
 
 /*
   There is a next version of react-leaflet-markercluster that supports React 17 and 18
