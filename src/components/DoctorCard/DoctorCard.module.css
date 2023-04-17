@@ -1,5 +1,5 @@
 .DoctorCard {
-  --doctor-card-map-height: 350px;
+  --doctor-card-map-height: 21.875rem;
   --dr-card-border-radius: 5px;
 
   display: flex;
@@ -86,7 +86,7 @@
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
   .DoctorCard {
     flex-direction: row;
     justify-content: space-between;

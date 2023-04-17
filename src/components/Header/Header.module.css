@@ -21,7 +21,7 @@
   height: var(--header-height-xs);
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
   .Header {
     display: flex;
     height: var(--header-height-lg);

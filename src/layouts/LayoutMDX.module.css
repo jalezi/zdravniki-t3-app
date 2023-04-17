@@ -29,7 +29,7 @@
   margin-top: 0;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
   .LayoutMDX {
     margin-top: calc(var(--header-height-lg) + 2em);
   }

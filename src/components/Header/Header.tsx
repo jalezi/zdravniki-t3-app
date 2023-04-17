@@ -7,6 +7,7 @@ import { IBMPlexSans } from '@/assets/fonts';
 import * as Navigation from '@/components/Header/Navigation';
 import { BREAKPOINTS } from '@/lib/constants';
 import useScroll from '@/lib/hooks/useScroll';
+import { getDefaultFontSize } from '@/lib/utils/common';
 
 import styles from './Header.module.css';
 import { Logo } from './Logo';
@@ -17,8 +18,9 @@ function Header() {
   const navRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const [showNavigation, setShowNavigation] = useState<boolean>(false);
+  const fontSize = getDefaultFontSize() ?? 16;
   const { width } = useWindowSize();
-  const isMediumMediaQuery = width >= BREAKPOINTS.md;
+  const isMediumMediaQuery = width >= (BREAKPOINTS.md * fontSize) / 16;
 
   const { isScrolled } = useScroll(100, 500);
 

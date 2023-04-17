@@ -22,12 +22,12 @@ const MapSkeleton = ({ size = 'lg' }: MapSkeletonProps) => {
         fill
         alt="fake map"
         priority
-        sizes="(max-width: 768px) 100vw,
-              (max-width: 896px) 62.5vw,
-              (max-width: 1024px) 65vw,
-              (max-width: 1112px) 66vw,
-              (max-width: 1200px) 68.5vw,
-              (max-width: 1400px) 69.5vw,
+        sizes="(max-width: 48em) 100vw,
+              (max-width: 56em) 62.5vw,
+              (max-width: 64em) 65vw,
+              (max-width: 69.5em) 66vw,
+              (max-width: 75em) 68.5vw,
+              (max-width: 87.5em) 69.5vw,
               70.5vw"
         style={{ objectFit: 'cover' }}
       />
@@ -36,3 +36,10 @@ const MapSkeleton = ({ size = 'lg' }: MapSkeletonProps) => {
 };
 
 export default MapSkeleton;
+
+// 48em 768px
+// 56em 896px
+// 64em 1024px
+// 69.5em 1112px
+// 75em 1200px
+// 87.5em 1400px

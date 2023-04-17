@@ -86,7 +86,7 @@
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
   .ListInnerContainer {
     max-height: calc(
       100dvh - var(--header-height-lg) * 2 - var(--list-header-height)

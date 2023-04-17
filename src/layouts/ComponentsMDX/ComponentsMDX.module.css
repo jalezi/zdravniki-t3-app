@@ -82,7 +82,7 @@
   }
 }
 
-@media only screen and (min-width: 576px) {
+@media only screen and (min-width: 36em) {
   .ComponentsMDX {
     /* --font-size-h2: 1.5rem;
     --font-size-h3: 1.3125rem;

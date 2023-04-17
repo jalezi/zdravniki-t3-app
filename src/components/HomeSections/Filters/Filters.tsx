@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { IconButton } from '@/components/Shared/Buttons';
 import { ListSvg, MapSvg } from '@/components/Shared/Icons';
 import useBoundStore from '@/lib/store/useBoundStore';
+import { getDefaultFontSize } from '@/lib/utils/common';
 import { parseHash } from '@/lib/utils/url-hash';
 
 import { DoctorOptions } from './DoctorOptions';
@@ -14,6 +15,7 @@ import type { View } from '../types';
 type Props = { onLayoutChange: () => void; view: View };
 
 const Filters = ({ onLayoutChange, view }: Props) => {
+  const fontSize = getDefaultFontSize() ?? 16; // hack to re-render if user changes browser font size
   const searchInputRef = useRef<HTMLInputElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -52,7 +54,11 @@ const Filters = ({ onLayoutChange, view }: Props) => {
       <div id="dr-opt-container" className={drOptContainerStyles}>
         <DoctorOptions />
       </div>
-      <div id="filters-search-container" className={styles.SearchContainer}>
+      <div
+        key={fontSize}
+        id="filters-search-container"
+        className={styles.SearchContainer}
+      >
         <SearchInput
           ref={searchInputRef}
           value={search}

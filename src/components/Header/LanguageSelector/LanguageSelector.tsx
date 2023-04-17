@@ -6,6 +6,7 @@ import { type localesMap } from '@/../next-i18next.config';
 import type { SelectBaseOption } from '@/components/Shared/Selects/SelectBase';
 import { SelectBase } from '@/components/Shared/Selects/SelectBase';
 import { BREAKPOINTS } from '@/lib/constants';
+import { getDefaultFontSize } from '@/lib/utils/common';
 
 import styles from './LanguageSelector.module.css';
 
@@ -23,8 +24,10 @@ const langs: Langs = {
 
 const LanguageSelector = () => {
   const router = useRouter();
+  const fontSize = getDefaultFontSize() ?? 16;
+
   const { width } = useWindowSize();
-  const isMediumMediaQuery = width >= BREAKPOINTS.md;
+  const isMediumMediaQuery = width >= (BREAKPOINTS.md * fontSize) / 16;
   const options = Object.entries(langs).map(([value, label]) => {
     return {
       value,

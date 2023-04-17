@@ -58,7 +58,7 @@ input[type='search']::-webkit-search-results-decoration {
   border-width: 0;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
   body {
     overflow: unset;
   }

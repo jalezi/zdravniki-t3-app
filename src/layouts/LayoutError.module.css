@@ -85,7 +85,7 @@
   }
 }
 
-@media only screen and (max-height: 500px) {
+@media only screen and (max-height: 31.25em) {
   .LayoutError .ContainerError {
     flex-direction: row;
   }
@@ -117,7 +117,7 @@
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
   .LayoutError {
     top: var(--header-height-lg);
   }

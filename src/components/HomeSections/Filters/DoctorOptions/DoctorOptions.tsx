@@ -8,6 +8,7 @@ import { Chip } from '@/components/Shared/Chip';
 import { BREAKPOINTS } from '@/lib/constants';
 import useBoundStore from '@/lib/store/useBoundStore';
 import { baseDrTypeSchema } from '@/lib/types/dr-type-page';
+import { getDefaultFontSize } from '@/lib/utils/common';
 
 import styles from './DoctorOptions.module.css';
 import { FilterGroups } from './FIlterGroups';
@@ -21,8 +22,9 @@ const ACCEPTS_SVG = {
 
 const DoctorOptions = () => {
   const [expanded, setExpanded] = useState(false);
+  const fontSize = getDefaultFontSize() ?? 16;
   const { width } = useWindowSize();
-  const isMediumMediaQuery = width >= BREAKPOINTS.md;
+  const isMediumMediaQuery = width >= (BREAKPOINTS.md * fontSize) / 16;
   const { query } = useRouter();
   const accepts = useBoundStore(state => state.accepts);
 

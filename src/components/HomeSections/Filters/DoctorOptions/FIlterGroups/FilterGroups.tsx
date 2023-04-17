@@ -12,6 +12,7 @@ import {
   drTypeWithAgeSchema,
   drTypeWithExtraSchema,
 } from '@/lib/types/dr-type-page';
+import { getDefaultFontSize } from '@/lib/utils/common';
 import { parseHash } from '@/lib/utils/url-hash';
 
 import styles from './FilterGroups.module.css';
@@ -35,8 +36,9 @@ const FilterGroups = () => {
   const { query } = useRouter();
   const accepts = useBoundStore(state => state.accepts);
   const setAccepts = useBoundStore(state => state.setAccepts);
+  const fontSize = getDefaultFontSize() ?? 16;
   const { width } = useWindowSize();
-  const isLargeMediumQuery = width >= BREAKPOINTS.lg;
+  const isLargeMediumQuery = width >= (BREAKPOINTS.lg * fontSize) / 16;
 
   useEffect(() => {
     const documentLocHash = document.location.hash;

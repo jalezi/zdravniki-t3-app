@@ -16,6 +16,7 @@ import {
 import useHash from '@/lib/hooks/useHash';
 import useBoundStore from '@/lib/store/useBoundStore';
 import type { LeafletMap } from '@/lib/types/Map';
+import { getDefaultFontSize } from '@/lib/utils/common';
 
 import MapSkeleton from './BigMap/MapSkeleton';
 import { Filters } from './Filters';
@@ -38,8 +39,9 @@ const HomeSections = () => {
   const center = useBoundStore(state => state.center);
   const storeSetMap = useBoundStore(state => state.setMap);
 
+  const fontSize = getDefaultFontSize() ?? 16;
   const { width } = useWindowSize();
-  const isMediumMediaQuery = width >= BREAKPOINTS.md;
+  const isMediumMediaQuery = width >= (BREAKPOINTS.md * fontSize) / 16;
 
   useHash();
 

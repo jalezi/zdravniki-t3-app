@@ -4,8 +4,8 @@
   --header-height-sm: 3.5rem;
   --header-height-lg: 4rem;
   --size-md: 1.5rem;
-  --mdx-container-width: 670px;
-  --doctor-container-width: calc(60ch + 350px);
+  --mdx-container-width: 41.875rem; /* 670px */
+  --doctor-container-width: calc(60ch + 21.875rem);
   --filters-height-sm: 8.25rem; /* browser calculated - 132px */
   --footer-height: 4.875rem; /* browser calculated - 78px */
   --footer-height-sm__list: calc(
@@ -110,12 +110,12 @@
 
   /* breakpoints */
   --break-point-xxs: 0;
-  --breakpoint-xs: 375px;
-  --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
-  --breakpoint-xl: 1200px;
-  --breakpoint-xxl: 1400px;
+  --breakpoint-xs: 23.4375em;
+  --breakpoint-sm: 36em;
+  --breakpoint-md: 48em;
+  --breakpoint-lg: 64em;
+  --breakpoint-xl: 75em;
+  --breakpoint-xxl: 87.5em;
 
   /* opacity */
   --opacity-80: 0.8;

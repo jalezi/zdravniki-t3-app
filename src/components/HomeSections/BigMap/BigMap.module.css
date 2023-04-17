@@ -23,7 +23,7 @@
 }
 
 .MapSkeletonContainer.Sm {
-  height: var(--doctor-card-map-height, 350px);
+  height: var(--doctor-card-map-height, 21.875rem);
 }
 
 .Popup {
@@ -39,7 +39,7 @@
   justify-content: space-between;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
   .MapSkeletonContainer {
     width: calc(100dvw - var(--list-width));
     height: calc(100dvh - var(--header-height-lg));

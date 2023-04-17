@@ -63,9 +63,9 @@
   background: transparent;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
   .Layout {
-    --list-width: 350px;
+    --list-width: 21.875rem; /* 350px */
 
     top: var(--header-height-lg);
 
@@ -107,8 +107,8 @@
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 64em) {
   .Layout {
-    --list-width: 450px;
+    --list-width: 28.125rem; /* 450px */
   }
 }
