@@ -11,27 +11,12 @@ import type { LatLngBounds, LatLngTuple, LeafletMap } from '@/lib/types/Map';
 
 const { southWest, northEast } = BOUNDS;
 
-import type { AcceptsSliceState } from './acceptsSlice';
-import type { SearchSliceState } from './searchSlice';
+import type { MapSliceState, StoreState } from './types';
 
-export type MapSliceState = {
-  bounds: LatLngBounds | null;
-  center: LatLngTuple;
-  zoom: number;
-  map: LeafletMap | null;
-
-  setBounds: (bounds: LatLngBounds | null) => void;
-  setZoom: (zoom: number) => void;
-  setCenter: (center: LatLngTuple) => void;
-  setMap: (map: LeafletMap | null) => void;
-};
-
-export const createMapSlice: StateCreator<
-  MapSliceState & AcceptsSliceState & SearchSliceState,
-  [],
-  [],
-  MapSliceState
-> = (set, _get) => ({
+export const createMapSlice: StateCreator<StoreState, [], [], MapSliceState> = (
+  set,
+  _get
+) => ({
   bounds: null,
   zoom: ZOOM,
   center: SL_CENTER,
