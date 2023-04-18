@@ -4,18 +4,13 @@ import {
   AllSvg,
   BanSvg,
   CheckSvg,
-  ClinicSvg,
   DentistSvg,
   FamilyDrSvg,
-  FloatingSvg,
   GynSvg,
   PedSvg,
   StudentsSvg,
 } from '@/components/Shared/Icons';
-import {
-  drTypeWithAgeTransformSchema,
-  drTypeWithExtraTransformSchema,
-} from '@/lib/types/dr-type-page';
+import { drTypeWithAgeTransformSchema } from '@/lib/types/dr-type-page';
 
 export const DR_GROUP = [
   { value: 'gp', Icon: FamilyDrSvg, translationKey: 'gp', href: '/gp/' },
@@ -26,9 +21,6 @@ export const DR_GROUP = [
 
 const createAgeGroupHref = (drType: string | undefined, suffix = '') =>
   `/${drTypeWithAgeTransformSchema.parse(drType)}${suffix}/`;
-
-const createExtraGroupHref = (drType: string | undefined, suffix = '') =>
-  `/${drTypeWithExtraTransformSchema.parse(drType)}${suffix}/`;
 
 const AGE_HREF_SUFFIX = {
   adults: '',
@@ -54,18 +46,6 @@ export const EXTRA_HREF_SUFFIX = {
   f: '-f',
 } as const;
 
-const createExtraIsActive = (
-  drType: string | undefined,
-  value: string | undefined
-) => {
-  const mainDrType = drTypeWithExtraTransformSchema.parse(drType);
-
-  return (
-    drType?.replace(mainDrType, '') ===
-    EXTRA_HREF_SUFFIX[value as keyof typeof EXTRA_HREF_SUFFIX]
-  );
-};
-
 export const AGE_GROUP = [
   {
     value: 'adults',
@@ -87,30 +67,6 @@ export const AGE_GROUP = [
     translationKey: 'students',
     createHref: createAgeGroupHref,
     isActive: createAgeGroupIsActive,
-  },
-] as const;
-
-export const EXTRA_GROUP = [
-  {
-    value: 'normal',
-    Icon: FamilyDrSvg,
-    translationKey: 'extra.btn.normal',
-    createHref: createExtraGroupHref,
-    isActive: createExtraIsActive,
-  },
-  {
-    value: 'x',
-    Icon: ClinicSvg,
-    translationKey: 'extra.btn.x',
-    createHref: createExtraGroupHref,
-    isActive: createExtraIsActive,
-  },
-  {
-    value: 'f',
-    Icon: FloatingSvg,
-    translationKey: 'extra.btn.f',
-    createHref: createExtraGroupHref,
-    isActive: createExtraIsActive,
   },
 ] as const;
 

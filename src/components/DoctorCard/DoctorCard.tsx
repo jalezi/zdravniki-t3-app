@@ -59,8 +59,8 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
   const goBack = () => {
     const { locale } = router;
     const hash = stringifyHash([accepts, [zoom, ...center], search]);
-    const asPath = `/${doctor.type}${hash}`;
-    void router.push(`/${doctor.type}`, asPath, { locale });
+    const asPath = `/${doctor.typePage}${hash}`;
+    void router.push(`/${doctor.typePage}`, asPath, { locale });
   };
 
   const doctorCardStyles = clsx(

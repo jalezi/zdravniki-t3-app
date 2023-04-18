@@ -4,11 +4,6 @@
     "all": "vsi",
     "den": "zobozdravnik",
     "extra": {
-        "btn": {
-            "f": "neopredeljeni",
-            "normal": "normalno",
-            "x": "dostopnost"
-        },
         "clinic": {
             "betterAccessibility": {
                 "description": "V ambulantah za boljšo dostopnost si izbranega osebnega zdravnika lahko izberejo zavarovane osebe, ki v dejavnosti splošne ambulante in dispanzerju za otroke in šolarje nimajo izbranega osebnega zdravnika (sploh nimajo veljavne izbire, ali je izbrani osebni zdravnik trajno odsoten).",

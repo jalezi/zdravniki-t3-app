@@ -10,20 +10,13 @@ import useBoundStore from '@/lib/store/useBoundStore';
 import {
   drTypeAcceptsOrRejectSchema,
   drTypeWithAgeSchema,
-  drTypeWithExtraSchema,
 } from '@/lib/types/dr-type-page';
 import { getDefaultFontSize } from '@/lib/utils/common';
 import { parseHash } from '@/lib/utils/url-hash';
 
 import styles from './FilterGroups.module.css';
 import { FilterButton } from '../FilterButton';
-import {
-  ACCEPTS_GROUP,
-  AGE_GROUP,
-  DR_GROUP,
-  EXTRA_GROUP,
-  EXTRA_HREF_SUFFIX,
-} from '../groups';
+import { ACCEPTS_GROUP, AGE_GROUP, DR_GROUP } from '../groups';
 
 const AGE_HREF_SUFFIX = {
   adults: '',
@@ -56,7 +49,6 @@ const FilterGroups = () => {
   const drGroupStyles = clsx(styles.FilterGroups, styles.DrGroup);
   const ageGroupStyles = clsx(styles.FilterGroups, styles.AgeGroup);
   const acceptsGroupStyles = clsx(styles.FilterGroups, styles.AcceptsGroup);
-  const extraGroupStyles = clsx(styles.FilterGroups, styles.ExtraGroup);
 
   return (
     <>
@@ -99,28 +91,6 @@ const FilterGroups = () => {
         </div>
       ) : null}
 
-      {drTypeWithExtraSchema.safeParse(query.type).success ? (
-        <div className={extraGroupStyles}>
-          {EXTRA_GROUP.map(item => (
-            <FilterButton
-              key={item.value}
-              Icon={item.Icon}
-              text={t(item.translationKey)}
-              as={Link}
-              href={item.createHref(
-                query.type as string,
-                EXTRA_HREF_SUFFIX[item.value]
-              )}
-              isActive={item.isActive(query?.type as string, item.value)}
-              aria-label={
-                item.isActive(query?.type as string, item.value)
-                  ? undefined
-                  : item.translationKey
-              }
-            />
-          ))}
-        </div>
-      ) : null}
       {drTypeAcceptsOrRejectSchema.safeParse(query.type).success ? (
         <div className={acceptsGroupStyles}>
           {ACCEPTS_GROUP.map(item => (

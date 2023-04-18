@@ -1,7 +1,7 @@
 import slugify from 'slugify';
 import { z } from 'zod';
 
-import { pageDrTypeSchema } from '@/lib/types/dr-type-page';
+import { baseDrTypeSchema } from '@/lib/types/dr-type-page';
 
 export const trimmedStringSchema = z
   .string()
@@ -19,7 +19,7 @@ export const toSlug = function toSlug(
 export const slugSchema = trimmedStringSchema.transform(value => toSlug(value));
 
 export const drPersonalPageSchema = z.object({
-  type: pageDrTypeSchema,
+  type: baseDrTypeSchema,
   slugName: slugSchema,
   idInst: idInstSchema,
 });

@@ -7,6 +7,8 @@ import type { BaseDrType } from '@/lib/types/dr-type-page';
 
 import styles from './DrTypeChip.module.css';
 
+type ExtendedBaseDrType = BaseDrType | 'gp-x' | 'gp-f';
+
 export type ExtraChipProps = {
   hasText?: boolean;
   variant?: 'text' | 'contained';
@@ -72,10 +74,10 @@ const DR_TYPE_SVG = {
   ped: 'PedSvg',
   gyn: 'GynSvg',
   den: 'DentistSvg',
-} satisfies Record<BaseDrType, IconName>;
+} satisfies Record<ExtendedBaseDrType, IconName>;
 
 type DrTypeChipProps = {
-  drType: BaseDrType;
+  drType: ExtendedBaseDrType;
   text: string;
   size?: ChipProps['size'];
   iconSize?: ChipProps['iconSize'];

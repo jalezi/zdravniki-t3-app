@@ -3,6 +3,7 @@
 import type { GetServerSideProps } from 'next';
 import { getServerSideSitemapLegacy } from 'next-sitemap';
 
+import { drTypeCoerceSchema } from '@/lib/types/doctors';
 import { DR_TYPE_LABELS } from '@/lib/types/dr-type-page';
 import { getSiteUrl } from '@/lib/utils/common';
 import { fetchDrAndInstDataAndParse } from '@/lib/utils/fetch-and-parse';
@@ -30,14 +31,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   };
 
   const typePages = DR_TYPE_LABELS.map(type => ({
-    loc: `${siteLocaleUrl}/${type}`,
-    lastmod: new Date().toISOString(),
-    // changefreq
-    // priority
-  }));
-
-  const typePagesLocale = DR_TYPE_LABELS.map(type => ({
-    loc: `${siteLocaleUrl}/${type}`,
+    loc: `${siteLocaleUrl}/${drTypeCoerceSchema.parse(type)}`,
     lastmod: new Date().toISOString(),
     // changefreq
     // priority
@@ -57,7 +51,9 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
     const drSlug = toSlug(dr.doctor);
 
-    const drPath = `${dr.type}/${drSlug}/${dr.id_inst}`;
+    const drPath = `${drTypeCoerceSchema.parse(dr.type)}/${drSlug}/${
+      dr.id_inst
+    }`;
 
     return {
       loc: `${siteLocaleUrl}/${drPath}`,
@@ -69,12 +65,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
   const drPagesValidated = drPages.filter(Boolean);
 
-  const fields = [
-    home,
-    ...typePages,
-    ...typePagesLocale.map(type => type).flat(1),
-    ...drPagesValidated,
-  ];
+  const fields = [home, ...typePages, ...drPagesValidated];
 
   return getServerSideSitemapLegacy(ctx, fields);
 };

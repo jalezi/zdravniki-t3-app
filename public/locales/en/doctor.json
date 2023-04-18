@@ -4,11 +4,6 @@
     "all": "all",
     "den": "dentist",
     "extra": {
-        "btn": {
-            "f": "floating",
-            "normal": "normal",
-            "x": "accessible"
-        },
         "clinic": {
             "betterAccessibility": {
                 "description": "In clinics for better accessibility, insured persons who do not have a personal doctor (GP or Pediatrician) can choose their personal doctor (in case there is no available doctor or if the chosen personal doctor is permanently absent).",
