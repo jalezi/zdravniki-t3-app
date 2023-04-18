@@ -16,7 +16,7 @@ import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './BigMap.module.css';
 import BigMapEvents from './BigMapEvents';
-import RandomMarkers from './RandomMarkers';
+import MarkerLoader from './MarkerLoader';
 import RealMarkers from './RealMarkers';
 
 export type BigMapProps = MapProps & { drType: Doctor['type'] | undefined };
@@ -46,7 +46,7 @@ function withMap(Component: typeof Map) {
 
     return (
       <Component setMap={setMap} {...rest} className={styles.BigMap}>
-        {status === 'loading' && <RandomMarkers bounds={bounds} count={20} />}
+        {status === 'loading' && <MarkerLoader bounds={bounds} />}
         <BigMapEvents />
         <CustomMarkerClusterGroup
           key={drType}
@@ -55,6 +55,7 @@ function withMap(Component: typeof Map) {
         >
           <RealMarkers doctors={filteredDoctors ?? []} />
         </CustomMarkerClusterGroup>
+
         <TotalHits count={filteredDoctors?.length ?? 0} />
         <LocateControl flyTo initialZoomLevel={13} returnToPrevBounds />
         <DataSource />
