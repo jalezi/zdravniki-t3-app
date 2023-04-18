@@ -16,6 +16,32 @@
   fill: var(--color-accepts-f_marker);
 }
 
+.BigMap .DrCircle.Loader {
+  fill: var(--loader-fill);
+  fill-opacity: var(--loader-fill-opacity);
+  pointer-events: none;
+}
+
+.BigMap .DrCircle.Loader.Big {
+  --loader-fill: var(--color-accepts-f_marker);
+  --loader-fill-opacity: 0.2;
+  animation: loading 300ms linear infinite;
+}
+
+.BigMap .DrCircle.Loader.Small {
+  --loader-fill: var(--color-accepts-f_marker);
+  --loader-fill-opacity: 0.7;
+}
+
+@keyframes loading {
+  from {
+    --loader-fill-opacity: 0.2;
+  }
+  to {
+    --loader-fill-opacity: 0.5;
+  }
+}
+
 .MapSkeletonContainer {
   position: relative;
   width: 100dvw;
