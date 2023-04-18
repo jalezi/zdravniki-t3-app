@@ -69,6 +69,7 @@ export const drCSVSchema = z.object({
   ]),
   website: trimmedStringSchema,
 });
+// todo remove ped-x from type z.enum; above
 
 export type DrCSV = z.infer<typeof drCSVSchema>;
 
