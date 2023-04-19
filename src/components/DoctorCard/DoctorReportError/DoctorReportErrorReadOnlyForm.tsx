@@ -67,10 +67,6 @@ const DoctorReportErrorReadOnlyForm = ({
     const onlyChangedData: SendReportInputFromUser = {
       accepts: data.accepts !== initialData.accepts ? data.accepts : null,
       address: data.address !== initialData.address ? data.address : null,
-      availability:
-        data.availability !== initialData.availability
-          ? data.availability
-          : null,
       email: data.email !== initialData.email ? data.email : null,
       note: data.note !== initialData.note ? data.note : null,
       phone: data.phone !== initialData.phone ? data.phone : null,

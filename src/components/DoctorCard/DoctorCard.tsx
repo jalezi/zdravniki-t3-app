@@ -96,7 +96,6 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
   const formData: DoctorReportErrorDataProps['data']['fromUser'] = {
     address: doctor.location.address.fullAddress,
     accepts: doctor.accepts,
-    availability: doctor.availability,
     email: doctor.email,
     note: doctor.override.note,
     orderform: doctor.orderform,
@@ -112,6 +111,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
     instId: doctor.idInst,
     type: doctor.type,
     provider: doctor.provider ?? '',
+    availability: doctor.availability,
   };
 
   const data = { fromUser: formData, fixed: fixedData };

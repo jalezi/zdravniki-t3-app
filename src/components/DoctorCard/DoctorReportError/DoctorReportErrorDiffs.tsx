@@ -16,7 +16,6 @@ const INPUT_ICONS_MAP = {
   note: undefined,
   website: 'LinkSvg',
   accepts: undefined,
-  availability: undefined,
   phone: 'PhoneSvg',
 } satisfies Record<keyof SendReportInputUserNotNull, IconName | undefined>;
 

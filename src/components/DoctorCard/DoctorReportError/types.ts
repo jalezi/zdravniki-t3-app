@@ -27,7 +27,6 @@ export const formDataSchema = z.object({
   email: z.string().email().or(z.literal('')),
   orderform: z.string(),
   accepts: z.enum(['y', 'n']),
-  availability: z.string(),
   note: z.string().max(NOTE_LENGTH_LIMIT),
 });
 
@@ -38,7 +37,6 @@ export type DoctorReportErrorDataProps = {
     fromUser: {
       address: Doctor['location']['address']['fullAddress'];
       accepts: Doctor['accepts'];
-      availability: Doctor['availability'];
       email: Doctor['email'];
       note: Doctor['override']['note'];
       phones: Doctor['phones'];
@@ -46,6 +44,7 @@ export type DoctorReportErrorDataProps = {
       websites: Doctor['websites'];
     };
     fixed: {
+      availability: Doctor['availability'];
       name: string;
       url: string;
       type: Doctor['type'];

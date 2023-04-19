@@ -29,12 +29,6 @@
             "message": "Too long. Max 255 characters.",
             "placeholder": "Address"
         },
-        "availability": {
-            "description": "",
-            "label": "Availability",
-            "message": "",
-            "placeholder": ""
-        },
         "email": {
             "description": "",
             "label": "E-mail",

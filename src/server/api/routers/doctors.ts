@@ -53,7 +53,6 @@ const sendReportInputSchema = z.object({
   fromUser: z.object({
     accepts: z.enum(['y', 'n']).nullable(),
     address: z.string().nullable(),
-    availability: z.string().nullable(),
     email: z.string().nullable(),
     note: z.string().nullable(),
     phone: z.string().nullable(),
@@ -66,6 +65,7 @@ const sendReportInputSchema = z.object({
     type: drCSVTypeSchema,
     instId: z.string(),
     provider: z.string(),
+    availability: z.number(),
   }),
 });
 
@@ -137,11 +137,11 @@ export const doctorsRouter = createTRPCRouter({
       const formData = new FormData();
 
       Object.entries(reportData).forEach(([key, value]) => {
-        formData.append(
+        return formData.append(
           `entry.${
             GOOGLE_FORM_INPUTS[`${key as keyof typeof GOOGLE_FORM_INPUTS}`]
           }`,
-          value ?? ''
+          value?.toString() ?? ''
         );
       });
 

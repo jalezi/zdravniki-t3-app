@@ -29,12 +29,6 @@
             "message": "Predolgo. Največ 255 znakov.",
             "placeholder": "Naslov"
         },
-        "availability": {
-            "description": "",
-            "label": "Obseg zaposlitve",
-            "message": "",
-            "placeholder": ""
-        },
         "email": {
             "description": "",
             "label": "E-pošta",

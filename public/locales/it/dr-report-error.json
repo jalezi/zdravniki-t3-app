@@ -29,12 +29,6 @@
             "message": "La nota è troppo lunga. Per favore inserisci meno di 255 caratteri.",
             "placeholder": "Indirizzo"
         },
-        "availability": {
-            "description": "",
-            "label": "Disponibilità",
-            "message": "",
-            "placeholder": ""
-        },
         "email": {
             "description": "",
             "label": "E-mail",

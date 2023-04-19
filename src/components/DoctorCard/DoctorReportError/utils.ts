@@ -10,7 +10,6 @@ export const getMutationInput = (
   return {
     accepts: data.accepts,
     address: data.address.trim(),
-    availability: data.availability.trim(),
     email: data.email.trim(),
     note: data.note.trim(),
     phone: phone.trim(),

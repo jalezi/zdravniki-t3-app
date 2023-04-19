@@ -59,7 +59,6 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
       ...data.fromUser,
       websites: data.fromUser.websites.map(website => ({ website })),
       phones: data.fromUser.phones.map(phone => ({ phone })),
-      availability: data.fromUser.availability.toString(),
     },
     resolver: zodResolver(formDataSchema),
     mode: 'onChange',
@@ -84,7 +83,6 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
     const mutationInput = getMutationInput(formData);
     const initialValues = getMutationInput({
       ...data.fromUser,
-      availability: data.fromUser.availability.toString(),
       phones: [
         ...data.fromUser.phones.map(phone => ({ phone })),
       ] as FormData['phones'],
@@ -252,14 +250,6 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
                 />
               )}
             />
-            <Input
-              {...register('availability')}
-              inputMode="decimal"
-              id="availability"
-              placeholder="0.0"
-              label={inputTranslations.availability.label}
-              error={errors.availability?.message}
-            />
           </div>
 
           <Input
@@ -291,7 +281,6 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
           initialData={{
             address: data.fromUser.address,
             accepts: data.fromUser.accepts,
-            availability: data.fromUser.availability.toString(),
             email: data.fromUser.email,
             note: data.fromUser.note,
             orderform: data.fromUser.orderform,
