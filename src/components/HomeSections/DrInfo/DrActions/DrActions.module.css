@@ -8,19 +8,27 @@
   flex-direction: row;
 }
 
-.DrActions > .MoreMenu {
+.DrActions > .IconContainer {
   align-self: center;
 }
 
-.DrActions > .Phone {
+.DrActions > .IconContainer > .IconButton {
+  --icon-button-padding: 0.5em;
+}
+
+.DrActions .IconContainer > .IconButton.Phone {
   --icon-button-size: 1.5em;
 }
 
 .DrActions .Tooltip {
   padding-inline: 0;
+
   color: inherit;
+
   opacity: 1;
   background: var(--color-white);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px -3px,
+    rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px;
 }
 
 .DrActions .Tooltip > .Tooltip__group {
@@ -50,6 +58,10 @@
 }
 
 @media (hover: hover) {
+  .DrActions .IconContainer > .IconButton:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
   .DrActions .Tooltip > .Tooltip__group > .Tooltip__item:hover {
     background-color: var(--color-blue-300);
   }

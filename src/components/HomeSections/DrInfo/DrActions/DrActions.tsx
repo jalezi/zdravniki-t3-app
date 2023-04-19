@@ -69,12 +69,13 @@ const DrActions = ({
 
   return (
     <div className={actionsStyles}>
-      <div className={styles.MoreMenu}>
+      <div className={styles.IconContainer}>
         <IconButton
           id={actionsId}
           type="button"
           aria-label="More"
           aria-haspopup="true"
+          className={clsx(styles.MoreMenu, styles.IconButton)}
         >
           <DotsVertSvg />
         </IconButton>
@@ -147,27 +148,29 @@ const DrActions = ({
           </ul>
         </Tooltip.Tooltip>
       </div>
-      <Phone
-        id={phoneId}
-        href={phones[0] ? `tel: ${phones[0]}` : undefined}
-        className={styles.Phone}
-        tooltipContent={
-          phones[0] ? (
-            <ul>
-              {phones.map((phone, i) => (
-                <Tooltip.TooltipContent
-                  key={`${phone}_${i}`}
-                  as="li"
-                  size="sm"
-                  className={styles.Tooltip__item}
-                >
-                  {phone}
-                </Tooltip.TooltipContent>
-              ))}
-            </ul>
-          ) : undefined
-        }
-      />
+      <div className={styles.IconContainer}>
+        <Phone
+          id={phoneId}
+          href={phones[0] ? `tel: ${phones[0]}` : undefined}
+          className={clsx(styles.Phone, styles.IconButton)}
+          tooltipContent={
+            phones[0] ? (
+              <ul>
+                {phones.map((phone, i) => (
+                  <Tooltip.TooltipContent
+                    key={`${phone}_${i}`}
+                    as="li"
+                    size="sm"
+                    className={styles.Tooltip__item}
+                  >
+                    {phone}
+                  </Tooltip.TooltipContent>
+                ))}
+              </ul>
+            ) : undefined
+          }
+        />
+      </div>
     </div>
   );
 };
