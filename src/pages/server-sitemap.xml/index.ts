@@ -23,18 +23,20 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     ? `${siteUrl}/${localeValidated}`
     : siteUrl;
 
+  const changefreqDaily = 'daily' as const;
+
   const home = {
     loc: siteLocaleUrl,
-    lastmod: new Date().toISOString(),
-    // changefreq
-    // priority
+    // lastmod: new Date().toISOString(),
+    changefreq: changefreqDaily,
+    priority: 1,
   };
 
   const typePages = DR_TYPE_LABELS.map(type => ({
     loc: `${siteLocaleUrl}/${drTypeCoerceSchema.parse(type)}`,
-    lastmod: new Date().toISOString(),
-    // changefreq
-    // priority
+    // lastmod: new Date().toISOString(),
+    changefreq: changefreqDaily,
+    priority: 0.8,
   }));
 
   const { doctorsParsedFromCsv, institutionsParsedFromCsv } =
@@ -57,9 +59,9 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
     return {
       loc: `${siteLocaleUrl}/${drPath}`,
-      lastmod: new Date().toISOString(),
-      // changefreq
-      // priority
+      // lastmod: new Date().toISOString(),
+      changefreq: changefreqDaily,
+      priority: 0.5,
     };
   });
 
