@@ -32,7 +32,7 @@
         "email": {
             "description": "",
             "label": "E-mail",
-            "message": "",
+            "message": "Not valid e-mail address.",
             "placeholder": "E-mail"
         },
         "note": {
@@ -44,19 +44,19 @@
         "orderform": {
             "description": "",
             "label": "Link to order page",
-            "message": "",
+            "message": "Not valid e-mail address or URL.",
             "placeholder": "Link to order page"
         },
         "phone": {
             "description": "",
             "label": "Phone",
-            "message": "",
+            "message": "Not valid phone number.",
             "placeholder": "Phone"
         },
         "website": {
             "description": "",
             "label": "Web page",
-            "message": "",
+            "message": "Not valid URL",
             "placeholder": "Web page"
         }
     },

@@ -32,7 +32,7 @@
         "email": {
             "description": "",
             "label": "E-mail",
-            "message": "",
+            "message": "E-mail non valida.",
             "placeholder": "E-mail"
         },
         "note": {
@@ -44,19 +44,19 @@
         "orderform": {
             "description": "",
             "label": "Link alla pagina di prenotazione",
-            "message": "",
+            "message": "E-mail o URL non valida.",
             "placeholder": "Link alla pagina di prenotazione"
         },
         "phone": {
             "description": "",
             "label": "Telefono",
-            "message": "",
+            "message": "Telefono non valido",
             "placeholder": "Telefono"
         },
         "website": {
             "description": "",
             "label": "Pagina web",
-            "message": "",
+            "message": "URL non valido",
             "placeholder": "Pagina web"
         }
     },

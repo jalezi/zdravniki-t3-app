@@ -171,7 +171,11 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
                   inputMode="url"
                   icon={<LinkSvg />}
                   label={`${inputTranslations.website.label} ${index + 1}`}
-                  error={errors.websites?.[`${index}`]?.website?.message}
+                  error={
+                    errors.websites?.[`${index}`]?.website?.message
+                      ? inputTranslations.website.message
+                      : undefined
+                  }
                 />
                 <AddRemoveField
                   label="website"
@@ -202,7 +206,11 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
                   inputMode="tel"
                   icon={<PhoneSvg />}
                   label={`${inputTranslations.phone.label} ${index + 1}`}
-                  error={errors.phones?.[`${index}`]?.phone?.message}
+                  error={
+                    errors.phones?.[`${index}`]?.phone?.message
+                      ? inputTranslations.phone.message
+                      : undefined
+                  }
                 />
                 <AddRemoveField
                   label="phone"
@@ -222,7 +230,11 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
             inputMode="email"
             icon={<EmailSvg />}
             label={inputTranslations.email.label}
-            error={errors.email?.message}
+            error={
+              errors.email?.message
+                ? inputTranslations.email.message
+                : undefined
+            }
           />
           <Input
             {...register('orderform')}
@@ -231,7 +243,11 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
             placeholder={inputTranslations.orderform.placeholder}
             icon={<LinkSvg />}
             label={inputTranslations.orderform.label}
-            error={errors.orderform?.message}
+            error={
+              errors.orderform?.message
+                ? inputTranslations.orderform.message
+                : undefined
+            }
           />
           <div className={styles.FormGroup__accepts_and_availability}>
             <Controller

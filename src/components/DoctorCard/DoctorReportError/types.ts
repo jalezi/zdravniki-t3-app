@@ -1,4 +1,5 @@
 import type { CustomTypeOptions } from 'i18next';
+import isMobilePhone from 'validator/lib/isMobilePhone';
 import { z } from 'zod';
 
 import type { Doctor } from '@/server/api/routers/doctors';
@@ -6,26 +7,41 @@ import type { Doctor } from '@/server/api/routers/doctors';
 export type ReportErrorTranslations =
   CustomTypeOptions['resources']['dr-report-error'];
 
-export const ADDRESS_LENGTH_LIMIT = 255;
-export const NOTE_LENGTH_LIMIT = 255;
+export const ADDRESS_LENGTH_LIMIT = 255 as const;
+export const NOTE_LENGTH_LIMIT = 255 as const;
+
+const websiteSchema = z
+  .string()
+  .refine(value => value.split(' ').length === 1 && value.split('.').length > 1)
+  .or(z.literal(''))
+  .or(z.string().url());
+
+const phoneSchema = z
+  .string()
+  .refine(value =>
+    isMobilePhone(
+      value.replaceAll(' ', '').replaceAll('(', '').replaceAll(')', ''),
+      'sl-SI'
+    )
+  );
 export const formDataSchema = z.object({
   address: z.string().max(ADDRESS_LENGTH_LIMIT),
   websites: z
     .array(
       z.object({
-        website: z.string(),
+        website: websiteSchema,
       })
     )
     .nonempty(),
   phones: z
     .array(
       z.object({
-        phone: z.string(),
+        phone: phoneSchema,
       })
     )
     .nonempty(),
   email: z.string().email().or(z.literal('')),
-  orderform: z.string(),
+  orderform: z.string().email().or(z.literal('')).or(websiteSchema),
   accepts: z.enum(['y', 'n']),
   note: z.string().max(NOTE_LENGTH_LIMIT),
 });

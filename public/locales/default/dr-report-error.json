@@ -32,7 +32,7 @@
         "email": {
             "description": "",
             "label": "E-pošta",
-            "message": "",
+            "message": "Ni veljaveven e-poštni naslov.",
             "placeholder": "E-pošta"
         },
         "note": {
@@ -44,19 +44,19 @@
         "orderform": {
             "description": "",
             "label": "Povezava za naročanje",
-            "message": "",
+            "message": "Ni veljaveven e-poštni naslov oz. URL.",
             "placeholder": "Povezava za naročanje"
         },
         "phone": {
             "description": "",
             "label": "Telefon",
-            "message": "",
+            "message": "Ni veljavna telefonska številka.",
             "placeholder": "Telefon"
         },
         "website": {
             "description": "",
             "label": "Spletna stran",
-            "message": "",
+            "message": "Neveljaven URL.",
             "placeholder": "Spletna stran"
         }
     },
