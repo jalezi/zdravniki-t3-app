@@ -26,7 +26,7 @@
         "address": {
             "description": "",
             "label": "Naslov",
-            "message": "Predolgo. Največ 255 znakov.",
+            "message": "Predolgo.",
             "placeholder": "Naslov"
         },
         "email": {
@@ -38,7 +38,7 @@
         "note": {
             "description": "Kratka opomba o napaki",
             "label": "Opomba",
-            "message": "Predolgo. Največ 255 znakov.",
+            "message": "Predolgo.",
             "placeholder": "Opomba"
         },
         "orderform": {

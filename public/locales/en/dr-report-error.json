@@ -26,7 +26,7 @@
         "address": {
             "description": "",
             "label": "Address",
-            "message": "Too long. Max 255 characters.",
+            "message": "Too long.",
             "placeholder": "Address"
         },
         "email": {
@@ -38,7 +38,7 @@
         "note": {
             "description": "A quick note about the error",
             "label": "Note",
-            "message": "Too long. Max 255 characters.",
+            "message": "Too long",
             "placeholder": "Note"
         },
         "orderform": {

@@ -26,7 +26,7 @@
         "address": {
             "description": "",
             "label": "Indirizzo",
-            "message": "La nota è troppo lunga. Per favore inserisci meno di 255 caratteri.",
+            "message": "La nota è troppo lunga.",
             "placeholder": "Indirizzo"
         },
         "email": {
@@ -38,7 +38,7 @@
         "note": {
             "description": "Una breve nota sull'errore",
             "label": "Nota",
-            "message": "La nota è troppo lunga. Per favore inserisci meno di 255 caratteri.",
+            "message": "La nota è troppo lunga.",
             "placeholder": "Nota"
         },
         "orderform": {

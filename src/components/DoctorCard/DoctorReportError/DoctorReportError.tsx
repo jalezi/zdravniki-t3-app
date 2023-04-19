@@ -23,10 +23,16 @@ import styles from './DoctorReportError.module.css';
 import DoctorReportErrorActions from './DoctorReportErrorActions';
 import DoctorReportErrorReadOnlyForm from './DoctorReportErrorReadOnlyForm';
 import type { DoctorReportErrorProps, FormData } from './types';
-import { NOTE_LENGTH_LIMIT, formDataSchema } from './types';
+import {
+  ADDRESS_LENGTH_LIMIT,
+  NOTE_LENGTH_LIMIT,
+  formDataSchema,
+} from './types';
 import useDoctorReportErrorTranslations from './useDoctorReportErrorTranslations';
 import useInputHeight from './useInputHeight';
 import { getMutationInput } from './utils';
+
+const CHARS_COUNT_TRANSLATION_KEY = 'chars.charsWithCount' as const;
 
 const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
   // translations
@@ -136,9 +142,15 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
             label={inputTranslations.address.placeholder}
             error={
               errors.address?.message
-                ? inputTranslations.address.message
+                ? `${inputTranslations.address.message} (max: ${t(
+                    CHARS_COUNT_TRANSLATION_KEY,
+                    { count: ADDRESS_LENGTH_LIMIT }
+                  )})`
                 : undefined
             }
+            description={`(max: ${t(CHARS_COUNT_TRANSLATION_KEY, {
+              count: ADDRESS_LENGTH_LIMIT,
+            })})`}
           />
 
           <fieldset
@@ -280,10 +292,15 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
             label={inputTranslations.note.label}
             placeholder={inputTranslations.note.placeholder}
             error={
-              errors.note?.message ? inputTranslations.note.message : undefined
+              errors.note?.message
+                ? `${inputTranslations.note.message} (max: ${t(
+                    CHARS_COUNT_TRANSLATION_KEY,
+                    { count: NOTE_LENGTH_LIMIT }
+                  )})`
+                : undefined
             }
             description={`${inputTranslations.note.description} (max: ${t(
-              'chars.charsWithCount',
+              CHARS_COUNT_TRANSLATION_KEY,
               { count: NOTE_LENGTH_LIMIT }
             )})`}
             data-limit-remain={NOTE_LENGTH_LIMIT - noteLength}
