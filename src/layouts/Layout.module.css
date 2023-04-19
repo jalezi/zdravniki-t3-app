@@ -107,6 +107,22 @@
   }
 }
 
+@media only screen and (min-width: 48em) {
+  .Layout .MapSection {
+    z-index: 5;
+  }
+
+  .Layout .FiltersSection {
+    position: relative;
+    z-index: 10;
+    box-shadow: rgba(58, 83, 87, 0.24) 0px 3px 10px 0px;
+  }
+
+  .Layout .ListSection {
+    z-index: 5;
+  }
+}
+
 @media only screen and (min-width: 64em) {
   .Layout {
     --list-width: 28.125rem; /* 450px */
