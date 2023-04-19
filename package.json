@@ -11,7 +11,9 @@
     "stylelint:fix": "stylelint \"**/*.css\" --fix",
     "start": "next start",
     "prepare": "husky install",
-    "postbuild": "next-sitemap --config next-sitemap.config.cjs"
+    "postbuild": "next-sitemap --config next-sitemap.config.cjs",
+    "ts-lint": "tsc --noEmit --incremental",
+    "ts-lint:watch": "tsc --noEmit --incremental --watch"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.0.1",
