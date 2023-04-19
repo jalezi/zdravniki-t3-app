@@ -141,7 +141,7 @@ export const doctorsRouter = createTRPCRouter({
           `entry.${
             GOOGLE_FORM_INPUTS[`${key as keyof typeof GOOGLE_FORM_INPUTS}`]
           }`,
-          value ?? 'null'
+          value ?? ''
         );
       });
 
