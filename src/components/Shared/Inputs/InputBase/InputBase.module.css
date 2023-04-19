@@ -22,6 +22,7 @@
   outline: none;
 }
 
+.InputBase textarea::placeholder,
 .InputBase input::placeholder {
   color: var(--input-base-color-placeholder, var(--color-placeholder, initial));
 }
