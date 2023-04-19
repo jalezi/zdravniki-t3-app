@@ -24,7 +24,7 @@ export const formDataSchema = z.object({
       })
     )
     .nonempty(),
-  email: z.string(),
+  email: z.string().email().or(z.literal('')),
   orderform: z.string(),
   accepts: z.enum(['y', 'n']),
   availability: z.string(),
