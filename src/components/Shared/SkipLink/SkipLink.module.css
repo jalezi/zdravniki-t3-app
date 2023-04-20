@@ -1,0 +1,40 @@
+.SkipLink {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+
+  white-space: nowrap;
+
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.SkipLink:focus-visible {
+  z-index: 99999;
+  right: 0;
+
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  min-height: var(--header-height-sm);
+  margin: 0;
+
+  background-color: var(--color-blue-50);
+  clip: auto;
+  border: 1px solid var(--color-brand);
+  outline: none;
+}
+
+@media only screen and (min-width: 48em) {
+  .SkipLink:focus-visible {
+    min-height: calc(var(--header-height-lg) * 2);
+  }
+}
