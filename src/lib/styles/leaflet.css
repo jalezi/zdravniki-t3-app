@@ -21,6 +21,10 @@
   color: inherit;
 }
 
+.leaflet-popup-content p {
+  margin: 0;
+}
+
 .leaflet-tile-pane {
   filter: hue-rotate(40deg) saturate(0.4) contrast(0.6) brightness(1.2);
 }

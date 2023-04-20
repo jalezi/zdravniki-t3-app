@@ -76,9 +76,9 @@ const InfiniteScroll = ({ data, isVisible }: InfiniteScrollProps) => {
     })
     .map(([letter, doctors]) => (
       <div role="presentation" key={letter}>
-        <h2 role="presentation" className={styles.InfoLetter} translate="no">
+        <div role="presentation" className={styles.InfoLetter} translate="no">
           {letter}
-        </h2>
+        </div>
         {doctors.map((doctor, index, arr) => {
           return (
             <DrCard

@@ -25,6 +25,7 @@ const allowedElementSchema = z.enum([
   'h3',
   'h4',
   'strong',
+  'p',
 ]);
 
 const customProps = z.object({

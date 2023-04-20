@@ -9,8 +9,8 @@ export type DrProviderProps = {
 } & VariantProps;
 
 const VARIANT_MAP = {
-  list: { as: 'h6', element: 'h4' },
-  popup: { as: 'h6', element: 'h4' },
+  list: { as: 'h6', element: 'p' },
+  popup: { as: 'h6', element: 'p' },
   page: { as: 'h4', element: 'h2' },
 } satisfies Record<Variant, TypographyCustomProps>;
 

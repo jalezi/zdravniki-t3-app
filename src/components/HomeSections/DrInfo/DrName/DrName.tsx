@@ -15,8 +15,8 @@ export type DrNameProps = {
   };
 
 const VARIANT_MAP = {
-  list: { as: 'h3', element: 'h3' },
-  popup: { as: 'h3', element: 'h3' },
+  list: { as: 'h3', element: 'h2' },
+  popup: { as: 'h3', element: 'h2' },
   page: { as: 'h1', element: 'h1' },
 } satisfies Record<Variant, TypographyCustomProps>;
 
