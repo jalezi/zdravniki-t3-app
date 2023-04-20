@@ -55,3 +55,13 @@
     background: var(--color-blue-900);
   }
 }
+
+.FilterButton:focus-visible {
+  background: var(--color-white);
+  outline: none;
+}
+
+.FilterButton.isActive:focus-visible {
+  background: var(--color-blue-900);
+  outline: none;
+}
