@@ -43,7 +43,13 @@ const FilterButton: FilterButtonComponent = (
   );
 
   return (
-    <Button ref={ref} radius="xxl" className={combinedStyles} {...rest}>
+    <Button
+      ref={ref}
+      radius="xxl"
+      className={combinedStyles}
+      aria-label={isActive || alwaysText ? undefined : text}
+      {...rest}
+    >
       {Icon ? (
         <span className={iconStyles}>
           <Icon />
