@@ -2,6 +2,7 @@ import { clsx } from 'clsx';
 import React, {
   forwardRef,
   useCallback,
+  useEffect,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -13,6 +14,10 @@ import { CaretDownSvg, CaretUpSvg } from '@/components/Shared/Icons';
 import useKeyboardNavigation from '@/lib/hooks/useKeyboardNavigation';
 
 import styles from './SelectBase.module.css';
+
+// guard function to check if the html element is label or not
+const isLabel = (element: HTMLElement | null): element is HTMLLabelElement =>
+  element?.tagName === 'LABEL';
 
 export type SelectBaseOption = {
   label?: string;
@@ -104,6 +109,22 @@ const SelectBase = (
 
   useOnClickOutside(selectWrapperRef, () => setIsOpen(false));
 
+  useEffect(() => {
+    const handelLabelClick = (e: MouseEvent) => {
+      if (e.target == null || !isLabel(e.target as HTMLElement)) return;
+      if ('htmlFor' in e.target && e.target.htmlFor === id) {
+        selectRef.current?.focus();
+        setIsOpen(true);
+      }
+    };
+
+    document.addEventListener('click', handelLabelClick);
+
+    return () => {
+      document.removeEventListener('click', handelLabelClick);
+    };
+  }, [id]);
+
   const handleSelectClick = useCallback(() => setIsOpen(false), []);
   useKeyboardNavigation(isOpen, handleSelectClick, optionsRef);
 
@@ -146,6 +167,7 @@ const SelectBase = (
     >
       <div
         ref={selectRef}
+        id={id}
         className={selectedStyles}
         role="button"
         aria-haspopup="listbox"
@@ -162,7 +184,7 @@ const SelectBase = (
         data-label={selected ? selected.label : placeholder}
         data-name={name}
       >
-        <span id={id} className={inputStyles} aria-hidden="true">
+        <span className={inputStyles} aria-hidden="true">
           {selected?.valueToShow}
         </span>
         <span className="sr-only">{placeholder}</span>
