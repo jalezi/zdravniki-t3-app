@@ -14,7 +14,7 @@ const Navigation = (_: unknown, ref: Ref<HTMLDivElement>) => {
   const navLinksLastStyles = clsx(styles.navLinks, styles.last);
 
   return (
-    <nav ref={ref} className={navStyles}>
+    <nav ref={ref} id="main-nav" className={navStyles}>
       <h2 className={titleStyles}>Meni</h2>
       <ul className={navLinksFirstStyles}>
         <PageLinks />

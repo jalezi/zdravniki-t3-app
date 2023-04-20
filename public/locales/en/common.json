@@ -36,6 +36,15 @@
         "secondsWithCount_one": "{{count}} second",
         "secondsWithCount_other": "{{count}} seconds"
     },
+    "skipLinks": {
+        "list": "Go to list",
+        "map": "Go to map",
+        "menu-toggler": "Go to menu toggler",
+        "navigation": "Go to navigation",
+        "options": "Go to options",
+        "search": "Go to search",
+        "viewToggler": "Go to view toggler"
+    },
     "test": "english",
     "timestamps": {
         "at": "at",

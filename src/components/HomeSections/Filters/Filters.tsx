@@ -68,10 +68,12 @@ const Filters = ({ onLayoutChange, view }: Props) => {
         <div id="toggle-view-container" className={toggleViewContaineStyles}>
           <IconButton
             ref={buttonRef}
+            id={`view-toggler`}
             type="button"
             onClick={onToggleViewClick}
             className={iconButtonStyles}
-            aria-label={`"Toggle view" to ${view === 'map' ? 'list' : 'map'}`}
+            aria-label={`Toggle view to ${view === 'map' ? 'list' : 'map'}`}
+            data-view={view}
           >
             <MapSvg />
             <ListSvg />

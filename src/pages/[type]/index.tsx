@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import nextI18nextConfig from '@/../../next-i18next.config.js';
+import { SkipLinks } from '@/components/SkipLinks';
 import { pageDrTypeSchema } from '@/lib/types/dr-type-page';
 
 const Layout = dynamic(() => import('@/layouts/Layout'));
@@ -28,10 +29,13 @@ const DrTypePage = () => {
   const title = titles[type as keyof typeof titles];
 
   return (
-    <Layout textH1={title}>
-      <Seo title={title} />
-      <HomeSections />
-    </Layout>
+    <>
+      <SkipLinks />
+      <Layout textH1={title}>
+        <Seo title={title} />
+        <HomeSections />
+      </Layout>
+    </>
   );
 };
 

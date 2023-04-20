@@ -36,6 +36,15 @@
         "secondsWithCount_one": "{{count}} secondo",
         "secondsWithCount_other": "{{count}} secondi"
     },
+    "skipLinks": {
+        "list": "Vai all'elenco",
+        "map": "Vai alla mappa",
+        "menuToggler": "Vai al commutatore di menu",
+        "navigation": "Vai alla navigazione",
+        "options": "Vai alle opzioni",
+        "search": "Vai alla ricerca",
+        "viewToggler": "Vai al commutatore di visualizzazione"
+    },
     "test": "italiano",
     "timestamps": {
         "at": "alle",

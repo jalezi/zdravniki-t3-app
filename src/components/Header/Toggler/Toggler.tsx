@@ -20,6 +20,7 @@ const Toggler = (
   return (
     <IconButton
       ref={ref}
+      id="menu-toggler"
       type="button"
       className={togglerStyles}
       onClick={onToggle}

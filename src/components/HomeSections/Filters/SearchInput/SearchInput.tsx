@@ -63,6 +63,7 @@ const SearchInput = (
       </IconButton>
       <input
         ref={ref ?? internalRef}
+        id="search"
         type="search"
         placeholder={t`search.placeholder` ?? 'Search'}
         onChange={onSearchChange}

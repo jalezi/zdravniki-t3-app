@@ -42,6 +42,15 @@
         "secondsWithCount_other": "{{count}} sekund",
         "secondsWithCount_two": "{{count}} sekundi"
     },
+    "skipLinks": {
+        "list": "Preskoči na seznam",
+        "map": "Preskoči na zemljevid",
+        "menu-toggler": "Preskoči na preklopnik menija",
+        "navigation": "Preskoči na navigacijo",
+        "options": "Preskoči na možnosti iskanja",
+        "search": "Preskoči na iskalnik",
+        "viewToggler": "Vai al commutatore di visualizzazione"
+    },
     "test": "slovensko",
     "timestamps": {
         "at": "ob",
