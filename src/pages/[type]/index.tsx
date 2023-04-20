@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import nextI18nextConfig from '@/../../next-i18next.config.js';
+import { SrOnly } from '@/components/Shared/SrOnly';
 import { pageDrTypeSchema } from '@/lib/types/dr-type-page';
 
 const Layout = dynamic(() => import('@/layouts/Layout'));
@@ -30,6 +31,7 @@ const DrTypePage = () => {
   return (
     <Layout>
       <Seo title={title} />
+      <SrOnly.H1>{title}</SrOnly.H1>
       <HomeSections />
     </Layout>
   );
