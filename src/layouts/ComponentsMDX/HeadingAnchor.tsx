@@ -22,6 +22,7 @@ const HeadingAnchor = ({ headingText }: HeadingAnchorProps) => {
       href={href}
       className={headingAnchorStyles}
       onClick={() => ref.current?.parentElement?.scrollIntoView()}
+      aria-label={`Link to ${headingText}`}
     >
       <LinkSvg width="1rem" height="1rem" />
     </Polymorphic>
