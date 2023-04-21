@@ -82,7 +82,7 @@ const DrActions = ({
         <Tooltip.Tooltip
           noArrow={true}
           anchorSelect={`#${actionsId}`}
-          events={['click']}
+          openOnClick
           clickable={true}
           place="bottom"
           className={styles.Tooltip}
