@@ -30,7 +30,6 @@ function withMap(Component: typeof Map) {
     const search = useBoundStore(state => state.search);
     const debouncedSearch = useDebounce(search, 500);
 
-    // todo handle error and loading status
     if (status === 'error') {
       return <Fallback />;
     }
