@@ -33,7 +33,7 @@
     "leaflet-defaulticon-compatibility": "^0.1.1",
     "leaflet.locatecontrol": "^0.79.0",
     "leaflet.markercluster": "^1.5.3",
-    "next": "13.3.0",
+    "next": "13.3.1",
     "next-i18next": "^13.2.2",
     "next-sitemap": "^4.0.7",
     "papaparse": "^5.4.1",
