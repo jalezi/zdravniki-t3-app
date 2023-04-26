@@ -72,6 +72,27 @@
   transition: all 0.35s ease-in-out;
 }
 
+.ComponentsMDX.Details {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.ComponentsMDX.Details > .Summary {
+  cursor: pointer;
+
+  position: relative;
+
+  margin-top: 0.8em;
+  margin-bottom: 0.4em;
+
+  font-weight: 600;
+}
+
+.Summary::marker {
+  content: '';
+  display: none;
+}
+
 @media (hover: hover) {
   .ComponentsMDX:is(h2, h3, h4):hover > .ComponentsMDX.HeadingAnchor {
     opacity: 1;
