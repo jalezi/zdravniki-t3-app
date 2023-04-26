@@ -1,3 +1,120 @@
+import { DataTerm, Details, HeadingAnchor } from '@/layouts/ComponentsMDX';
+
+export const faqQuestion2 = (
+  <>
+    Kako <abbr title="Zavod za zdravstveno zavarovanje Slovenije">ZZZS</abbr>{' '}
+    pridobi podatke?
+  </>
+);
+
 # Pojasnilo
 
-Kmalu
+V primeru, da potrebujete nujno medicinsko pomoč, se obrnite na lokalno
+urgentno službo oz. pokličite 112.
+
+## Pogosta vprašanja in odgovori
+
+<Details summaryText="Od kode pridobivate podatke?">
+
+    <abbr title="Zavod za zdravstveno zavarovanje Slovenije">ZZZS</abbr> redno
+    javno objavlja [seznam zdravnikov, ki jih lahko izberemo za osebne
+    zdravnike](https://zavarovanec.zzzs.si/wps/portal/portali/azos/ioz/ioz_izvajalci),
+    s podatki o zasedenosti splošnih zdravnikov, pediatrov, ginekologov ter
+    zobozdravnikov v javni zdravstveni mreži.
+
+    Podatke uredimo in pripravimo za strojno branje ter jih shranimo [v
+    odložišče](https://github.com/sledilnik/zdravniki-data). Koordinate, ki jih
+    lahko prikažemo na zemljevidu, pridobimo prek naslovov ustanov, ki jih nato
+    s pomočjo [Registra prostorskih enot
+    (RPE)](https://podatki.gov.si/dataset/register-prostorskih-enot), ki ga
+    ureja <abbr>GURS</abbr> (Geodetska uprava RS), pretvorimo v koordinate.
+
+</Details>
+
+<Details summaryText={faqQuestion2}>
+
+    **Izvajalci zdravstvenih storitev (gl. spodaj) samostojno določijo**, kateri
+    zdravniki (ki izpolnjujejo pogoje za izbranega osebnega zdravnika) bodo
+    opravljali naloge izbranega osebnega zdravnika, in to z **obrazcem sporočijo{' '}
+    <abbr title="Zavod za zdravstveno zavarovanje Slovenije">ZZZS</abbr>**.
+
+    Izvajalci sami določijo – _v okviru pogodbenega obsega zdravniških timov za
+    posamezno dejavnost_ – obseg tima po posameznih zdravnikih, ki so izbrani
+    osebni zdravniki. Na podlagi te informacije{' '}
+    <abbr title="Zavod za zdravstveno zavarovanje Slovenije">ZZZS</abbr> uredi
+    vnos v program, temu sledita avtomatska računalniška obdelava podatkov (ki
+    ne omogoča ročnih posegov) in objava podatkov na spletu.
+
+    Če zdravnik iz kakšnega koli razloga **ne more** opravljati dela v določenem
+    minimalnem obsegu (npr. 0,2 tima ali 0,1 tima), ga lahko **izvajalec
+    izvzame** iz tega dela, zavarovane osebe pa **obvesti, naj poiščejo novega
+    osebnega zdravnika (verjetno v okviru iste enote)**. Če je zdravnik začasno
+    odsoten **že dlje časa**, pa lahko – po presoji izvajalca – bodisi
+    **zmanjšajo njegov obseg tima** in zavarovane osebe **postopoma preusmerjajo
+    v druge ambulante** ali pa zadržijo prvotni obseg tima ob zagotovilu, da se
+    v ambulanti opredeli zavarovane osebe vsaj do minimalnega obsega 0,1 tima. V
+    obeh primerih pa se mora **zagotoviti ustrezno nadomeščanje odsotnega
+    zdravnika** glede na ordinacijski čas. Izvajalci zdravstvenih storitev (gl.
+    spodaj) samostojno določijo, kateri zdravniki (ki izpolnjujejo pogoje za
+    izbranega osebnega zdravnika) bodo opravljali naloge izbranega osebnega
+    zdravnika, in to z obrazcem sporočijo{' '}
+    <abbr title="Zavod za zdravstveno zavarovanje Slovenije">ZZZS</abbr>.
+
+</Details>
+
+<Details summaryText="Zakaj piše, da zdravnik sprejema, potem pa ni na voljo?">
+  Podatki o zasedenosti ambulant se **[ne posodabljajo sproti, ampak na 1 dan
+  (torej ne vsakič, ko pride do
+  spremembe](https://zavarovanec.zzzs.si/wps/portal/portali/azos/ioz/ioz_izvajalci))**,
+  zato lahko pride do neskladja med objavljenimi podatki in ažurnim stanjem.
+  Zdravnik je lahko v obdobju od objave do trenutka vaše poizvedbe že dosegel
+  zahtevane <DataTerm term="head-quotient" text="glavarinske količnike" />, je
+  na porodniški/bolniški ali pa v pokoju oz. pred upokojitvijo.
+</Details>
+
+## Slovar izrazov
+
+<Details summaryText="Glavarina">
+  <dfn id="head-count">
+    Število oseb, ki je določenega zdravnika **izbralo za osebnega zdravnika**
+    in predstavlja približno polovico prihodka. Na podlagi **števila
+    opredeljenih zavarovanih** oseb, ki se ugotavlja **štirikrat** letno (28.
+    februarja, 31. maja, 31. avgusta in 30. novembra), se izračunajo količniki
+    za glavarino.
+  </dfn>
+</Details>
+
+<Details id="data-term-head-quotient" summaryText="Glavarinskik količnik">
+  <dfn id="head-quotient">
+    Glavarina, **popravljena glede na starost pacientov** oz. vrednost
+    zavarovane osebe pri izpolnjevanju glavarinske kvote (gl. zgornje opise
+    glavarin v ambulantah družinske medicine, pediatrije in ginekologije).
+  </dfn>
+
+    Na primer: zavarovana oseba, stara **66 let**, pri končnemu seštevku
+    glavarine nima vrednosti **1, pač pa 2,2**.
+
+    Podobne glavarinske sisteme, temelječe na starostnih razredih, spolu in
+    občasno še na nekaterih drugih spremenljivkah, uporabljajo v **več evropskih
+    državah** (Angliji, na Nizozemskem, v Belgiji, na Danskem, Švedskem,
+    Norveškem ipd).
+
+</Details>
+
+<Details summaryText="Glavarinska kvota">
+  <dfn id="head-quota">
+    **Maksimalni glavarinski količnik**, določen s strani{' '}
+    <abbr title="Zavod za zdravstveno zavarovanje Slovenije">ZZZS</abbr>, pri
+    katerem **lahko zdravniki primarnega nivoja odklonijo** sprejem zavarovane
+    osebe.
+  </dfn>
+</Details>
+
+<Details summaryText="Zdravstveni tim">
+  <dfn id="team">
+    Zdravstveni tim predstavlja **najnižjo organizacijsko enoto** v sistemu,
+    torej ekipo ljudi, ki so **nujno potrebni**, da se lahko **izvaja ambulantna
+    dejavnost**. Tim ponavadi sestavljata **zdravnik specialist in diplomirana
+    medicinska sestra**.
+  </dfn>
+</Details>
