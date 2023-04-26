@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import type { ReactNode } from 'react';
 import { useEffect, useRef, useState } from 'react';
+import { useEventListener } from 'usehooks-ts';
 
 import { Button } from '@/components/Shared/Buttons';
 import { Icon } from '@/components/Shared/Icons';
@@ -25,10 +26,13 @@ const Details = ({
   ...props
 }: DetailsProps) => {
   const ref = useRef<HTMLDetailsElement>(null);
+  const backToLink = useRef<HTMLAnchorElement>(null);
+  const backOutlineRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const { asPath, replace } = useRouter();
   const isHashId = asPath.includes(`#${props?.id ?? ''}`);
+  const basePath = asPath.split('/')[1];
 
   useEffect(() => {
     setIsOpen(ref.current?.open ?? false);
@@ -40,6 +44,15 @@ const Details = ({
       setIsOpen(true);
     }
   }, [isHashId]);
+
+  const styleBackToOutline = createBackToOutlineFunc({
+    parentElement: ref.current,
+    toElement: backToLink.current,
+    outlineElement: backOutlineRef.current,
+  });
+
+  styleBackToOutline();
+  useEventListener('resize', styleBackToOutline);
 
   const iconName = isOpen ? 'MinusCircleSvg' : 'PlusCircleSvg';
   const summaryHandler = async () => {
@@ -63,6 +76,7 @@ const Details = ({
     }
   };
 
+  // styles
   const detailsWrapperStyles = clsx(
     styles.ComponentsMDX,
     styles.DetailsWrapper
@@ -73,12 +87,25 @@ const Details = ({
     styles.ComponentsMDX,
     styles.SummaryIconWrapper
   );
+  const detailsContentStyles = clsx(
+    styles.ComponentsMDX,
+    styles.DetailsContent
+  );
   const iconStyles = clsx(
     styles.ComponentsMDX,
     styles.Icon,
     isOpen && styles.Close,
     !isOpen && styles.Open
   );
+  const backOutlineStyles = clsx(styles.ComponentsMDX, styles.BackOutline);
+
+  const dataBackAttribute = ref.current?.getAttribute('data-back');
+
+  const showBackToButton =
+    variant === 'glossary' &&
+    dataBackAttribute &&
+    isHashId &&
+    basePath === 'faq';
 
   return (
     <div className={detailsWrapperStyles}>
@@ -89,18 +116,24 @@ const Details = ({
             <Icon size="xxl" className={iconStyles} name={iconName} />
           </span>
         </summary>
-        <div className={styles.DetailsContent}>
+        <div className={detailsContentStyles}>
           {children}
-          {variant === 'glossary' && ref.current?.hasAttribute('data-back') && (
-            <Button
-              as={Link}
-              href={`/faq/#${ref.current?.getAttribute('data-back') ?? ''}`}
-              replace
-              onClick={backHandler}
-              className={clsx(styles.ComponentsMDX, styles.BackTo)}
-            >
-              nazaj
-            </Button>
+          {showBackToButton && (
+            <>
+              <Button
+                ref={backToLink}
+                as={Link}
+                href={`/${basePath}/#${
+                  ref.current?.getAttribute('data-back') ?? ''
+                }`}
+                replace
+                onClick={backHandler}
+                className={clsx(styles.ComponentsMDX, styles.BackTo)}
+              >
+                nazaj
+              </Button>
+              <div ref={backOutlineRef} className={backOutlineStyles} />
+            </>
           )}
         </div>
       </Polymorphic>
@@ -110,3 +143,73 @@ const Details = ({
 };
 
 export default Details;
+
+type BaseElements = {
+  parentElement: HTMLElement | null;
+  toElement: HTMLElement | null;
+  outlineElement: HTMLElement | null;
+};
+
+type NonNullableBaseElements = {
+  [K in keyof BaseElements]-?: NonNullable<BaseElements[K]>;
+};
+
+type CalculateBackToOutlineRect = {
+  fromElement: HTMLElement;
+} & Omit<NonNullableBaseElements, 'outlineElement'>;
+
+function calculateBackToOutlineRect(elements: CalculateBackToOutlineRect) {
+  const { fromElement, parentElement, toElement } = elements;
+
+  const fromRect = fromElement.getBoundingClientRect();
+  const parentRect = parentElement.getBoundingClientRect();
+  const toRect = toElement.getBoundingClientRect();
+
+  const width = parentRect.right - fromRect.left;
+  const bottom = toRect.height / 2;
+  const height = parentRect.bottom - fromRect.bottom - bottom;
+
+  return {
+    width,
+    bottom,
+    height,
+  };
+}
+
+function setBackToOutlineStyles(
+  element: HTMLElement,
+  elements: CalculateBackToOutlineRect
+) {
+  const { fromElement, parentElement } = elements;
+
+  const { width, bottom, height } = calculateBackToOutlineRect(elements);
+
+  element.style.width = `calc(${width}px + 0.5em)`;
+  element.style.bottom = `${bottom}px`;
+  element.style.left = `${
+    parentElement.getBoundingClientRect().width - width
+  }px`;
+  element.style.height = `${height + 2}px`;
+
+  element.style.clipPath = `polygon(${
+    fromElement.getBoundingClientRect().width
+  }px  -2px, calc(100% + 2px) -2px, calc(100% + 2px) 102%, calc(100% - 1em) 100%)`;
+}
+
+function createBackToOutlineFunc(elements: BaseElements) {
+  return () => {
+    const { parentElement, toElement, outlineElement } = elements;
+    const dataBackAttribute = parentElement?.getAttribute('data-back');
+    if (!parentElement || !toElement || !outlineElement || !dataBackAttribute)
+      return;
+
+    const dataTerm = document.getElementById(dataBackAttribute);
+    if (!dataTerm) return;
+
+    setBackToOutlineStyles(outlineElement, {
+      fromElement: dataTerm,
+      parentElement,
+      toElement,
+    });
+  };
+}

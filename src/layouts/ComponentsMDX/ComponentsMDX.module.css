@@ -90,27 +90,36 @@
   margin-bottom: 1.5rem;
 }
 
-.DetailsContent {
+.ComponentsMDX.DetailsContent {
   display: flex;
   flex-direction: column;
   gap: 1.6em;
   margin-top: 0.8em;
 }
 
-.DetailsContent > .ComponentsMDX.P {
+.ComponentsMDX.DetailsContent > .ComponentsMDX.P {
   margin-top: 0;
   margin-bottom: 0;
 }
 
 .ComponentsMDX.BackTo {
   --button-color: var(--color-black-A66);
+
+  position: relative;
+  z-index: 1;
   /* border-radius: 1.6em; */
   /* border: 1px solid var(--color-brand); */
   margin-left: auto;
   /* margin-right: 1.6em; */
   font-size: 0.75rem;
   font-weight: 600;
+
   transition: all var(--cubic-bezier);
+}
+
+.ComponentsMDX.BackOutline {
+  position: absolute;
+  outline: 2px dotted var(--color-highlight);
 }
 
 .ComponentsMDX.Details > .ComponentsMDX.Summary {
