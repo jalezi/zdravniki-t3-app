@@ -54,14 +54,14 @@
 
 .ComponentsMDX.P,
 .ComponentsMDX.Ul {
+  margin-top: 1em;
   line-height: 1.7;
   letter-spacing: 0.007em;
 }
 
-:is(.ComponentsMDX.H2, .ComponentsMDX.H3, .ComponentsMDX.H4) ~ .ComponentsMDX.P,
-:is(.ComponentsMDX.H2, .ComponentsMDX.H3, .ComponentsMDX.H4)
-  ~ .ComponentsMDX.Ul {
-  margin-bottom: 1.75em;
+.ComponentsMDX.P:not(:last-child),
+.ComponentsMDX.Ul:not(:last-child) {
+  margin-bottom: 1.6em;
 }
 
 .ComponentsMDX.Strong {
