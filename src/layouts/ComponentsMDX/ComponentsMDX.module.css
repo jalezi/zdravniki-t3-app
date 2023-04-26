@@ -16,13 +16,13 @@
   margin-top: 0;
 }
 
-.ComponentsMDX:is(h2, h3, h4) {
+.ComponentsMDX:is(h2, h3, h4, .DetailsWrapper) {
   position: relative;
   margin-top: 0.8em;
   margin-bottom: 0.4em;
 }
 
-.ComponentsMDX:is(h2, h3, h4) > .ComponentsMDX.HeadingAnchor {
+.ComponentsMDX:is(h2, h3, h4, .DetailsWrapper) > .ComponentsMDX.HeadingAnchor {
   position: absolute;
   left: -1em;
 
@@ -32,6 +32,12 @@
   box-shadow: none;
 
   transition: all 0.35s ease-in-out;
+}
+
+.ComponentsMDX.DetailsWrapper > .ComponentsMDX.HeadingAnchor {
+  top: 0.2em;
+  left: -1.2em;
+  display: flex;
 }
 
 .ComponentsMDX.H2 {
@@ -57,6 +63,7 @@
   margin-top: 1em;
   line-height: 1.7;
   letter-spacing: 0.007em;
+  /* text-wrap: balance; */ /* Not supported yet - only Chrome-canary */
 }
 
 .ComponentsMDX.P:not(:last-child),
@@ -74,15 +81,47 @@
   transition: all 0.35s ease-in-out;
 }
 
+.ComponentsMDX.DetailsWrapper {
+  position: relative;
+}
+
 .ComponentsMDX.Details {
   position: relative;
   margin-bottom: 1.5rem;
 }
 
-.ComponentsMDX.Details > .Summary {
+.DetailsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6em;
+  margin-top: 0.8em;
+}
+
+.DetailsContent > .ComponentsMDX.P {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.ComponentsMDX.BackTo {
+  --button-color: var(--color-black-A66);
+  /* border-radius: 1.6em; */
+  /* border: 1px solid var(--color-brand); */
+  margin-left: auto;
+  /* margin-right: 1.6em; */
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all var(--cubic-bezier);
+}
+
+.ComponentsMDX.Details > .ComponentsMDX.Summary {
   cursor: pointer;
 
   position: relative;
+
+  display: flex;
+  gap: 0.25em;
+  align-items: center;
+  justify-content: space-between;
 
   margin-top: 0.8em;
   margin-bottom: 0.4em;
@@ -90,12 +129,30 @@
   font-weight: 600;
 }
 
-.Summary::marker {
+.ComponentsMDX.Summary::marker {
   content: '';
   display: none;
 }
 
-.DataTerm {
+.ComponentsMDX.SummaryIconWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.ComponentsMDX.Icon {
+  fill-opacity: 0.5;
+  transition: all var(--cubic-bezier);
+}
+
+.ComponentsMDX.Icon.Open {
+  color: var(--color-accepts-y);
+}
+
+.ComponentsMDX.Icon.Close {
+  color: var(--color-accepts-n);
+}
+
+.ComponentsMDX.DataTerm {
   position: relative;
 
   display: inline-flex;
@@ -110,7 +167,7 @@
   -webkit-box-pack: center;
 }
 
-.DataTerm::before {
+.ComponentsMDX.DataTerm::before {
   content: '';
 
   position: absolute;
@@ -124,12 +181,23 @@
 }
 
 @media (hover: hover) {
+  .ComponentsMDX.DetailsWrapper .ComponentsMDX.HeadingAnchor:hover,
+  .ComponentsMDX.Details:has(.ComponentsMDX.Summary:hover)
+    + .ComponentsMDX.HeadingAnchor,
   .ComponentsMDX:is(h2, h3, h4):hover > .ComponentsMDX.HeadingAnchor {
     opacity: 1;
   }
 
+  .ComponentsMDX.Details:has(.ComponentsMDX.Summary:hover) .ComponentsMDX.Icon {
+    fill-opacity: 1;
+  }
+
   .ComponentsMDX.A:hover {
     box-shadow: inset 0 0px 0 white, inset 0 -20px var(--color-brand);
+  }
+
+  .ComponentsMDX.BackTo:hover {
+    --button-color: var(--color-black-A87);
   }
 }
 

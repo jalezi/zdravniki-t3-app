@@ -1,4 +1,5 @@
 import { clsx } from 'clsx';
+import Link from 'next/link';
 import { useRef } from 'react';
 
 import { LinkSvg } from '@/components/Shared/Icons';
@@ -19,8 +20,9 @@ const HeadingAnchor = ({ headingText, ...props }: HeadingAnchorProps) => {
   return (
     <Polymorphic
       ref={ref}
-      as="a"
+      as={Link}
       href={href}
+      replace
       className={headingAnchorStyles}
       onClick={() => ref.current?.parentElement?.scrollIntoView()}
       aria-label={`Link to ${headingText}`}
