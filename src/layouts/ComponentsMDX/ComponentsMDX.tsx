@@ -46,5 +46,5 @@ export const Strong = (props: object) => {
 export const A = (props: object) => {
   const style = appendClassNames(styles.A as string);
 
-  return <Polymorphic as="a" className={style} {...props} />;
+  return <Polymorphic as="a" className={style} target="_blank" {...props} />;
 };
