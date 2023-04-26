@@ -15,6 +15,7 @@ type DrCardProps = {
   clinic: Doctor['clinic'];
   drId: Doctor['fakeId'];
   drHref: Doctor['href'];
+  email: Doctor['email'];
   href: Doctor['href'];
   fullAddress: Doctor['location']['address']['fullAddress'];
   geoLocation: Doctor['location']['geoLocation'];
@@ -23,6 +24,7 @@ type DrCardProps = {
   override: Doctor['override'];
   phones: Doctor['phones'];
   provider: Doctor['provider'];
+  websites: Doctor['websites'];
   role?: AriaRole;
 };
 
@@ -33,6 +35,7 @@ const DrCard = (
     clinic,
     drHref,
     drId,
+    email,
     fullAddress,
     geoLocation,
     href,
@@ -41,6 +44,7 @@ const DrCard = (
     override,
     phones,
     provider,
+    websites,
     role,
   }: DrCardProps,
   ref: Ref<HTMLDivElement>
@@ -73,8 +77,10 @@ const DrCard = (
       <DrActions
         drHref={drHref}
         drId={drId}
+        email={email}
         geoLocation={geoLocation}
         phones={phones}
+        websites={websites}
         className={styles.Actions}
       />
     </div>

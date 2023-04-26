@@ -89,6 +89,7 @@ const InfiniteScroll = ({ data, isVisible }: InfiniteScrollProps) => {
               clinic={doctor.clinic}
               drHref={doctor.href}
               drId={doctor.fakeId}
+              email={doctor.email}
               fullAddress={doctor.location.address.fullAddress}
               geoLocation={doctor.location.geoLocation}
               href={doctor.href}
@@ -97,6 +98,7 @@ const InfiniteScroll = ({ data, isVisible }: InfiniteScrollProps) => {
               override={doctor.override}
               phones={doctor.phones}
               provider={doctor.provider}
+              websites={doctor.websites}
               role="listitem"
             />
           );

@@ -4,19 +4,20 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
 import { Button, IconButton } from '@/components/Shared/Buttons';
-import { DotsVertSvg, Icon } from '@/components/Shared/Icons';
+import { DotsVertSvg, Icon, PhoneSvg } from '@/components/Shared/Icons';
 import { Tooltip } from '@/components/Shared/Tooltip';
 import { MAX_ZOOM } from '@/lib/constants/map';
 import useBoundStore from '@/lib/store/useBoundStore';
 import type { Doctor } from '@/server/api/routers/doctors';
 
 import styles from './DrActions.module.css';
-import Phone from './Phone';
 
 type DrActionsCommonProps = {
   drHref: Doctor['href'];
   drId: Doctor['fakeId'];
   phones: Doctor['phones'];
+  email: Doctor['email'];
+  websites: Doctor['websites'];
   className?: string;
 };
 
@@ -38,7 +39,9 @@ export type DrActionsProps =
 const DrActions = ({
   drHref,
   drId,
+  email,
   phones,
+  websites,
   className,
   variant = 'default',
   ...rest
@@ -66,6 +69,9 @@ const DrActions = ({
         }
       }
     : undefined;
+
+  const _phones = phones.filter(Boolean);
+  const _websites = websites.filter(Boolean);
 
   return (
     <div className={actionsStyles}>
@@ -149,27 +155,90 @@ const DrActions = ({
         </Tooltip.Tooltip>
       </div>
       <div className={styles.IconContainer}>
-        <Phone
+        <IconButton
           id={phoneId}
-          href={phones[0] ? `tel: ${phones[0]}` : undefined}
-          className={clsx(styles.Phone, styles.IconButton)}
-          tooltipContent={
-            phones[0] ? (
-              <ul>
-                {phones.map((phone, i) => (
-                  <Tooltip.TooltipContent
-                    key={`${phone}_${i}`}
-                    as="li"
-                    size="sm"
-                    className={styles.Tooltip__item}
+          type="button"
+          aria-label="More"
+          aria-haspopup="true"
+          className={clsx(styles.MoreMenu, styles.IconButton)}
+        >
+          <PhoneSvg />
+        </IconButton>
+        <Tooltip.Tooltip
+          noArrow={true}
+          anchorSelect={`#${phoneId}`}
+          openOnClick
+          clickable={true}
+          place="bottom"
+          className={styles.Tooltip}
+        >
+          <ul role="group" className={styles.Tooltip__group}>
+            {_phones.length > 0 &&
+              _phones.map((phone, index) => (
+                <Tooltip.TooltipContent
+                  key={`${phone}-${index}}`}
+                  as="li"
+                  size="sm"
+                  className={styles.Tooltip__item}
+                >
+                  <Button
+                    as={Link}
+                    href={`tel:${phone}`}
+                    passHref
+                    container="span"
                   >
+                    <Icon
+                      name="PhoneSvg"
+                      className={styles.Tooltip__icon}
+                      size="lg"
+                    />
                     {phone}
-                  </Tooltip.TooltipContent>
-                ))}
-              </ul>
-            ) : undefined
-          }
-        />
+                  </Button>
+                </Tooltip.TooltipContent>
+              ))}
+            {_websites.length > 0 &&
+              _websites.map((website, index) => (
+                <Tooltip.TooltipContent
+                  key={`${website}-${index}}`}
+                  as="li"
+                  size="sm"
+                  className={styles.Tooltip__item}
+                >
+                  <Button
+                    as="a"
+                    href={website}
+                    container="span"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={website}
+                  >
+                    <Icon
+                      name="LinkSvg"
+                      className={styles.Tooltip__icon}
+                      size="lg"
+                    />
+                    <span className={styles.Elipsis}>{website}</span>
+                  </Button>
+                </Tooltip.TooltipContent>
+              ))}
+            {email && (
+              <Tooltip.TooltipContent
+                as="li"
+                size="sm"
+                className={styles.Tooltip__item}
+              >
+                <Button as="a" href={`mailto:${email}`} container="span">
+                  <Icon
+                    name="EmailSvg"
+                    className={styles.Tooltip__icon}
+                    size="lg"
+                  />
+                  <span className={styles.Elipsis}>{email}</span>
+                </Button>
+              </Tooltip.TooltipContent>
+            )}
+          </ul>
+        </Tooltip.Tooltip>
       </div>
     </div>
   );

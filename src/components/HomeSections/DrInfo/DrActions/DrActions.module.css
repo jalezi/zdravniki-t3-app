@@ -57,6 +57,13 @@
   align-items: center;
 }
 
+.Tooltip__item .Elipsis {
+  overflow: hidden;
+  max-width: 35ch;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 @media (hover: hover) {
   .DrActions .IconContainer > .IconButton:hover {
     background-color: rgba(0, 0, 0, 0.04);
