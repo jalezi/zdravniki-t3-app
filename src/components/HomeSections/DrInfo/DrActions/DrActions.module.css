@@ -16,8 +16,9 @@
   --icon-button-padding: 0.5em;
 }
 
-.DrActions .IconContainer > .IconButton.Phone {
-  --icon-button-size: 1.5em;
+.DrActions > .IconContainer > .IconButton.Disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .DrActions .Tooltip {
