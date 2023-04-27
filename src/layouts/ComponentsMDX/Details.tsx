@@ -1,6 +1,7 @@
 import { clsx } from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import type { ReactNode } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { useEventListener } from 'usehooks-ts';
@@ -33,6 +34,8 @@ const Details = ({
   const { asPath, replace } = useRouter();
   const isHashId = asPath.includes(`#${props?.id ?? ''}`);
   const basePath = asPath.split('/')[1];
+
+  const { t } = useTranslation('faq');
 
   useEffect(() => {
     setIsOpen(ref.current?.open ?? false);
@@ -130,7 +133,7 @@ const Details = ({
                 onClick={backHandler}
                 className={clsx(styles.ComponentsMDX, styles.BackTo)}
               >
-                nazaj
+                {t('buttons.back')}
               </Button>
               <div ref={backOutlineRef} className={backOutlineStyles} />
             </>
