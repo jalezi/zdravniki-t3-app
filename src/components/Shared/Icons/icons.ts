@@ -1,3 +1,4 @@
+import AddressBookSvg from '@/assets/svg/icon-address-book.svg';
 import AdultsSvg from '@/assets/svg/icon-adults.svg';
 import Alert2Svg from '@/assets/svg/icon-alert-2.svg';
 import AlertSvg from '@/assets/svg/icon-alert.svg';
@@ -39,6 +40,7 @@ import TwSvg from '@/assets/svg/icon-tw.svg';
 import LogoSvg from '@/assets/svg/zdravniki-sledilnik-logo.svg';
 
 export const icons = {
+  AddressBookSvg,
   AdultsSvg,
   AlertSvg,
   Alert2Svg,

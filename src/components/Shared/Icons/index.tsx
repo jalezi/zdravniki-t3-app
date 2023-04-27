@@ -1,3 +1,4 @@
+export { default as AddressBookSvg } from '@/assets/svg/icon-address-book.svg';
 export { default as AdultsSvg } from '@/assets/svg/icon-adults.svg';
 export { default as AlertSvg } from '@/assets/svg/icon-alert.svg';
 export { default as Alert2Svg } from '@/assets/svg/icon-alert-2.svg';
