@@ -91,10 +91,22 @@
 }
 
 .ComponentsMDX.DetailsContent {
+  transform: translateY(-1em);
+
   display: flex;
   flex-direction: column;
   gap: 1.6em;
+
   margin-top: 1em;
+
+  opacity: 0.1;
+
+  transition: all var(--cubic-bezier);
+}
+
+.ComponentsMDX.Details[open] > .ComponentsMDX.DetailsContent {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .ComponentsMDX.DetailsContent > .ComponentsMDX.P {
