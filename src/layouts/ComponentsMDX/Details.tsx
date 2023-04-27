@@ -59,6 +59,10 @@ const Details = ({
 
   const iconName = isOpen ? 'MinusCircleSvg' : 'PlusCircleSvg';
   const summaryHandler = async () => {
+    if (!ref?.current?.open && ref.current?.hasAttribute('data-back')) {
+      ref.current.removeAttribute('data-back');
+    }
+
     setIsOpen(!ref.current?.open ?? false);
     const basePath = asPath.split('/')[1];
 
