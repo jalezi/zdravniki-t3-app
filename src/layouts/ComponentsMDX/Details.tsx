@@ -67,7 +67,7 @@ const Details = ({
         ? `/${basePath}`
         : `/${basePath}/#${props?.id ?? ''}`;
 
-      await replace(newAsPath);
+      await replace(newAsPath, undefined, { scroll: false });
     }
   };
 
