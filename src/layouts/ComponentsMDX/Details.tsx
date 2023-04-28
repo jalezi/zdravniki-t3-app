@@ -48,33 +48,47 @@ const Details = ({
     }
   }, [isHashId]);
 
-  const styleBackToOutline = createBackToOutlineFunc({
+  const dataBackAttribute = ref.current?.getAttribute('data-back');
+  const showBackToButton =
+    variant === 'glossary' &&
+    dataBackAttribute &&
+    isHashId &&
+    basePath === 'faq';
+
+  useEffect(() => {
+    if (!showBackToButton) return;
+    const styleBackToOutline = createBackToOutlineFunc({
+      parentElement: ref.current,
+      toElement: backToLink.current,
+      outlineElement: backOutlineRef.current,
+    });
+    styleBackToOutline();
+  }, [showBackToButton]);
+
+  useResize({
     parentElement: ref.current,
     toElement: backToLink.current,
     outlineElement: backOutlineRef.current,
   });
 
-  styleBackToOutline();
-  useEventListener('resize', styleBackToOutline);
-
-  const iconName = isOpen ? 'MinusCircleSvg' : 'PlusCircleSvg';
+  // handlers
   const summaryHandler = async () => {
-    if (!ref?.current?.open && ref.current?.hasAttribute('data-back')) {
+    if (!ref.current) return;
+    if (isOpen && ref.current.hasAttribute('data-back')) {
       ref.current.removeAttribute('data-back');
     }
 
-    setIsOpen(!ref.current?.open ?? false);
+    setIsOpen(!isOpen);
     const basePath = asPath.split('/')[1];
 
     if (basePath === 'faq') {
-      const newAsPath = ref.current?.open
+      const newAsPath = isOpen
         ? `/${basePath}`
         : `/${basePath}/#${props?.id ?? ''}`;
 
       await replace(newAsPath, undefined, { scroll: false });
     }
   };
-
   const backHandler = () => {
     if (ref.current) {
       ref.current.removeAttribute('data-back');
@@ -82,6 +96,8 @@ const Details = ({
       setIsOpen(false);
     }
   };
+
+  const iconName = isOpen ? 'MinusCircleSvg' : 'PlusCircleSvg';
 
   // styles
   const detailsWrapperStyles = clsx(
@@ -105,14 +121,6 @@ const Details = ({
     !isOpen && styles.Open
   );
   const backOutlineStyles = clsx(styles.ComponentsMDX, styles.BackOutline);
-
-  const dataBackAttribute = ref.current?.getAttribute('data-back');
-
-  const showBackToButton =
-    variant === 'glossary' &&
-    dataBackAttribute &&
-    isHashId &&
-    basePath === 'faq';
 
   return (
     <div className={detailsWrapperStyles}>
@@ -219,4 +227,10 @@ function createBackToOutlineFunc(elements: BaseElements) {
       toElement,
     });
   };
+}
+
+function useResize(elements: BaseElements) {
+  const styleBackToOutline = createBackToOutlineFunc(elements);
+  styleBackToOutline();
+  useEventListener('resize', styleBackToOutline);
 }
