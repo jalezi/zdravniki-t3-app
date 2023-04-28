@@ -148,9 +148,11 @@
   margin-bottom: 0.4em;
 
   font-weight: 600;
+  list-style: none;
 }
 
-.ComponentsMDX.Summary::marker {
+.ComponentsMDX.Summary::marker,
+.ComponentsMDX.Summary::-webkit-details-marker {
   content: '';
   display: none;
 }
