@@ -15,14 +15,14 @@ import styles from './ComponentsMDX.module.css';
 import HeadingAnchor from './HeadingAnchor';
 
 type DetailsProps = {
-  summaryText: ReactNode;
+  summary: ReactNode;
   variant?: 'question' | 'glossary';
 } & Omit<PolymorphicComponentProps<'details'>, 'as'>;
 
 const Details = ({
   children,
   className,
-  summaryText,
+  summary,
   variant = 'question',
   ...props
 }: DetailsProps) => {
@@ -118,7 +118,7 @@ const Details = ({
     <div className={detailsWrapperStyles}>
       <Polymorphic ref={ref} as="details" className={detailsStyles} {...props}>
         <summary className={summaryStyles} onClick={summaryHandler}>
-          <span>{summaryText}</span>
+          <span>{summary}</span>
           <span className={summaryIconWrapperStyles}>
             <Icon size="xxl" className={iconStyles} name={iconName} />
           </span>
