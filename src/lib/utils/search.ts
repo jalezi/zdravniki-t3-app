@@ -70,7 +70,8 @@ export const createDoctorFilter = (options: {
 
     const searchCondition =
       fullMatch(doctor.name, search) ||
-      partialMatch([doctor.provider ?? ''], search);
+      partialMatch([doctor.provider ?? ''], search) ||
+      partialMatch([doctor.location.address.searchAddress], search);
 
     const doctorLatLng = getDoctorLatLng(doctor);
 
