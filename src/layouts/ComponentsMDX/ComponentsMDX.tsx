@@ -1,8 +1,14 @@
 import { clsx } from 'clsx';
+import Link from 'next/link';
 
 import { Polymorphic } from '@/components/Shared/Polymorphic';
 
 import styles from './ComponentsMDX.module.css';
+
+// guard function to check if the html element is label or not
+const isDetails = (
+  element: HTMLElement | null
+): element is HTMLDetailsElement => element?.tagName === 'DETAILS';
 
 const appendClassNames = (...className: string[]) =>
   clsx(styles.ComponentsMDX, ...className);
@@ -52,7 +58,50 @@ export const Strong = (props: object) => {
 export const A = (props: object) => {
   const style = appendClassNames(styles.A as string);
 
-  return <Polymorphic as="a" className={style} target="_blank" {...props} />;
+  const { href, onClick, ...rest } = props as {
+    href?: string;
+    onClick: () => void;
+  };
+
+  const onClickHandler = () => {
+    if (!href || href?.startsWith('http')) {
+      onClick?.();
+      return;
+    }
+
+    const element = document.getElementById(href.replace('#', ''));
+    if (element && isDetails(element)) {
+      element.open = true;
+    }
+
+    onClick?.();
+  };
+
+  const target = href?.startsWith('http') ? '_blank' : undefined;
+  if (target) {
+    return (
+      <Polymorphic
+        as="a"
+        className={style}
+        href={href}
+        target={target}
+        onClick={onClickHandler}
+        {...rest}
+      />
+    );
+  }
+  if (href) {
+    return (
+      <Link
+        href={href}
+        className={style}
+        onClick={onClickHandler}
+        replace
+        {...rest}
+      />
+    );
+  }
+  return null;
 };
 export const Table = (props: object) => {
   const style = appendClassNames(styles.Table as string);
