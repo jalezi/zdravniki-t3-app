@@ -1,0 +1,66 @@
+import { Details } from '@/layouts/ComponentsMDX';
+import * as Answers from './answers';
+import * as Glossary from './glossary';
+
+export const questionZZZSdata = (
+  <>
+    Kako <abbr title="Zavod za zdravstveno zavarovanje Slovenije">ZZZS</abbr>{' '}
+    pridobi podatke?
+  </>
+);
+
+# Pojasnilo
+
+## 🚧 **WORK IN PROGRESS** 🚧
+
+V primeru, da potrebujete nujno medicinsko pomoč, se obrnite na lokalno
+urgentno službo oz. pokličite 112.
+
+## Pogosta vprašanja in odgovori
+
+<Details id="data-source" summary="Od kod pridobivate podatke?">
+  <Answers.DataSource />
+</Details>
+
+<Details id="zzzs-data" summary={questionZZZSdata}>
+  <Answers.ZZZSData />
+</Details>
+
+<Details
+  id="accepts"
+  summary="Zakaj piše, da zdravnik sprejema, potem pa ni na voljo?"
+>
+  <Answers.Accepts />
+</Details>
+
+<Details
+  id="doctor-absence"
+  summary="Kaj se zgodi, ko je zdravnik začasno odsoten?"
+>
+  <Answers.DoctorAbsence />
+</Details>
+
+<Details
+  id="availability"
+  summary="Kaj pomeni »obseg zaposlitve« in prikaz odstokov pri posameznem zdravniku?"
+>
+  <Answers.Availability />
+</Details>
+
+## Slovar izrazov
+
+<Details id="head-count" summary="Glavarina" variant="glossary">
+  <Glossary.HeadCount />
+</Details>
+
+<Details id="head-quotient" summary="Glavarinski količnik" variant="glossary">
+  <Glossary.HeadQuotient />
+</Details>
+
+<Details id="head-quota" summary="Glavarinska kvota" variant="glossary">
+  <Glossary.HeadQuota />
+</Details>
+
+<Details id="team" summary="Zdravstveni tim" variant="glossary">
+  <Glossary.Team />
+</Details>
