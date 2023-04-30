@@ -96,6 +96,22 @@
   transition: all 0.35s ease-in-out;
 }
 
+.ComponentsMDX.Table {
+  text-align: center;
+}
+
+.ComponentsMDX.Td {
+  padding-block: 0.5em;
+}
+
+.ComponentsMDX.THead > .ComponentsMDX.Tr {
+  font-weight: 600;
+}
+
+.ComponentsMDX.TBody > .ComponentsMDX.Tr {
+  border-top: 1px solid var(--color-black-A56);
+}
+
 .ComponentsMDX.DetailsWrapper {
   position: relative;
 }

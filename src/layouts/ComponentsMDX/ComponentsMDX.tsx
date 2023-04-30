@@ -54,3 +54,38 @@ export const A = (props: object) => {
 
   return <Polymorphic as="a" className={style} target="_blank" {...props} />;
 };
+export const Table = (props: object) => {
+  const style = appendClassNames(styles.Table as string);
+
+  return <Polymorphic as="table" className={style} {...props} />;
+};
+
+export const THead = (props: object) => {
+  const style = appendClassNames(styles.THead as string);
+
+  return <Polymorphic as="thead" className={style} {...props} />;
+};
+
+export const TBody = (props: object) => {
+  const style = appendClassNames(styles.TBody as string);
+
+  return <Polymorphic as="tbody" className={style} {...props} />;
+};
+
+export const Tr = (props: object) => {
+  const style = appendClassNames(styles.Tr as string);
+
+  return <Polymorphic as="tr" className={style} {...props} />;
+};
+
+export const Th = (props: object) => {
+  const style = appendClassNames(styles.Th as string);
+
+  return <Polymorphic as="th" className={style} {...props} />;
+};
+
+export const Td = (props: object) => {
+  const style = appendClassNames(styles.Td as string);
+
+  return <Polymorphic as="td" className={style} {...props} />;
+};

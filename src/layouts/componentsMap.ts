@@ -12,4 +12,10 @@ export const componentsMap = {
   ol: ComponentsMDX.Ol,
   strong: ComponentsMDX.Strong,
   a: ComponentsMDX.A,
+  table: ComponentsMDX.Table,
+  thead: ComponentsMDX.THead,
+  tbody: ComponentsMDX.TBody,
+  tr: ComponentsMDX.Tr,
+  th: ComponentsMDX.Th,
+  td: ComponentsMDX.Td,
 };
