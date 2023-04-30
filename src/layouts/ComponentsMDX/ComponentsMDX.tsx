@@ -37,6 +37,12 @@ export const Ul = (props: object) => {
   return <Polymorphic as="ul" className={style} {...props} />;
 };
 
+export const Ol = (props: object) => {
+  const style = appendClassNames(styles.Ol as string);
+
+  return <Polymorphic as="ol" className={style} {...props} />;
+};
+
 export const Strong = (props: object) => {
   const style = appendClassNames(styles.Strong as string);
 

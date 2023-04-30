@@ -58,8 +58,22 @@
   line-height: var(--line-height-h4);
 }
 
-.ComponentsMDX.P,
 .ComponentsMDX.Ul {
+  list-style: disc;
+}
+
+.ComponentsMDX.Ol {
+  list-style: decimal;
+}
+
+.ComponentsMDX.Ul,
+.ComponentsMDX.Ol {
+  padding-inline-start: 2.5rem;
+}
+
+.ComponentsMDX.P,
+.ComponentsMDX.Ul,
+.ComponentsMDX.Ol {
   margin-top: 1em;
   line-height: 1.7;
   letter-spacing: 0.007em;
@@ -67,7 +81,8 @@
 }
 
 .ComponentsMDX.P:not(:last-child),
-.ComponentsMDX.Ul:not(:last-child) {
+.ComponentsMDX.Ul:not(:last-child),
+.ComponentsMDX.Ol:not(:last-child) {
   margin-bottom: 1.6em;
 }
 
@@ -109,7 +124,9 @@
   opacity: 1;
 }
 
-.ComponentsMDX.DetailsContent > .ComponentsMDX.P {
+.ComponentsMDX.DetailsContent > .ComponentsMDX.P,
+.ComponentsMDX.DetailsContent > .ComponentsMDX.Ul,
+.ComponentsMDX.DetailsContent > .ComponentsMDX.Ol {
   margin-top: 0;
   margin-bottom: 0;
 }

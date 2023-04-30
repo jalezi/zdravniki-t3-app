@@ -9,6 +9,7 @@ export const componentsMap = {
   h4: ComponentsMDX.H4,
   p: ComponentsMDX.P,
   ul: ComponentsMDX.Ul,
+  ol: ComponentsMDX.Ol,
   strong: ComponentsMDX.Strong,
   a: ComponentsMDX.A,
 };
