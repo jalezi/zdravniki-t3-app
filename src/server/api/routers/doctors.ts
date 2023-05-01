@@ -84,7 +84,7 @@ const filterDoctors = (
   doctors: DrListSchema,
   { type }: { type: PageDrType }
 ) => {
-  return doctors.filter(doctor => type === doctor.typePage);
+  return doctors.filter(doctor => type === doctor.typePage && !!doctor.idInst);
 };
 
 export const doctorsRouter = createTRPCRouter({
