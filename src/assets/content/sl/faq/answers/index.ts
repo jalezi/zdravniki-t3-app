@@ -2,6 +2,7 @@ export { default as Accepts } from './accepts.mdx';
 export { default as Availability } from './availability.mdx';
 export { default as BlueBook } from './blue-book.mdx';
 export { default as Contractor } from './contractor.mdx';
+export { default as Correction } from './correction.mdx';
 export { default as DataSource } from './data-source.mdx';
 export { default as DoctorAbsence } from './doctor-absence.mdx';
 export { default as HeadCountDen } from './head-count-den.mdx';
