@@ -7,6 +7,7 @@
  */
 import 'i18next';
 
+import type abbreviations from './public/locales/sl/abbreviations.json';
 import type about from './public/locales/sl/about.json';
 import type common from './public/locales/sl/common.json';
 import type doctor from './public/locales/sl/doctor.json';
@@ -16,6 +17,7 @@ import type map from './public/locales/sl/map.json';
 import type seo from './public/locales/sl/seo.json';
 
 interface I18nNamespaces {
+  abbreviations: typeof abbreviations;
   about: typeof about;
   common: typeof common;
   doctor: typeof doctor;
