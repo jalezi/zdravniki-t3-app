@@ -1,6 +1,13 @@
 import { clsx } from 'clsx';
 import Link from 'next/link';
 import styles from '@/layouts/ComponentsMDX/ComponentsMDX.module.css';
+import { getSiteUrl } from '@/lib/utils/common';
+import { GIT_REPO_URL } from '@/lib/constants';
+
+export const siteUrl = getSiteUrl();
+
+export const existingPageHref = `${siteUrl}/faq/`;
+export const missingContentHref = `${GIT_REPO_URL}/blob/main/src/assets/content/en/faq.mdx`;
 
 # FAQ
 
@@ -8,7 +15,7 @@ import styles from '@/layouts/ComponentsMDX/ComponentsMDX.module.css';
 
 Needs to be translated into English
 
-Unfortunately, this page exist only in {<Link className={clsx(styles.ComponentsMDX,styles.A)}  href="https://zdravniki.sledilnik.org/sl/faq">Slovenian</Link>} language.
+Unfortunately, this page exist only in {<Link className={clsx(styles.ComponentsMDX,styles.A)} href={existingPageHref} locale="sl">Slovenian</Link>} language.
 
 {/* Replace with proper link */}
-Help as translate it to English on {<Link className={clsx(styles.ComponentsMDX,styles.A)}  href="https://github.com/sledilnik/zdravniki/blob/master/src/content/en/faq.md" target="_blank" >GitHub</Link>}.
+Help as translate it to English on {<Link className={clsx(styles.ComponentsMDX,styles.A)}  href={missingContentHref} target="_blank" >GitHub</Link>}.
