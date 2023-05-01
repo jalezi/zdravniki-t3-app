@@ -1,4 +1,5 @@
 import { clsx } from 'clsx';
+import { useRouter } from 'next/router';
 import type { Ref } from 'react';
 import { forwardRef } from 'react';
 
@@ -8,6 +9,8 @@ import containerStyles from './NavigationContainer.module.css';
 import { LanguageSelector } from '../LanguageSelector';
 
 const Navigation = (_: unknown, ref: Ref<HTMLDivElement>) => {
+  const router = useRouter();
+
   const navStyles = clsx(styles.Navigation, containerStyles.Opacity);
   const titleStyles = clsx(styles.title);
   const navLinksFirstStyles = clsx(styles.navLinks, styles.first);
@@ -22,7 +25,7 @@ const Navigation = (_: unknown, ref: Ref<HTMLDivElement>) => {
       <ul className={navLinksLastStyles}>
         <SocialLinks />
         <li>
-          <LanguageSelector />
+          <LanguageSelector key={router.locale} />
         </li>
       </ul>
     </nav>
