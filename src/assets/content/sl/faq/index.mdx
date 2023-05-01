@@ -1,4 +1,5 @@
-import { Details } from '@/layouts/ComponentsMDX';
+import { Details, HeadingAnchor } from '@/layouts/ComponentsMDX';
+
 import * as Answers from './answers';
 import * as Glossary from './glossary';
 
@@ -23,7 +24,7 @@ export const questionLists = (
 V primeru, da potrebujete nujno medicinsko pomoč, se obrnite na lokalno
 urgentno službo oz. pokličite 112.
 
-## Pogosta vprašanja in odgovori
+## Pogosta vprašanja in odgovori<HeadingAnchor headingText="questions"/>
 
 <Details id="data-source" summary="Od kod pridobivate podatke?">
   <Answers.DataSource />
@@ -139,7 +140,7 @@ urgentno službo oz. pokličite 112.
   <Answers.Lists />
 </Details>
 
-## Slovar izrazov
+## Slovar izrazov<HeadingAnchor headingText="glossary"/>
 
 <Details id="head-count" summary="Glavarina" variant="glossary">
   <Glossary.HeadCount />

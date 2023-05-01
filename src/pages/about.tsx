@@ -34,7 +34,7 @@ export async function getStaticProps({ locale }: { locale: Locale }) {
     props: {
       ...(await serverSideTranslations(
         locale,
-        ['common', 'about', 'seo'],
+        ['common', 'about', 'seo', 'abbreviations'],
         nextI18nextConfig
       )),
       locale,
