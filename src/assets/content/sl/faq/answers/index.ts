@@ -11,6 +11,7 @@ export { default as HeadCountGyn } from './head-count-gyn.mdx';
 export { default as HeadCountPed } from './head-count-ped.mdx';
 export { default as FurtherReading } from './further-reading.mdx';
 export { default as FinancingGp } from './financing-gp.mdx';
+export { default as Lists } from './lists.mdx';
 export { default as Stats } from './stats.mdx';
 export { default as Titles } from './titles.mdx';
 export { default as Types } from './types.mdx';

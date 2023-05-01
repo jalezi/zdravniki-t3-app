@@ -9,6 +9,13 @@ export const questionZZZSdata = (
   </>
 );
 
+export const questionLists = (
+  <>
+    Zakaj sta seznama ambulant za neopredeljene in{' '}
+    <abbr title="Ministrstvo za zdravje">MZ</abbr> različna?
+  </>
+);
+
 # Pojasnilo
 
 ## 🚧 **WORK IN PROGRESS** 🚧
@@ -126,6 +133,10 @@ urgentno službo oz. pokličite 112.
 
 <Details id="types" summary="Katere vrste ambulant imajo družinski zdravniki?">
   <Answers.Types />
+</Details>
+
+<Details id="lists" summary={questionLists}>
+  <Answers.Lists />
 </Details>
 
 ## Slovar izrazov
