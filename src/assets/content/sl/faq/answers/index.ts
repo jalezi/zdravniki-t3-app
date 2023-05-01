@@ -13,6 +13,7 @@ export { default as FurtherReading } from './further-reading.mdx';
 export { default as FinancingGp } from './financing-gp.mdx';
 export { default as Stats } from './stats.mdx';
 export { default as Titles } from './titles.mdx';
+export { default as Types } from './types.mdx';
 export { default as WrongLocation } from './wrong-location.mdx';
 export { default as ZZZSData } from './zzzs-data.mdx';
 export { default as ZZZSExtra } from './zzzs-extra.mdx';
