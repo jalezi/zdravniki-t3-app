@@ -9,3 +9,4 @@ export { default as HeadCountGyn } from './head-count-gyn.mdx';
 export { default as HeadCountPed } from './head-count-ped.mdx';
 export { default as FinancingGp } from './financing-gp.mdx';
 export { default as ZZZSData } from './zzzs-data.mdx';
+export { default as ZZZSInstructions } from './zzzs-instructions.mdx';
