@@ -1,10 +1,10 @@
-export const zzzs = (
-  <abbr title="Zavod za zdravstveno zavarovanje Slovenije">ZZZS</abbr>
-);
+import { AbbrWithTranslation } from '@/components/Shared/AbbrWithTranslation';
 
-export const mz = <abbr title="Ministrstvo za zdravje">MZ</abbr>;
+export const zzzs = <AbbrWithTranslation.ZZZS />;
 
-export const zd = <abbr title="Zdravstveni dom">ZD</abbr>;
+export const mz = <AbbrWithTranslation.MZ />;
+
+export const zd = <AbbrWithTranslation.ZD />;
 
 Seznam ambulant za neopredeljene na [spletni strani {mz}](https://www.gov.si/teme/mreza-javne-zdravstvene-sluzbe/#Ambulante%20za%20neopredeljene%20zavarovane%20osebe)
 je daljši od dejanskih ambulant za neopredeljene na terenu, ki ga pridobimo od {zzzs}
