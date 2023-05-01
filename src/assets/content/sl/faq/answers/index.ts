@@ -15,4 +15,5 @@ export { default as Stats } from './stats.mdx';
 export { default as Titles } from './titles.mdx';
 export { default as WrongLocation } from './wrong-location.mdx';
 export { default as ZZZSData } from './zzzs-data.mdx';
+export { default as ZZZSExtra } from './zzzs-extra.mdx';
 export { default as ZZZSInstructions } from './zzzs-instructions.mdx';
