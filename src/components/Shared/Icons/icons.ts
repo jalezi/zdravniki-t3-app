@@ -81,3 +81,5 @@ export const icons = {
   TwSvg,
   LogoSvg,
 } as const;
+
+export type IconName = keyof typeof icons;

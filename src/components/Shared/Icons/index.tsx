@@ -40,6 +40,7 @@ export { default as MinusCircleFillSvg } from '@/assets/svg/icon-minus-circle-fi
 export { default as PlusCircleFillSvg } from '@/assets/svg/icon-plus-circle-fill.svg';
 
 export { icons } from './icons';
+export type { IconName } from './icons';
 
 export { default as Icon } from './Icon';
-export type { IconName, IconProps } from './Icon';
+export type { IconProps } from './Icon';

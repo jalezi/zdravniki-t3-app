@@ -6,8 +6,7 @@ import type { PolymorphicComponentProps } from '@/components/Shared/Polymorphic'
 import styles from './Icon.module.css';
 
 import { icons } from '.';
-
-export type IconName = keyof typeof icons;
+import type { IconName } from '.';
 
 const IconsStyles = {
   xxs: styles.Icon__xxs,
