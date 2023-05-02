@@ -1,7 +1,7 @@
 import AboutEN from '@/assets/content/en/about.mdx';
 import FaqEN from '@/assets/content/en/faq/index.mdx';
 import AboutIT from '@/assets/content/it/about.mdx';
-import FaqIT from '@/assets/content/it/faq.mdx';
+import FaqIT from '@/assets/content/it/faq/index.mdx';
 import AboutSL from '@/assets/content/sl/about.mdx';
 import FaqSL from '@/assets/content/sl/faq/index.mdx';
 import type { Locale } from '@/lib/types/i18n';
