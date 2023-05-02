@@ -20,6 +20,7 @@ import EmailSvg from '@/assets/svg/icon-email.svg';
 import FamilyDrSvg from '@/assets/svg/icon-family-dr.svg';
 import FbSvg from '@/assets/svg/icon-fb.svg';
 import FilterSvg from '@/assets/svg/icon-filter.svg';
+import GitHubSvg from '@/assets/svg/icon-github.svg';
 import FloatingSvg from '@/assets/svg/icon-gp-floating.svg';
 import GroupSvg from '@/assets/svg/icon-group.svg';
 import GynSvg from '@/assets/svg/icon-gynecologist.svg';
@@ -63,6 +64,7 @@ export const icons = {
   FbSvg,
   FilterSvg,
   FloatingSvg,
+  GitHubSvg,
   GroupSvg,
   GynSvg,
   IdCardSvg,
