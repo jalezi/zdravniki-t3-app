@@ -177,8 +177,12 @@ export function createDoctor(institutions: InstCSV[]) {
     const phone = (drPhone || institution?.phone) ?? null;
     const website = (drWebsite || institution?.website) ?? null;
 
-    const phones = [...(phone?.split(',') ?? [])].map(val => val.trim());
-    const websites = [...(website?.split(',') ?? [])].map(val => val.trim());
+    const phones = [...(phone?.split(',') ?? [])]
+      .map(val => val.trim())
+      .filter(Boolean);
+    const websites = [...(website?.split(',') ?? [])]
+      .map(val => val.trim())
+      .filter(Boolean);
 
     const drMeta = { ...drLocationMeta, hasInst: !!institution } as const;
 
