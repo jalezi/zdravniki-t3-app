@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
 import { IconButton } from '@/components/Shared/Buttons';
-import { FbSvg, TwSvg } from '@/components/Shared/Icons';
+import { FbSvg, GitHubSvg, TwSvg } from '@/components/Shared/Icons';
+import { GIT_REPO_URL } from '@/lib/constants';
 import type { ExternaLink, PageLink } from '@/lib/types/dr-type-page';
 import { pageDrTypeSchema } from '@/lib/types/dr-type-page';
 
@@ -90,6 +91,11 @@ const socialLinks = [
     href: 'https://twitter.com/sledilnik',
     label: 'Twitter',
     icon: <TwSvg />,
+  },
+  {
+    href: GIT_REPO_URL,
+    label: 'GitHub',
+    icon: <GitHubSvg />,
   },
 ];
 

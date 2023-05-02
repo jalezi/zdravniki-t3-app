@@ -38,6 +38,7 @@ export { default as MapMarkerSvg } from '@/assets/svg/icon-map-marker.svg';
 export { default as FloatingSvg } from '@/assets/svg/icon-gp-floating.svg';
 export { default as MinusCircleFillSvg } from '@/assets/svg/icon-minus-circle-fill.svg';
 export { default as PlusCircleFillSvg } from '@/assets/svg/icon-plus-circle-fill.svg';
+export { default as GitHubSvg } from '@/assets/svg/icon-github.svg';
 
 export { icons } from './icons';
 export type { IconName } from './icons';
