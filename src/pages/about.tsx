@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic.js';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { LanguagePageMDX } from '@/components/LanguagePageMDX';
 import { componentsMap } from '@/layouts/componentsMap';
 import LayoutMDX from '@/layouts/LayoutMDX';
 import type { Locale } from '@/lib/types/i18n.js';
@@ -11,6 +10,9 @@ import type { Locale } from '@/lib/types/i18n.js';
 import nextI18nextConfig from '../../next-i18next.config.js';
 
 const Seo = dynamic(() => import('@/components/Seo').then(mod => mod.Seo));
+const LanguagePageMDX = dynamic(() =>
+  import('@/components/LanguagePageMDX').then(mod => mod.LanguagePageMDX)
+);
 
 function About({ locale }: { locale: Locale }) {
   const { t } = useTranslation('seo');

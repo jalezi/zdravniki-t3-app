@@ -1,12 +1,19 @@
 import { clsx } from 'clsx';
+import dynamic from 'next/dynamic';
 
 import { IBMPlexSans } from '@/assets/fonts';
-import { Footer } from '@/components/Footer';
-import { Header } from '@/components/Header';
-import { Seo } from '@/components/Seo';
-import { ScrollToTop } from '@/components/Shared/ScrollToTop';
 
 import styles from './LayoutMDX.module.css';
+
+const Header = dynamic(() =>
+  import('@/components/Header').then(mod => mod.Header)
+);
+const Footer = dynamic(() =>
+  import('@/components/Footer').then(mod => mod.Footer)
+);
+const ScrollToTop = dynamic(() =>
+  import('@/components/Shared/ScrollToTop').then(mod => mod.ScrollToTop)
+);
 
 type Props = {
   children: React.ReactNode;
@@ -15,8 +22,6 @@ type Props = {
 const LayoutMDX = (props: Props) => {
   return (
     <>
-      <Seo />
-
       <Header />
       <main className={clsx(IBMPlexSans.className, styles.LayoutMDX)}>
         <div className={clsx(styles.ContainerMDX)}>
