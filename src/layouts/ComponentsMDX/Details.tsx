@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useEventListener } from 'usehooks-ts';
 
 import { Button } from '@/components/Shared/Buttons';
+import type { IconName } from '@/components/Shared/Icons';
 import { Icon } from '@/components/Shared/Icons';
 import type { PolymorphicComponentProps } from '@/components/Shared/Polymorphic';
 import { Polymorphic } from '@/components/Shared/Polymorphic';
@@ -99,7 +100,9 @@ const Details = ({
     }
   };
 
-  const iconName = isOpen ? 'MinusCircleSvg' : 'PlusCircleSvg';
+  const iconName: IconName = isOpen
+    ? 'MinusCircleFillSvg'
+    : 'PlusCircleFillSvg';
 
   // styles
   const detailsWrapperStyles = clsx(

@@ -36,8 +36,8 @@ export { default as TwSvg } from '@/assets/svg/icon-tw.svg';
 export { default as LogoSvg } from '@/assets/svg/zdravniki-sledilnik-logo.svg';
 export { default as MapMarkerSvg } from '@/assets/svg/icon-map-marker.svg';
 export { default as FloatingSvg } from '@/assets/svg/icon-gp-floating.svg';
-export { default as MinusCircleSvg } from '@/assets/svg/icon-minus-circle.svg';
-export { default as PlusCircleSvg } from '@/assets/svg/icon-plus-circle.svg';
+export { default as MinusCircleFillSvg } from '@/assets/svg/icon-minus-circle-fill.svg';
+export { default as PlusCircleFillSvg } from '@/assets/svg/icon-plus-circle-fill.svg';
 
 export { icons } from './icons';
 

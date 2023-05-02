@@ -1,7 +1,10 @@
 import { clsx } from 'clsx';
 
 import { IconButton } from '@/components/Shared/Buttons';
-import { MinusCircleSvg, PlusCircleSvg } from '@/components/Shared/Icons';
+import {
+  MinusCircleFillSvg,
+  PlusCircleFillSvg,
+} from '@/components/Shared/Icons';
 
 import styles from './AddRemoveField.module.css';
 
@@ -36,7 +39,7 @@ const AddRemoveField = ({
           onClick={onRemove}
           aria-label={`remove ${label}`}
         >
-          <MinusCircleSvg />
+          <MinusCircleFillSvg />
         </IconButton>
       )}
       {hasAdd && (
@@ -46,7 +49,7 @@ const AddRemoveField = ({
           onClick={onAdd}
           aria-label={`add ${label}`}
         >
-          <PlusCircleSvg />
+          <PlusCircleFillSvg />
         </IconButton>
       )}
     </div>
