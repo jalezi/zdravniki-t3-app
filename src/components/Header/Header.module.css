@@ -10,7 +10,7 @@
 
   width: 100%;
   height: var(--header-height-sm);
-  padding-right: var(--header-height-sm);
+  padding-inline: 1.5rem;
 
   background-color: var(--color-brand);
 
@@ -25,7 +25,6 @@
   .Header {
     display: flex;
     height: var(--header-height-lg);
-    padding-right: 0;
   }
 
   .Header.Shrunk {

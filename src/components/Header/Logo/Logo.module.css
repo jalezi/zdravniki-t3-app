@@ -1,6 +1,5 @@
 .Logo {
   position: relative;
-  padding-inline: 0.5em;
   line-height: var(--header-height-sm);
 }
 

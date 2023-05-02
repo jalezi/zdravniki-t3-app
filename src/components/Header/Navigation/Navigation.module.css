@@ -64,6 +64,7 @@
 
     min-width: unset;
     min-height: unset;
+    padding-inline: 0;
   }
 
   .Navigation .title {
