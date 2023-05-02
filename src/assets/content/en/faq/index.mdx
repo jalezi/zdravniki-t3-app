@@ -1,0 +1,227 @@
+import { clsx } from 'clsx';
+import Link from 'next/link';
+
+import { AbbrWithTranslation } from '@/components/Shared/AbbrWithTranslation';
+import { Details, HeadingAnchor } from '@/layouts/ComponentsMDX';
+import styles from '@/layouts/ComponentsMDX/ComponentsMDX.module.css';
+import { getSiteUrl } from '@/lib/utils/common';
+import { GIT_REPO_URL } from '@/lib/constants';
+
+import * as Answers from './answers';
+import * as Glossary from './glossary';
+
+export const siteUrl = getSiteUrl();
+
+export const existingPageHref = `${siteUrl}/faq/`;
+export const missingContentHref = `${GIT_REPO_URL}/blob/main/src/assets/content/en/faq/index.mdx`;
+
+export const zzzs = <AbbrWithTranslation.ZZZS />;
+export const zd = <AbbrWithTranslation.ZD />;
+
+export const questionZZZSdata = <>Kako {zzzs} pridobi podatke?</>;
+
+export const questionLists = (
+  <>Zakaj sta seznama ambulant za neopredeljene in {zd} različna?</>
+);
+
+# FAQ
+
+## 🚧 **WORK IN PROGRESS** 🚧
+
+In case of medical emergency you should contact emergency services or call 112.
+
+## Doctor Finder for Slovenia
+
+Needs to be translated into English
+
+Unfortunately, this page exist only in <Link className={clsx(styles.ComponentsMDX,styles.A)} href={existingPageHref} locale="sl">Slovenian</Link> language.
+
+Help as translate it to English on <a className={clsx(styles.ComponentsMDX,styles.A)}  href={missingContentHref} target="_blank" >GitHub</a>.
+
+## Frequently asked questions<HeadingAnchor headingText="questions"/>
+
+<Details
+  needsTranslation
+  id="data-source"
+  summary="Od kod pridobivate podatke?"
+>
+  <Answers.DataSource />
+</Details>
+
+<Details needsTranslation id="zzzs-data" summary={questionZZZSdata}>
+  <Answers.ZZZSData />
+</Details>
+
+<Details
+  needsTranslation
+  id="accepts"
+  summary="Zakaj piše, da zdravnik sprejema, potem pa ni na voljo?"
+>
+  <Answers.Accepts />
+</Details>
+
+<Details
+  needsTranslation
+  id="doctor-absence"
+  summary="Kaj se zgodi, ko je zdravnik začasno odsoten?"
+>
+  <Answers.DoctorAbsence />
+</Details>
+
+<Details
+  needsTranslation
+  id="availability"
+  summary="Kaj pomeni »obseg zaposlitve« in prikaz odstokov pri posameznem zdravniku?"
+>
+  <Answers.Availability />
+</Details>
+
+<Details
+  needsTranslation
+  id="financing-gp"
+  summary="Kako je financirana ambulanta družinske medicine?"
+>
+  <Answers.FinancingGp />
+</Details>
+
+<Details
+  needsTranslation
+  id="head-count-gp"
+  summary="Glavarina v ambulantah družinske medicine"
+>
+  <Answers.HeadCountGp />
+</Details>
+
+<Details
+  needsTranslation
+  id="head-count-gyn"
+  summary="Glavarina v ginekološki ambulanti na primarni ravni"
+>
+  <Answers.HeadCountGyn />
+</Details>
+
+<Details
+  needsTranslation
+  id="head-count-ped"
+  summary="Glavarina v pediatrični ambulanti na primarni ravni"
+>
+  <Answers.HeadCountPed />
+</Details>
+
+<Details
+  needsTranslation
+  id="head-count-den"
+  summary="Glavarina v zobozdravniški ambulanti"
+>
+  <Answers.HeadCountDen />
+</Details>
+
+<Details
+  needsTranslation
+  id="blue-book"
+  summary="Kaj je Modra knjiga standardov?"
+>
+  <Answers.BlueBook />
+</Details>
+
+<Details
+  needsTranslation
+  id="zzzs-instructions"
+  summary="Navodila ZZZS izvajalcem/družinskim zdravnikom v primeru preseganja glavarinskega količnika (glavarine)"
+>
+  <Answers.ZZZSInstructions />
+</Details>
+
+<Details needsTranslation id="contractor" summary="Kdo so izvajalci?">
+  <Answers.Contractor />
+</Details>
+
+<Details
+  needsTranslation
+  id="wrong-location"
+  summary="Zakaj je naslov ambulante na napačni lokaciji?"
+>
+  <Answers.WrongLocation />
+</Details>
+
+<Details needsTranslation id="stats" summary="Koliko popravkov ste že izdali?">
+  <Answers.Stats />
+</Details>
+
+<Details
+  needsTranslation
+  id="titles"
+  summary="Zakaj nimajo zdravniki in zdravnice v imeniku napisanih polnih nazivov?"
+>
+  <Answers.Titles />
+</Details>
+
+<Details needsTranslation id="further-reading" summary="Uporabne povezave">
+  <Answers.FurtherReading />
+</Details>
+
+<Details
+  needsTranslation
+  id="correction"
+  summary="Kaj se zgodi, ko predlagam popravek?"
+>
+  <Answers.Correction />
+</Details>
+
+<Details
+  needsTranslation
+  id="zzzs-extra"
+  summary="Kaj so ambulante za boljšo dostopnost do izbranega osebnega zdravnika v splošnih ambulantah in dispanzerjih za otroke in šolarje?"
+>
+  <Answers.ZZZSExtra />
+</Details>
+
+<Details
+  needsTranslation
+  id="types"
+  summary="Katere vrste ambulant imajo družinski zdravniki?"
+>
+  <Answers.Types />
+</Details>
+
+<Details needsTranslation id="lists" summary={questionLists}>
+  <Answers.Lists />
+</Details>
+
+## Glossary<HeadingAnchor headingText="glossary"/>
+
+<Details
+  needsTranslation
+  id="head-count"
+  summary="Glavarina"
+  variant="glossary"
+>
+  <Glossary.HeadCount />
+</Details>
+
+<Details
+  needsTranslation
+  id="head-quotient"
+  summary="Glavarinski količnik"
+  variant="glossary"
+>
+  <Glossary.HeadQuotient />
+</Details>
+
+<Details
+  needsTranslation
+  id="head-quota"
+  summary="Glavarinska kvota"
+  variant="glossary"
+>
+  <Glossary.HeadQuota />
+</Details>
+
+<Details
+  needsTranslation
+  id="team"
+  summary="Zdravstveni tim"
+  variant="glossary"
+>
+  <Glossary.Team />
+</Details>

@@ -9,6 +9,8 @@ export const BREAKPOINTS = {
   xxl: 1400,
 } as const;
 
+export const GIT_REPO_URL = 'https://github.com/jalezi/zdravniki-t3-app';
+
 export * as DATA_URL from './data-url';
 
 export * as MAP from './map';

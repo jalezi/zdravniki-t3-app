@@ -1,0 +1,38 @@
+import { DataTerm } from '@/layouts/ComponentsMDX';
+
+Glavarinski količnik predstavlja glavni del obremenitve <DataTerm id="head-count-gp-team-1" term="team" text="zdravstvenega tima" />.
+Čeprav oznaka »glavarinski« nakazuje, da gre za obremenitev po glavi oziroma
+osebi, pa v ambulantah družinske medicine to ne drži. Tu je glavarinski količnik
+namreč odvisen od **starosti zavarovane osebe**. To pomeni, da ena opredeljena
+zavarovana oseba v sistemu nikoli ne pomeni »ene glave«, temveč več kot eno
+(recimo 3 pri najmlajših in najstarejših bolnikih, _gl. spodnjo razpredelnico_)
+ali manj kot eno (pri osebah med 7. in 49. letom starosti). Vrednost količnika
+na opredeljeno osebo namreč odraža **predvidevanje** o **pogostosti** in
+**zahtevnosti** določene obravnave. Zato je vrednost količnika za najstarejše in
+najmlajše bolnike večja od drugih, kar pomeni tudi, da je obremenitev družinskih
+zdravnikov največja pri najmlajših in najstarejših osebah.
+
+Glavarina v ambulanti družinske medicine tako ni nikoli enaka številu bolnikov, ki si izberejo
+določenega zdravnika. V ambulanti družinske medicine se <DataTerm id="head-count-gp-head-count-1" term="head-count" text="glavarina"/>
+oziroma <DataTerm id="head-count-gp-head-quotient-1" term="head-quotient" text="glavarinskih količnikov"/>
+izračuna tako, da se število **opredeljenih** zavarovanih oseb **množi** s **količniki**, ki so
+odvisni od starosti zavarovanih oseb. Tako lahko na primer obremenitev 1895 <DataTerm id="head-count-gp-head-quotient-2" term="head-quotient" text="glavarinskih količnikov"/>
+pomeni, da ima zdravnik 1500 opredeljenih bolnikov. Ko zdravnik doseže določeno mejo <DataTerm id="head-count-gp-head-quotient-3" term="head-quotient" text="glavarinskih količnikov"/>,
+lahko zavrne obravnavo novih bolnikov.
+
+Ker si **vsi** prebivalci še **niso** izbrali osebnega zdravnika, se količniki iz <DataTerm id="head-count-gp-head-count-2" term="head-count" text="glavarine"/>
+pri vsakem nosilcu **korigirajo navzgor**, tako da so **razporejeni vsi mogoči** <DataTerm id="head-count-gp-head-quotient-4" term="head-quotient" text="količniki"/>.
+
+Preglednica: Vpliv **starostne strukture** opredeljenih zavarovanih oseb na **dejansko vrednost količnika** za izračun glavarine.
+
+| Starost (leta) | Količnik |
+| -------------- | -------- |
+| < 1            | 3,0      |
+| 1-6            | 1,9      |
+| 7-18           | 0,88     |
+| 19-49          | 0,84     |
+| 50-64          | 1,4      |
+| 65-74          | 2,2      |
+| 75 in več      | 3,0      |
+
+Vir: [Švab, I., & Rotar-Pavlič, D. (Eds.). (2012). Družinska medicina : učbenik. Združenje zdravnikov družinske medicine](https://plus.si.cobiss.net/opac7/bib/ukm/262524160?lang=SLV) (strani: 127-135)

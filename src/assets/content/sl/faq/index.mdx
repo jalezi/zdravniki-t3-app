@@ -1,0 +1,153 @@
+import { AbbrWithTranslation } from '@/components/Shared/AbbrWithTranslation';
+import { Details, HeadingAnchor } from '@/layouts/ComponentsMDX';
+
+import * as Answers from './answers';
+import * as Glossary from './glossary';
+
+export const zzzs = <AbbrWithTranslation.ZZZS />;
+export const zd = <AbbrWithTranslation.ZD />;
+
+export const questionZZZSdata = <>Kako {zzzs} pridobi podatke?</>;
+
+export const questionLists = (
+  <>Zakaj sta seznama ambulant za neopredeljene in {zd} različna?</>
+);
+
+# Pojasnilo
+
+V primeru, da potrebujete nujno medicinsko pomoč, se obrnite na lokalno
+urgentno službo oz. pokličite 112.
+
+## Pogosta vprašanja in odgovori<HeadingAnchor headingText="questions"/>
+
+<Details id="data-source" summary="Od kod pridobivate podatke?">
+  <Answers.DataSource />
+</Details>
+
+<Details id="zzzs-data" summary={questionZZZSdata}>
+  <Answers.ZZZSData />
+</Details>
+
+<Details
+  id="accepts"
+  summary="Zakaj piše, da zdravnik sprejema, potem pa ni na voljo?"
+>
+  <Answers.Accepts />
+</Details>
+
+<Details
+  id="doctor-absence"
+  summary="Kaj se zgodi, ko je zdravnik začasno odsoten?"
+>
+  <Answers.DoctorAbsence />
+</Details>
+
+<Details
+  id="availability"
+  summary="Kaj pomeni »obseg zaposlitve« in prikaz odstokov pri posameznem zdravniku?"
+>
+  <Answers.Availability />
+</Details>
+
+<Details
+  id="financing-gp"
+  summary="Kako je financirana ambulanta družinske medicine?"
+>
+  <Answers.FinancingGp />
+</Details>
+
+<Details id="head-count-gp" summary="Glavarina v ambulantah družinske medicine">
+  <Answers.HeadCountGp />
+</Details>
+
+<Details
+  id="head-count-gyn"
+  summary="Glavarina v ginekološki ambulanti na primarni ravni"
+>
+  <Answers.HeadCountGyn />
+</Details>
+
+<Details
+  id="head-count-ped"
+  summary="Glavarina v pediatrični ambulanti na primarni ravni"
+>
+  <Answers.HeadCountPed />
+</Details>
+
+<Details id="head-count-den" summary="Glavarina v zobozdravniški ambulanti">
+  <Answers.HeadCountDen />
+</Details>
+
+<Details id="blue-book" summary="Kaj je Modra knjiga standardov?">
+  <Answers.BlueBook />
+</Details>
+
+<Details
+  id="zzzs-instructions"
+  summary="Navodila ZZZS izvajalcem/družinskim zdravnikom v primeru preseganja glavarinskega količnika (glavarine)"
+>
+  <Answers.ZZZSInstructions />
+</Details>
+
+<Details id="contractor" summary="Kdo so izvajalci?">
+  <Answers.Contractor />
+</Details>
+
+<Details
+  id="wrong-location"
+  summary="Zakaj je naslov ambulante na napačni lokaciji?"
+>
+  <Answers.WrongLocation />
+</Details>
+
+<Details id="stats" summary="Koliko popravkov ste že izdali?">
+  <Answers.Stats />
+</Details>
+
+<Details
+  id="titles"
+  summary="Zakaj nimajo zdravniki in zdravnice v imeniku napisanih polnih nazivov?"
+>
+  <Answers.Titles />
+</Details>
+
+<Details id="further-reading" summary="Uporabne povezave">
+  <Answers.FurtherReading />
+</Details>
+
+<Details id="correction" summary="Kaj se zgodi, ko predlagam popravek?">
+  <Answers.Correction />
+</Details>
+
+<Details
+  id="zzzs-extra"
+  summary="Kaj so ambulante za boljšo dostopnost do izbranega osebnega zdravnika v splošnih ambulantah in dispanzerjih za otroke in šolarje?"
+>
+  <Answers.ZZZSExtra />
+</Details>
+
+<Details id="types" summary="Katere vrste ambulant imajo družinski zdravniki?">
+  <Answers.Types />
+</Details>
+
+<Details id="lists" summary={questionLists}>
+  <Answers.Lists />
+</Details>
+
+## Slovar izrazov<HeadingAnchor headingText="glossary"/>
+
+<Details id="head-count" summary="Glavarina" variant="glossary">
+  <Glossary.HeadCount />
+</Details>
+
+<Details id="head-quotient" summary="Glavarinski količnik" variant="glossary">
+  <Glossary.HeadQuotient />
+</Details>
+
+<Details id="head-quota" summary="Glavarinska kvota" variant="glossary">
+  <Glossary.HeadQuota />
+</Details>
+
+<Details id="team" summary="Zdravstveni tim" variant="glossary">
+  <Glossary.Team />
+</Details>

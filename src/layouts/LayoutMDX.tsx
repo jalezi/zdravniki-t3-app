@@ -4,6 +4,7 @@ import { IBMPlexSans } from '@/assets/fonts';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Seo } from '@/components/Seo';
+import { ScrollToTop } from '@/components/Shared/ScrollToTop';
 
 import styles from './LayoutMDX.module.css';
 
@@ -19,7 +20,10 @@ const LayoutMDX = (props: Props) => {
       <Header />
       <main className={clsx(IBMPlexSans.className, styles.LayoutMDX)}>
         <div className={clsx(styles.ContainerMDX)}>
-          <div className={styles.ContentMDX}>{props.children}</div>
+          <div className={styles.ContentMDX}>
+            {props.children}
+            <ScrollToTop elementRef={undefined} />
+          </div>
         </div>
       </main>
       <Footer />

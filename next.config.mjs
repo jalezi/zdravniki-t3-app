@@ -2,6 +2,7 @@
 
 import nextMDX from '@next/mdx';
 import rehypeSlug from 'rehype-slug';
+import gfm from 'remark-gfm';
 
 import pkg from './next-i18next.config.js';
 const { i18n } = pkg;
@@ -11,7 +12,7 @@ const withMDX = nextMDX({
   // By default only the .mdx extension is supported.
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [],
+    remarkPlugins: [gfm],
     rehypePlugins: [rehypeSlug],
     /* providerImportSource: …, otherOptions… */
     providerImportSource: '@mdx-js/react',

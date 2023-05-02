@@ -29,6 +29,15 @@
   margin-top: 0;
 }
 
+.LayoutMDX > .ContainerMDX > .ContentMDX abbr {
+  cursor: help;
+}
+
+.LayoutMDX > .ContainerMDX > .ContentMDX abbr,
+.LayoutMDX > .ContainerMDX > .ContentMDX em {
+  font-style: italic;
+}
+
 @media only screen and (min-width: 48em) {
   .LayoutMDX {
     margin-top: calc(var(--header-height-lg) + 2em);

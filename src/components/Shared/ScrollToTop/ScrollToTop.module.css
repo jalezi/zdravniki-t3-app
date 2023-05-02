@@ -1,0 +1,29 @@
+.ScrollToTop {
+  will-change: right;
+
+  position: fixed;
+  z-index: 1;
+  right: -5em;
+  bottom: 2em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 3em;
+  height: 3em;
+
+  background-color: var(--color-blue-500-A76, grey);
+
+  transition: all 0.3s ease-in-out;
+}
+
+.ScrollToTop.Show {
+  right: 2em;
+}
+
+@media (hover: hover) {
+  .ScrollToTop:hover {
+    background-color: var(--color-blue-500-A87);
+  }
+}
