@@ -1,5 +1,5 @@
 import AboutEN from '@/assets/content/en/about.mdx';
-import FaqEN from '@/assets/content/en/faq.mdx';
+import FaqEN from '@/assets/content/en/faq/index.mdx';
 import AboutIT from '@/assets/content/it/about.mdx';
 import FaqIT from '@/assets/content/it/faq.mdx';
 import AboutSL from '@/assets/content/sl/about.mdx';
