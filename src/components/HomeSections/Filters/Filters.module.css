@@ -22,6 +22,7 @@
   flex-direction: column;
   background: var(--color-blue-300);
   border-radius: var(--filter-border-radius);
+
 }
 
 .SearchContainer {
@@ -118,16 +119,22 @@
     flex-direction: row;
     flex-shrink: 0;
     align-items: center;
+
     background: transparent;
+
+    transition: all var(--cubic-bezier);
+
   }
 
   .DoctorOptionsContainer:has(+ .SearchContainer:focus-within) {
     flex-shrink: 1;
+    transition: all var(--cubic-bezier);
   }
 
   .SearchContainer {
     flex-shrink: 1;
     max-width: 60ch;
+    transition: all var(--cubic-bezier);
   }
 
   .SearchContainer:focus-within {

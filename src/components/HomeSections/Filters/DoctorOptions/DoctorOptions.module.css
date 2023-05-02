@@ -70,7 +70,8 @@
     opacity: 1;
     border-bottom: none;
 
-    transition: none;
+    /* transition: none; */
+    transition: all var(--cubic-bezier);
   }
 
   .DoctorOptionsToggler {
