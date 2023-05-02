@@ -39,7 +39,7 @@
   width: 100%;
   height: var(--footer-height-sm__list);
   padding-block: 0.5em;
-  padding-inline: 2.75em;
+  padding-inline:  1.2857em; /* match 14px if 1rem = 16px  same as src/components/HomeSections/DrInfo/DrCard/DrCard.module.css*/
 
   font-size: 0.875rem;
 
@@ -81,7 +81,6 @@
     margin-bottom: 0;
     padding-top: initial;
     padding-bottom: initial;
-    padding-inline: 1.5em;
 
     background-color: transparent;
   }
@@ -103,11 +102,5 @@
   .Footer.Doctor .Content__wrapper > * {
     margin-inline: 1em;
     font-size: 0.75rem;
-  }
-}
-
-@media only screen and (min-width: 64em) {
-  .Footer.List {
-    padding-inline: 2.75em;
   }
 }
