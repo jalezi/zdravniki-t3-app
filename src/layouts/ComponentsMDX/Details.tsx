@@ -17,11 +17,13 @@ import HeadingAnchor from './HeadingAnchor';
 type DetailsProps = {
   summary: ReactNode;
   variant?: 'question' | 'glossary';
+  needsTranslation?: boolean;
 } & Omit<PolymorphicComponentProps<'details'>, 'as'>;
 
 const Details = ({
   children,
   className,
+  needsTranslation,
   summary,
   variant = 'question',
   ...props
@@ -121,6 +123,10 @@ const Details = ({
     !isOpen && styles.Open
   );
   const backOutlineStyles = clsx(styles.ComponentsMDX, styles.BackOutline);
+
+  if (needsTranslation) {
+    return null;
+  }
 
   return (
     <div className={detailsWrapperStyles}>
