@@ -1,25 +1,19 @@
+import { AbbrWithTranslation } from '@/components/Shared/AbbrWithTranslation';
 import { Details, HeadingAnchor } from '@/layouts/ComponentsMDX';
 
 import * as Answers from './answers';
 import * as Glossary from './glossary';
 
-export const questionZZZSdata = (
-  <>
-    Kako <abbr title="Zavod za zdravstveno zavarovanje Slovenije">ZZZS</abbr>{' '}
-    pridobi podatke?
-  </>
-);
+export const zzzs = <AbbrWithTranslation.ZZZS />;
+export const zd = <AbbrWithTranslation.ZD />;
+
+export const questionZZZSdata = <>Kako {zzzs} pridobi podatke?</>;
 
 export const questionLists = (
-  <>
-    Zakaj sta seznama ambulant za neopredeljene in{' '}
-    <abbr title="Ministrstvo za zdravje">MZ</abbr> različna?
-  </>
+  <>Zakaj sta seznama ambulant za neopredeljene in {zd} različna?</>
 );
 
 # Pojasnilo
-
-## 🚧 **WORK IN PROGRESS** 🚧
 
 V primeru, da potrebujete nujno medicinsko pomoč, se obrnite na lokalno
 urgentno službo oz. pokličite 112.
