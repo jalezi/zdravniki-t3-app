@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import nextI18nextConfig from '@/../../next-i18next.config.js';
+import { SkipLinks } from '@/components/SkipLinks';
 import { pageDrTypeSchema } from '@/lib/types/dr-type-page';
 
 const Layout = dynamic(() => import('@/layouts/Layout'));
@@ -12,9 +13,6 @@ const HomeSections = dynamic(
   () => import('@/components/HomeSections/HomeSections')
 );
 const Seo = dynamic(() => import('@/components/Seo/Seo'));
-const SkipLinks = dynamic(() =>
-  import('@/components/SkipLinks').then(mod => mod.SkipLinks)
-);
 
 const DrTypePage = () => {
   const { query } = useRouter();
