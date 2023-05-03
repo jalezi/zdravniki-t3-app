@@ -76,6 +76,7 @@ export const createDoctorFilter = (options: {
     const doctorLatLng = getDoctorLatLng(doctor);
 
     return (
+      doctor.meta.hasInst &&
       boundsIntersect(bounds, doctorLatLng) &&
       acceptsCondition &&
       searchCondition

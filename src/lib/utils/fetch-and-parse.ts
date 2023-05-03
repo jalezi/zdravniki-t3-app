@@ -149,11 +149,17 @@ export function getInstitutionById(
   id: string,
   institutionsParsedFromCsv: InstCSV[]
 ) {
-  const institution = institutionsParsedFromCsv.find(
+  const _institution = institutionsParsedFromCsv.find(
     institution => institution.id_inst === id
   );
 
-  return instListSchema.parse([institution])[0];
+  const institution = instListSchema.safeParse([_institution]);
+
+  if (!institution.success) {
+    return null;
+  }
+
+  return institution.data[0];
 }
 
 /**
@@ -185,6 +191,12 @@ export function createDoctor(institutions: InstCSV[]) {
       .filter(Boolean);
 
     const drMeta = { ...drLocationMeta, hasInst: !!institution } as const;
+
+    if (!drMeta.hasInst) {
+      console.warn(`Doctor: ${doctor.name} does not have institution!`, {
+        type: doctor.type,
+      });
+    }
 
     return {
       ...rest,
