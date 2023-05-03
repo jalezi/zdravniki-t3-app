@@ -80,7 +80,7 @@ export type SendReportInputUserNotNull = {
   >;
 };
 
-const filterDoctors = (
+const filterDoctorsByTypePageAndValidIdInst = (
   doctors: DrListSchema,
   { type }: { type: PageDrType }
 ) => {
@@ -113,9 +113,10 @@ export const doctorsRouter = createTRPCRouter({
         throw new Error('Institutions data is not valid');
       }
 
-      const doctorsFiltered = filterDoctors(doctorsValidated.data, {
-        type: input.type,
-      });
+      const doctorsFiltered = filterDoctorsByTypePageAndValidIdInst(
+        doctorsValidated.data,
+        { type: input.type }
+      );
 
       const doctors = doctorsFiltered.map(
         createDoctor(institutionsParsedFromCsv.data)
