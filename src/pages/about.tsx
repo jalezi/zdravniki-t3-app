@@ -21,7 +21,7 @@ function About({ locale }: { locale: Locale }) {
     <LayoutMDX>
       <Seo title={title} />
       <MDXProvider components={componentsMap}>
-        <LanguagePageMDX slug="about" name={locale} />
+        <LanguagePageMDX slug="about" locale={locale} />
       </MDXProvider>
     </LayoutMDX>
   );

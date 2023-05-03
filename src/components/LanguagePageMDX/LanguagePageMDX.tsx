@@ -27,12 +27,12 @@ const PagesIntlMap = {
 
 const LanguagePageMDX = function LanguagePageMDX({
   slug,
-  name,
+  locale,
 }: {
   slug: keyof typeof PagesIntlMap;
-  name: Locale;
+  locale: Locale;
 }) {
-  const Page = PagesIntlMap[`${slug}`][`${name}`];
+  const Page = PagesIntlMap[`${slug}`][`${locale}`];
   return <Page id={`${slug}-mdx`} />;
 };
 

@@ -23,7 +23,7 @@ function FAQ({ locale }: { locale: Locale }) {
     <LayoutMDX>
       <Seo title={title} />
       <MDXProvider components={componentsMap}>
-        <LanguagePageMDX slug="faq" name={locale} />
+        <LanguagePageMDX slug="faq" locale={locale} />
       </MDXProvider>
     </LayoutMDX>
   );
