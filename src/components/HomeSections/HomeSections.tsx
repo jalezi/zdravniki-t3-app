@@ -20,21 +20,16 @@ import { drTypeCoerceSchema } from '@/lib/types/doctors';
 import type { LeafletMap } from '@/lib/types/Map';
 import { getDefaultFontSize } from '@/lib/utils/common';
 
-import MapSkeleton from './BigMap/MapSkeleton';
-import { Filters } from './Filters';
-import { List } from './List';
 import type { View } from './types';
 
-const HomeSections = () => {
-  const BigMapWithNoSSR = useMemo(
-    () =>
-      dynamic(() => import('./BigMap').then(mod => mod.BigMap), {
-        ssr: false,
-        loading: MapSkeleton.bind(null, { size: 'lg' }),
-      }),
-    []
-  );
+const Filters = dynamic(() => import('./Filters').then(mod => mod.Filters));
+const List = dynamic(() => import('./List').then(mod => mod.List));
+const MapSkeleton = dynamic(() => import('./BigMap/MapSkeleton'));
 
+const BigSkeleton = () => <MapSkeleton size="lg" />;
+const SmallSkeleton = () => <MapSkeleton size="sm" />;
+
+const HomeSections = () => {
   const { query } = useRouter();
 
   const [layoutVisible, setLayoutVisible] = useState<View>('map');
@@ -46,6 +41,15 @@ const HomeSections = () => {
   const fontSize = getDefaultFontSize() ?? 16;
   const { width } = useWindowSize();
   const isMediumMediaQuery = width >= (BREAKPOINTS.md * fontSize) / 16;
+
+  const BigMapWithNoSSR = useMemo(
+    () =>
+      dynamic(() => import('./BigMap').then(mod => mod.BigMap), {
+        ssr: false,
+        loading: isMediumMediaQuery ? BigSkeleton : SmallSkeleton,
+      }),
+    [isMediumMediaQuery]
+  );
 
   useHash();
 
