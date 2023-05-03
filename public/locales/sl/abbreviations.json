@@ -1,6 +1,6 @@
 {
-    "gurs": "Geodetska uprava Republike Slovenije",
+    "gurs": "$t(common:footer.gurs)",
     "mz": "Ministrstvo za zdravje",
     "zd": "Zdravstveni dom",
-    "zzzs": "Zavod za zdravstveno zavarovanje Slovenije"
+    "zzzs": "$t(common:footer.zzzs)"
 }
