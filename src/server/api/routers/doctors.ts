@@ -88,7 +88,7 @@ const filterDoctorsByTypePageAndValidIdInst = (
 };
 
 export const doctorsRouter = createTRPCRouter({
-  get: publicProcedure
+  getByTypePage: publicProcedure
     .input(
       z.object({
         type: pageDrTypeSchema,
@@ -169,4 +169,5 @@ export const doctorsRouter = createTRPCRouter({
     }),
 });
 
-export type Doctor = RouterOutputs['doctors']['get']['doctors'][number];
+export type Doctor =
+  RouterOutputs['doctors']['getByTypePage']['doctors'][number];

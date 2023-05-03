@@ -8,7 +8,10 @@ const useDoctors = () => {
   const { type } = query;
   const drType = pageDrTypeSchema.parse(type);
 
-  return api.doctors.get.useQuery({ type: drType }, { enabled: isReady });
+  return api.doctors.getByTypePage.useQuery(
+    { type: drType },
+    { enabled: isReady }
+  );
 };
 
 export default useDoctors;
