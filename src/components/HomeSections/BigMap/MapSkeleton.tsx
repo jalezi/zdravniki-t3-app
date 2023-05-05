@@ -11,7 +11,7 @@ type MapSkeletonProps = { size: 'sm' | 'lg' };
 
 const MapSkeleton = ({ size = 'lg' }: MapSkeletonProps) => {
   const mapSkeletonStyles = clsx(
-    styles.MapSkeletonContaine,
+    styles.MapSkeletonContainer,
     size === 'sm' && styles.Sm
   );
 
@@ -19,7 +19,6 @@ const MapSkeleton = ({ size = 'lg' }: MapSkeletonProps) => {
     <div className={mapSkeletonStyles}>
       <Image
         src={size === 'lg' ? fakeMapLg : fakeMapSm}
-        fill
         alt="fake map"
         priority
         sizes="(max-width: 48em) 100vw,
@@ -29,7 +28,7 @@ const MapSkeleton = ({ size = 'lg' }: MapSkeletonProps) => {
               (max-width: 75em) 68.5vw,
               (max-width: 87.5em) 69.5vw,
               70.5vw"
-        style={{ objectFit: 'cover' }}
+        className={styles.MapSkeleton}
       />
     </div>
   );
