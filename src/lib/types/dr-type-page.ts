@@ -22,6 +22,8 @@ export type PageLink = {
 
 export const DR_TYPE_LABELS = [
   'gp',
+  'gp-x',
+  'gp-f',
   'ped',
   'den',
   'den-y',

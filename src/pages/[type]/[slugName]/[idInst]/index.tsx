@@ -34,7 +34,12 @@ interface DrTypeNameInstPageParams extends ParsedUrlQuery {
 
 const DrTypeNameInstPage = ({ doctors }: DrTypeNameInstPageProps) => {
   if (doctors[0] && doctors.length > 1) {
-    console.warn(`More than one doctor found for ${doctors[0].slugName}`);
+    console.warn(`More than one doctor type found for ${doctors[0].slugName}`);
+    doctors.forEach(doctor =>
+      console.warn(
+        `name: ${doctor.name}, type: ${doctor.type}, idInst:${doctor.idInst}`
+      )
+    );
   }
 
   const doctor = doctors[0] as Doctor;
@@ -66,7 +71,7 @@ export const getStaticProps: GetStaticProps<
   const doctorsFiltered = doctorsParsedFromCsv.data.filter(
     doctor =>
       doctor.id_inst === drTypePage.data.idInst &&
-      doctor.type.includes(drTypePage.data.type) &&
+      doctor.type === drTypePage.data.type &&
       drTypePage.data.slugName === slugSchema.parse(doctor.doctor)
   );
 
@@ -109,7 +114,7 @@ export const getStaticPaths: GetStaticPaths<
 
   const paths = doctorsValidated.map(doctor => ({
     params: {
-      type: doctor.typePage,
+      type: doctor.type,
       slugName: doctor.slugName,
       idInst: doctor.idInst,
     },
