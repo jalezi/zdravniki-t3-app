@@ -27,7 +27,6 @@ const List = dynamic(() => import('./List').then(mod => mod.List));
 const MapSkeleton = dynamic(() => import('./BigMap/MapSkeleton'));
 
 const BigSkeleton = () => <MapSkeleton size="lg" />;
-const SmallSkeleton = () => <MapSkeleton size="sm" />;
 
 const HomeSections = () => {
   const { query } = useRouter();
@@ -46,9 +45,9 @@ const HomeSections = () => {
     () =>
       dynamic(() => import('./BigMap').then(mod => mod.BigMap), {
         ssr: false,
-        loading: isMediumMediaQuery ? BigSkeleton : SmallSkeleton,
+        loading: BigSkeleton,
       }),
-    [isMediumMediaQuery]
+    []
   );
 
   useHash();

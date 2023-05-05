@@ -53,6 +53,12 @@
   height: var(--doctor-card-map-height, 21.875rem);
 }
 
+.MapSkeletonContainer .MapSkeleton {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+}
+
 .Popup {
   display: flex;
   flex-direction: column;
