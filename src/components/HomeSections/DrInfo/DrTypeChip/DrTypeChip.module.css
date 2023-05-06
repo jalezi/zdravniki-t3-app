@@ -1,3 +1,9 @@
+.DrTypeChipWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
 .DrTypeChip {
   --color-dr-type: inherit;
   --color-bg-dr-type: transparent;

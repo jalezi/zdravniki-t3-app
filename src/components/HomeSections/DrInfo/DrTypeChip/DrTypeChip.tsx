@@ -138,7 +138,7 @@ export const DrTypeChip = ({
   );
 
   return (
-    <>
+    <span className={styles.DrTypeChipWrapper}>
       <Chip
         iconName={DrTypeSvg}
         size={size}
@@ -158,6 +158,6 @@ export const DrTypeChip = ({
           textClassName={textStyles}
         />
       )}
-    </>
+    </span>
   );
 };
