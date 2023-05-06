@@ -76,7 +76,7 @@ const DoctorOptions = () => {
             text={drTypeTranslated}
             size="md"
             iconSize="lg"
-            className={clsx(
+            classNameFirst={clsx(
               styles.DoctorOptionsToggler__px_0,
               styles.DoctorOptionsToggler__dr_type_chip
             )}

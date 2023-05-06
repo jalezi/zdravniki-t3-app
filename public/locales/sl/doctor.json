@@ -3,6 +3,8 @@
     "adults": "odrasli",
     "all": "vsi",
     "den": "zobozdravnik",
+    "den-s": "$t(den)",
+    "den-y": "$t(den)",
     "extra": {
         "clinic": {
             "betterAccessibility": {
