@@ -24,6 +24,12 @@ const CLINIC_TOOLTIP_MAP = {
   floating: Tooltip.Tooltip,
 } as const;
 
+const CLINIC_CHIP_VARIANT_MAP = {
+  list: undefined,
+  page: 'contained',
+  popup: 'contained',
+} as const;
+
 export type DrBasicInfoProps = {
   name: string;
   href: string;
@@ -35,7 +41,6 @@ export type DrBasicInfoProps = {
   variant?: 'list' | 'popup' | 'page';
 };
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
 const DrBasicInfo = ({ variant = 'list', ...props }: DrBasicInfoProps) => {
   const router = useRouter();
   const { t } = useTranslation('doctor');
@@ -77,28 +82,35 @@ const DrBasicInfo = ({ variant = 'list', ...props }: DrBasicInfoProps) => {
 
   const ClinicTooltip = CLINIC_TOOLTIP_MAP[props.clinic];
   const clinicTooltip = {
-    page: {
-      default: null,
-      extra: extra.description,
-      floating: floating.description,
-    }[props.clinic],
-    list: {
-      default: null,
-      extra: extra.title,
-      floating: floating.title,
-    }[props.clinic],
-    popup: {
-      default: null,
-      extra: extra.title,
-      floating: floating.title,
-    }[props.clinic],
-  } as const;
+    default: null,
+    extra: extra.description,
+    floating: floating.description,
+  }[props.clinic];
 
   const clinicText = {
     default: undefined,
     extra: extra.title,
     floating: floating.title,
   }[props.clinic];
+
+  const clinicChip = ClinicChip ? (
+    <ClinicChip
+      id={clinicChipId}
+      variant={CLINIC_CHIP_VARIANT_MAP[`${variant}`]}
+      text={variant === 'page' ? clinicText : undefined}
+    />
+  ) : null;
+
+  const drTypeChip =
+    variant === 'list' ? null : (
+      <DrTypeChip.DrTypeChip
+        drType={drTypeParsed}
+        text={drTypeTranslated}
+        textAge={drAgeGroupTranslated}
+        variant="contained"
+        iconSize="lg"
+      />
+    );
 
   return (
     <div className={basicStyles}>
@@ -108,47 +120,18 @@ const DrBasicInfo = ({ variant = 'list', ...props }: DrBasicInfoProps) => {
         href={props.href}
         variant={variant}
       >
-        {variant === 'list' && ClinicChip ? (
-          <ClinicChip id={clinicChipId} />
-        ) : null}
+        {variant === 'list' ? clinicChip : null}
       </DrName>
-      {variant === 'popup' ? (
+      {variant === 'popup' || variant === 'page' ? (
         <div className={styles.TypeContainer}>
-          <DrTypeChip.DrTypeChip
-            drType={drTypeParsed}
-            text={drTypeTranslated}
-            textAge={drAgeGroupTranslated}
-            variant="contained"
-            iconSize="lg"
-          />
-          {ClinicChip ? (
-            <ClinicChip id={clinicChipId} variant="contained" />
-          ) : null}
-        </div>
-      ) : null}
-
-      {variant === 'page' ? (
-        <div className={styles.TypeContainer}>
-          <DrTypeChip.DrTypeChip
-            drType={drTypeParsed}
-            text={drTypeTranslated}
-            textAge={drAgeGroupTranslated}
-            variant="contained"
-            iconSize="lg"
-          />
-          {ClinicChip ? (
-            <ClinicChip
-              id={clinicChipId}
-              text={clinicText}
-              variant="contained"
-            />
-          ) : null}
+          {drTypeChip}
+          {clinicChip}
         </div>
       ) : null}
       {ClinicTooltip && clinicChipId ? (
         <ClinicTooltip anchorSelect={`#${clinicChipId}`} place="bottom">
           <Tooltip.TooltipContent as="p" weight="500">
-            {clinicTooltip[`${variant}`]}
+            {clinicTooltip}
           </Tooltip.TooltipContent>
         </ClinicTooltip>
       ) : null}
