@@ -20,4 +20,5 @@
 .BasicInfo .TypeContainer {
   display: flex;
   flex-wrap: no-wrap;
+  gap: 0.5em;
 }
