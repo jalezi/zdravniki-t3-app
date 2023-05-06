@@ -26,20 +26,16 @@ const phoneSchema = z
   );
 export const formDataSchema = z.object({
   address: z.string().max(ADDRESS_LENGTH_LIMIT),
-  websites: z
-    .array(
-      z.object({
-        website: websiteSchema,
-      })
-    )
-    .nonempty(),
-  phones: z
-    .array(
-      z.object({
-        phone: phoneSchema,
-      })
-    )
-    .nonempty(),
+  websites: z.array(
+    z.object({
+      website: websiteSchema,
+    })
+  ),
+  phones: z.array(
+    z.object({
+      phone: phoneSchema,
+    })
+  ),
   email: z.string().email().or(z.literal('')),
   orderform: z.string().email().or(z.literal('')).or(websiteSchema),
   accepts: z.enum(['y', 'n']),
