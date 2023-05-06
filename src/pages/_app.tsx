@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react'; // @vercel/analytics is automatically added to your project when you deploy to Vercel
 import type { NextComponentType } from 'next';
 import type { AppContext, AppInitialProps, AppLayoutProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
@@ -14,14 +15,19 @@ import '@/lib/styles/variables.css';
 import '@/lib/styles/globals.css';
 import '@/lib/styles/leaflet.css';
 
+// todo: change about page visitors personal data & cookies if we use analytics
+
 const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
   Component,
   pageProps,
 }: AppLayoutProps) => {
   return (
-    <ErrorBoundary fallback={<Fallback />}>
-      <Component {...pageProps} />
-    </ErrorBoundary>
+    <>
+      <ErrorBoundary fallback={<Fallback />}>
+        <Component {...pageProps} />
+      </ErrorBoundary>
+      <Analytics />
+    </>
   );
 };
 
