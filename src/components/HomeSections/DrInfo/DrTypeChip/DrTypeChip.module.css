@@ -33,6 +33,20 @@
   --color-bg-dr-type: var(--color-blue-150);
 }
 
+.DrTypeChip.First {
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.DrTypeChip.Second {
+  --color-bg-dr-type: var(--color-blue-100);
+
+  border-left: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
 .DrTypeChip > .TextOverflowHidden {
   overflow: hidden;
   text-overflow: ellipsis;

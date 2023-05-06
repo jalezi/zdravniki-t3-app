@@ -3,6 +3,8 @@
     "adults": "adults",
     "all": "all",
     "den": "dentist",
+    "den-s": "$t(den)",
+    "den-y": "$t(den)",
     "extra": {
         "clinic": {
             "betterAccessibility": {

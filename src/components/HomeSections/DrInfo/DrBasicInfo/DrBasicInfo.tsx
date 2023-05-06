@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 
 import { Tooltip } from '@/components/Shared/Tooltip';
 import type { Clinic } from '@/lib/types/doctors';
-import { baseDrTypeSchema } from '@/lib/types/dr-type-page';
+import { ageGroupSchema, pageDrTypeSchema } from '@/lib/types/dr-type-page';
 
 import styles from './DrBasicInfo.module.css';
 import { DrAddress } from '../DrAddress';
@@ -35,12 +35,17 @@ export type DrBasicInfoProps = {
   variant?: 'list' | 'popup' | 'page';
 };
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 const DrBasicInfo = ({ variant = 'list', ...props }: DrBasicInfoProps) => {
   const router = useRouter();
   const { t } = useTranslation('doctor');
 
-  const drTypeParsed = baseDrTypeSchema.parse(router.query.type);
+  const drTypeParsed = pageDrTypeSchema.parse(router.query.type);
+  const drAgeGroup = ageGroupSchema.parse(drTypeParsed);
   const drTypeTranslated = t(drTypeParsed);
+  const drAgeGroupTranslated = drTypeParsed.includes('den')
+    ? t(drAgeGroup)
+    : undefined;
 
   const extra = t('extra.clinic.betterAccessibility', {
     returnObjects: true,
@@ -112,6 +117,7 @@ const DrBasicInfo = ({ variant = 'list', ...props }: DrBasicInfoProps) => {
           <DrTypeChip.DrTypeChip
             drType={drTypeParsed}
             text={drTypeTranslated}
+            textAge={drAgeGroupTranslated}
             variant="contained"
             iconSize="lg"
           />
@@ -126,6 +132,7 @@ const DrBasicInfo = ({ variant = 'list', ...props }: DrBasicInfoProps) => {
           <DrTypeChip.DrTypeChip
             drType={drTypeParsed}
             text={drTypeTranslated}
+            textAge={drAgeGroupTranslated}
             variant="contained"
             iconSize="lg"
           />

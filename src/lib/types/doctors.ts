@@ -5,6 +5,17 @@ import { idInstSchema, slugSchema, trimmedStringSchema } from '@/lib/utils/zod';
 import type { LatLngLiteral } from './Map';
 
 const drAcceptsSchema = z.enum(['y', 'n']);
+export const drTypeSchema = z.enum([
+  'gp',
+  'gp-x',
+  'gp-f',
+  'ped',
+  'ped-x',
+  'den',
+  'den-y',
+  'den-s',
+  'gyn',
+]);
 
 export type DrAccepts = z.infer<typeof drAcceptsSchema>;
 
@@ -56,17 +67,7 @@ export const drCSVSchema = z.object({
   orderform: trimmedStringSchema,
   phone: trimmedStringSchema,
   post: trimmedStringSchema,
-  type: z.enum([
-    'gp',
-    'gp-x',
-    'gp-f',
-    'ped',
-    'ped-x',
-    'den',
-    'den-y',
-    'den-s',
-    'gyn',
-  ]),
+  type: drTypeSchema,
   website: trimmedStringSchema,
 });
 // todo remove ped-x from type z.enum; above
@@ -188,7 +189,7 @@ export const drTransformedSchema = drCSVSchema.transform(dr => {
   const slugName = slugNameParsed.success ? slugNameParsed.data : '';
   const typePage = drTypeCoerceSchema.parse(`${type}`);
   const idInst = idInstSchema.parse(id_inst);
-  const href = `/${typePage}/${slugName}/${idInst}`;
+  const href = `/${type}/${slugName}/${idInst}`;
 
   return {
     accepts: drAcceptsSchema.parse(accepts_override || accepts),

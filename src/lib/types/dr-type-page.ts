@@ -22,6 +22,8 @@ export type PageLink = {
 
 export const DR_TYPE_LABELS = [
   'gp',
+  'gp-x',
+  'gp-f',
   'ped',
   'den',
   'den-y',
@@ -30,6 +32,15 @@ export const DR_TYPE_LABELS = [
 ] as const;
 
 export const pageDrTypeSchema = z.enum(DR_TYPE_LABELS);
+export const ageGroupSchema = pageDrTypeSchema.transform(type => {
+  if (type.includes('-s')) {
+    return 'students';
+  }
+  if (type.includes('-y')) {
+    return 'youth';
+  }
+  return 'adults';
+});
 
 export type PageDrType = z.infer<typeof pageDrTypeSchema>;
 

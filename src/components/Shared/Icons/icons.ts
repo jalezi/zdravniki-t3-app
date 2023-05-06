@@ -82,6 +82,7 @@ export const icons = {
   StudentsSvg,
   TwSvg,
   LogoSvg,
+  YouthSvg: PedSvg,
 } as const;
 
 export type IconName = keyof typeof icons;

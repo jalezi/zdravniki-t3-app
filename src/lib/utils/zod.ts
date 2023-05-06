@@ -1,8 +1,6 @@
 import slugify from 'slugify';
 import { z } from 'zod';
 
-import { baseDrTypeSchema } from '@/lib/types/dr-type-page';
-
 export const trimmedStringSchema = z
   .string()
   .transform(s => s.replace(/\s+/g, ' ').trim());
@@ -18,8 +16,20 @@ export const toSlug = function toSlug(
 
 export const slugSchema = trimmedStringSchema.transform(value => toSlug(value));
 
+export const drTypeSchema = z.enum([
+  'gp',
+  'gp-x',
+  'gp-f',
+  'ped',
+  'ped-x',
+  'den',
+  'den-y',
+  'den-s',
+  'gyn',
+]);
+
 export const drPersonalPageSchema = z.object({
-  type: baseDrTypeSchema,
+  type: drTypeSchema,
   slugName: slugSchema,
   idInst: idInstSchema,
 });

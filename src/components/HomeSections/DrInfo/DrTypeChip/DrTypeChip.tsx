@@ -1,4 +1,5 @@
 import { clsx } from 'clsx';
+import z from 'zod';
 
 import type { ChipProps } from '@/components/Shared/Chip';
 import { Chip } from '@/components/Shared/Chip';
@@ -7,7 +8,10 @@ import type { BaseDrType } from '@/lib/types/dr-type-page';
 
 import styles from './DrTypeChip.module.css';
 
-type ExtendedBaseDrType = BaseDrType | 'gp-x' | 'gp-f';
+type ExtendedBaseDrType = BaseDrType | 'gp-x' | 'gp-f' | 'den-y' | 'den-s';
+
+const dentistSchema = z.enum(['den', 'den-y', 'den-s']);
+type DentistDrType = z.infer<typeof dentistSchema>;
 
 export type ExtraChipProps = {
   hasText?: boolean;
@@ -74,33 +78,58 @@ const DR_TYPE_SVG = {
   ped: 'PedSvg',
   gyn: 'GynSvg',
   den: 'DentistSvg',
+  'den-y': 'DentistSvg',
+  'den-s': 'DentistSvg',
 } satisfies Record<ExtendedBaseDrType, IconName>;
+
+const AGE_GROUP_SVG = {
+  den: 'AdultsSvg',
+  'den-y': 'YouthSvg',
+  'den-s': 'StudentsSvg',
+} satisfies Record<DentistDrType, IconName>;
 
 type DrTypeChipProps = {
   drType: ExtendedBaseDrType;
   text: string;
+  textAge?: string;
   size?: ChipProps['size'];
   iconSize?: ChipProps['iconSize'];
   variant?: 'text' | 'contained';
-  className?: string;
   textOverflowHidden?: boolean;
+  classNameFirst?: string;
+  classNameSecond?: string;
 };
 
 export const DrTypeChip = ({
   drType,
   text,
+  textAge,
   size = 'sm',
   iconSize = 'xl',
   variant = 'text',
-  className,
   textOverflowHidden = false,
+  classNameFirst,
+  classNameSecond,
 }: DrTypeChipProps) => {
   const DrTypeSvg = DR_TYPE_SVG[`${drType}`];
 
-  const chipStyles = clsx(
+  const dentistDrType = dentistSchema.safeParse(drType);
+
+  const DentistDrTypeSvg = dentistDrType.success
+    ? AGE_GROUP_SVG[`${dentistDrType.data}`]
+    : null;
+
+  const firstChipStyles = clsx(
     styles.DrTypeChip,
     variant === 'contained' && styles.WithBg,
-    className
+    dentistDrType.success && styles.First,
+    classNameFirst
+  );
+  const secondChipStyles = clsx(
+    styles.DrTypeChip,
+    variant === 'contained' && styles.WithBg,
+    dentistDrType.success && styles.Second,
+    classNameSecond
   );
 
   const textStyles = clsx(
@@ -109,13 +138,26 @@ export const DrTypeChip = ({
   );
 
   return (
-    <Chip
-      iconName={DrTypeSvg}
-      size={size}
-      iconSize={iconSize}
-      text={text}
-      className={chipStyles}
-      textClassName={textStyles}
-    />
+    <>
+      <Chip
+        iconName={DrTypeSvg}
+        size={size}
+        iconSize={iconSize}
+        text={text}
+        className={firstChipStyles}
+        textClassName={textStyles}
+      />
+      {dentistDrType.success && DentistDrTypeSvg && (
+        <Chip
+          iconName={DentistDrTypeSvg}
+          iconOnEnd
+          size={size}
+          iconSize={iconSize}
+          text={textAge}
+          className={secondChipStyles}
+          textClassName={textStyles}
+        />
+      )}
+    </>
   );
 };
