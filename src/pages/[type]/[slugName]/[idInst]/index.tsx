@@ -118,7 +118,6 @@ export const getStaticPaths: GetStaticPaths<
       slugName: doctor.slugName,
       idInst: doctor.idInst,
     },
-    locale: 'sl',
   }));
 
   return { paths, fallback: 'blocking' };
