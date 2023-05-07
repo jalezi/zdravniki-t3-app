@@ -54,17 +54,31 @@ function DoctorReportErrosDiffs({
             size="sm"
             iconName={iconName}
             text={inputTranslations[`${_label}`].label}
-            className={clsx(styles.FormGroup__chip)}
+            className={clsx(styles.FormGroup__chip, styles.Diff)}
           />
 
-          <p className={clsx(styles.Value, styles.InitialValue)}>
-            <Typography as="h6" element="strong">
-              {_initialValue ? _initialValue : "''"}
+          <p className={clsx(styles.ValueWrapper, styles.InitialValue)}>
+            <Typography as="inherit" element="span" className={styles.Sign}>
+              -
+            </Typography>
+            <Typography
+              as="inherit"
+              element="span"
+              className={clsx(styles.Value, !_initialValue && styles.Empty)}
+            >
+              {_initialValue ? _initialValue : '""'}
             </Typography>
           </p>
-          <p className={clsx(styles.Value, styles.ChangedValue)}>
-            <Typography as="h6" element="strong">
-              {_value ? _value : "''"}
+          <p className={clsx(styles.ValueWrapper, styles.ChangedValue)}>
+            <Typography as="inherit" element="span" className={styles.Sign}>
+              +
+            </Typography>
+            <Typography
+              as="inherit"
+              element="span"
+              className={clsx(styles.Value, !_value && styles.Empty)}
+            >
+              {_value ? _value : '""'}
             </Typography>
           </p>
         </div>
