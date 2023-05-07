@@ -7,6 +7,7 @@ import { Polymorphic } from '@/components/Shared/Polymorphic';
 import styles from './Typography.module.css';
 
 const allowedAsSchema = z.enum([
+  'inherit',
   'body1',
   'body2',
   'h1',
@@ -26,6 +27,7 @@ const allowedElementSchema = z.enum([
   'h4',
   'strong',
   'p',
+  'span',
 ]);
 
 const customProps = z.object({
@@ -43,6 +45,7 @@ export type TypographyProps = CustomProps &
   Omit<PolymorphicComponentProps<AllowedElement>, 'as'>;
 
 const CLASS_NAME = {
+  inherit: styles.Inherit,
   body1: styles.Body1,
   body2: styles.Body2,
   h1: styles.H1,
@@ -61,10 +64,14 @@ const Typography = ({
   children,
   ...props
 }: TypographyProps) => {
-  const drNameStyles = clsx(styles.Typography, CLASS_NAME[`${as}`], className);
+  const typographyStyles = clsx(
+    styles.Typography,
+    CLASS_NAME[`${as}`],
+    className
+  );
 
   return (
-    <Polymorphic as={element} className={drNameStyles} {...props}>
+    <Polymorphic as={element} className={typographyStyles} {...props}>
       {children}
     </Polymorphic>
   );
