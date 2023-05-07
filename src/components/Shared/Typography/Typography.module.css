@@ -1,4 +1,5 @@
-.Typography {
+.Typography,
+.Typography.Inherit {
   position: relative;
   font-size: inherit;
   color: inherit;

@@ -63,8 +63,14 @@ const DoctorReportError = ({ onEditDone, data }: DoctorReportErrorProps) => {
   } = useForm<FormData>({
     defaultValues: {
       ...data.fromUser,
-      websites: data.fromUser.websites.map(website => ({ website })),
-      phones: data.fromUser.phones.map(phone => ({ phone })),
+      websites:
+        data.fromUser.websites.length === 0
+          ? [{ website: '' }]
+          : data.fromUser.websites.map(website => ({ website })),
+      phones:
+        data.fromUser.phones.length === 0
+          ? [{ phone: '' }]
+          : data.fromUser.phones.map(phone => ({ phone })),
     },
     resolver: zodResolver(formDataSchema),
     mode: 'onChange',
