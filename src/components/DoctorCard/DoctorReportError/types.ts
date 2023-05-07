@@ -23,7 +23,8 @@ const phoneSchema = z
       value.replaceAll(' ', '').replaceAll('(', '').replaceAll(')', ''),
       'sl-SI'
     )
-  );
+  )
+  .or(z.literal(''));
 export const formDataSchema = z.object({
   address: z.string().max(ADDRESS_LENGTH_LIMIT),
   websites: z.array(
