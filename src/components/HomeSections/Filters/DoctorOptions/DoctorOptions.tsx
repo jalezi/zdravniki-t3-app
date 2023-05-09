@@ -7,12 +7,16 @@ import { useWindowSize } from 'usehooks-ts';
 import { Chip } from '@/components/Shared/Chip';
 import { BREAKPOINTS } from '@/lib/constants';
 import useBoundStore from '@/lib/store/useBoundStore';
-import { baseDrTypeSchema } from '@/lib/types/dr-type-page';
+import { pageDrTypeSchema } from '@/lib/types/dr-type-page';
 import { getDefaultFontSize } from '@/lib/utils/common';
 
 import styles from './DoctorOptions.module.css';
 import { FilterGroups } from './FIlterGroups';
 import { DrTypeChip } from '../../DrInfo/DrTypeChip';
+import {
+  AGE_GROUP_SVG,
+  dentistSchema,
+} from '../../DrInfo/DrTypeChip/DrTypeChip';
 
 const ACCEPTS_SVG = {
   y: 'CheckSvg',
@@ -46,10 +50,16 @@ const DoctorOptions = () => {
 
   const onToggleClick = () => setExpanded(prev => !prev);
 
-  const drTypeParsed = baseDrTypeSchema.parse(query.type);
+  const drTypeParsed = pageDrTypeSchema.parse(query.type);
   const drTypeTranslated = t(drTypeParsed);
 
   const AcceptsSvg = ACCEPTS_SVG[`${accepts}`];
+
+  const dentistDrType = dentistSchema.safeParse(query.type);
+
+  const DentistDrTypeSvg = dentistDrType.success
+    ? AGE_GROUP_SVG[`${dentistDrType.data}`]
+    : null;
 
   return (
     <>
@@ -76,12 +86,28 @@ const DoctorOptions = () => {
             text={drTypeTranslated}
             size="md"
             iconSize="lg"
+            className={styles.DoctorOptionsToggler__dr_type_chip_wrapper}
             classNameFirst={clsx(
               styles.DoctorOptionsToggler__px_0,
-              styles.DoctorOptionsToggler__dr_type_chip
+              styles.DoctorOptionsToggler__dr_type_chip_first
+            )}
+            classNameSecond={clsx(
+              styles.DoctorOptionsToggler__dr_type_chip_second
             )}
             textOverflowHidden
           />
+          {DentistDrTypeSvg && (
+            <>
+              <hr />
+              <Chip
+                iconName={DentistDrTypeSvg}
+                size="md"
+                iconSize="lg"
+                text=""
+                className={styles.DoctorOptionsToggler__px_0}
+              />
+            </>
+          )}
           <hr />
           <Chip
             iconName={AcceptsSvg}

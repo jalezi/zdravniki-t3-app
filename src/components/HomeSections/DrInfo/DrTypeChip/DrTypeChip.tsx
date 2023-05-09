@@ -10,7 +10,7 @@ import styles from './DrTypeChip.module.css';
 
 type ExtendedBaseDrType = BaseDrType | 'gp-x' | 'gp-f' | 'den-y' | 'den-s';
 
-const dentistSchema = z.enum(['den', 'den-y', 'den-s']);
+export const dentistSchema = z.enum(['den', 'den-y', 'den-s']);
 type DentistDrType = z.infer<typeof dentistSchema>;
 
 export type ExtraChipProps = {
@@ -82,7 +82,7 @@ const DR_TYPE_SVG = {
   'den-s': 'DentistSvg',
 } satisfies Record<ExtendedBaseDrType, IconName>;
 
-const AGE_GROUP_SVG = {
+export const AGE_GROUP_SVG = {
   den: 'AdultsSvg',
   'den-y': 'YouthSvg',
   'den-s': 'StudentsSvg',
@@ -96,6 +96,7 @@ type DrTypeChipProps = {
   iconSize?: ChipProps['iconSize'];
   variant?: 'text' | 'contained';
   textOverflowHidden?: boolean;
+  className?: string;
   classNameFirst?: string;
   classNameSecond?: string;
 };
@@ -108,6 +109,7 @@ export const DrTypeChip = ({
   iconSize = 'xl',
   variant = 'text',
   textOverflowHidden = false,
+  className,
   classNameFirst,
   classNameSecond,
 }: DrTypeChipProps) => {
@@ -118,6 +120,8 @@ export const DrTypeChip = ({
   const DentistDrTypeSvg = dentistDrType.success
     ? AGE_GROUP_SVG[`${dentistDrType.data}`]
     : null;
+
+  const wrapperStyles = clsx(styles.DrTypeChipWrapper, className);
 
   const firstChipStyles = clsx(
     styles.DrTypeChip,
@@ -138,7 +142,7 @@ export const DrTypeChip = ({
   );
 
   return (
-    <span className={styles.DrTypeChipWrapper}>
+    <span className={wrapperStyles}>
       <Chip
         iconName={DrTypeSvg}
         size={size}
