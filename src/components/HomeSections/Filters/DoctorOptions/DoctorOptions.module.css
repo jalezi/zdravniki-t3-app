@@ -47,9 +47,18 @@
   font-weight: 600;
 }
 
-.DoctorOptionsToggler > .DoctorOptionsToggler__dr_type_chip {
+.DoctorOptionsToggler .DoctorOptionsToggler__dr_type_chip_wrapper {
   min-width: 1ch; /* Prevents the text from overflowing the container */
   margin-left: auto;
+}
+
+.DoctorOptionsToggler .DoctorOptionsToggler__dr_type_chip_first {
+  min-width: 1ch; /* Prevents the text from overflowing the container */
+  padding-right: 0;
+}
+
+.DoctorOptionsToggler .DoctorOptionsToggler__dr_type_chip_second {
+  display: none;
 }
 
 .DoctorOptionsContent.Expanded {
