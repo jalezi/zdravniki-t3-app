@@ -31,7 +31,7 @@ const FilterGroups = () => {
   const setAccepts = useBoundStore(state => state.setAccepts);
   const fontSize = getDefaultFontSize() ?? 16;
   const { width } = useWindowSize();
-  const isLargeMediumQuery = width >= (BREAKPOINTS.lg * fontSize) / 16;
+  const isLargeMediaQuery = width >= (BREAKPOINTS.lg * fontSize) / 16;
 
   useEffect(() => {
     const documentLocHash = document.location.hash;
@@ -56,14 +56,13 @@ const FilterGroups = () => {
         {DR_GROUP.map(item => (
           <FilterButton
             key={item.value}
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             Icon={item.Icon}
             text={t(item.translationKey)}
             href={item.href}
             passHref
             as={Link}
             isActive={query.type?.includes(item.value)}
-            alwaysText={isLargeMediumQuery}
+            alwaysText={isLargeMediaQuery}
           />
         ))}
       </div>
@@ -96,7 +95,6 @@ const FilterGroups = () => {
           {ACCEPTS_GROUP.map(item => (
             <FilterButton
               key={item.value}
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               Icon={item.Icon}
               text={t(item.translationKey)}
               as="button"
