@@ -11,7 +11,7 @@ const defaultSeoData = {
     'Zdravniki Sledilnik Slovenija - zbrani, preverjeni, ažurirani, analizirani in pregledni podatki o prostih zdravnikih v Sloveniji',
   keywords: '',
 };
-const SOCIAL_IMG_URL = `${siteUrl}/social.png`;
+const SOCIAL_IMG_URL = `${siteUrl}/share-card-photo.png`;
 
 const SOCIAL_COLOR = '#09AFDA';
 const CANONICAL_URL = siteUrl;
