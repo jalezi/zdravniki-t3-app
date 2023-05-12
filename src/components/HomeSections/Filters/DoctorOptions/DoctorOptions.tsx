@@ -98,7 +98,7 @@ const DoctorOptions = () => {
           />
           {DentistDrTypeSvg && (
             <>
-              <hr />
+              <span className={styles.VerticalDivider} />
               <Chip
                 iconName={DentistDrTypeSvg}
                 size="md"
@@ -108,7 +108,7 @@ const DoctorOptions = () => {
               />
             </>
           )}
-          <hr />
+          <span className={styles.VerticalDivider} />
           <Chip
             iconName={AcceptsSvg}
             size="md"

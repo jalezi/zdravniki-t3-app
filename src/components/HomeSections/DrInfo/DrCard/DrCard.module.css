@@ -66,9 +66,3 @@
   align-items: center;
   align-self: center;
 }
-
-@media only screen and (min-width: 48em) {
-  .DrCard {
-    border-left: 1px solid transparent; /* hack to get full border on hover; same effect can be achieved with column-gap: 1px in .Layout (Layout.module.css)  */
-  }
-}
