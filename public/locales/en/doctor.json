@@ -33,6 +33,7 @@
         "linkReplaceText": "get appointment"
     },
     "ped": "pediatrician",
+    "ped-x": "$t(ped)",
     "rejects": "not accepting",
     "reportError": {
         "linkText": "Report error in doctor data",
