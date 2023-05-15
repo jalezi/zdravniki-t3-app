@@ -8,7 +8,7 @@ import type { BaseDrType } from '@/lib/types/dr-type-page';
 
 import styles from './DrTypeChip.module.css';
 
-type ExtendedBaseDrType = BaseDrType | 'gp-x' | 'gp-f' | 'den-y' | 'den-s';
+type ExtendedBaseDrType = BaseDrType | 'den-y' | 'den-s';
 
 export const dentistSchema = z.enum(['den', 'den-y', 'den-s']);
 type DentistDrType = z.infer<typeof dentistSchema>;
@@ -76,6 +76,7 @@ const DR_TYPE_SVG = {
   'gp-f': 'FamilyDrSvg',
   'gp-x': 'FamilyDrSvg',
   ped: 'PedSvg',
+  'ped-x': 'PedSvg',
   gyn: 'GynSvg',
   den: 'DentistSvg',
   'den-y': 'DentistSvg',

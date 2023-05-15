@@ -25,6 +25,7 @@ export const DR_TYPE_LABELS = [
   'gp-x',
   'gp-f',
   'ped',
+  'ped-x',
   'den',
   'den-y',
   'den-s',
@@ -62,11 +63,18 @@ export const drTypeWithAgeTransformSchema = drTypeWithAgeSchema.transform(
   }
 );
 
-export const drTypeWithExtraSchema = z.enum(['gp', 'gp-x', 'gp-f']);
+export const drTypeWithExtraSchema = z.enum([
+  'gp',
+  'gp-x',
+  'gp-f',
+  'ped',
+  'ped-x',
+]);
 
 export const drTypeWithExtraTransformSchema = drTypeWithExtraSchema.transform(
   value => {
     if (value.includes('gp')) return 'gp';
+    if (value.includes('ped')) return 'ped';
     return '';
   }
 );

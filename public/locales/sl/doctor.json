@@ -33,6 +33,7 @@
         "linkReplaceText": "naročanje"
     },
     "ped": "pediater",
+    "ped-x": "$t(ped)",
     "rejects": "ne sprejema",
     "reportError": {
         "linkText": "Prijavi napako v objavljenih podatkih",

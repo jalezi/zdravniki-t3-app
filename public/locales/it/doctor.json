@@ -33,6 +33,7 @@
         "linkReplaceText": "prenotazione"
     },
     "ped": "pediatra",
+    "ped-x": "$t(ped)",
     "rejects": "non accetta",
     "reportError": {
         "linkText": "Segnala un errore nei dati pubblicati",
