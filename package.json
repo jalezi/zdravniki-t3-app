@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.5",
-    "@commitlint/config-conventional": "^17.6.5",
+    "@commitlint/config-conventional": "^17.7.0",
     "@svgr/webpack": "^8.0.1",
     "@total-typescript/ts-reset": "^0.4.2",
     "@types/leaflet": "^1.9.3",
