@@ -32,10 +32,8 @@ const Footer = ({ position = 'mdx' }: FooterProps) => {
 
   const contentStyles = clsx(styles.Content__wrapper, positionStyles);
 
-  const dataSource = t`footer.dataSource`;
-  const lastChange = t`footer.lastChange`;
-  const zzzs = t`footer.zzzs`;
-  const gurs = t`footer.gurs`;
+  const footterTrans = t('footer', { returnObjects: true });
+  const { dataSource, lastChange, zzzs, gurs } = footterTrans;
 
   return (
     <footer className={footerStyles}>

@@ -38,18 +38,17 @@ type InputBaseCustomProps = {
   weight?: Weight;
 };
 
-export type InputBaseProps =
-  | (
-      | ({ as?: 'input' } & Omit<
-          PolymorphicComponentPropsWithRef<'input'>,
-          'as' | keyof InputBaseCustomProps
-        >)
-      | ({ as: 'textarea' } & Omit<
-          PolymorphicComponentPropsWithRef<'textarea'>,
-          'as' | keyof InputBaseCustomProps
-        >)
-    ) &
-      InputBaseCustomProps;
+export type InputBaseProps = (
+  | ({ as?: 'input' } & Omit<
+      PolymorphicComponentPropsWithRef<'input'>,
+      'as' | keyof InputBaseCustomProps
+    >)
+  | ({ as: 'textarea' } & Omit<
+      PolymorphicComponentPropsWithRef<'textarea'>,
+      'as' | keyof InputBaseCustomProps
+    >)
+) &
+  InputBaseCustomProps;
 
 const InputBase = (
   {

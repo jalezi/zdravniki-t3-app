@@ -3,9 +3,8 @@ import { useTranslation } from 'next-i18next';
 const DataSource = function MapTotalHits() {
   const { t } = useTranslation('common');
 
-  const dataSource = t`footer.dataSource`;
-  const zzzs = t`footer.zzzs`;
-  const gurs = t`footer.gurs`;
+  const footterTrans = t('footer', { returnObjects: true });
+  const { dataSource, zzzs, gurs } = footterTrans;
 
   return (
     <div className="leaflet-control-container data-source">

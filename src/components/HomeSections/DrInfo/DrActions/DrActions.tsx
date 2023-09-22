@@ -31,8 +31,8 @@ type DrActionsPopupProps = {
   variant: 'popup';
 };
 
-export type DrActionsProps =
-  | DrActionsCommonProps & (DrActionsDefaultProps | DrActionsPopupProps);
+export type DrActionsProps = DrActionsCommonProps &
+  (DrActionsDefaultProps | DrActionsPopupProps);
 
 //  Drole Katja gp [ '04 51 51 151', '051 395 675' ]
 
