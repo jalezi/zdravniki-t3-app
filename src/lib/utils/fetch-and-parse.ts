@@ -59,7 +59,7 @@ export const fetchDrAndInstDataAndParse = async () => {
 };
 
 type Source = 'dr' | 'inst' | 'dummy';
-type Address = NonNullable<DrAddress & InstAddress>;
+type Address = NonNullable<DrAddress>;
 
 const DummyAddress = {
   street: '',

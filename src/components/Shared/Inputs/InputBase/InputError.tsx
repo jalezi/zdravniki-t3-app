@@ -9,15 +9,14 @@ type InputErrorCustomProps = {
   className?: string;
 };
 
-export type InputErrorProps =
-  | (
-      | ({ as?: 'p' } & PolymorphicComponentProps<'p', InputErrorCustomProps>)
-      | ({ as: 'label' } & PolymorphicComponentProps<
-          'label',
-          InputErrorCustomProps
-        >)
-    ) &
-      InputErrorCustomProps;
+export type InputErrorProps = (
+  | ({ as?: 'p' } & PolymorphicComponentProps<'p', InputErrorCustomProps>)
+  | ({ as: 'label' } & PolymorphicComponentProps<
+      'label',
+      InputErrorCustomProps
+    >)
+) &
+  InputErrorCustomProps;
 
 const InputError = ({
   as = 'p',
