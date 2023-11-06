@@ -13,7 +13,7 @@ const Logo = () => {
   const router = useRouter();
   const locale = router.locale;
 
-  const hash = stringifyHash(['all', [ZOOM, ...SL_CENTER], '']);
+  const hash = stringifyHash(['all', [ZOOM, SL_CENTER[0], SL_CENTER[1]], '']);
   const resetFilters = (e: SyntheticEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     useBoundStore.setState({

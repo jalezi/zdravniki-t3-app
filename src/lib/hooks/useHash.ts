@@ -35,7 +35,11 @@ const useHash = () => {
     const documentLocHash = document.location.hash;
     const parsedHash = parseHash(documentLocHash?.split('#')?.[1] ?? '');
     if (!parsedHash.success && asPath) {
-      const newHash = stringifyHash(['all', [ZOOM, ...SL_CENTER], '']);
+      const newHash = stringifyHash([
+        'all',
+        [ZOOM, SL_CENTER[0], SL_CENTER[1]],
+        '',
+      ]);
       setNewPath(`${asPath.replace(documentLocHash, '')}${newHash}`);
     }
   }, [accepts, asPath, search]);
