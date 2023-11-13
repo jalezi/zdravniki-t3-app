@@ -73,7 +73,7 @@
     "@types/react-dom": "^18.2.14",
     "@types/uuid": "^9.0.6",
     "@types/validator": "^13.11.5",
-    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.9.1",
     "core": "link:@types/react-leaflet/core",
     "eslint": "^8.53.0",
