@@ -29,7 +29,7 @@
     "@vercel/analytics": "^1.1.1",
     "clsx": "^2.0.0",
     "gray-matter": "^4.0.3",
-    "i18next": "^23.6.0",
+    "i18next": "^23.7.6",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
     "leaflet.locatecontrol": "^0.79.0",
