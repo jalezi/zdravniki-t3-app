@@ -21,7 +21,7 @@
     "@mdx-js/react": "^3.0.0",
     "@next/mdx": "^14.0.3",
     "@react-leaflet/core": "^2.1.0",
-    "@tanstack/react-query": "^4.29.13",
+    "@tanstack/react-query": "4.35.3",
     "@trpc/client": "^10.44.1",
     "@trpc/next": "^10.44.1",
     "@trpc/react-query": "^10.44.1",
