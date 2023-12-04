@@ -8,6 +8,7 @@ import styles from './IconButton.module.css';
 import type { IconButtonInternalProps } from './IconButton.types';
 
 type IconButtonComponent = (
+  // @ts-expect-error I guess is ts bug with Polymorphic
   { as = 'button', children, ...polymorphicProps }: IconButtonInternalProps,
   ref?: Ref<HTMLElement>
 ) => React.ReactElement | null;
