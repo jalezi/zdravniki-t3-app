@@ -19,7 +19,7 @@
     "@hookform/resolvers": "^3.3.2",
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
-    "@next/mdx": "^14.0.3",
+    "@next/mdx": "^14.0.4",
     "@react-leaflet/core": "^2.1.0",
     "@tanstack/react-query": "4.35.3",
     "@trpc/client": "^10.44.1",
