@@ -45,7 +45,7 @@
     "react-i18next": "^13.5.0",
     "react-leaflet": "^4.2.1",
     "react-loading-skeleton": "^3.3.1",
-    "react-tooltip": "5.24.0",
+    "react-tooltip": "5.25.0",
     "rehype": "^13.0.1",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.0",
