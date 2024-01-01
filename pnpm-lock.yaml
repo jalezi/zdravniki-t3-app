@@ -13,7 +13,7 @@ dependencies:
     version: 3.0.0(webpack@5.88.2)
   '@mdx-js/react':
     specifier: ^3.0.0
-    version: 3.0.0(@types/react@18.2.41)(react@18.2.0)
+    version: 3.0.0(@types/react@18.2.46)(react@18.2.0)
   '@next/env':
     specifier: '*'
     version: 13.5.2
@@ -82,7 +82,7 @@ dependencies:
     version: 18.2.0(react@18.2.0)
   react-focus-lock:
     specifier: ^2.9.6
-    version: 2.9.6(@types/react@18.2.41)(react@18.2.0)
+    version: 2.9.6(@types/react@18.2.46)(react@18.2.0)
   react-hook-form:
     specifier: ^7.48.2
     version: 7.48.2(react@18.2.0)
@@ -136,7 +136,7 @@ dependencies:
     version: 3.22.4
   zustand:
     specifier: ^4.4.7
-    version: 4.4.7(@types/react@18.2.41)(react@18.2.0)
+    version: 4.4.7(@types/react@18.2.46)(react@18.2.0)
 
 devDependencies:
   '@commitlint/cli':
@@ -167,8 +167,8 @@ devDependencies:
     specifier: ^5.3.14
     version: 5.3.14
   '@types/react':
-    specifier: ^18.2.41
-    version: 18.2.41
+    specifier: ^18.2.46
+    version: 18.2.46
   '@types/react-dom':
     specifier: ^18.2.17
     version: 18.2.17
@@ -2056,14 +2056,14 @@ packages:
       - supports-color
     dev: false
 
-  /@mdx-js/react@3.0.0(@types/react@18.2.41)(react@18.2.0):
+  /@mdx-js/react@3.0.0(@types/react@18.2.46)(react@18.2.0):
     resolution: {integrity: sha512-nDctevR9KyYFyV+m+/+S4cpzCWHqj+iHDHq3QrsWezcC+B17uZdIWgCguESUkwFhM3n/56KxWVE3V6EokrmONQ==}
     peerDependencies:
       '@types/react': '>=16'
       react: '>=16'
     dependencies:
       '@types/mdx': 2.0.10
-      '@types/react': 18.2.41
+      '@types/react': 18.2.46
       react: 18.2.0
     dev: false
 
@@ -2097,7 +2097,7 @@ packages:
         optional: true
     dependencies:
       '@mdx-js/loader': 3.0.0(webpack@5.88.2)
-      '@mdx-js/react': 3.0.0(@types/react@18.2.41)(react@18.2.0)
+      '@mdx-js/react': 3.0.0(@types/react@18.2.46)(react@18.2.0)
       source-map: 0.7.4
     dev: false
 
@@ -2521,7 +2521,7 @@ packages:
   /@types/hoist-non-react-statics@3.3.4:
     resolution: {integrity: sha512-ZchYkbieA+7tnxwX/SCBySx9WwvWR8TaP5tb2jRAzwvLb/rWchGw3v0w3pqUbUvj0GCwW2Xz/AVPSk6kUGctXQ==}
     dependencies:
-      '@types/react': 18.2.41
+      '@types/react': 18.2.46
       hoist-non-react-statics: 3.3.2
     dev: false
 
@@ -2596,11 +2596,11 @@ packages:
   /@types/react-dom@18.2.17:
     resolution: {integrity: sha512-rvrT/M7Df5eykWFxn6MYt5Pem/Dbyc1N8Y0S9Mrkw2WFCRiqUgw9P7ul2NpwsXCSM1DVdENzdG9J5SreqfAIWg==}
     dependencies:
-      '@types/react': 18.2.41
+      '@types/react': 18.2.46
     dev: true
 
-  /@types/react@18.2.41:
-    resolution: {integrity: sha512-CwOGr/PiLiNBxEBqpJ7fO3kocP/2SSuC9fpH5K7tusrg4xPSRT/193rzolYwQnTN02We/ATXKnb6GqA5w4fRxw==}
+  /@types/react@18.2.46:
+    resolution: {integrity: sha512-nNCvVBcZlvX4NU1nRRNV/mFl1nNRuTuslAJglQsq+8ldXe5Xv0Wd2f7WTE3jOxhLH2BFfiZGC6GCp+kHQbgG+w==}
     dependencies:
       '@types/prop-types': 15.7.11
       '@types/scheduler': 0.16.8
@@ -6710,7 +6710,7 @@ packages:
       scheduler: 0.23.0
     dev: false
 
-  /react-focus-lock@2.9.6(@types/react@18.2.41)(react@18.2.0):
+  /react-focus-lock@2.9.6(@types/react@18.2.46)(react@18.2.0):
     resolution: {integrity: sha512-B7gYnCjHNrNYwY2juS71dHbf0+UpXXojt02svxybj8N5bxceAkzPChKEncHuratjUHkIFNCn06k2qj1DRlzTug==}
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -6720,13 +6720,13 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.23.2
-      '@types/react': 18.2.41
+      '@types/react': 18.2.46
       focus-lock: 1.0.0
       prop-types: 15.8.1
       react: 18.2.0
       react-clientside-effect: 1.2.6(react@18.2.0)
-      use-callback-ref: 1.3.0(@types/react@18.2.41)(react@18.2.0)
-      use-sidecar: 1.1.2(@types/react@18.2.41)(react@18.2.0)
+      use-callback-ref: 1.3.0(@types/react@18.2.46)(react@18.2.0)
+      use-sidecar: 1.1.2(@types/react@18.2.46)(react@18.2.0)
     dev: false
 
   /react-hook-form@7.48.2(react@18.2.0):
@@ -8006,7 +8006,7 @@ packages:
     dependencies:
       punycode: 2.3.1
 
-  /use-callback-ref@1.3.0(@types/react@18.2.41)(react@18.2.0):
+  /use-callback-ref@1.3.0(@types/react@18.2.46)(react@18.2.0):
     resolution: {integrity: sha512-3FT9PRuRdbB9HfXhEq35u4oZkvpJ5kuYbpqhCfmiZyReuRgpnhDlbr2ZEnnuS0RrJAPn6l23xjFg9kpDM+Ms7w==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -8016,12 +8016,12 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.41
+      '@types/react': 18.2.46
       react: 18.2.0
       tslib: 2.6.2
     dev: false
 
-  /use-sidecar@1.1.2(@types/react@18.2.41)(react@18.2.0):
+  /use-sidecar@1.1.2(@types/react@18.2.46)(react@18.2.0):
     resolution: {integrity: sha512-epTbsLuzZ7lPClpz2TyryBfztm7m+28DlEv2ZCQ3MDr5ssiwyOwGH/e5F9CkfWjJ1t4clvI58yF822/GUkjjhw==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -8031,7 +8031,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.41
+      '@types/react': 18.2.46
       detect-node-es: 1.1.0
       react: 18.2.0
       tslib: 2.6.2
@@ -8302,7 +8302,7 @@ packages:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: false
 
-  /zustand@4.4.7(@types/react@18.2.41)(react@18.2.0):
+  /zustand@4.4.7(@types/react@18.2.46)(react@18.2.0):
     resolution: {integrity: sha512-QFJWJMdlETcI69paJwhSMJz7PPWjVP8Sjhclxmxmxv/RYI7ZOvR5BHX+ktH0we9gTWQMxcne8q1OY8xxz604gw==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
@@ -8317,7 +8317,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@types/react': 18.2.41
+      '@types/react': 18.2.46
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
