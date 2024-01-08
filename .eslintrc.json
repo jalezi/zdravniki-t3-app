@@ -40,8 +40,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:import/recommended",
-    "plugin:sonarjs/recommended",
-    "plugin:security/recommended"
+    "plugin:sonarjs/recommended"
   ],
   "rules": {
     "@typescript-eslint/no-misused-promises": [
