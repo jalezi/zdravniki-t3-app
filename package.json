@@ -53,7 +53,7 @@
     "slugify": "^1.6.6",
     "superjson": "2.2.1",
     "the-new-css-reset": "^1.11.2",
-    "usehooks-ts": "^2.9.1",
+    "usehooks-ts": "^2.9.5",
     "uuid": "^9.0.1",
     "validator": "^13.11.0",
     "zod": "^3.22.4",
